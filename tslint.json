@@ -71,6 +71,7 @@
       true,
       "single"
     ],
+    "indent": [true, "tabs", 4],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
