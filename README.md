@@ -1,5 +1,11 @@
 # HACAFrontend
 
+For developing we chose VSCode.
+Essential plugins:
+- https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
+- https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
 ## Development server
