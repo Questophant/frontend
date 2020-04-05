@@ -1,0 +1,16 @@
+<img src="http://217.160.61.202/wp-content/uploads/2020/04/cropped-Logo_test.jpg-2.png" width="100%" />
+
+<div>
+	<form [formGroup]="loginForm" (ngSubmit)="login()">
+		<input class="full-width" type="email" name="email" placeholder="E-Mail" formControlName="email"/>
+		<input class="full-width" type="password" name="password" placeholder="Passwort" formControlName="password"/>
+
+		<button type="submit" class="login-btn" [disabled]="!loginForm.valid">Anmelden</button>
+	</form>
+
+
+	<span>oder</span>
+
+	<button class="full-width" routerLink="register">Registrieren</button>
+	<button class="full-width">Verbinden mit Facebook</button>
+</div>
