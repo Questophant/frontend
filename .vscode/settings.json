@@ -1,0 +1,8 @@
+{
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": true,
+		"tslint.autoFixOnSave": true
+	  },
+	  "editor.formatOnSave": true
+}

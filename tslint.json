@@ -1,5 +1,10 @@
 {
-  "extends": "tslint:recommended",
+  "extends": [
+	"tslint:recommended",
+    "tslint-eslint-rules",
+    "tslint-config-prettier",
+	"tslint-jasmine-rules"
+  ],
   "rules": {
     "array-type": false,
     "arrow-parens": false,
@@ -72,7 +77,6 @@
       "single"
     ],
     "indent": [true, "tabs", 4],
-    "trailing-comma": false,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,
@@ -84,7 +88,15 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+	"use-pipe-transform-interface": true,
+	"trailing-comma": [
+		false,
+		{
+		  "multiline": "always",
+		  "singleline": "never"
+		}
+	],
+	"newline-per-chained-call": true
   },
   "rulesDirectory": [
     "codelyzer"
