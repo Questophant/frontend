@@ -1,0 +1,43 @@
+input,
+span,
+button {
+	display: block;
+	margin-top: 25px;
+}
+
+button {
+	color: black;
+	background: white;
+	padding: 0;
+	box-shadow: none;
+	border: 1px solid black;
+	padding: 5px;
+	cursor: pointer;
+}
+
+button:disabled {
+	background: red;
+}
+
+input {
+	color: black;
+	background: white;
+	padding: 0;
+	box-shadow: none;
+	border: 1px solid black;
+	padding: 5px 10px;
+}
+
+div {
+	padding: 35px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.login-btn {
+	width: 50vw;
+	margin-left: auto;
+	margin-right: auto;
+}
