@@ -1,12 +1,21 @@
-# HACAFrontend
+# ChallengeMe Frontend
+
+Hi, this is the frontend of the ChallengeMe App.
+It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
+
+## Getting started
+
+- clone repository
+- change into the newly created folder
+- run `npm install`
+- run `npm install -g @angular/cli`
+- run `ng serve -o`
+- to switch into local development mode, add "?demo=true" to the URL of the browser and reload the page
 
 For developing we chose VSCode.
 Essential plugins:
 - https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
 - https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
-
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
 ## Development server
 
