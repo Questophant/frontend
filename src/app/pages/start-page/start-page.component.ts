@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Injectable, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../shared/services/api-service/api.service';
 
@@ -13,7 +13,7 @@ export class StartPageComponent implements OnInit {
 		password: new FormControl('', [Validators.required]),
 	});
 
-	constructor(private api: ApiService) {}
+	constructor(public api: ApiService) {}
 
 	ngOnInit(): void {}
 

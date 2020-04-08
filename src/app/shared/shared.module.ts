@@ -10,8 +10,7 @@ import { apiServiceFactory } from './services/api-service/apiService.factory';
 		{
 			provide: ApiService,
 			useFactory: apiServiceFactory,
-		}
+		},
 	],
 })
-export class SharedModule {
-}
+export class SharedModule {}
