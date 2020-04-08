@@ -7,16 +7,16 @@ import { SelectChallengePageComponent } from './pages/select-challenge-page/sele
 const routes: Routes = [
 	{
 		path: '',
-		component: StartPageComponent,
+		component: StartPageComponent
 	},
 	{
 		path: 'register',
-		component: RegisterPageComponent,
+		component: RegisterPageComponent
 	},
 	{
 		path: 'select-challenge',
-		component: SelectChallengePageComponent,
-	},
+		component: SelectChallengePageComponent
+	}
 ];
 
 @NgModule({
