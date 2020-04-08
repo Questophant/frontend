@@ -5,4 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
 	constructor() {}
+
+	getDailyChallenge(): string {
+		return 'daily challenge';
+	}
+}
+
+export class LocalApiService extends ApiService {
+	getDailyChallenge(): string {
+		return null;
+	}
 }

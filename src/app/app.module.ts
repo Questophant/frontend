@@ -5,14 +5,10 @@ import { AppComponent } from './app.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import {SharedModule} from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		StartPageComponent,
-		RegisterPageComponent,
-	],
+	declarations: [AppComponent, StartPageComponent, RegisterPageComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

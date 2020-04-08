@@ -5,6 +5,8 @@ import { ApiService } from './services/api-service/api.service';
 @NgModule({
 	declarations: [],
 	imports: [CommonModule],
-	providers: [ApiService],
+	providers: [
+		ApiService
+	],
 })
 export class SharedModule {}
