@@ -4,29 +4,48 @@
 />
 
 <div>
-	<form [formGroup]="loginForm" (ngSubmit)="login()">
-		<input
-			class="full-width"
-			type="email"
-			name="email"
-			placeholder="E-Mail"
-			formControlName="email"
-		/>
-		<input
-			class="full-width"
-			type="password"
-			name="password"
-			placeholder="Passwort"
-			formControlName="password"
-		/>
+	<label class="name-field">
+		Wähle einen Namen
+		<input type="text" name="name" />
+	</label>
 
-		<button type="submit" class="login-btn" [disabled]="!loginForm.valid">
-			Anmelden
-		</button>
-	</form>
+	<label>
+		<input type="checkbox" name="dataprivacy" />
+		Datenschutzerklärung
+	</label>
 
-	<span>oder</span>
+	<label>
+		<input type="checkbox" name="code-of-conduct" />
+		Code of Conduct
+	</label>
 
-	<button class="full-width" routerLink="register">Registrieren</button>
-	<button class="full-width">Verbinden mit Facebook</button>
+	<button>Speichern</button>
+	<button>Überspringen</button>
+
+
+<!--	<form [formGroup]="loginForm" (ngSubmit)="login()">-->
+<!--		<input-->
+<!--			class="full-width"-->
+<!--			type="email"-->
+<!--			name="email"-->
+<!--			placeholder="E-Mail"-->
+<!--			formControlName="email"-->
+<!--		/>-->
+<!--		<input-->
+<!--			class="full-width"-->
+<!--			type="password"-->
+<!--			name="password"-->
+<!--			placeholder="Passwort"-->
+<!--			formControlName="password"-->
+<!--		/>-->
+
+<!--		<button type="submit" class="login-btn" [disabled]="!loginForm.valid">-->
+<!--			Anmelden-->
+<!--		</button>-->
+<!--	</form>-->
+
+<!--	<span>oder</span>-->
+
+<!--	<button class="full-width" routerLink="register">Registrieren</button>-->
+<!--	<button class="full-width">Verbinden mit Facebook</button>-->
 </div>
