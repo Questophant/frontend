@@ -1,18 +1,6 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
-@Injectable({
-	providedIn: 'root',
-})
-export class ApiService {
-	constructor() {}
-
-	getDailyChallenge(): string {
-		return 'daily challenge';
-	}
-}
-
-export class LocalApiService extends ApiService {
-	getDailyChallenge(): string {
-		return null;
-	}
+export abstract class ApiService {
+	getDailyChallenge() {}
 }
