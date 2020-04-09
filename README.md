@@ -5,17 +5,18 @@ It was generated with [Angular CLI](https://github.com/angular/angular-cli) vers
 
 ## Getting started
 
-- clone repository
-- change into the newly created folder
-- run `npm install`
-- run `npm install -g @angular/cli`
-- run `ng serve -o`
-- to switch into local development mode, add "?demo=true" to the URL of the browser and reload the page
+-   clone repository
+-   change into the newly created folder
+-   run `npm install`
+-   run `npm install -g @angular/cli`
+-   run `ng serve -o`
+-   In default, the app is mocking the backend. To run against the backend, run `ng serve --prod` instead
 
 For developing we chose VSCode.
 Essential plugins:
-- https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
-- https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
+
+-   https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
+-   https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
 
 ## Development server
 
