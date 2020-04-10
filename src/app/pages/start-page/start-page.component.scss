@@ -1,28 +1,28 @@
 div {
-    color: rgb(13, 13, 13);
+	color: rgb(13, 13, 13);
 
-    &>* {
-        display: block;
-    }
+	& > * {
+		display: block;
+	}
 
-    .name-field {
-        margin-top: 70px;
+	.name-field {
+		margin-top: 70px;
 
-        input {
-            display: block;
-            border: none;
-            border-bottom: 1px solid black;
-            margin: 0px auto;
-            width: 75vw;
-            text-align: center;
-        }
-    }
+		input {
+			display: block;
+			border: none;
+			border-bottom: 1px solid black;
+			margin: 0px auto;
+			width: 75vw;
+			text-align: center;
+		}
+	}
 
-    text-align: center;
+	text-align: center;
 
-    button {
-        margin: 0 auto;
-    }
+	button {
+		margin: 0 auto;
+	}
 }
 
 //input,
