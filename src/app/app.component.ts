@@ -5,9 +5,4 @@ import { Component } from '@angular/core';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-	title = 'HACAFrontend';
-	array = [{ a: 't', b: { c: 1 } }];
-
-	constructor() {}
-}
+export class AppComponent {}

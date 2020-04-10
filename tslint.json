@@ -1,9 +1,9 @@
 {
   "extends": [
 	"tslint:recommended",
-    "tslint-eslint-rules",
-    "tslint-config-prettier",
-	"tslint-jasmine-rules"
+//    "tslint-eslint-rules",
+    "tslint-config-prettier"
+//	"tslint-jasmine-rules"
   ],
   "rules": {
     "array-type": false,
