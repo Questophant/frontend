@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
+import { HTTPApiService } from './http.api.service';
 
 @Injectable()
-export class ProdApiService implements ApiService {
-	public getDailyChallenge(): string {
-		return 'daily challenge';
-	}
+/**
+ * This API Service connects to the backend.
+ */
+export class ProdApiService extends HTTPApiService {
+	apiUrl = 'https://api.challengemeapp.de/api/v1'; // not defined yet
 }
