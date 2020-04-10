@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
+import { ApiService } from 'src/app/shared/services/api-service/api.service';
 
 @Component({
 	selector: 'app-select-challenge-page',
@@ -6,21 +8,11 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./select-challenge-page.component.scss'],
 })
 export class SelectChallengePageComponent implements OnInit {
-	challenges: {
-		id: string;
-		name: string;
-		category: string;
-		member: number;
-	}[] = [
-		{
-			id: 'challenge-1',
-			name: 'Räum mal auf',
-			category: 'Haushalt',
-			member: 200,
-		},
-	];
+	challenges$: Promise<ChallengeDto[]>;
 
-	constructor() {}
+	constructor(private api: ApiService) {
+		this.challenges$ = api.getAllChallenges();
+	}
 
 	ngOnInit(): void {}
 }

@@ -13,6 +13,10 @@
 </div>
 
 <div class="challenges">
+	<div class="challenge" *ngFor="let challenge of challenges$ | async">
+		<h1 class="challenge-title">{{ challenge.title }}</h1>
+		<p class="challenge-description">{{ challenge.description }}</p>
+	</div>
 	<div class="challenge"></div>
 	<div class="challenge"></div>
 	<div class="challenge"></div>

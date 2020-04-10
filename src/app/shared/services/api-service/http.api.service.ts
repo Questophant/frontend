@@ -9,18 +9,6 @@ export abstract class HTTPApiService implements ApiService {
 
 	constructor(protected httpClient: HttpClient) {}
 
-	protected checkCache() {
-		const date = new Date();
-		const day = date.getDate();
-
-		// new values at 1:30h => reset at 2 o'clock
-		if (this.cacheDay != day) {
-			console.log('Resetting caches.');
-			this.cacheDay = day;
-			this.cachedDailyChallenge = null;
-		}
-	}
-
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
 		if (this.cachedDailyChallenge) {
@@ -35,6 +23,22 @@ export abstract class HTTPApiService implements ApiService {
 				return challenge;
 			}
 		);
+	}
+
+	getAllChallenges(): Promise<ChallengeDto[]> {
+		throw new Error('Not implemented');
+	}
+
+	protected checkCache() {
+		const date = new Date();
+		const day = date.getDate();
+
+		// new values at 1:30h => reset at 2 o'clock
+		if (this.cacheDay != day) {
+			console.log('Resetting caches.');
+			this.cacheDay = day;
+			this.cachedDailyChallenge = null;
+		}
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
