@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ApiService } from './services/api-service/api.service';
 import { apiServiceFactory } from './services/api-service/apiService.factory';
+import { Store } from './storage/store';
 
 @NgModule({
 	declarations: [],
@@ -11,8 +12,8 @@ import { apiServiceFactory } from './services/api-service/apiService.factory';
 		{
 			provide: ApiService,
 			useFactory: apiServiceFactory,
-			deps: [HttpClient],
+			deps: [HttpClient, Store],
 		},
 	],
 })
-export class SharedModule {}
+export class SharedModule { }
