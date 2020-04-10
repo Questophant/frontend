@@ -7,11 +7,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-	"e2e": "ng e2e",
-	"precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-	"prettier": "prettier --write ."
+    "e2e": "ng e2e",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "prettier": "prettier --write ."
   },
-  "pre-commit": [ "precommit-msg", "prettier" ],
+  "pre-commit": [
+    "precommit-msg",
+    "prettier"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.0.7",

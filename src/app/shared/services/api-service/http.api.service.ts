@@ -1,23 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 
-@Injectable()
-export class HTTPApiService implements ApiService {
+export abstract class HTTPApiService implements ApiService {
+	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(private httpClient: HttpClient) {}
+	constructor(protected httpClient: HttpClient) {}
 
-	/** Overwrite this method for your own endpoint. */
-	protected getApiURL(): string {
-		return null;
-	}
-
-	private checkCache() {
-		let date = new Date();
-		let day = date.getDate();
+	protected checkCache() {
+		const date = new Date();
+		const day = date.getDate();
 
 		// new values at 1:30h => reset at 2 o'clock
 		if (this.cacheDay != day) {
@@ -35,12 +29,12 @@ export class HTTPApiService implements ApiService {
 			});
 		}
 
-		return this.getChallengeFromUrl(
-			`${this.getApiURL()}/daily_challenge`
-		).then((challenge) => {
-			this.cachedDailyChallenge = challenge;
-			return challenge;
-		});
+		return this.getChallengeFromUrl(`${this.apiUrl}/daily_challenge`).then(
+			(challenge) => {
+				this.cachedDailyChallenge = challenge;
+				return challenge;
+			}
+		);
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
