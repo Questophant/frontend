@@ -110,8 +110,8 @@
 		  "multiline": "always",
 		  "singleline": "never"
 		}
-	],
-	"newline-per-chained-call": true
+	]
+	// "newline-per-chained-call": true
   },
   "rulesDirectory": [
     "codelyzer"
