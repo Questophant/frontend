@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HTTPApiService } from './http.api.service';
+import { ChallengeDto } from '../../dtos/challenge.dto';
+import { ApiService } from './api.service';
 
 @Injectable()
 /**
- * This API Service connects to the locally running backend
+ * This API Service simulates a backend.
  */
-export class SimApiService extends HTTPApiService {
-	apiUrl = 'http://localhost:8080/api/v1';
+export class SimApiService implements ApiService {
+	getDailyChallenge(): Promise<ChallengeDto> {
+		return Promise.resolve({
+			id: 0,
+			title: 'asdasdasd',
+			description: 'lorem ipsum ...',
+			category: 'art',
+			durationSeconds: 300,
+		});
+	}
 }

@@ -15,10 +15,10 @@ export function apiServiceFactory(httpClient: HttpClient): ApiService {
 			return new TestApiService(httpClient);
 
 		case 'simulation':
-			return new SimApiService(httpClient);
+			return new SimApiService();
 
 		case 'local':
-			return new LocalApiService();
+			return new LocalApiService(httpClient);
 
 		default:
 			throw new Error(
