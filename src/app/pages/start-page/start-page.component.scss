@@ -1,43 +1,70 @@
-input,
-span,
-button {
-    display: block;
-    margin-top: 25px;
-}
-
-button {
-    color: black;
-    background: white;
-    padding: 0;
-    box-shadow: none;
-    border: 1px solid black;
-    padding: 5px;
-    cursor: pointer;
-}
-
-button:disabled {
-	background: red;
-}
-
-input {
-    color: black;
-    background: white;
-    padding: 0;
-    box-shadow: none;
-    border: 1px solid black;
-    padding: 5px 10px;
-}
-
 div {
-    padding: 35px;
+    color: rgb(13, 13, 13);
+
+    &>* {
+        display: block;
+    }
+
+    .name-field {
+        margin-top: 70px;
+
+        input {
+            display: block;
+            border: none;
+            border-bottom: 1px solid black;
+            margin: 0px auto;
+            width: 75vw;
+            text-align: center;
+        }
+    }
+
+    text-align: center;
+
+    button {
+        margin: 0 auto;
+    }
 }
 
-.full-width {
-    width: 100%;
-}
-
-.login-btn {
-    width: 50vw;
-    margin-left: auto;
-    margin-right: auto;
-}
+//input,
+//span,
+//button {
+//	display: block;
+//	margin-top: 25px;
+//}
+//
+//button {
+//	color: black;
+//	background: white;
+//	padding: 0;
+//	box-shadow: none;
+//	border: 1px solid black;
+//	padding: 5px;
+//	cursor: pointer;
+//}
+//
+//button:disabled {
+//	background: red;
+//}
+//
+//input {
+//	color: black;
+//	background: white;
+//	padding: 0;
+//	box-shadow: none;
+//	border: 1px solid black;
+//	padding: 5px 10px;
+//}
+//
+//div {
+//	padding: 35px;
+//}
+//
+//.full-width {
+//	width: 100%;
+//}
+//
+//.login-btn {
+//	width: 50vw;
+//	margin-left: auto;
+//	margin-right: auto;
+//}

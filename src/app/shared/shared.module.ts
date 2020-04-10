@@ -1,13 +1,18 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {ApiService} from './services/api-service/api.service';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ApiService } from './services/api-service/api.service';
+import { apiServiceFactory } from './services/api-service/apiService.factory';
 
 @NgModule({
 	declarations: [],
-	imports: [CommonModule],
+	imports: [CommonModule, HttpClientModule],
 	providers: [
-		ApiService,
-	]
+		{
+			provide: ApiService,
+			useFactory: apiServiceFactory,
+			deps: [HttpClient],
+		},
+	],
 })
-export class SharedModule {
-}
+export class SharedModule {}

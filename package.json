@@ -51,6 +51,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-jasmine-rules": "^1.6.0",
     "typescript": "~3.7.5"
   }
 }

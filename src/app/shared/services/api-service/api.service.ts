@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
+import { ChallengeDto } from '../../dtos/challenge.dto';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ApiService {
-
-  constructor() { }
+export abstract class ApiService {
+	getDailyChallenge(): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
 }
