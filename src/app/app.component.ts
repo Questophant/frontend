@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-	constructor(private test: string, private blub: number) {}
 	title = 'HACAFrontend';
 	array = [{ a: 't', b: { c: 1 } }];
+
+	constructor() {}
 }
