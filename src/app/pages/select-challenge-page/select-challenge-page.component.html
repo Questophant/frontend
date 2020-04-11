@@ -6,15 +6,15 @@
 	</div>
 
 	<div class="category-bar">
-		<span class="category">Alle</span>
-		<span class="category" *ngFor="let category of categories">
-			{{ category }}
+		<span class="category" (click)="setCategoryFilter(null)">Alle</span>
+		<span class="category" *ngFor="let category of categories" (click)="setCategoryFilter(category.name)">
+			{{ category.display }}
 		</span>
 	</div>
 </div>
 
 <div class="challenges">
-	<div class="challenge" *ngFor="let challenge of challenges$ | async">
+	<div class="challenge" *ngFor="let challenge of challenges$ | async | filterChallengesByCategoryName:filter">
 		<h1 class="challenge-title">{{ challenge.title }}</h1>
 		<p class="challenge-description">{{ challenge.description }}</p>
 	</div>
