@@ -6,9 +6,10 @@
 	</div>
 
 	<div class="category-bar">
-		<span>Alle</span>
-		<span>Sport</span>
-		<span>Kreativ</span>
+		<span class="category">Alle</span>
+		<span class="category" *ngFor="let category of categories">
+			{{ category }}
+		</span>
 	</div>
 </div>
 

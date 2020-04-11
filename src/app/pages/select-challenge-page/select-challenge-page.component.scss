@@ -2,54 +2,84 @@ $app-bar-height: 50px;
 $category-bar-height: 30px;
 
 .sticky-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
-	.app-bar {
-		height: $app-bar-height;
-		background: red;
-	}
+    .app-bar {
+        height: $app-bar-height;
+        background: red;
+    }
 
-	.category-bar {
-		height: $category-bar-height;
-		background: green;
-	}
+    .category-bar {
+        position: relative;
+        height: $category-bar-height;
+        background: green;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        /* define scrollbar */
+        ::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ded7c1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+
+        .category {
+            display: inline-block;
+            border: 1px solid black;
+            margin: 0 10px;
+            padding: 5px;
+        }
+    }
 }
 
 .challenges {
-	margin-top: $app-bar-height + $category-bar-height + 10px;
+    margin-top: $app-bar-height + $category-bar-height + 10px;
 
-	.challenge {
-		height: 250px;
-		width: 90vw;
-		margin: 10px auto;
-		background: blue;
-	}
+    .challenge {
+        height: 250px;
+        width: 90vw;
+        margin: 10px auto;
+        background: blue;
+    }
 }
 
 .sticky-footer-navigation {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
 
-	background-color: #fff;
-	border: 1px solid black;
+    background-color: #fff;
+    border: 1px solid black;
 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 
-	.icon {
-		display: inline-block;
-		position: relative;
-		width: 40px;
-		height: 40px;
+    .icon {
+        display: inline-block;
+        position: relative;
+        width: 40px;
+        height: 40px;
 
-		background: red;
-	}
+        background: red;
+    }
 }
