@@ -1,13 +1,13 @@
-import { Component, Inject, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../shared/services/api-service/api.service';
 
 @Component({
-	selector: 'app-start-page',
-	templateUrl: './start-page.component.html',
-	styleUrls: ['./start-page.component.scss'],
+	selector: 'app-welcome-page',
+	templateUrl: './welcome-page.component.html',
+	styleUrls: ['./welcome-page.component.scss'],
 })
-export class StartPageComponent implements OnInit {
+export class WelcomePageComponent implements OnInit {
 	loginForm = new FormGroup({
 		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', [Validators.required]),

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StartPageComponent } from './pages/start-page/start-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 const routes: Routes = [
 	{
 		path: '',
-		component: StartPageComponent,
+		component: WelcomePageComponent,
 	},
 	{
 		path: 'register',
