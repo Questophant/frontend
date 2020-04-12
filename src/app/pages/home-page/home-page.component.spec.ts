@@ -13,9 +13,9 @@ describe('SelectChallengePageComponent', () => {
 			providers: [
 				{
 					provide: ApiService,
-					useValue: new SimApiService()
-				}
-			]
+					useValue: new SimApiService(),
+				},
+			],
 		}).compileComponents();
 	}));
 

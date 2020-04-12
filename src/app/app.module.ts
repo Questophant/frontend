@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 		AppComponent,
 		StartPageComponent,
 		RegisterPageComponent,
-		HomePageComponent
+		HomePageComponent,
 	],
 	imports: [
 		BrowserModule,

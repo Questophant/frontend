@@ -15,8 +15,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'select-challenge',
-		component: HomePageComponent
-	}
+		component: HomePageComponent,
+	},
 ];
 
 @NgModule({

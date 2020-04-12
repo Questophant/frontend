@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/shared/services/api-service/api.service';
 @Component({
 	selector: 'app-select-challenge-page',
 	templateUrl: './home-page.component.html',
-	styleUrls: ['./home-page.component.scss']
+	styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
