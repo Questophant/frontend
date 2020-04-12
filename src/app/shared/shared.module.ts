@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FilterChallengesByCategoryNamePipe } from './pipes/filter-challenges-by-category-name-pipe/filter-challenges-by-category-name.pipe';
 import { ApiService } from './services/api-service/api.service';
 import { apiServiceFactory } from './services/api-service/apiService.factory';
 
 @NgModule({
-	declarations: [],
+	declarations: [FilterChallengesByCategoryNamePipe],
 	imports: [CommonModule, HttpClientModule],
 	providers: [
 		{
@@ -14,5 +15,6 @@ import { apiServiceFactory } from './services/api-service/apiService.factory';
 			deps: [HttpClient],
 		},
 	],
+	exports: [FilterChallengesByCategoryNamePipe],
 })
 export class SharedModule {}
