@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
-import { SelectChallengePageComponent } from './select-challenge-page.component';
+import { HomePageComponent } from './home-page.component';
 
 describe('SelectChallengePageComponent', () => {
-	let component: SelectChallengePageComponent;
-	let fixture: ComponentFixture<SelectChallengePageComponent>;
+	let component: HomePageComponent;
+	let fixture: ComponentFixture<HomePageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [SelectChallengePageComponent],
+			declarations: [HomePageComponent],
 			providers: [
 				{
 					provide: ApiService,
-					useValue: new SimApiService(),
-				},
-			],
+					useValue: new SimApiService()
+				}
+			]
 		}).compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(SelectChallengePageComponent);
+		fixture = TestBed.createComponent(HomePageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

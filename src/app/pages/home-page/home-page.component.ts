@@ -5,10 +5,10 @@ import { ApiService } from 'src/app/shared/services/api-service/api.service';
 
 @Component({
 	selector: 'app-select-challenge-page',
-	templateUrl: './select-challenge-page.component.html',
-	styleUrls: ['./select-challenge-page.component.scss'],
+	templateUrl: './home-page.component.html',
+	styleUrls: ['./home-page.component.scss']
 })
-export class SelectChallengePageComponent implements OnInit {
+export class HomePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
 	categories: Category[] = Categories;
 	filter: string;
@@ -17,7 +17,8 @@ export class SelectChallengePageComponent implements OnInit {
 		this.challenges$ = api.getAllChallenges();
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+	}
 
 	setCategoryFilter(name: string): void {
 		this.filter = name;

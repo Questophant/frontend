@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { SelectChallengePageComponent } from './pages/select-challenge-page/select-challenge-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { StartPageComponent } from './pages/start-page/start-page.component';
 
 const routes: Routes = [
@@ -15,8 +15,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'select-challenge',
-		component: SelectChallengePageComponent,
-	},
+		component: HomePageComponent
+	}
 ];
 
 @NgModule({
