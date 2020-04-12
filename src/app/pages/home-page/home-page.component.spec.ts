@@ -10,7 +10,10 @@ describe('HomePageComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [HomePageComponent, FilterChallengesByCategoryNamePipe],
+			declarations: [
+				HomePageComponent,
+				FilterChallengesByCategoryNamePipe,
+			],
 			providers: [
 				{
 					provide: ApiService,
