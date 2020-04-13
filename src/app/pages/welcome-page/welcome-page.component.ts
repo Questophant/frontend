@@ -9,8 +9,12 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 	styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
+	submitted = false;
 	registrationForm = new FormGroup({
-		name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+		name: new FormControl('', [
+			Validators.required,
+			Validators.minLength(1),
+		]),
 		dataPrivacy: new FormControl(false, [Validators.requiredTrue]),
 		codeOfConduct: new FormControl(false, [Validators.requiredTrue]),
 	});
@@ -26,9 +30,8 @@ export class WelcomePageComponent implements OnInit {
 	}
 
 	saveName(): void {
-		console.log(this.registrationForm.get('name').errors);
-		console.log(this.registrationForm.get('dataPrivacy').errors);
-		console.log(this.registrationForm.get('codeOfConduct').errors);
+		this.submitted = true;
+
 		if (this.registrationForm.valid) {
 			this.auth.register(this.registrationForm.get('name').value);
 			this.skip();

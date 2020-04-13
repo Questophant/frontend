@@ -1,4 +1,4 @@
-div {
+form {
 	color: rgb(13, 13, 13);
 
 	& > * {
@@ -22,6 +22,10 @@ div {
 
 	button {
 		margin: 0 auto;
+	}
+
+	.errors > span {
+		display: block;
 	}
 }
 

@@ -1,33 +1,56 @@
 <img
 	src="https://challengemeapp.de/wp-content/uploads/2020/04/cropped-Logo_test.jpg-2.png"
 	width="100%"
+	alt="ChallengeMe Logo"
 />
 
-<div [formGroup]="registrationForm">
+<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 	<label class="name-field">
 		Wähle einen Namen
 		<input formControlName="name" name="name" type="text"/>
 	</label>
 
 	<label>
-		<input formControlName="dataPrivacy" name="dataprivacy" type="checkbox"/>
+		<input
+			formControlName="dataPrivacy"
+			name="dataprivacy"
+			type="checkbox"
+		/>
 		Datenschutzerklärung
 	</label>
 
 	<label>
-		<input formControlName="codeOfConduct" name="code-of-conduct" type="checkbox"/>
+		<input
+			formControlName="codeOfConduct"
+			name="code-of-conduct"
+			type="checkbox"
+		/>
 		Code of Conduct
 	</label>
 
-	<div *ngIf="registrationForm.invalid" class="errors"
-		 style="padding: 10px; border: 1px solid red; margin: 15px; background: rgba(255,0,0,0.2); color: red;">
-		<span *ngIf="registrationForm.get('name').errors !== null">Sie müssen einen Namen angeben.</span>
-		<span
-			*ngIf="registrationForm.get('dataPrivacy').errors !== null">Sie müssen den Datenschutzbst. zustimmen.</span>
-		<span *ngIf="registrationForm.get('codeOfConduct').errors !== null">Sie müssen dem CoC zustimmen.</span>
+	<div
+		*ngIf="submitted && registrationForm.invalid"
+		class="errors"
+		style="
+			padding: 10px;
+			border: 1px solid red;
+			margin: 15px;
+			background: rgba(255, 0, 0, 0.2);
+			color: red;
+		"
+	>
+		<span *ngIf="registrationForm.get('name').errors !== null"
+		>Sie müssen einen Namen angeben.</span
+		>
+		<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
+		>Sie müssen den Datenschutzbst. zustimmen.</span
+		>
+		<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
+		>Sie müssen dem CoC zustimmen.</span
+		>
 	</div>
 
-	<button (click)="saveName()">Speichern</button>
+	<button type="submit">Speichern</button>
 	<!--	<button (click)="skip()">Überspringen</button>-->
 
 	<!--	<form [formGroup]="loginForm" (ngSubmit)="login()">-->
@@ -55,4 +78,4 @@
 
 	<!--	<button class="full-width" routerLink="register">Registrieren</button>-->
 	<!--	<button class="full-width">Verbinden mit Facebook</button>-->
-</div>
+</form>
