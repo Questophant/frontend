@@ -23,7 +23,16 @@ export class HasRegisteredGuard implements CanActivate {
 		if (this.auth.isUserRegistered()) {
 			return true;
 		} else {
-			this.router.navigate(['/welcome']);
+			this.router.navigate(['/welcome']).then(
+				(value) => {
+					if (!value) {
+						alert('Redirect failed');
+					}
+				},
+				(reason) => {
+					alert(reason);
+				}
+			);
 			return false;
 		}
 	}

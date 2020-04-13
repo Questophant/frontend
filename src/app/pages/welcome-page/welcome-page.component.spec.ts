@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
 import { WelcomePageComponent } from './welcome-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('WelcomePageComponent', () => {
 	let component: WelcomePageComponent;
@@ -11,7 +12,7 @@ describe('WelcomePageComponent', () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [WelcomePageComponent],
-			imports: [RouterTestingModule],
+			imports: [RouterTestingModule, ReactiveFormsModule],
 			providers: [
 				{
 					provide: ApiService,
