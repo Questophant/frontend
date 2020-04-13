@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FilterChallengesByCategoryNamePipe } from './pipes/filter-challenges-by-category-name-pipe/filter-challenges-by-category-name.pipe';
 import { ApiService } from './services/api-service/api.service';
 import { apiServiceFactory } from './services/api-service/apiService.factory';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
 	declarations: [FilterChallengesByCategoryNamePipe],
@@ -14,6 +15,7 @@ import { apiServiceFactory } from './services/api-service/apiService.factory';
 			useFactory: apiServiceFactory,
 			deps: [HttpClient],
 		},
+		AuthService,
 	],
 	exports: [FilterChallengesByCategoryNamePipe],
 })
