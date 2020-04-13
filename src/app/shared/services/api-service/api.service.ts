@@ -1,6 +1,11 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { ChallengeDto } from '../../dtos/challenge.dto';
 
 export abstract class ApiService {
-	getDailyChallenge() {}
+	getDailyChallenge(): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	getAllChallenges(): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
 }

@@ -1,8 +1,14 @@
 {
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
+		"source.fixAll.tslint": true,
+		//"tslint.autoFixOnSave": true,
 		"source.organizeImports": true,
-		"tslint.autoFixOnSave": true
-	  },
-	  "editor.formatOnSave": true
+	},
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.useEditorConfig": false
 }

@@ -12,6 +12,10 @@ const routes: Routes = [
 		path: 'register',
 		component: RegisterPageComponent,
 	},
+	{
+		path: 'select-challenge',
+		component: HomePageComponent,
+	},
 ];
 
 @NgModule({

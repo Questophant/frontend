@@ -1,17 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
-import { WelcomePageComponent } from './welcome-page.component';
+import { HomePageComponent } from './home-page.component';
+import { FilterChallengesByCategoryNamePipe } from '../../shared/pipes/filter-challenges-by-category-name-pipe/filter-challenges-by-category-name.pipe';
 
-describe('WelcomePageComponent', () => {
-	let component: WelcomePageComponent;
-	let fixture: ComponentFixture<WelcomePageComponent>;
+describe('HomePageComponent', () => {
+	let component: HomePageComponent;
+	let fixture: ComponentFixture<HomePageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [WelcomePageComponent],
-			imports: [RouterTestingModule],
+			declarations: [
+				HomePageComponent,
+				FilterChallengesByCategoryNamePipe,
+			],
 			providers: [
 				{
 					provide: ApiService,
@@ -22,7 +24,7 @@ describe('WelcomePageComponent', () => {
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(WelcomePageComponent);
+		fixture = TestBed.createComponent(HomePageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
