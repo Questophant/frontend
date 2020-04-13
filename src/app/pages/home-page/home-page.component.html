@@ -18,6 +18,25 @@
 </div>
 
 <div class="challenges">
+	<div class="challenge">
+		<div class="challenge-label">
+			<h1 class="challenge-title">Tageschallenge</h1>
+		</div>
+		<div class="challenge-picture"></div>
+		<div class="challenge-description-container">
+			<div class="challenge-description">
+				<p class="challenge-description-text">
+					"Kurzer Beschreibungstext zur Challenge beendet bei zu
+					langer Textlänge mit ..."
+				</p>
+				<p class="challenge-category kochen">Roberts Koch-Institut</p>
+				<p class="challenge-participants">100 Teilnehmer</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="challenges">
 	<div
 		class="challenge"
 		*ngFor="
@@ -26,21 +45,19 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<h1 class="challenge-title">{{ challenge.title }}</h1>
-		<p class="challenge-description">{{ challenge.description }}</p>
+		<div class="challenge-label">
+			<div class="challenge-profile"></div>
+			<h1 class="challenge-title">{{ challenge.title }}</h1>
+		</div>
+		<div class="challenge-picture"></div>
+		<div class="challenge-description-container">
+			<div class="challenge-description">
+				<p class="challenge-description-text">
+					{{ challenge.description }}
+				</p>
+			</div>
+		</div>
 	</div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
 </div>
 
 <div class="sticky-footer-navigation">

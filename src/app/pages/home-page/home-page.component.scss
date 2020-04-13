@@ -6,19 +6,23 @@ $category-bar-height: 30px;
 	top: 0;
 	left: 0;
 	right: 0;
+	z-index: 999;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: yellow;
+		background: #d4d4d4;
 	}
 
 	.category-bar {
 		position: relative;
 		height: $category-bar-height;
-		background: green;
+		background: #75c297;
 		overflow-x: auto;
 		white-space: nowrap;
 		user-select: none;
+		margin-top: 2%;
+		border-radius: 40px 0 0 40px;
+		margin-left: 4%;
 
 		/* define scrollbar */
 		::-webkit-scrollbar {
@@ -50,13 +54,75 @@ $category-bar-height: 30px;
 }
 
 .challenges {
-	margin-top: $app-bar-height + $category-bar-height + 10px;
+	margin-top: $app-bar-height + $category-bar-height + 25px;
+	position: relative;
 
 	.challenge {
-		height: 250px;
-		width: 90vw;
+		height: 300px;
+		width: 92vw;
 		margin: 10px auto;
+
+		.challenge-title {
+			color: #fff;
+			font-size: 18px;
+			font-weight: 100;
+			padding-top: 3%;
+			padding-left: 4%;
+		}
+	}
+
+	.challenge-label {
+		height: 15%;
+		background: #75c297;
+		border: 1px solid #75c297;
+		border-radius: 20px 20px 0 0;
+	}
+	.challenge-profile {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: gray;
+		float: left;
+		margin: 2% 3% 0 3%;
+	}
+
+	.challenge-picture {
 		background: blue;
+		height: 50%;
+		border-left: 1px solid #75c297;
+		border-right: 1px solid #75c297;
+	}
+	.challenge-description-container {
+		background: grey;
+		height: 35%;
+		border-left: 1px solid #75c297;
+		border-right: 1px solid #75c297;
+	}
+	.challenge-description {
+		color: #fff;
+	}
+	.challenge-description-text {
+		font-size: 14px;
+		padding-left: 5%;
+		padding-right: 5%;
+		padding-top: 2%;
+	}
+	.challenge-participants {
+		float: right;
+		position: absolute;
+		bottom: 3%;
+		right: 5%;
+		padding: 5px 10px 5px 10px;
+	}
+	.challenge-category {
+		float: left;
+		position: absolute;
+		bottom: 3%;
+		left: 5%;
+		padding: 5px 10px 5px 10px;
+		border-radius: 20px;
+		margin-left: 3%;
+		font-size: 12px;
 	}
 }
 
@@ -80,7 +146,19 @@ $category-bar-height: 30px;
 		position: relative;
 		width: 40px;
 		height: 40px;
-
 		background: red;
 	}
+}
+
+.sport {
+	background: blue;
+}
+.kochen {
+	background: chocolate;
+}
+.kreativitaet {
+	background: blueviolet;
+}
+.komfortzone {
+	background: lightcoral;
 }
