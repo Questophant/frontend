@@ -23,7 +23,7 @@ export abstract class HTTPApiService implements ApiService {
 			(challenge) => {
 				this.cachedDailyChallenge = challenge;
 				return challenge;
-			},
+			}
 		);
 	}
 
@@ -36,7 +36,9 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	updateUser(userId: string, user: UserDto): Promise<UserDto> {
-		return this.httpClient.post<UserDto>(`${this.apiUrl}/users`, user).toPromise();
+		return this.httpClient
+			.post<UserDto>(`${this.apiUrl}/users`, user)
+			.toPromise();
 	}
 
 	protected checkCache() {
@@ -59,7 +61,7 @@ export abstract class HTTPApiService implements ApiService {
 				},
 				(error) => {
 					reject('Error! ' + error.message);
-				},
+				}
 			);
 		});
 	}

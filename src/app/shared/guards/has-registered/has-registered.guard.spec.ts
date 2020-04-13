@@ -8,9 +8,7 @@ describe('HasRegisteredGuard', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				RouterTestingModule,
-			],
+			imports: [RouterTestingModule],
 		});
 		guard = TestBed.inject(HasRegisteredGuard);
 	});
