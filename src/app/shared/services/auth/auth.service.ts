@@ -26,7 +26,7 @@ export class AuthService {
 				),
 			(reason) => {
 				alert(reason);
-			},
+			}
 		);
 	}
 
