@@ -2,16 +2,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
-import { StartPageComponent } from './start-page.component';
+import { WelcomePageComponent } from './welcome-page.component';
 
-describe('StartPageComponent', () => {
-	let component: StartPageComponent;
-	let fixture: ComponentFixture<StartPageComponent>;
+describe('WelcomePageComponent', () => {
+	let component: WelcomePageComponent;
+	let fixture: ComponentFixture<WelcomePageComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			declarations: [WelcomePageComponent],
 			imports: [RouterTestingModule],
-			declarations: [StartPageComponent],
 			providers: [
 				{
 					provide: ApiService,
@@ -22,7 +22,7 @@ describe('StartPageComponent', () => {
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(StartPageComponent);
+		fixture = TestBed.createComponent(WelcomePageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
