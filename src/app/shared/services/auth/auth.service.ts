@@ -10,8 +10,7 @@ import { ApiService } from '../api-service/api.service';
  * - save name on browser
  */
 export class AuthService {
-	constructor(private api: ApiService) {
-	}
+	constructor(private api: ApiService) {}
 
 	register(name: string): void {
 		this.api.getUserId().then(
@@ -22,7 +21,7 @@ export class AuthService {
 					},
 					(reason) => {
 						alert(reason);
-					},
+					}
 				),
 			(reason) => {
 				alert(reason);

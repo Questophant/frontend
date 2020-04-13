@@ -19,11 +19,9 @@ export class WelcomePageComponent implements OnInit {
 		codeOfConduct: new FormControl(false, [Validators.requiredTrue]),
 	});
 
-	constructor(public auth: AuthService, private router: Router) {
-	}
+	constructor(public auth: AuthService, private router: Router) {}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	skip(): void {
 		this.router.navigate(['']);

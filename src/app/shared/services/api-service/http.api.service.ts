@@ -8,8 +8,7 @@ export abstract class HTTPApiService implements ApiService {
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(protected httpClient: HttpClient) {
-	}
+	constructor(protected httpClient: HttpClient) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
