@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [AppComponent, WelcomePageComponent, RegisterPageComponent],
