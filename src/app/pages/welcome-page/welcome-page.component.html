@@ -10,17 +10,17 @@
 	</label>
 
 	<label>
-		<input type="checkbox" name="dataprivacy" />
+		<input type="checkbox" name="dataprivacy"/>
 		Datenschutzerklärung
 	</label>
 
 	<label>
-		<input type="checkbox" name="code-of-conduct" />
+		<input type="checkbox" name="code-of-conduct"/>
 		Code of Conduct
 	</label>
 
-	<button>Speichern</button>
-	<button>Überspringen</button>
+	<button (click)="saveName()">Speichern</button>
+	<button (click)="skip()">Überspringen</button>
 
 	<!--	<form [formGroup]="loginForm" (ngSubmit)="login()">-->
 	<!--		<input-->

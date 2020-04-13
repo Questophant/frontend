@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categories, Category } from 'src/app/shared/dtos/category';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api-service/api.service';
 
 @Component({
 	selector: 'app-select-challenge-page',

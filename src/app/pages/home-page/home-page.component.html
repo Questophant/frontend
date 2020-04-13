@@ -23,7 +23,7 @@
 		*ngFor="
 			let challenge of challenges$
 				| async
-				| filterChallengesByCategoryName: filter
+				| filterChallengesByCategoryName:filter
 		"
 	>
 		<h1 class="challenge-title">{{ challenge.title }}</h1>
