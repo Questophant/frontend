@@ -17,8 +17,7 @@ export class HomePageComponent implements OnInit {
 		this.challenges$ = api.getAllChallenges();
 	}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	setCategoryFilter(name: string): void {
 		this.filter = name;
