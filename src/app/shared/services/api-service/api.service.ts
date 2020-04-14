@@ -3,7 +3,6 @@ import { ChallengeDto } from '../../dtos/challenge.dto';
 import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
-
 	public getDailyChallenge(): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
@@ -18,7 +17,9 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public deleteChallenge(challengeId: number): Promise<ChallengeDto | string> {
+	public deleteChallenge(
+		challengeId: number
+	): Promise<ChallengeDto | string> {
 		throw new Error('Method not implemented.');
 	}
 

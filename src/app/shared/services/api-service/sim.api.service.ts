@@ -70,7 +70,9 @@ export class SimApiService implements ApiService {
 	}
 
 	public getDailyChallenge(): Promise<ChallengeDto> {
-		return Promise.resolve(this.challenges[Math.floor(Math.random() * this.challenges.length)]);
+		return Promise.resolve(
+			this.challenges[Math.floor(Math.random() * this.challenges.length)]
+		);
 	}
 
 	public createNewChallenge(
@@ -85,14 +87,18 @@ export class SimApiService implements ApiService {
 		return Promise.resolve(this.challenges);
 	}
 
-	public deleteChallenge(challengeId: number): Promise<ChallengeDto | string> {
+	public deleteChallenge(
+		challengeId: number
+	): Promise<ChallengeDto | string> {
 		var challenge = null;
 		for (var index = 0; index < this.challenges.length; index++) {
 			if (this.challenges[index].id === challengeId) {
 				challenge = this.challenges[index];
 			}
 		}
-		this.challenges = this.challenges.filter((value, index, arr) => { return value.id != challengeId; }); //TODO don't iterate twice
+		this.challenges = this.challenges.filter((value, index, arr) => {
+			return value.id != challengeId;
+		}); //TODO don't iterate twice
 		return Promise.resolve(challenge);
 	}
 

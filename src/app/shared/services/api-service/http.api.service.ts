@@ -47,12 +47,45 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
+	public getAllChallengesOfUser(): Promise<ChallengeDto[]> {
+		return this.httpClient
+			.get<ChallengeDto[]>(
+				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`
+			)
+			.toPromise();
+	}
+
+	public createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
+		return this.httpClient
+			.post<ChallengeDto>(
+				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`,
+				challenge
+			)
+			.toPromise();
+	}
+
+	public deleteChallenge(challengeId: number): Promise<ChallengeDto> {
+		return this.httpClient
+			.delete<ChallengeDto>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/challenges/${challengeId}`
+			)
+			.toPromise();
+	}
+
+	public getRandomChallenge(category: Category): Promise<ChallengeDto> {
+		return this.getChallengeFromUrl(
+			`${this.apiUrl}/random_challenge?category=${category}`
+		);
+	}
+
 	protected checkCache() {
 		const date = new Date();
 		const day = date.getDate();
 
 		// new values at 1:30h => reset at 2 o'clock
-		if (this.cacheDay != day) {
+		if (this.cacheDay !== day) {
 			console.log('Resetting caches.');
 			this.cacheDay = day;
 			this.cachedDailyChallenge = null;
@@ -70,72 +103,5 @@ export abstract class HTTPApiService implements ApiService {
 				}
 			);
 		});
-	}
-
-	public getAllChallengesOfUser(): Promise<ChallengeDto[]> {
-		return this.getOrCreateUserId().then((userId) => {
-			return new Promise((resolve, reject) => {
-				this.httpClient
-					.get<ChallengeDto[]>(
-						`${this.apiUrl}/users/${userId}/challenges`
-					)
-					.subscribe(
-						(data: ChallengeDto[]) => {
-							resolve(data);
-						},
-						(error) => {
-							reject('Error! ' + error.message);
-						}
-					);
-			});
-		});
-	}
-
-	public createNewChallenge(
-		challenge: ChallengeDto
-	): Promise<ChallengeDto | string> {
-		return this.getOrCreateUserId().then((userId) => {
-			return new Promise((resolve, reject) => {
-				this.httpClient
-					.post<ChallengeDto>(
-						`${this.apiUrl}/users/${userId}/challenges`,
-						challenge
-					)
-					.subscribe(
-						(data: ChallengeDto) => {
-							resolve(data);
-						},
-						(error) => {
-							reject('Error! ' + error.message);
-						}
-					);
-			});
-		});
-	}
-
-	public deleteChallenge(challengeId: number): Promise<ChallengeDto | string> {
-		return this.getOrCreateUserId().then((userId) => {
-			return new Promise((resolve, reject) => {
-				this.httpClient
-					.delete<ChallengeDto>(
-						`${this.apiUrl}/users/${userId}/challenges/${challengeId}`
-					)
-					.subscribe(
-						(data: ChallengeDto) => {
-							resolve(data);
-						},
-						(error) => {
-							resolve(null);
-							//reject("Error! " + error.message);
-						}
-					);
-			});
-		});
-	}
-
-	public getRandomChallenge(category: Category): Promise<ChallengeDto> {
-		return this.getChallengeFromUrl(
-			`${this.apiUrl}/random_challenge?category=${category}`
-		);
 	}
 }
