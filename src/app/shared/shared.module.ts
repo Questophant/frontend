@@ -14,7 +14,7 @@ import { StoreService } from './services/store/store.service';
 		{
 			provide: ApiService,
 			useFactory: apiServiceFactory,
-			deps: [HttpClient],
+			deps: [HttpClient, StoreService],
 		},
 		AuthService,
 		StoreService,

@@ -45,8 +45,8 @@ export class SimApiService implements ApiService {
 	];
 
 	private newUserId: UserDto = {
-		id: 'anyUserId',
-		name: null,
+		userId: 'anyUserId',
+		userName: null,
 	};
 
 	constructor(private store: StoreService) {}
@@ -64,7 +64,7 @@ export class SimApiService implements ApiService {
 	}
 
 	async updateUser(userId: string, user: UserDto): Promise<UserDto> {
-		user.id = userId;
+		user.userId = userId;
 		return user;
 	}
 }

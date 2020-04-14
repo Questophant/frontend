@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth/auth.service';
 	providedIn: 'root',
 })
 /**
- * Secures that a user has set a name (registered) before entering any other page
+ * Secures that a user has set a userName (registered) before entering any other page
  */
 export class HasRegisteredGuard implements CanActivate {
 	constructor(private auth: AuthService, private router: Router) {}

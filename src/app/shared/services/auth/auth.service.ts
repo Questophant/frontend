@@ -6,9 +6,9 @@ import { StoreService } from '../store/store.service';
 	providedIn: 'root',
 })
 /**
- * - get unique id
- * - set name
- * - save name on browser
+ * - get unique userId
+ * - set userName
+ * - save userName on browser
  */
 export class AuthService {
 	constructor(private store: StoreService, private api: ApiService) {}
@@ -16,16 +16,20 @@ export class AuthService {
 	register(name: string): Promise<void> {
 		return this.api.createNewUser().then(
 			(user) =>
-				this.api.updateUser(user.id, { id: null, name }).then(
-					(value) => {
-						this.store.setUserId(user.id);
-					},
-					(reason) => {
-						alert(reason);
-					}
-				),
+				this.api
+					.updateUser(user.userId, { userId: null, userName: name })
+					.then(
+						(value) => {
+							this.store.setUserId(user.userId);
+						},
+						(reason) => {
+							alert(
+								'Es ist ein Fehler bei der Registrierung aufgetreten!'
+							);
+						}
+					),
 			(reason) => {
-				alert(reason);
+				alert('Es ist ein Fehler bei der Registrierung aufgetreten!');
 			}
 		);
 	}

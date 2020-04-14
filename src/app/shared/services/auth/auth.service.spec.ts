@@ -28,18 +28,18 @@ describe('AuthService', () => {
 		it('should set userId when successful', async () => {
 			localStorage.removeItem('userId');
 			when(mockApiService.createNewUser()).thenResolve({
-				id: 'anyUserId',
-				name: null,
+				userId: 'anyUserId',
+				userName: null,
 			});
 			when(
 				mockApiService.updateUser(
 					'anyUserId',
 					deepEqual({
-						id: null,
-						name: 'anyUserName',
+						userId: null,
+						userName: 'anyUserName',
 					})
 				)
-			).thenResolve({ id: 'anyUserId', name: 'anyUserName' });
+			).thenResolve({ userId: 'anyUserId', userName: 'anyUserName' });
 
 			await service.register('anyUserName');
 

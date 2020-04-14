@@ -21,7 +21,11 @@ export class WelcomePageComponent implements OnInit {
 
 	constructor(public auth: AuthService, private router: Router) {
 		if (this.auth.isUserRegistered()) {
-			this.router.navigate(['/']);
+			this.router
+				.navigate(['/'])
+				.catch((reason) =>
+					alert('Es gab einen Fehler bei der Weiterleitung')
+				);
 		}
 	}
 
@@ -35,7 +39,11 @@ export class WelcomePageComponent implements OnInit {
 
 			this.auth.register(name).then(
 				(value) => {
-					this.router.navigate(['/']);
+					this.router
+						.navigate(['/'])
+						.catch((reason) =>
+							alert('Es gab einen Fehler bei der Weiterleitung')
+						);
 				},
 				(reason) => {
 					alert(reason);

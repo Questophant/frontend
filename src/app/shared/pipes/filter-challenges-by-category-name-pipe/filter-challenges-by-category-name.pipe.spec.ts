@@ -28,11 +28,11 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 		expect(pipe).toBeTruthy();
 	});
 
-	it('should return all challenges when category name is null', () => {
+	it('should return all challenges when category userName is null', () => {
 		expect(pipe.transform(challenges, null)).toEqual(challenges);
 	});
 
-	it('should filter out challenges with different category name', () => {
+	it('should filter out challenges with different category userName', () => {
 		expect(pipe.transform(challenges, 'art')).toEqual([
 			{
 				title: 'challenge 1',

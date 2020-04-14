@@ -1,4 +1,4 @@
 export interface UserDto {
-	id: string;
-	name: string;
+	userId: string;
+	userName: string;
 }
