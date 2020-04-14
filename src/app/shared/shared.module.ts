@@ -13,7 +13,7 @@ import { AuthService } from './services/auth/auth.service';
 		{
 			provide: ApiService,
 			useFactory: apiServiceFactory,
-			deps: [HttpClient, AuthService],
+			deps: [HttpClient],
 		},
 		AuthService,
 	],

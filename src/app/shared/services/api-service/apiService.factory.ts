@@ -5,24 +5,20 @@ import { LocalApiService } from './local.api.service';
 import { ProdApiService } from './prod.api.service';
 import { SimApiService } from './sim.api.service';
 import { TestApiService } from './test.api.service';
-import { AuthService } from '../auth/auth.service';
 
-export function apiServiceFactory(
-	httpClient: HttpClient,
-	auth: AuthService
-): ApiService {
+export function apiServiceFactory(httpClient: HttpClient): ApiService {
 	switch (environment.apiService) {
 		case 'production':
-			return new ProdApiService(httpClient, auth);
+			return new ProdApiService(httpClient);
 
 		case 'test':
-			return new TestApiService(httpClient, auth);
+			return new TestApiService(httpClient);
 
 		case 'simulation':
-			return new SimApiService(auth);
+			return new SimApiService();
 
 		case 'local':
-			return new LocalApiService(httpClient, auth);
+			return new LocalApiService(httpClient);
 
 		default:
 			throw new Error(

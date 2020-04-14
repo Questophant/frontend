@@ -28,15 +28,21 @@ export class WelcomePageComponent implements OnInit {
 	ngOnInit(): void {}
 
 	skip(): void {
-		this.router.navigate(['']);
+		this.router.navigate(['/']);
 	}
 
 	saveName(): void {
 		this.submitted = true;
 
 		if (this.registrationForm.valid) {
-			this.auth.register(this.registrationForm.get('name').value);
-			this.skip();
+			this.auth.register(this.registrationForm.get('name').value).then(
+				(value) => {
+					this.skip();
+				},
+				(reason) => {
+					alert(reason);
+				}
+			);
 		} else {
 			alert('form invalid');
 		}

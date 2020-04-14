@@ -12,8 +12,8 @@ import { ApiService } from '../api-service/api.service';
 export class AuthService {
 	constructor(private api: ApiService) {}
 
-	register(name: string): void {
-		this.api.createNewUser().then(
+	register(name: string): Promise<void> {
+		return this.api.createNewUser().then(
 			(user) =>
 				this.api.updateUser(user.id, { id: null, name }).then(
 					(value) => {

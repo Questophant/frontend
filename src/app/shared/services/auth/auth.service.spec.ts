@@ -25,7 +25,7 @@ describe('AuthService', () => {
 	});
 
 	describe('register', () => {
-		it('should set userId when successful', () => {
+		it('should set userId when successful', async () => {
 			localStorage.removeItem('userId');
 			when(mockApiService.createNewUser()).thenResolve({
 				id: 'anyUserId',
@@ -41,7 +41,7 @@ describe('AuthService', () => {
 				)
 			).thenResolve({ id: 'anyUserId', name: 'anyUserName' });
 
-			service.register('anyUserName');
+			await service.register('anyUserName');
 
 			expect(localStorage.getItem('userId')).toEqual('anyUserId');
 		});
