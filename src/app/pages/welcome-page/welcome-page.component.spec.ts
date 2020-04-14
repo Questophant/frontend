@@ -1,13 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
-import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { instance, mock } from 'ts-mockito';
 
 describe('WelcomePageComponent', () => {
 	let component: WelcomePageComponent;
 	let fixture: ComponentFixture<WelcomePageComponent>;
+	const mockApiService = mock(ApiService);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -16,7 +17,7 @@ describe('WelcomePageComponent', () => {
 			providers: [
 				{
 					provide: ApiService,
-					useValue: new SimApiService(),
+					useValue: instance(mockApiService),
 				},
 			],
 		}).compileComponents();

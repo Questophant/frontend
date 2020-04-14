@@ -13,7 +13,7 @@ export class AuthService {
 	constructor(private api: ApiService) {}
 
 	register(name: string): void {
-		this.api.getUserId().then(
+		this.api.createNewUser().then(
 			(user) =>
 				this.api.updateUser(user.id, { id: null, name }).then(
 					(value) => {
@@ -31,5 +31,9 @@ export class AuthService {
 
 	isUserRegistered(): boolean {
 		return localStorage.getItem('userId') !== null;
+	}
+
+	getUserId() {
+		return localStorage.getItem('userId');
 	}
 }

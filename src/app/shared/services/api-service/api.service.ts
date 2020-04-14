@@ -10,7 +10,7 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	getUserId(): Promise<UserDto> {
+	createNewUser(): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 

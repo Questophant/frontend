@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-	ActivatedRouteSnapshot,
-	CanActivate,
-	Router,
-	RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable({
@@ -16,10 +11,7 @@ import { AuthService } from '../../services/auth/auth.service';
 export class HasRegisteredGuard implements CanActivate {
 	constructor(private auth: AuthService, private router: Router) {}
 
-	canActivate(
-		next: ActivatedRouteSnapshot,
-		state: RouterStateSnapshot
-	): boolean {
+	canActivate(): boolean {
 		if (this.auth.isUserRegistered()) {
 			return true;
 		} else {
