@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
 
 @Injectable()
 /**
@@ -42,11 +44,27 @@ export class SimApiService implements ApiService {
 		},
 	];
 
+	private newUserId: UserDto = {
+		userId: 'anyUserId',
+		userName: null,
+	};
+
+	constructor(private store: StoreService) {}
+
 	async getAllChallenges(): Promise<ChallengeDto[]> {
 		return this.challenges;
 	}
 
 	async getDailyChallenge(): Promise<ChallengeDto> {
 		return this.dailyChallenge;
+	}
+
+	async createNewUser(): Promise<UserDto> {
+		return this.newUserId;
+	}
+
+	async updateUser(userId: string, user: UserDto): Promise<UserDto> {
+		user.userId = userId;
+		return user;
 	}
 }
