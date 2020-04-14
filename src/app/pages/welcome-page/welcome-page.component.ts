@@ -31,7 +31,9 @@ export class WelcomePageComponent implements OnInit {
 		this.submitted = true;
 
 		if (this.registrationForm.valid) {
-			this.auth.register(this.registrationForm.get('name').value).then(
+			const name = this.registrationForm.get('name').value;
+
+			this.auth.register(name).then(
 				(value) => {
 					this.router.navigate(['/']);
 				},
