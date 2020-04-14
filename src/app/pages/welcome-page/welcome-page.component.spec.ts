@@ -37,6 +37,7 @@ describe('WelcomePageComponent', () => {
 	it('should redirect to root if user already registered', () => {
 		const mockRouter = mock(Router);
 		when(mockAuthService.isUserRegistered()).thenReturn(true);
+		when(mockRouter.navigate(deepEqual(['/']))).thenResolve();
 
 		const comp = new WelcomePageComponent(
 			mockAuthService,
