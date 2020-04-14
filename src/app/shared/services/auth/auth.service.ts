@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api-service/api.service';
+import { StoreService } from '../store/store.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,14 +11,14 @@ import { ApiService } from '../api-service/api.service';
  * - save name on browser
  */
 export class AuthService {
-	constructor(private api: ApiService) {}
+	constructor(private store: StoreService, private api: ApiService) {}
 
 	register(name: string): Promise<void> {
 		return this.api.createNewUser().then(
 			(user) =>
 				this.api.updateUser(user.id, { id: null, name }).then(
 					(value) => {
-						localStorage.setItem('userId', user.id);
+						this.store.setUserId(user.id);
 					},
 					(reason) => {
 						alert(reason);
@@ -30,10 +31,6 @@ export class AuthService {
 	}
 
 	isUserRegistered(): boolean {
-		return localStorage.getItem('userId') !== null;
-	}
-
-	getUserId(): string | null {
-		return localStorage.getItem('userId');
+		return this.store.getUserId() !== null;
 	}
 }

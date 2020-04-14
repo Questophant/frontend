@@ -60,18 +60,4 @@ describe('AuthService', () => {
 			expect(service.isUserRegistered()).toBe(true);
 		});
 	});
-
-	describe('getUserId', () => {
-		it('should return userId from localStorage', () => {
-			localStorage.setItem('userId', 'anyUserId');
-
-			expect(service.getUserId()).toEqual('anyUserId');
-		});
-
-		it('should return null when no userId exists', () => {
-			localStorage.removeItem('userId');
-
-			expect(service.getUserId()).toBeNull();
-		});
-	});
 });

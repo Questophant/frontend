@@ -2,13 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(protected httpClient: HttpClient) {}
+	constructor(
+		protected httpClient: HttpClient,
+		private store: StoreService
+	) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
@@ -52,10 +56,6 @@ export abstract class HTTPApiService implements ApiService {
 			this.cacheDay = day;
 			this.cachedDailyChallenge = null;
 		}
-	}
-
-	protected getUserId(): string | null {
-		return localStorage.getItem('userId');
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
