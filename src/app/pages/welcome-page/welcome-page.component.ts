@@ -43,8 +43,6 @@ export class WelcomePageComponent implements OnInit {
 					alert(reason);
 				}
 			);
-		} else {
-			alert('form invalid');
 		}
 	}
 }
