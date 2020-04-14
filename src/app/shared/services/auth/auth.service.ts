@@ -33,7 +33,7 @@ export class AuthService {
 		return localStorage.getItem('userId') !== null;
 	}
 
-	getUserId() {
+	getUserId(): string | null {
 		return localStorage.getItem('userId');
 	}
 }

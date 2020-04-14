@@ -1,14 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { WelcomePageComponent } from './welcome-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { instance, mock } from 'ts-mockito';
+import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 describe('WelcomePageComponent', () => {
 	let component: WelcomePageComponent;
 	let fixture: ComponentFixture<WelcomePageComponent>;
-	const mockApiService = mock(ApiService);
+	const mockAuthService = mock(AuthService);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -16,8 +17,8 @@ describe('WelcomePageComponent', () => {
 			imports: [RouterTestingModule, ReactiveFormsModule],
 			providers: [
 				{
-					provide: ApiService,
-					useValue: instance(mockApiService),
+					provide: AuthService,
+					useValue: instance(mockAuthService),
 				},
 			],
 		}).compileComponents();
@@ -31,5 +32,17 @@ describe('WelcomePageComponent', () => {
 
 	it('should create', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should redirect to root if user already registered', () => {
+		const mockRouter = mock(Router);
+		when(mockAuthService.isUserRegistered()).thenReturn(true);
+
+		const comp = new WelcomePageComponent(
+			mockAuthService,
+			instance(mockRouter)
+		);
+
+		verify(mockRouter.navigate(deepEqual(['/']))).called();
 	});
 });
