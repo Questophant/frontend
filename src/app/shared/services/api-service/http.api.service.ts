@@ -1,68 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
-import { UserProfile } from '../../dtos/user-profile.dto';
-import { Store } from '../../storage/store';
 import { ApiService } from './api.service';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(protected httpClient: HttpClient, protected store: Store) { }
+	constructor(
+		protected httpClient: HttpClient,
+		private store: StoreService
+	) {}
 
-	protected checkCache() {
-		const date = new Date();
-		const day = date.getDate();
-
-		// new values every day
-		if (this.cacheDay != day) {
-			console.log('Resetting caches.');
-			this.cacheDay = day;
-			this.cachedDailyChallenge = null;
-		}
-	}
-
-	private getOrCreateUserId(): Promise<string> {
-		return this.getOrCreateUserData().then((userData) => {
-			return userData.userId;
-		});
-	}
-
-	private getOrCreateUserData(): Promise<UserProfile> {
-		return new Promise((resolve, reject) => {
-			if (this.store.getUserProfile() == undefined) {
-				// Do API request toget UID
-				this.createNewUser().then(
-					(newUserProfile: UserProfile) => {
-						resolve(newUserProfile);
-					},
-					(error) => {
-						reject('Canot access userId! ' + error.message);
-					}
-				);
-			} else {
-				resolve(this.store.getUserProfile());
-			}
-		});
-	}
-
-	private createNewUser() {
-		return new Promise((resolve, reject) => {
-			this.httpClient.post(`${this.apiUrl}/users`, '').subscribe(
-				(newUserProfile: UserProfile) => {
-					this.store.setUserProfile(newUserProfile);
-					resolve(newUserProfile);
-				},
-				(error) => {
-					reject('Error! ' + error.message);
-				}
-			);
-		});
-	}
-
-	public getDailyChallenge(): Promise<ChallengeDto> {
+	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
 		if (this.cachedDailyChallenge) {
 			return new Promise((resolve, reject) => {
@@ -76,6 +29,34 @@ export abstract class HTTPApiService implements ApiService {
 				return challenge;
 			}
 		);
+	}
+
+	getAllChallenges(): Promise<ChallengeDto[]> {
+		throw new Error('Not implemented');
+	}
+
+	createNewUser(): Promise<UserDto> {
+		return this.httpClient
+			.post<UserDto>(`${this.apiUrl}/users`, null)
+			.toPromise();
+	}
+
+	updateUser(userId: string, user: UserDto): Promise<UserDto> {
+		return this.httpClient
+			.post<UserDto>(`${this.apiUrl}/users`, user)
+			.toPromise();
+	}
+
+	protected checkCache() {
+		const date = new Date();
+		const day = date.getDate();
+
+		// new values at 1:30h => reset at 2 o'clock
+		if (this.cacheDay != day) {
+			console.log('Resetting caches.');
+			this.cacheDay = day;
+			this.cachedDailyChallenge = null;
+		}
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {

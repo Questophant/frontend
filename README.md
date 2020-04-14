@@ -1,3 +1,5 @@
+![Check build](https://github.com/ChallengeMeApp/frontend/workflows/Check%20build/badge.svg?branch=master)
+
 # ChallengeMe Frontend
 
 Hi, this is the frontend of the ChallengeMe App.

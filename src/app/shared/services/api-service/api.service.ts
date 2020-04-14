@@ -1,5 +1,6 @@
 import { Category } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
+import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
 
@@ -22,6 +23,18 @@ export abstract class ApiService {
 	}
 
 	public getRandomChallenge(category: Category): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	getAllChallenges(): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	createNewUser(): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	updateUser(userId: string, user: UserDto): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 }

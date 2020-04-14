@@ -1,0 +1,54 @@
+<img
+	src="https://challengemeapp.de/wp-content/uploads/2020/04/cropped-Logo_test.jpg-2.png"
+	width="100%"
+	alt="ChallengeMe Logo"
+/>
+
+<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
+	<label class="name-field">
+		Wähle einen Namen
+		<input formControlName="name" name="name" type="text" />
+	</label>
+
+	<label>
+		<input
+			formControlName="dataPrivacy"
+			name="dataprivacy"
+			type="checkbox"
+		/>
+		Datenschutzerklärung
+	</label>
+
+	<label>
+		<input
+			formControlName="codeOfConduct"
+			name="code-of-conduct"
+			type="checkbox"
+		/>
+		Code of Conduct
+	</label>
+
+	<div
+		*ngIf="submitted && registrationForm.invalid"
+		class="errors"
+		style="
+			padding: 10px;
+			border: 1px solid red;
+			margin: 15px;
+			background: rgba(255, 0, 0, 0.2);
+			color: red;
+		"
+	>
+		<span *ngIf="registrationForm.get('name').errors !== null"
+			>Sie müssen einen Namen angeben.</span
+		>
+		<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
+			>Sie müssen den Datenschutzbst. zustimmen.</span
+		>
+		<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
+			>Sie müssen dem CoC zustimmen.</span
+		>
+	</div>
+
+	<button type="submit">Speichern</button>
+</form>
