@@ -1,7 +1,8 @@
 <div class="sticky-header">
 	<div class="app-bar">
 		<span class="branding">ChallengeMe</span>
-
+		<div class="favorite-challenges"></div>
+		<div class="running-challenges"></div>
 		<div class="icon"></div>
 	</div>
 
@@ -19,18 +20,20 @@
 
 <div class="challenges">
 	<div class="challenge">
-		<div class="challenge-label">
+		<div class="challenge-label daily-color">
 			<h1 class="challenge-title">Tageschallenge</h1>
 		</div>
-		<div class="challenge-picture"></div>
-		<div class="challenge-description-container">
-			<div class="challenge-description">
-				<p class="challenge-description-text">
-					"Kurzer Beschreibungstext zur Challenge beendet bei zu
-					langer Textlänge mit ..."
+		<div class="challenge-picture">
+			<div class="daily-overlay">
+				<p class="challenge-category">
+					Roberts Koch-Institut
 				</p>
-				<p class="challenge-category kochen">Roberts Koch-Institut</p>
-				<p class="challenge-participants">100 Teilnehmer</p>
+			</div>
+			<div class="challenge-participants">100 Challengers</div>
+			<div class="challenge-participants-profile">
+				<span class="circles"></span>
+				<span class="circles"></span>
+				<span class="circles"></span>
 			</div>
 		</div>
 	</div>
@@ -45,16 +48,21 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<div class="challenge-label">
-			<div class="challenge-profile"></div>
+		<div class="challenge-label eco-color">
 			<h1 class="challenge-title">{{ challenge.title }}</h1>
 		</div>
-		<div class="challenge-picture"></div>
-		<div class="challenge-description-container">
-			<div class="challenge-description">
-				<p class="challenge-description-text">
-					{{ challenge.description }}
+		<div class="challenge-picture">
+			<div class="eco-overlay">
+				<p class="challenge-category">
+					Roberts Koch-Institut
 				</p>
+			</div>
+
+			<div class="challenge-participants">100 Challengers</div>
+			<div class="challenge-participants-profile">
+				<span class="circles"></span>
+				<span class="circles"></span>
+				<span class="circles"></span>
 			</div>
 		</div>
 	</div>

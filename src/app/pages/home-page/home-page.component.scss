@@ -1,5 +1,5 @@
 $app-bar-height: 50px;
-$category-bar-height: 30px;
+$category-bar-height: 25px;
 
 .sticky-header {
 	position: fixed;
@@ -10,13 +10,42 @@ $category-bar-height: 30px;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: #d4d4d4;
+		background: url('src/assets/images/360x60.png') center;
+		background-size: contain;
+	}
+
+	.branding {
+		position: absolute;
+		top: 17%;
+		left: 8%;
+		font-size: 18px;
+		color: #fff;
+	}
+	//Durch Stern-Icon ersetzen
+	.favorite-challenges {
+		position: absolute;
+		top: 7%;
+		right: 20%;
+		border: 2px solid #fff;
+		border-radius: 40px;
+		height: 40px;
+		width: 40px;
+	}
+	//Durch Uhr-Icon ersetzen
+	.running-challenges {
+		position: absolute;
+		top: 7%;
+		right: 5%;
+		border: 2px solid #fff;
+		border-radius: 40px;
+		height: 40px;
+		width: 40px;
 	}
 
 	.category-bar {
 		position: relative;
 		height: $category-bar-height;
-		background: #75c297;
+		background: #d1e4d9;
 		overflow-x: auto;
 		white-space: nowrap;
 		user-select: none;
@@ -45,10 +74,16 @@ $category-bar-height: 30px;
 
 		.category {
 			display: inline-block;
-			border: 1px solid black;
-			margin: 0 10px;
-			padding: 5px;
+			font-size: 14px;
+			padding: 1.5% 3.5%;
 			cursor: pointer;
+		}
+		//active für die gewählte Kategorie
+		.category:active {
+			background-color: #67a682;
+			color: #fff;
+			border: 1px solid black;
+			border-radius: 40px;
 		}
 	}
 }
@@ -65,7 +100,7 @@ $category-bar-height: 30px;
 		.challenge-title {
 			color: #fff;
 			font-size: 18px;
-			font-weight: 100;
+			font-weight: 300;
 			padding-top: 3%;
 			padding-left: 4%;
 		}
@@ -73,9 +108,6 @@ $category-bar-height: 30px;
 
 	.challenge-label {
 		height: 15%;
-		background: #75c297;
-		border: 1px solid #75c297;
-		border-radius: 20px 20px 0 0;
 	}
 	.challenge-profile {
 		width: 30px;
@@ -86,43 +118,100 @@ $category-bar-height: 30px;
 		margin: 2% 3% 0 3%;
 	}
 
+	//Basisfarben aller Kategorien
+	.daily-color {
+		background: url('src/assets/images/360x60.png') center;
+		background-size: contain;
+	}
+	.beweg-dich-color {
+		background-color: #355c7d;
+	}
+	.roberts-koch-institut-color {
+		background-color: #ff9822;
+	}
+	.at-home-color {
+		background-color: #f672e8;
+	}
+	.kreativer-kopf-color {
+		background-color: #f5747e;
+	}
+	.know-how-color {
+		background-color: #87dde7;
+	}
+	.do-it-for-yourself-color {
+		background-color: #2d7986;
+	}
+	.eco-color {
+		background-color: #84bf04;
+	}
+	.fun-color {
+		background-color: #f09976;
+	}
+	.raus-aus-der-komfortzone-color {
+		background-color: #b12a2a;
+	}
+	.wir-voll-sozial-color {
+		background-color: #fed723;
+	}
+	.spezial-errungenschaften-color {
+		background-color: #67a682;
+	}
+	//End Basisfarben aller Kategorien
+
 	.challenge-picture {
-		background: blue;
-		height: 50%;
-		border-left: 1px solid #75c297;
-		border-right: 1px solid #75c297;
+		background: #fff;
+		position: relative;
+		height: 85%;
+		border-left: 1px solid #b8b8b8;
+		border-right: 1px solid #b8b8b8;
+		border-bottom: 1px solid #b8b8b8;
 	}
-	.challenge-description-container {
-		background: grey;
-		height: 35%;
-		border-left: 1px solid #75c297;
-		border-right: 1px solid #75c297;
+
+	.daily-overlay {
+		height: 25%;
+		background-image: linear-gradient(
+			to bottom,
+			#6e8c78,
+			#c1cec5 40%,
+			rgba(255, 255, 255, 0) 70%
+		);
 	}
-	.challenge-description {
-		color: #fff;
+	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
+	.eco-overlay {
+		height: 25%;
+		background-image: linear-gradient(
+			to bottom,
+			#84bf04,
+			rgba(255, 255, 255, 0) 70%
+		);
 	}
-	.challenge-description-text {
-		font-size: 14px;
-		padding-left: 5%;
-		padding-right: 5%;
-		padding-top: 2%;
-	}
+
 	.challenge-participants {
-		float: right;
+		position: absolute;
+		bottom: 6%;
+		right: 30%;
+	}
+	.challenge-participants-profile {
 		position: absolute;
 		bottom: 3%;
 		right: 5%;
-		padding: 5px 10px 5px 10px;
+		.circles {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #fff;
+			border: 1px solid grey;
+			float: right;
+			margin-left: -10%;
+		}
 	}
 	.challenge-category {
 		float: left;
 		position: absolute;
-		bottom: 3%;
-		left: 5%;
-		padding: 5px 10px 5px 10px;
-		border-radius: 20px;
-		margin-left: 3%;
-		font-size: 12px;
+		top: 5%;
+		left: 4%;
+		font-size: 14px;
+		color: #fff;
 	}
 }
 
@@ -132,10 +221,8 @@ $category-bar-height: 30px;
 	left: 0;
 	right: 0;
 	height: 50px;
-
 	background-color: #fff;
 	border: 1px solid black;
-
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -148,17 +235,4 @@ $category-bar-height: 30px;
 		height: 40px;
 		background: red;
 	}
-}
-
-.sport {
-	background: blue;
-}
-.kochen {
-	background: chocolate;
-}
-.kreativitaet {
-	background: blueviolet;
-}
-.komfortzone {
-	background: lightcoral;
 }
