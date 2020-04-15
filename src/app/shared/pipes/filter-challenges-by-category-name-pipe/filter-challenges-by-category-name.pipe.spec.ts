@@ -1,6 +1,6 @@
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { FilterChallengesByCategoryNamePipe } from './filter-challenges-by-category-name.pipe';
-import { Categories } from '../../dtos/category';
+import { getCategoryByName } from '../../dtos/category';
 
 describe('FilterChallengesByCategoryNamePipe', () => {
 	const pipe = new FilterChallengesByCategoryNamePipe();
@@ -8,19 +8,19 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 		{
 			title: 'challenge 1',
 			description: '',
-			category: Categories.find((cat) => cat.name === 'eco'),
+			category: getCategoryByName('creative'),
 			durationSeconds: 0,
 		},
 		{
 			title: 'challenge 2',
 			description: '',
-			category: Categories.find((cat) => cat.name === 'fun'),
+			category: getCategoryByName('move'),
 			durationSeconds: 0,
 		},
 		{
 			title: 'challenge 3',
 			description: '',
-			category: Categories.find((cat) => cat.name === 'fun'),
+			category: getCategoryByName('move'),
 			durationSeconds: 0,
 		},
 	];
@@ -34,11 +34,11 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 	});
 
 	it('should filter out challenges with different category name', () => {
-		expect(pipe.transform(challenges, 'eco')).toEqual([
+		expect(pipe.transform(challenges, 'creative')).toEqual([
 			{
 				title: 'challenge 1',
 				description: '',
-				category: Categories.find((cat) => cat.name === 'eco'),
+				category: getCategoryByName('creative'),
 				durationSeconds: 0,
 			},
 		]);

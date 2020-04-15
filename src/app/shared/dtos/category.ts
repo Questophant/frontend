@@ -12,16 +12,14 @@
 } */
 
 export const Categories: Category[] = [
-	{ name: 'household', display: 'Haushalt' },
-	{ name: 'physical', display: 'Sport' },
-	{ name: 'selfcare', display: 'Selbstpflege' },
-	{ name: 'eco', display: 'Umwelt' },
-	{ name: 'fun', display: 'Spaß' },
-	{ name: 'education', display: 'Bildung' },
-	{ name: 'social', display: 'Sozial' },
-	{ name: 'cooking', display: 'Kochen' },
-	{ name: 'noComfortZone', display: 'Komfortzone' },
-	{ name: 'creative', display: 'Kreativ' },
+	{ name: 'home', display: '@ home' },
+	{ name: 'cooking', display: 'Roberts Koch-Institut' },
+	{ name: 'creative', display: 'Kreativer Kopf' },
+	{ name: 'know-how', display: 'Know-How?' },
+	{ name: 'move', display: 'Move, move, move!' },
+	{ name: 'selfcare', display: 'Do it for Yourself' },
+	{ name: 'social', display: 'MenschenKontakt' },
+	{ name: 'comfort', display: 'Raus aus der Komfort-Zone!' },
 ];
 
 export function getCategoryByName(name: string): Category | undefined {
