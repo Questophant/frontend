@@ -24,6 +24,10 @@ export const Categories: Category[] = [
 	{ name: 'creative', display: 'Kreativ' },
 ];
 
+export function getCategoryByName(name: string): Category | undefined {
+	return Categories.find((c) => c.name === name);
+}
+
 export interface Category {
 	name: string;
 	display: string;
