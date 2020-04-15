@@ -1,0 +1,89 @@
+.picture {
+	display: block;
+	position: relative;
+	top: -8px; //idk that comes from the body
+	left: -8px; //but dont know where to find/how to change
+	background: green;
+	height: 30vh;
+	width: 100vw;
+}
+.middle {
+	top: 30vh;
+	width: calc(100% - 32px);
+	margin: 16px;
+}
+.profile {
+	vertical-align: top;
+	float: left;
+	width: 35%;
+	height: 40%;
+	padding-right: 5%;
+	background: #ffffff;
+	border-right: 3px solid rgba(0, 0, 0, 0.75);
+}
+.profilepic {
+	margin: auto;
+	height: 12vh;
+	width: 12vh;
+	background-color: rgba(0, 0, 0, 0.1);
+	border: solid;
+	border-color: black;
+	border-radius: 100px;
+}
+.name {
+	text-align: center;
+}
+.category {
+	position: relative;
+}
+.category select {
+	text-align: center;
+	border-radius: 100px;
+	background: #67a682;
+	color: #fff;
+	padding: 5%;
+	border: 0;
+	appearance: none;
+	box-shadow: none;
+	outline: none;
+}
+.create {
+	vertical-align: top;
+	float: right;
+	height: 50vh;
+	width: 55%;
+	background-color: #fff;
+}
+.challengename {
+	font-size: 1.5rem;
+	border: none;
+	width: 100%;
+}
+textarea {
+	margin-top: 8%;
+	width: 100%;
+	display: block;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+button {
+	margin-top: 8%;
+	width: 100%;
+	font-size: 1.25rem;
+	background: #67a682;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	padding: 5%;
+	border-radius: 100px;
+}
+.taskbar {
+	left: 0;
+	bottom: 0;
+	position: absolute;
+	height: 10vh;
+	bottom: 0;
+	width: 100%;
+	background: #c00707;
+}
