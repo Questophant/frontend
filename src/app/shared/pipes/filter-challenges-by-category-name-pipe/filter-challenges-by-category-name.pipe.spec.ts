@@ -29,7 +29,7 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 		expect(pipe).toBeTruthy();
 	});
 
-	it('should return all challenges when category userName is null', () => {
+	it('should return all challenges when category name is null', () => {
 		expect(pipe.transform(challenges, null)).toEqual(challenges);
 	});
 

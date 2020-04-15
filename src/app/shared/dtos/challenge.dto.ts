@@ -7,3 +7,11 @@ export interface ChallengeDto {
 	category: Category;
 	durationSeconds: number;
 }
+
+export interface ChallengeResponse {
+	id?: number;
+	title: string;
+	description: string;
+	category: string;
+	durationSeconds: number;
+}
