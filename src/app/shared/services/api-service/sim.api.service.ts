@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Category } from '../../dtos/category';
+import { Categories, Category } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { UserDto } from '../../dtos/user.dto';
@@ -14,7 +14,7 @@ export class SimApiService implements ApiService {
 		id: 0,
 		title: 'asdasdasd',
 		description: 'lorem ipsum ...',
-		category: 'art',
+		category: Categories.find((cat) => cat.name === 'art'),
 		durationSeconds: 300,
 	};
 
@@ -22,7 +22,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 1,
 			title: 'Challenge 1',
-			category: 'art',
+			category: Categories.find((cat) => cat.name === 'art'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
@@ -30,7 +30,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 2,
 			title: 'Challenge 2',
-			category: 'cooking',
+			category: Categories.find((cat) => cat.name === 'cooking'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
@@ -38,7 +38,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 3,
 			title: 'Challenge 3',
-			category: 'social',
+			category: Categories.find((cat) => cat.name === 'social'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
@@ -52,14 +52,6 @@ export class SimApiService implements ApiService {
 
 	constructor(private store: StoreService) {}
 
-	async getAllChallenges(): Promise<ChallengeDto[]> {
-		return this.challenges;
-	}
-
-	async getDailyChallenge(): Promise<ChallengeDto> {
-		return this.dailyChallenge;
-	}
-
 	async createNewUser(): Promise<UserDto> {
 		return this.newUserId;
 	}
@@ -69,40 +61,39 @@ export class SimApiService implements ApiService {
 		return user;
 	}
 
-	public getDailyChallenge(): Promise<ChallengeDto> {
-		return Promise.resolve(
-			this.challenges[Math.floor(Math.random() * this.challenges.length)]
-		);
+	async getAllChallenges(): Promise<ChallengeDto[]> {
+		return this.challenges;
 	}
 
-	public createNewChallenge(
-		challenge: ChallengeDto
-	): Promise<ChallengeDto | string> {
-		challenge.id = ++this.challengeId;
+	async getAllChallengesOfUser(): Promise<ChallengeDto[]> {
+		return this.challenges;
+	}
+
+	async getDailyChallenge(): Promise<ChallengeDto> {
+		return this.dailyChallenge;
+	}
+
+	async getRandomChallenge(category: Category): Promise<ChallengeDto> {
+		return this.challenges[
+			Math.floor(Math.random() * this.challenges.length)
+		];
+	}
+
+	async createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
+		challenge.id = this.challenges.length + 1;
 		this.challenges.push(challenge);
-		return Promise.resolve(challenge);
+
+		return challenge;
 	}
 
-	public getAllChallengesOfUser(): Promise<ChallengeDto[]> {
-		return Promise.resolve(this.challenges);
-	}
+	async deleteChallenge(challengeId: number): Promise<ChallengeDto> {
+		const challenge = this.challenges.find((c) => c.id === challengeId);
 
-	public deleteChallenge(
-		challengeId: number
-	): Promise<ChallengeDto | string> {
-		var challenge = null;
-		for (var index = 0; index < this.challenges.length; index++) {
-			if (this.challenges[index].id === challengeId) {
-				challenge = this.challenges[index];
-			}
+		if (challenge === undefined) {
+			return Promise.reject('Challenge does not exist');
 		}
-		this.challenges = this.challenges.filter((value, index, arr) => {
-			return value.id != challengeId;
-		}); //TODO don't iterate twice
-		return Promise.resolve(challenge);
-	}
 
-	public getRandomChallenge(category: Category): Promise<ChallengeDto> {
-		return this.getDailyChallenge();
+		this.challenges = this.challenges.filter((c) => c.id !== challengeId);
+		return challenge;
 	}
 }
