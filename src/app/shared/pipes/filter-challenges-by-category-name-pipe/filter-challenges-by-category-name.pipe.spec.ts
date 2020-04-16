@@ -14,13 +14,13 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 		{
 			title: 'challenge 2',
 			description: '',
-			category: getCategoryByName('move'),
+			category: getCategoryByName('cooking'),
 			durationSeconds: 0,
 		},
 		{
 			title: 'challenge 3',
 			description: '',
-			category: getCategoryByName('move'),
+			category: getCategoryByName('cooking'),
 			durationSeconds: 0,
 		},
 	];
