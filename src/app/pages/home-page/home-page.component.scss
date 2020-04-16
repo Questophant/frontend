@@ -6,9 +6,7 @@ $category-color-household: #f672e8;
 $category-color-creative: #f5747e;
 $category-color-education: #87dde7;
 $category-color-selfcare: #2d7986;
-$category-color-eco: #84bf04;
-$category-color-fun: #f09976;
-$category-color-comfort: #b12a2a;
+$category-color-noComfortZone: #b12a2a;
 $category-color-social: #fed723;
 
 .sticky-header {
@@ -151,16 +149,8 @@ $category-color-social: #fed723;
 		background-color: $category-color-selfcare;
 	}
 
-	.color-eco {
-		background-color: $category-color-eco;
-	}
-
-	.color-fun {
-		background-color: $category-color-fun;
-	}
-
-	.color-comfort {
-		background-color: $category-color-comfort;
+	.color-noComfortZone {
+		background-color: $category-color-noComfortZone;
 	}
 
 	.color-social {
@@ -174,7 +164,10 @@ $category-color-social: #fed723;
 	//End Basisfarben aller Kategorien
 
 	.challenge-picture {
-		background: #fff;
+		background-color: #fff;
+		//background-image: url('https://www.ndr.de/ratgeber/kochen/kochen584_v-contentxl.jpg');
+		//background-size: contain;
+		//background-repeat: no-repeat;
 		position: relative;
 		height: 85%;
 		border-left: 1px solid #b8b8b8;
@@ -182,7 +175,7 @@ $category-color-social: #fed723;
 		border-bottom: 1px solid #b8b8b8;
 	}
 
-	.daily-overlay {
+	.overlay-daily {
 		height: 25%;
 		background-image: linear-gradient(
 			to bottom,
@@ -200,10 +193,6 @@ $category-color-social: #fed723;
 			$color,
 			rgba(255, 255, 255, 0) 70%
 		);
-	}
-
-	.overlay-eco {
-		@include overlay($category-color-eco);
 	}
 
 	.overlay-physical {
@@ -230,12 +219,8 @@ $category-color-social: #fed723;
 		@include overlay($category-color-selfcare);
 	}
 
-	.overlay-fun {
-		@include overlay($category-color-fun);
-	}
-
-	.overlay-comfort {
-		@include overlay($category-color-comfort);
+	.overlay-noComfortZone {
+		@include overlay($category-color-noComfortZone);
 	}
 
 	.overlay-social {

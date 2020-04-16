@@ -25,27 +25,25 @@
 </div>
 
 <div class="challenges">
-	<!-- daily challenge -->
-	<div class="challenge">
-		<div class="challenge-label color-daily">
-			<h1 class="challenge-title">Tageschallenge</h1>
-		</div>
-		<div class="challenge-picture">
-			<div class="daily-overlay">
-				<p class="challenge-category">
-					Roberts Koch-Institut
-				</p>
-			</div>
-			<div class="challenge-participants">100 Challengers</div>
-			<div class="challenge-participants-profile">
-				<span class="circles"></span>
-				<span class="circles"></span>
-				<span class="circles"></span>
-			</div>
-		</div>
-	</div>
+	<!--	<div class="challenge">-->
+	<!--		<div class="challenge-label color-daily">-->
+	<!--			<h1 class="challenge-title">Tageschallenge</h1>-->
+	<!--		</div>-->
+	<!--		<div class="challenge-picture">-->
+	<!--			<div class="daily-overlay">-->
+	<!--				<p class="challenge-category">-->
+	<!--					Roberts Koch-Institut-->
+	<!--				</p>-->
+	<!--			</div>-->
+	<!--			<div class="challenge-participants">100 Challengers</div>-->
+	<!--			<div class="challenge-participants-profile">-->
+	<!--				<span class="circles"></span>-->
+	<!--				<span class="circles"></span>-->
+	<!--				<span class="circles"></span>-->
+	<!--			</div>-->
+	<!--		</div>-->
+	<!--	</div>-->
 
-	<!-- random challenges -->
 	<div
 		class="challenge"
 		*ngFor="
@@ -54,13 +52,13 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<div class="challenge-label color-{{ challenge.category }}">
+		<div class="challenge-label color-{{ challenge.category.name }}">
 			<h1 class="challenge-title">{{ challenge.title }}</h1>
 		</div>
 		<div class="challenge-picture">
-			<div class="overlay-{{ challenge.category }}">
+			<div class="overlay-{{ challenge.category.name }}">
 				<p class="challenge-category">
-					{{ challenge.category }}
+					{{ challenge.category.display }}
 				</p>
 			</div>
 

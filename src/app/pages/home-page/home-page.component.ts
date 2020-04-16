@@ -14,7 +14,18 @@ export class HomePageComponent implements OnInit {
 	filter: string;
 
 	constructor(private api: ApiService) {
-		this.challenges$ = api.getAllChallenges();
+		this.challenges$ = Promise.all([
+			api.getAllChallenges(),
+			api.getDailyChallenge(),
+		]).then((value) => {
+			const [allChallenges, dailyChallenge] = value;
+			dailyChallenge.category = {
+				name: 'daily',
+				display: 'Tageschallenge',
+			};
+			allChallenges.unshift(dailyChallenge);
+			return allChallenges;
+		});
 	}
 
 	ngOnInit(): void {}
