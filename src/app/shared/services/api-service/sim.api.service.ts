@@ -19,7 +19,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 1,
 			title: 'Challenge 1',
-			category: 'art',
+			category: 'creative',
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,

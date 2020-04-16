@@ -27,7 +27,7 @@
 <div class="challenges">
 	<!-- daily challenge -->
 	<div class="challenge">
-		<div class="challenge-label daily-color">
+		<div class="challenge-label color-daily">
 			<h1 class="challenge-title">Tageschallenge</h1>
 		</div>
 		<div class="challenge-picture">
@@ -54,13 +54,13 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<div class="challenge-label eco-color">
+		<div class="challenge-label color-{{ challenge.category }}">
 			<h1 class="challenge-title">{{ challenge.title }}</h1>
 		</div>
 		<div class="challenge-picture">
-			<div class="eco-overlay">
+			<div class="overlay-{{ challenge.category }}">
 				<p class="challenge-category">
-					Roberts Koch-Institut
+					{{ challenge.category }}
 				</p>
 			</div>
 
