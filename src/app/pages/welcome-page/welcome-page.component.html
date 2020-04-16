@@ -1,50 +1,54 @@
 <img
 	src="https://challengemeapp.de/wp-content/uploads/2020/04/cropped-Logo_test.jpg-2.png"
 	width="100%"
+	alt="ChallengeMe Logo"
 />
 
-<div>
+<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 	<label class="name-field">
 		Wähle einen Namen
-		<input type="text" name="name" />
+		<input formControlName="name" name="name" type="text" />
 	</label>
 
 	<label>
-		<input name="dataprivacy" type="checkbox" />
+		<input
+			formControlName="dataPrivacy"
+			name="dataprivacy"
+			type="checkbox"
+		/>
 		Datenschutzerklärung
 	</label>
 
 	<label>
-		<input name="code-of-conduct" type="checkbox" />
+		<input
+			formControlName="codeOfConduct"
+			name="code-of-conduct"
+			type="checkbox"
+		/>
 		Code of Conduct
 	</label>
 
-	<button (click)="saveName()">Speichern</button>
-	<button (click)="skip()">Überspringen</button>
+	<div
+		*ngIf="submitted && registrationForm.invalid"
+		class="errors"
+		style="
+			padding: 10px;
+			border: 1px solid red;
+			margin: 15px;
+			background: rgba(255, 0, 0, 0.2);
+			color: red;
+		"
+	>
+		<span *ngIf="registrationForm.get('name').errors !== null"
+			>Sie müssen einen Namen angeben.</span
+		>
+		<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
+			>Sie müssen den Datenschutzbst. zustimmen.</span
+		>
+		<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
+			>Sie müssen dem CoC zustimmen.</span
+		>
+	</div>
 
-	<!--	<form [formGroup]="loginForm" (ngSubmit)="login()">-->
-	<!--		<input-->
-	<!--			class="full-width"-->
-	<!--			type="email"-->
-	<!--			name="email"-->
-	<!--			placeholder="E-Mail"-->
-	<!--			formControlName="email"-->
-	<!--		/>-->
-	<!--		<input-->
-	<!--			class="full-width"-->
-	<!--			type="password"-->
-	<!--			name="password"-->
-	<!--			placeholder="Passwort"-->
-	<!--			formControlName="password"-->
-	<!--		/>-->
-
-	<!--		<button type="submit" class="login-btn" [disabled]="!loginForm.valid">-->
-	<!--			Anmelden-->
-	<!--		</button>-->
-	<!--	</form>-->
-
-	<!--	<span>oder</span>-->
-
-	<!--	<button class="full-width" routerLink="register">Registrieren</button>-->
-	<!--	<button class="full-width">Verbinden mit Facebook</button>-->
-</div>
+	<button type="submit">Speichern</button>
+</form>
