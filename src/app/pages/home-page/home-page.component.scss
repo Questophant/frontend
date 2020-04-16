@@ -19,8 +19,9 @@ $category-color-social: #fed723;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	.branding {
