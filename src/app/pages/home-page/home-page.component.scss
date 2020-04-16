@@ -1,62 +1,259 @@
 $app-bar-height: 50px;
-$category-bar-height: 30px;
+$category-bar-height: 25px;
+$category-color-physical: #355c7d;
+$category-color-cooking: #ff9822;
+$category-color-household: #f672e8;
+$category-color-creative: #f5747e;
+$category-color-education: #87dde7;
+$category-color-selfcare: #2d7986;
+$category-color-noComfortZone: #b12a2a;
+$category-color-social: #fed723;
 
 .sticky-header {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
+	z-index: 999;
+	overflow: hidden;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: yellow;
+		background: url('src/assets/images/360x60.png') center;
+		background-size: contain;
+	}
+
+	.branding {
+		position: absolute;
+		top: 17%;
+		left: 8%;
+		font-size: 18px;
+		color: #fff;
+	}
+	//Durch Stern-Icon ersetzen
+	.favorite-challenges {
+		position: absolute;
+		top: 7%;
+		right: 20%;
+		border: 2px solid #fff;
+		border-radius: 40px;
+		height: 40px;
+		width: 40px;
+	}
+	//Durch Uhr-Icon ersetzen
+	.running-challenges {
+		position: absolute;
+		top: 7%;
+		right: 5%;
+		border: 2px solid #fff;
+		border-radius: 40px;
+		height: 40px;
+		width: 40px;
 	}
 
 	.category-bar {
 		position: relative;
-		height: $category-bar-height;
-		background: green;
-		overflow-x: auto;
+		//height: $category-bar-height;
+		background: #d1e4d9;
+		box-sizing: content-box;
+		overflow-y: scroll;
 		white-space: nowrap;
 		user-select: none;
+		margin-top: 2%;
+		border-radius: 40px 0 0 40px;
+		margin-left: 4%;
 
-		/* define scrollbar */
+		/* Hide scrollbar for Chrome, Safari and Opera */
 		::-webkit-scrollbar {
-			height: 10px;
+			display: none;
 		}
 
-		::-webkit-scrollbar-track {
-			background: #ded7c1;
-			border-radius: 5px;
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: #888;
-			border-radius: 5px;
-		}
-
-		::-webkit-scrollbar-thumb:hover {
-			background: #555;
-		}
+		/* Hide scrollbar for IE and Edge */
+		-ms-overflow-style: none;
 
 		.category {
 			display: inline-block;
-			border: 1px solid black;
-			margin: 0 10px;
-			padding: 5px;
+			font-size: 14px;
+			padding: 1.5% 3.5%;
 			cursor: pointer;
+
+			// active für die gewählte Kategorie
+			&.active {
+				background-color: #67a682;
+				color: #fff;
+				border-radius: 40px;
+			}
 		}
 	}
 }
 
 .challenges {
-	margin-top: $app-bar-height + $category-bar-height + 10px;
+	position: relative;
+	margin-top: $app-bar-height + $category-bar-height + 25px;
+	margin-bottom: 50px + 25px;
 
 	.challenge {
-		height: 250px;
-		width: 90vw;
+		height: 300px;
+		width: 92vw;
 		margin: 10px auto;
-		background: blue;
+
+		.challenge-title {
+			color: #fff;
+			font-size: 18px;
+			font-weight: 500;
+			padding-top: 3%;
+			padding-left: 4%;
+		}
+	}
+
+	.challenge-label {
+		height: 15%;
+	}
+
+	.challenge-profile {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: gray;
+		float: left;
+		margin: 2% 3% 0 3%;
+	}
+
+	//Basisfarben aller Kategorien
+	.color-daily {
+		background: url('src/assets/images/360x60.png') center;
+		background-size: contain;
+	}
+
+	.color-physical {
+		background-color: $category-color-physical;
+	}
+
+	.color-cooking {
+		background-color: $category-color-cooking;
+	}
+
+	.color-household {
+		background-color: $category-color-physical;
+	}
+
+	.color-creative {
+		background-color: $category-color-creative;
+	}
+
+	.color-education {
+		background-color: $category-color-education;
+	}
+
+	.color-selfcare {
+		background-color: $category-color-selfcare;
+	}
+
+	.color-noComfortZone {
+		background-color: $category-color-noComfortZone;
+	}
+
+	.color-social {
+		background-color: $category-color-social;
+	}
+
+	.spezial-errungenschaften-color {
+		background-color: #67a682;
+	}
+
+	//End Basisfarben aller Kategorien
+
+	.challenge-picture {
+		background-color: #fff;
+		//background-image: url('https://www.ndr.de/ratgeber/kochen/kochen584_v-contentxl.jpg');
+		//background-size: contain;
+		//background-repeat: no-repeat;
+		position: relative;
+		height: 85%;
+		border-left: 1px solid #b8b8b8;
+		border-right: 1px solid #b8b8b8;
+		border-bottom: 1px solid #b8b8b8;
+	}
+
+	.overlay-daily {
+		height: 25%;
+		background-image: linear-gradient(
+			to bottom,
+			#6e8c78,
+			#c1cec5 40%,
+			rgba(255, 255, 255, 0) 70%
+		);
+	}
+
+	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
+	@mixin overlay($color) {
+		height: 25%;
+		background-image: linear-gradient(
+			to bottom,
+			$color,
+			rgba(255, 255, 255, 0) 70%
+		);
+	}
+
+	.overlay-physical {
+		@include overlay($category-color-physical);
+	}
+
+	.overlay-cooking {
+		@include overlay($category-color-cooking);
+	}
+
+	.overlay-household {
+		@include overlay($category-color-household);
+	}
+
+	.overlay-creative {
+		@include overlay($category-color-creative);
+	}
+
+	.overlay-education {
+		@include overlay($category-color-education);
+	}
+
+	.overlay-selfcare {
+		@include overlay($category-color-selfcare);
+	}
+
+	.overlay-noComfortZone {
+		@include overlay($category-color-noComfortZone);
+	}
+
+	.overlay-social {
+		@include overlay($category-color-social);
+	}
+
+	.challenge-participants {
+		position: absolute;
+		bottom: 6%;
+		right: 30%;
+	}
+
+	.challenge-participants-profile {
+		position: absolute;
+		bottom: 3%;
+		right: 5%;
+		.circles {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: #fff;
+			border: 1px solid grey;
+			float: right;
+			margin-left: -10%;
+		}
+	}
+	.challenge-category {
+		float: left;
+		position: absolute;
+		top: 5%;
+		left: 4%;
+		font-size: 14px;
+		color: #fff;
 	}
 }
 
@@ -66,10 +263,7 @@ $category-bar-height: 30px;
 	left: 0;
 	right: 0;
 	height: 50px;
-
-	background-color: #fff;
-	border: 1px solid black;
-
+	background-color: #e5e5e5;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -80,7 +274,6 @@ $category-bar-height: 30px;
 		position: relative;
 		width: 40px;
 		height: 40px;
-
 		background: red;
 	}
 }
