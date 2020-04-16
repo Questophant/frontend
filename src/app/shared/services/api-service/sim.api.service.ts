@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Categories, Category, getCategoryByName } from '../../dtos/category';
+import { Category, getCategoryByName } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { UserDto } from '../../dtos/user.dto';
@@ -14,7 +14,7 @@ export class SimApiService implements ApiService {
 		id: 0,
 		title: 'asdasdasd',
 		description: 'lorem ipsum ...',
-		category: Categories.find((cat) => cat.name === 'art'),
+		category: getCategoryByName('art'),
 		durationSeconds: 300,
 	};
 
