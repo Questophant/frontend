@@ -7,9 +7,15 @@
 	</div>
 
 	<div class="category-bar">
-		<span class="category" (click)="setCategoryFilter(null)">Alle</span>
+		<span
+			(click)="setCategoryFilter(null)"
+			[class.active]="filter == null"
+			class="category"
+			>Alle</span
+		>
 		<span
 			class="category"
+			[class.active]="filter === category.name"
 			*ngFor="let category of categories"
 			(click)="setCategoryFilter(category.name)"
 		>
