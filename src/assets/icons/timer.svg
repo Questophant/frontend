@@ -1,0 +1,26 @@
+<svg viewBox="0 0 904.5 546.62" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<style>.cls-1 {
+			fill: #fff;
+		}
+
+		.cls-2 {
+			fill: none;
+			stroke: #fff;
+			stroke-miterlimit: 10;
+			stroke-width: 15px;
+		}</style>
+	</defs>
+	<title>Uhr</title>
+	<g data-name="Ebene 2" id="Ebene_2">
+		<path class="cls-1"
+			  d="M1038,281a247.11,247.11,0,1,1-96.53,19.48A246.41,246.41,0,0,1,1038,281m0-15c-145.25,0-263,117.75-263,263s117.75,263,263,263,263-117.75,263-263-117.75-263-263-263Z"
+			  transform="translate(-396.5 -245.38)"/>
+		<polyline class="cls-2" points="480.09 77.74 459 47.37 523.94 10.62 538.5 43.81"/>
+		<polyline class="cls-2" points="802.41 77.74 823.5 47.37 758.56 10.62 744 43.81"/>
+		<polyline class="cls-2" points="642 122.62 642 293.12 539 246.98"/>
+		<line class="cls-2" x1="67" x2="309" y1="161.12" y2="161.12"/>
+		<line class="cls-2" x1="67.5" x2="309.5" y1="394.12" y2="394.12"/>
+		<line class="cls-2" x2="295" y1="278.12" y2="278.12"/>
+	</g>
+</svg>
