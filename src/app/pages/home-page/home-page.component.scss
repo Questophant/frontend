@@ -122,8 +122,9 @@ $category-color-social: #fed723;
 
 	//Basisfarben aller Kategorien
 	.color-daily {
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	.color-physical {
