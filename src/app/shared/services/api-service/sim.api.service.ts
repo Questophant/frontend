@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Categories, Category } from '../../dtos/category';
+import { Categories, Category, getCategoryByName } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { UserDto } from '../../dtos/user.dto';
@@ -22,7 +22,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 1,
 			title: 'Challenge 1',
-			category: Categories.find((cat) => cat.name === 'art'),
+			category: getCategoryByName('creative'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
@@ -30,7 +30,7 @@ export class SimApiService implements ApiService {
 		{
 			id: 2,
 			title: 'Challenge 2',
-			category: Categories.find((cat) => cat.name === 'cooking'),
+			category: getCategoryByName('cooking'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
@@ -38,7 +38,31 @@ export class SimApiService implements ApiService {
 		{
 			id: 3,
 			title: 'Challenge 3',
-			category: Categories.find((cat) => cat.name === 'social'),
+			category: getCategoryByName('social'),
+			description:
+				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
+			durationSeconds: 300,
+		},
+		{
+			id: 4,
+			title: 'Challenge 4',
+			category: getCategoryByName('physical'),
+			description:
+				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
+			durationSeconds: 300,
+		},
+		{
+			id: 5,
+			title: 'Challenge 5',
+			category: getCategoryByName('selfcare'),
+			description:
+				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
+			durationSeconds: 300,
+		},
+		{
+			id: 6,
+			title: 'Challenge 6',
+			category: getCategoryByName('education'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,

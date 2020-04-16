@@ -48,12 +48,9 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	getAllChallengesOfUser(): Promise<ChallengeDto[]> {
-		return this.httpClient
-			.get<ChallengeResponse[]>(
-				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`
-			)
-			.toPromise()
-			.then(this.mapChallenges());
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/challenges`
+		);
 	}
 
 	createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
@@ -111,11 +108,16 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
-		return new Promise((resolve, reject) => {
-			this.httpClient
-				.get<ChallengeResponse>(url)
-				.toPromise()
-				.then(this.mapChallenge());
-		});
+		return this.httpClient
+			.get<ChallengeResponse>(url)
+			.toPromise()
+			.then(this.mapChallenge());
+	}
+
+	private getChallengesFromUrl(url: string): Promise<ChallengeDto[]> {
+		return this.httpClient
+			.get<ChallengeResponse[]>(url)
+			.toPromise()
+			.then(this.mapChallenges());
 	}
 }
