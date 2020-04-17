@@ -35,7 +35,9 @@
 		</div>
 
 		<div
-			*ngIf="submitted && registrationForm.invalid"
+			*ngIf="
+				(submitted && registrationForm.invalid) || nameIsAlreadyInUse
+			"
 			class="errors"
 			style="
 				padding: 10px;
@@ -48,13 +50,16 @@
 			"
 		>
 			<span *ngIf="registrationForm.get('name').errors !== null"
-				>Sie müssen einen Namen angeben.</span
+				>Du musst einen Namen angeben.</span
+			>
+			<span *ngIf="nameIsAlreadyInUse"
+				>Der Nutzername ist leider schon vergeben.</span
 			>
 			<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
-				>Sie müssen den Datenschutzbst. zustimmen.</span
+				>Du musst den Datenschutzbst. zustimmen.</span
 			>
 			<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
-				>Sie müssen dem CoC zustimmen.</span
+				>Du musst dem CoC zustimmen.</span
 			>
 		</div>
 

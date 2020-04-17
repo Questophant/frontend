@@ -10,6 +10,8 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 })
 export class WelcomePageComponent implements OnInit {
 	submitted = false;
+	nameIsAlreadyInUse = false;
+
 	registrationForm = new FormGroup({
 		name: new FormControl('', [
 			Validators.required,
@@ -46,7 +48,11 @@ export class WelcomePageComponent implements OnInit {
 						);
 				},
 				(reason) => {
-					alert(reason);
+					if (reason === 'Username is already in use') {
+						this.nameIsAlreadyInUse = true;
+					} else {
+						alert(reason);
+					}
 				}
 			);
 		}
