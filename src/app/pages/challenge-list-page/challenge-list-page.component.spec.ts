@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChallengeListPageComponent } from './challenge-list-page.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ChallengeListComponent', () => {
 	let component: ChallengeListPageComponent;
@@ -8,6 +9,7 @@ describe('ChallengeListComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [RouterTestingModule],
 			declarations: [ChallengeListPageComponent],
 		}).compileComponents();
 	}));
