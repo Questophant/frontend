@@ -54,13 +54,12 @@
 		<div class="challenge-label color-{{ challenge.category.name }}">
 			<h1 class="challenge-title">{{ challenge.title }}</h1>
 		</div>
+		<div class="overlay-{{ challenge.category.name }} overlay">
+			<p class="challenge-category">
+				{{ challenge.category.display }}
+			</p>
+		</div>
 		<div class="challenge-picture">
-			<div class="overlay-{{ challenge.category.name }}">
-				<p class="challenge-category">
-					{{ challenge.category.display }}
-				</p>
-			</div>
-
 			<div class="challenge-participants">100 Challengers</div>
 			<div class="challenge-participants-profile">
 				<span class="circles"></span>
@@ -72,9 +71,17 @@
 </div>
 
 <div class="sticky-footer-navigation">
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div>
+	<div class="icon">
+		<div class="home-icon"></div>
+	</div>
+	<div class="icon">
+		<div class="achievement-icon"></div>
+	</div>
+	<div class="icon">
+		<div class="plus-icon"></div>
+	</div>
+	<div class="icon">
+		<div class="friends-icon"></div>
+	</div>
 	<div class="icon"></div>
 </div>
