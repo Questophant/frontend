@@ -17,7 +17,7 @@ const routes: Routes = [
 		component: WelcomePageComponent,
 	},
 	{
-		path: 'create',
+		path: 'challenge/create',
 		component: CreateChallengePageComponent,
 	},
 	{
