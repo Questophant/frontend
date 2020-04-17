@@ -7,6 +7,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { AchievementsPageComponent } from './pages/achievements-page/achievements-page.component';
 import { SharedModule } from './shared/shared.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
 
 @NgModule({
 	declarations: [
@@ -14,6 +15,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 		WelcomePageComponent,
 		HomePageComponent,
 		AchievementsPageComponent,
+		CreateChallengePageComponent,
 	],
 	imports: [
 		BrowserModule,
