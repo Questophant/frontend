@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Categories } from '../../shared/dtos/category';
 
 @Component({
 	selector: 'app-achievements-page',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./achievements-page.component.scss'],
 })
 export class AchievementsPageComponent implements OnInit {
+	categories = Categories;
+
 	constructor() {}
 
 	ngOnInit(): void {}

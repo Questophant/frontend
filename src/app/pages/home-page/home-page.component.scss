@@ -1,13 +1,7 @@
+@import '../../../colors';
+
 $app-bar-height: 50px;
 $category-bar-height: 25px;
-$category-color-physical: #355c7d;
-$category-color-cooking: #ff9822;
-$category-color-household: #f672e8;
-$category-color-creative: #f5747e;
-$category-color-education: #87dde7;
-$category-color-selfcare: #2d7986;
-$category-color-noComfortZone: #b12a2a;
-$category-color-social: #fed723;
 
 .sticky-header {
 	position: fixed;
@@ -120,41 +114,9 @@ $category-color-social: #fed723;
 	}
 
 	//Basisfarben aller Kategorien
-	.color-daily {
+	.category-daily-background {
 		background: url('src/assets/images/360x60.png') center;
 		background-size: contain;
-	}
-
-	.color-physical {
-		background-color: $category-color-physical;
-	}
-
-	.color-cooking {
-		background-color: $category-color-cooking;
-	}
-
-	.color-household {
-		background-color: $category-color-physical;
-	}
-
-	.color-creative {
-		background-color: $category-color-creative;
-	}
-
-	.color-education {
-		background-color: $category-color-education;
-	}
-
-	.color-selfcare {
-		background-color: $category-color-selfcare;
-	}
-
-	.color-noComfortZone {
-		background-color: $category-color-noComfortZone;
-	}
-
-	.color-social {
-		background-color: $category-color-social;
 	}
 
 	.spezial-errungenschaften-color {
