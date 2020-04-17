@@ -1,6 +1,7 @@
 h1 {
 	color: #67a682;
-	margin: 5vh 4vw 3vh 4vw;
+	margin: 3vh 4vw 3vh 4vw;
+	font-size: 24px;
 }
 .text {
 	margin-left: 4vw;
@@ -8,7 +9,7 @@ h1 {
 	padding: 4px 10px;
 	display: inline-block;
 	color: #fff;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	border-radius: 100px;
 }
 .achievements {
@@ -56,7 +57,6 @@ span {
 	bottom: 0;
 	position: fixed;
 	height: 10vh;
-	bottom: 0;
 	width: 100%;
 	background: #c00707;
 }
