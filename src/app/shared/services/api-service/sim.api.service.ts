@@ -81,8 +81,13 @@ export class SimApiService implements ApiService {
 		};
 	}
 
-	async getAllChallenges(): Promise<ChallengeDto[]> {
-		return this.challenges;
+	async getChallenges(category: Category): Promise<ChallengeDto[]> {
+		if (!category) {
+			return this.challenges;
+		}
+		return this.challenges.filter(
+			(challenge) => challenge.category.name === category.name
+		);
 	}
 
 	async getAllChallengesOfUser(): Promise<ChallengeDto[]> {

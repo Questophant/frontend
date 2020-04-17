@@ -1,7 +1,3 @@
-import { Category } from '../../dtos/category';
-import { ChallengeDto } from '../../dtos/challenge.dto';
-import { UserDto } from '../../dtos/user.dto';
-
 export abstract class ApiService {
 	public getDailyChallenge(): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
@@ -10,6 +6,10 @@ export abstract class ApiService {
 	public createNewChallenge(
 		challenge: ChallengeDto
 	): Promise<ChallengeDto | string> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getChallenges(category: Category): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -27,11 +27,12 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	getAllChallenges(): Promise<ChallengeDto[]> {
-		throw new Error('Method not implemented.');
-	}
-
 	createNewUser(user: UserDto): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 }
+
+import { Category } from '../../dtos/category';
+import { ChallengeDto } from '../../dtos/challenge.dto';
+
+import { UserDto } from '../../dtos/user.dto';
