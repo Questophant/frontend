@@ -13,36 +13,40 @@ $category-bar-height: 25px;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
-	}
 
-	.branding {
-		position: absolute;
-		top: 17%;
-		left: 8%;
-		font-size: 18px;
-		color: #fff;
-	}
-	//Durch Stern-Icon ersetzen
-	.favorite-challenges {
-		position: absolute;
-		top: 7%;
-		right: 20%;
-		border: 2px solid #fff;
-		border-radius: 40px;
-		height: 40px;
-		width: 40px;
-	}
-	//Durch Uhr-Icon ersetzen
-	.running-challenges {
-		position: absolute;
-		top: 7%;
-		right: 5%;
-		border: 2px solid #fff;
-		border-radius: 40px;
-		height: 40px;
-		width: 40px;
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+
+		padding: 0 15px;
+
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-items: center;
+
+		.branding {
+			font-size: 18px;
+			color: #fff;
+		}
+
+		//Durch Stern-Icon ersetzen
+		.favorite-challenges {
+			margin-left: auto;
+			//border: 2px solid #fff;
+			//border-radius: 40px;
+			height: 30px;
+			width: 30px;
+		}
+
+		//Durch Uhr-Icon ersetzen
+		.running-challenges {
+			margin-left: 10px;
+			//border: 2px solid #fff;
+			//border-radius: 40px;
+			height: 40px;
+			width: 40px;
+		}
 	}
 
 	.category-bar {
@@ -115,8 +119,9 @@ $category-bar-height: 25px;
 
 	//Basisfarben aller Kategorien
 	.category-daily-background {
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	.spezial-errungenschaften-color {
