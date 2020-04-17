@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+.background-image {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: scroll;
+
+	background: url('/assets/images/homepage.png') no-repeat local center;
+	background-size: cover;
+}
+
 .image-wrapper {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-
-	background-image: url('/assets/images/homepage.png');
-	background-repeat: no-repeat;
-	background-size: 100% auto;
+	overflow-y: scroll;
+	background: rgba(0, 0, 0, 0.3);
 
 	.logo {
 		position: relative;
@@ -24,8 +34,9 @@
 	form {
 		font-family: 'Lato', sans-serif;
 		font-weight: 900;
-		font-size: 17px;
+		font-size: 18px;
 		color: #fff;
+		margin-bottom: 50px;
 
 		& > * {
 			display: block;
@@ -42,6 +53,11 @@
 				margin: 25px auto 0 auto;
 				width: 75vw;
 				text-align: center;
+
+				font-family: 'Lato', sans-serif;
+				font-weight: 900;
+				font-size: 18px;
+				color: #fff;
 			}
 		}
 
@@ -52,15 +68,13 @@
 			font-weight: 900;
 			font-size: 16px;
 			color: #fff;
+			margin: 25px auto 0;
 
-			margin: 0 auto;
 			background-color: #67a682;
 			outline: none;
 			border: none;
 			border-radius: 40px;
 			padding: 10px 25px;
-
-			margin-top: 25px;
 		}
 
 		.checkboxes {
@@ -68,25 +82,30 @@
 			margin: 50px auto;
 			text-align: left;
 
-			& > label {
+			label {
 				display: block;
 				height: 20px;
 				line-height: 20px;
 				margin-bottom: 20px;
 				vertical-align: center;
 
-				& > input {
+				input {
 					display: none;
 				}
 
-				&::before {
+				span::before {
+					content: '';
 					width: 20px;
 					height: 20px;
 					background-color: #fff;
 					display: block;
-					content: '';
 					float: left;
-					margin-right: 5px;
+					margin-right: 15px;
+				}
+
+				input:checked + span::before {
+					box-shadow: inset 0px 0px 0px 3px #fff;
+					background-color: #8cad2d;
 				}
 			}
 		}
