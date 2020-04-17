@@ -7,23 +7,30 @@ import { ChallengeListPageComponent } from './pages/challenge-list-page/challeng
 
 const routes: Routes = [
 	{
-		path: '',
-		component: HomePageComponent,
-		canActivate: [HasRegisteredGuard],
-	},
-	{
+		// No registered user needed for this route
 		path: 'welcome',
 		component: WelcomePageComponent,
 	},
 	{
-		path: 'challenges/star',
-		component: ChallengeListPageComponent,
-		data: { showProgress: false },
-	},
-	{
-		path: 'challenges/running',
-		component: ChallengeListPageComponent,
-		data: { showProgress: true },
+		// Require registered user for this routes
+		path: '',
+		canActivate: [HasRegisteredGuard],
+		children: [
+			{
+				path: '',
+				component: HomePageComponent,
+			},
+			{
+				path: 'challenges/star',
+				component: ChallengeListPageComponent,
+				data: { showProgress: false },
+			},
+			{
+				path: 'challenges/running',
+				component: ChallengeListPageComponent,
+				data: { showProgress: true },
+			},
+		],
 	},
 ];
 
