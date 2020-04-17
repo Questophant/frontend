@@ -1,14 +1,30 @@
 <div class="sticky-header">
 	<div class="app-bar">
 		<span class="branding">ChallengeMe</span>
-
-		<div class="icon"></div>
+		<img
+			class="favorite-challenges"
+			routerLink="/challenges/star"
+			src="/assets/icons/star.svg"
+			alt="Gemerkte Challenges"
+		/>
+		<img
+			class="running-challenges"
+			routerLink="/challenges/running"
+			src="/assets/icons/timer.svg"
+			alt="Laufende Challenges"
+		/>
 	</div>
 
 	<div class="category-bar">
-		<span class="category" (click)="setCategoryFilter(null)">Alle</span>
+		<span
+			(click)="setCategoryFilter(null)"
+			[class.active]="filter == null"
+			class="category"
+			>Alle</span
+		>
 		<span
 			class="category"
+			[class.active]="filter === category.name"
 			*ngFor="let category of categories"
 			(click)="setCategoryFilter(category.name)"
 		>
@@ -18,6 +34,25 @@
 </div>
 
 <div class="challenges">
+	<!--	<div class="challenge">-->
+	<!--		<div class="challenge-label color-daily">-->
+	<!--			<h1 class="challenge-title">Tageschallenge</h1>-->
+	<!--		</div>-->
+	<!--		<div class="challenge-picture">-->
+	<!--			<div class="daily-overlay">-->
+	<!--				<p class="challenge-category">-->
+	<!--					Roberts Koch-Institut-->
+	<!--				</p>-->
+	<!--			</div>-->
+	<!--			<div class="challenge-participants">100 Challengers</div>-->
+	<!--			<div class="challenge-participants-profile">-->
+	<!--				<span class="circles"></span>-->
+	<!--				<span class="circles"></span>-->
+	<!--				<span class="circles"></span>-->
+	<!--			</div>-->
+	<!--		</div>-->
+	<!--	</div>-->
+
 	<div
 		class="challenge"
 		*ngFor="
@@ -26,21 +61,24 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<h1 class="challenge-title">{{ challenge.title }}</h1>
-		<p class="challenge-description">{{ challenge.description }}</p>
+		<div class="challenge-label color-{{ challenge.category.name }}">
+			<h1 class="challenge-title">{{ challenge.title }}</h1>
+		</div>
+		<div class="challenge-picture">
+			<div class="overlay-{{ challenge.category.name }}">
+				<p class="challenge-category">
+					{{ challenge.category.display }}
+				</p>
+			</div>
+
+			<div class="challenge-participants">100 Challengers</div>
+			<div class="challenge-participants-profile">
+				<span class="circles"></span>
+				<span class="circles"></span>
+				<span class="circles"></span>
+			</div>
+		</div>
 	</div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
-	<div class="challenge"></div>
 </div>
 
 <div class="sticky-footer-navigation">
