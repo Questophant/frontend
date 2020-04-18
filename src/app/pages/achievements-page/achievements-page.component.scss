@@ -3,30 +3,44 @@
 h1 {
 	color: $general-green;
 	margin: 3vh 4vw 3vh 4vw;
-	font-size: 24px;
+	font-size: 19px;
+	font-weight: 500;
 }
 
-.teaser {
-	margin-left: 4vw;
-	text-align: center;
+.overlay {
 	position: fixed;
-	border-radius: 5vh;
-	color: $general-font-color;
-	background-color: $general-background-color;
-	width: 92vw;
-	padding: 2vw;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.teaser {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		border-radius: 5vh;
+		color: $general-font-color;
+		background-color: $general-background-color;
+		width: 92vw;
+		padding: 2vw;
+
+		.cantwait {
+			position: relative;
+			top: 0;
+			color: white;
+			background: $general-green;
+			border: none;
+			border-radius: 20px;
+			font-size: 16px;
+			padding: 10px 25px;
+		}
+	}
 }
-.cantwait {
-	text-decoration: none;
-	position: relative;
-	background: $general-green;
-	border-radius: 20px;
-	top: 0px;
-	border: none;
-	padding: 5px;
-	color: white;
-	font-size: 20px;
-}
+
 div {
 	.text {
 		margin-left: 4vw;

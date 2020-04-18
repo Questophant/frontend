@@ -12,6 +12,4 @@ export class AchievementsPageComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {}
-
-	comingSoon: boolean = true;
 }
