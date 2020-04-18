@@ -162,23 +162,51 @@ $category-color-social: #fed723;
 		background-color: $category-color-social;
 	}
 
-	.spezial-errungenschaften-color {
-		background-color: #67a682;
-	}
-
 	//End Basisfarben aller Kategorien
 
 	.challenge-picture {
 		background-color: #fff;
 		//background-image: url('https://www.ndr.de/ratgeber/kochen/kochen584_v-contentxl.jpg');
-		//background-size: contain;
-		//background-repeat: no-repeat;
+		background-size: contain;
+		background-repeat: no-repeat;
 		position: relative;
 		height: 85%;
 		border-left: 1px solid #b8b8b8;
 		border-right: 1px solid #b8b8b8;
 		border-bottom: 1px solid #b8b8b8;
 		margin-top: -4.6em;
+
+		&.picture-cooking {
+			background-image: url('/assets/images/categories/cooking.png');
+		}
+
+		&.picture-social {
+			background-image: url('/assets/images/categories/social.png');
+		}
+
+		&.picture-creative {
+			background-image: url('/assets/images/categories/creative.png');
+		}
+
+		&.picture-physical {
+			background-image: url('/assets/images/categories/physical.png');
+		}
+
+		&.picture-household {
+			background-image: url('/assets/images/categories/household.png');
+		}
+
+		&.picture-education {
+			background-image: url('/assets/images/categories/education.png');
+		}
+
+		&.picture-selfcare {
+			background-image: url('/assets/images/categories/selfcare.png');
+		}
+
+		&.picture-noComfortZone {
+			background-image: url('/assets/images/categories/noComfortZone.png');
+		}
 	}
 
 	.overlay-daily {
