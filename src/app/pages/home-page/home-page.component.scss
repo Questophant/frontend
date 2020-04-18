@@ -182,6 +182,8 @@ $category-color-social: #fed723;
 	}
 
 	.overlay-daily {
+		z-index: 99;
+		position: relative;
 		height: 25%;
 		background-image: linear-gradient(
 			to bottom,
@@ -190,14 +192,12 @@ $category-color-social: #fed723;
 			rgba(255, 255, 255, 0) 70%
 		);
 	}
-	.overlay {
-		z-index: 99;
-		position: relative;
-	}
 
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
 	@mixin overlay($color) {
+		position: relative;
 		height: 25%;
+		z-index: 99;
 		background-image: linear-gradient(
 			to bottom,
 			$color,

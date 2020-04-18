@@ -42,13 +42,12 @@
 				>
 					<h1 class="challenge-title">{{ challenge.title }}</h1>
 				</div>
+				<div class="overlay-{{ challenge.category.name }}">
+					<p class="challenge-category">
+						{{ challenge.category.display }}
+					</p>
+				</div>
 				<div class="challenge-picture">
-					<div class="overlay-{{ challenge.category.name }}">
-						<p class="challenge-category">
-							{{ challenge.category.display }}
-						</p>
-					</div>
-
 					<div class="challenge-participants">100 Challengers</div>
 					<div class="challenge-participants-profile">
 						<span class="circles"></span>
