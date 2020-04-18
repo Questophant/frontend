@@ -61,7 +61,11 @@
 				| filterChallengesByCategoryName: filter
 		"
 	>
-		<div class="challenge-label color-{{ challenge.category.name }}">
+		<div
+			class="challenge-label category-{{
+				challenge.category.name
+			}}-background"
+		>
 			<h1 class="challenge-title">{{ challenge.title }}</h1>
 		</div>
 		<div class="challenge-picture">
