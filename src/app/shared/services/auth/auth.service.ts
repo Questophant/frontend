@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api-service/api.service';
 import { StoreService } from '../store/store.service';
+import { UserDto } from '../../dtos/user.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,24 +15,13 @@ export class AuthService {
 	constructor(private store: StoreService, private api: ApiService) {}
 
 	register(name: string): Promise<void> {
-		return this.api.createNewUser().then(
-			(user) =>
-				this.api
-					.updateUser(user.userId, { userId: null, userName: name })
-					.then(
-						(value) => {
-							this.store.setUserId(user.userId);
-						},
-						(reason) => {
-							alert(
-								'Es ist ein Fehler bei der Registrierung aufgetreten!'
-							);
-						}
-					),
-			(reason) => {
-				alert('Es ist ein Fehler bei der Registrierung aufgetreten!');
-			}
-		);
+		const userO: UserDto = {
+			userId: null,
+			userName: name,
+		};
+		return this.api.createNewUser(userO).then((user) => {
+			this.store.setUserId(user.userId);
+		});
 	}
 
 	isUserRegistered(): boolean {

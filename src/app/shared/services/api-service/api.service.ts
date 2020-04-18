@@ -31,11 +31,7 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	createNewUser(): Promise<UserDto> {
-		throw new Error('Method not implemented.');
-	}
-
-	updateUser(userId: string, user: UserDto): Promise<UserDto> {
+	createNewUser(user: UserDto): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 }

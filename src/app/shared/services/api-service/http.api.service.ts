@@ -35,13 +35,7 @@ export abstract class HTTPApiService implements ApiService {
 		throw new Error('Not implemented');
 	}
 
-	createNewUser(): Promise<UserDto> {
-		return this.httpClient
-			.post<UserDto>(`${this.apiUrl}/users`, null)
-			.toPromise();
-	}
-
-	updateUser(userId: string, user: UserDto): Promise<UserDto> {
+	createNewUser(user: UserDto): Promise<UserDto> {
 		return this.httpClient
 			.post<UserDto>(`${this.apiUrl}/users`, user)
 			.toPromise();
