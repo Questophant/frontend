@@ -7,6 +7,8 @@ export const Categories: Category[] = [
 	{ name: 'social', display: 'Wir - Voll sozial' },
 	{ name: 'cooking', display: 'Roberts Koch-Institut' },
 	{ name: 'creative', display: 'Kreativer Kopf' },
+	// { name: 'eco', display: 'Eco' },
+	// { name: 'fun', display: 'Fun' },
 ];
 
 export function getCategoryByName(name: string): Category | undefined {
