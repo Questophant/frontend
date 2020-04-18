@@ -178,6 +178,7 @@ $category-color-social: #fed723;
 		border-left: 1px solid #b8b8b8;
 		border-right: 1px solid #b8b8b8;
 		border-bottom: 1px solid #b8b8b8;
+		margin-top: -4.6em;
 	}
 
 	.overlay-daily {
@@ -188,6 +189,10 @@ $category-color-social: #fed723;
 			#c1cec5 40%,
 			rgba(255, 255, 255, 0) 70%
 		);
+	}
+	.overlay {
+		z-index: 99;
+		position: relative;
 	}
 
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
@@ -267,18 +272,56 @@ $category-color-social: #fed723;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	height: 50px;
+	height: 70px;
 	background-color: #e5e5e5;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
+	z-index: 999;
 
 	.icon {
 		display: inline-block;
 		position: relative;
 		width: 40px;
 		height: 40px;
-		background: red;
+
+		.home-icon {
+			background-image: url('src/assets/images/Home.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			top: 15%;
+		}
+		.achievement-icon {
+			background-image: url('src/assets/images/Errungenschaften.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			top: 15%;
+		}
+		.plus-icon {
+			background-image: url('src/assets/images/Plusbutton.png');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 120%;
+			height: 120%;
+			position: absolute;
+			top: -3px;
+			left: -6px;
+		}
+		.friends-icon {
+			background-image: url('src/assets/images/Freunde.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			top: 20%;
+		}
 	}
 }
