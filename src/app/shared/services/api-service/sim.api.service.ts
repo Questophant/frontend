@@ -69,20 +69,16 @@ export class SimApiService implements ApiService {
 		},
 	];
 
-	private newUserId: UserDto = {
-		userId: 'anyUserId',
-		userName: null,
-	};
-
 	constructor(private store: StoreService) {}
 
-	async createNewUser(): Promise<UserDto> {
-		return this.newUserId;
-	}
-
-	async updateUser(userId: string, user: UserDto): Promise<UserDto> {
-		user.userId = userId;
-		return user;
+	async createNewUser(user: UserDto): Promise<UserDto> {
+		if (user.userName === 'existingUserName') {
+			return Promise.reject('Username is already in use');
+		}
+		return {
+			userId: 'anyUserId',
+			userName: user.userName,
+		};
 	}
 
 	async getAllChallenges(): Promise<ChallengeDto[]> {
