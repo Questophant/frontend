@@ -15,23 +15,25 @@
 		</label>
 
 		<div class="checkboxes">
-			<label>
-				<input
-					formControlName="dataPrivacy"
-					name="dataprivacy"
-					type="checkbox"
-				/>
-				<span>Datenschutzerklärung</span>
-			</label>
+			<div class="checkbox">
+				<label class="box">
+					<input formControlName="dataPrivacy" type="checkbox" />
+					<span></span>
+				</label>
+				<span (click)="toggleDataPrivacy()" class="label"
+					>Datenschutzerklärung</span
+				>
+			</div>
 
-			<label>
-				<input
-					formControlName="codeOfConduct"
-					name="code-of-conduct"
-					type="checkbox"
-				/>
-				<span>Code of Conduct</span>
-			</label>
+			<div class="checkbox">
+				<label class="box">
+					<input formControlName="rules" type="checkbox" />
+					<span></span>
+				</label>
+				<span (click)="toggleRules()" class="label"
+					>Verhaltensregeln</span
+				>
+			</div>
 		</div>
 
 		<div
@@ -39,30 +41,35 @@
 				(submitted && registrationForm.invalid) || nameIsAlreadyInUse
 			"
 			class="errors"
-			style="
-				padding: 10px;
-				border: 1px solid red;
-				margin: 15px;
-				background: rgba(255, 0, 0, 0.65);
-				color: #fff;
-				font-weight: 400;
-				font-size: 16px;
-			"
 		>
 			<span *ngIf="registrationForm.get('name').errors !== null"
-				>Du musst einen Namen angeben.</span
+				>Wir brauchen einen Namen.</span
 			>
 			<span *ngIf="nameIsAlreadyInUse"
 				>Der Nutzername ist leider schon vergeben.</span
 			>
-			<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
-				>Du musst den Datenschutzbst. zustimmen.</span
-			>
-			<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
-				>Du musst dem CoC zustimmen.</span
-			>
+			<span
+				*ngIf="
+					registrationForm.get('dataPrivacy').errors !== null ||
+					registrationForm.get('rules').errors !== null
+				"
+				>Es lohnt sich die Datenschutzerklärung und die Verhaltensregeln
+				zu akzeptieren. Versprochen!
+			</span>
 		</div>
 
 		<button type="submit">Weiter</button>
 	</form>
 </div>
+
+<app-data-privacy-overlay
+	(onClose)="
+		toggleDataPrivacy(); registrationForm.get('dataPrivacy').setValue(true)
+	"
+	*ngIf="showDataPrivacy"
+></app-data-privacy-overlay>
+
+<app-rules-overlay
+	(onClose)="toggleRules(); registrationForm.get('rules').setValue(true)"
+	*ngIf="showRules"
+></app-rules-overlay>
