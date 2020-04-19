@@ -4,7 +4,6 @@ import { AchievementsPageComponent } from './pages/achievements-page/achievement
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';

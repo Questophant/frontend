@@ -38,7 +38,9 @@
 		<ng-container *ngIf="challenges.length; else noItems">
 			<div *ngFor="let challenge of challenges" class="challenge">
 				<div
-					class="challenge-label color-{{ challenge.category.name }}"
+					class="challenge-label category-{{
+						challenge.category.name
+					}}-background"
 				>
 					<h1 class="challenge-title">{{ challenge.title }}</h1>
 				</div>
@@ -67,20 +69,4 @@
 	<ng-template #loading>Lade Challenges...</ng-template>
 </div>
 
-<div class="sticky-footer-navigation">
-	<div class="icon">
-		<div class="home-icon"></div>
-	</div>
-	<div class="icon">
-		<div class="achievement-icon"></div>
-	</div>
-	<div class="icon">
-		<div class="plus-icon"></div>
-	</div>
-	<div class="icon">
-		<div class="friends-icon"></div>
-	</div>
-	<div class="icon">
-		<div class="profile-icon"></div>
-	</div>
-</div>
+<app-navbar></app-navbar>
