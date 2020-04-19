@@ -62,117 +62,14 @@
 	</form>
 </div>
 
-<div *ngIf="showDataPrivacy" class="overlay">
-	<div class="content-wrapper">
-		<div class="content">
-			<h1>Datenschutzerklärung</h1>
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
+<app-data-privacy-overlay
+	(onClose)="
+		toggleDataPrivacy(); registrationForm.get('dataPrivacy').setValue(true)
+	"
+	*ngIf="showDataPrivacy"
+></app-data-privacy-overlay>
 
-			<h2>Was machen wir mit deinen Daten?</h2>
-
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
-
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
-		</div>
-		<div class="actions">
-			<span
-				(click)="
-					toggleDataPrivacy();
-					registrationForm.get('dataPrivacy').setValue(true)
-				"
-				class="close-btn"
-				>Ok, alles klar!</span
-			>
-		</div>
-	</div>
-</div>
-
-<div *ngIf="showRules" class="overlay">
-	<div class="content-wrapper">
-		<div class="content">
-			<h1>Verhaltensregeln</h1>
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
-
-			<h2>Was machen wir mit deinen Daten?</h2>
-
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
-
-			<p>
-				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-				diam nonumy eirmod tempor invidunt ut labore et dolore magna
-				aliquyam erat, sed diam voluptua. At vero eos et accusam et
-				justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-				takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-				dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-				eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-				sed diam voluptua. At vero eos et accusam et justo duo dolores
-				et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-				est Lorem ipsum dolor sit amet.
-			</p>
-		</div>
-		<div class="actions">
-			<span
-				(click)="
-					toggleRules(); registrationForm.get('rules').setValue(true)
-				"
-				class="close-btn"
-				>Ok, alles klar!</span
-			>
-		</div>
-	</div>
-</div>
+<app-rules-overlay
+	(onClose)="toggleRules(); registrationForm.get('rules').setValue(true)"
+	*ngIf="showRules"
+></app-rules-overlay>
