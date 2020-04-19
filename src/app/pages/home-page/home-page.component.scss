@@ -1,3 +1,5 @@
+@import '../../../colors';
+
 $app-bar-height: 50px;
 $category-bar-height: 25px;
 
@@ -7,90 +9,86 @@ $category-bar-height: 25px;
 	left: 0;
 	right: 0;
 	z-index: 999;
+	overflow: hidden;
 
 	.app-bar {
 		height: $app-bar-height;
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
-	}
 
-	.branding {
-		position: absolute;
-		top: 17%;
-		left: 8%;
-		font-size: 18px;
-		color: #fff;
-	}
-	//Durch Stern-Icon ersetzen
-	.favorite-challenges {
-		position: absolute;
-		top: 7%;
-		right: 20%;
-		border: 2px solid #fff;
-		border-radius: 40px;
-		height: 40px;
-		width: 40px;
-	}
-	//Durch Uhr-Icon ersetzen
-	.running-challenges {
-		position: absolute;
-		top: 7%;
-		right: 5%;
-		border: 2px solid #fff;
-		border-radius: 40px;
-		height: 40px;
-		width: 40px;
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+
+		padding: 0 15px;
+
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-items: center;
+
+		.branding {
+			font-size: 18px;
+			color: #fff;
+		}
+
+		//Durch Stern-Icon ersetzen
+		.favorite-challenges {
+			margin-left: auto;
+			//border: 2px solid #fff;
+			//border-radius: 40px;
+			height: 30px;
+			width: 30px;
+		}
+
+		//Durch Uhr-Icon ersetzen
+		.running-challenges {
+			margin-left: 10px;
+			//border: 2px solid #fff;
+			//border-radius: 40px;
+			height: 40px;
+			width: 40px;
+		}
 	}
 
 	.category-bar {
 		position: relative;
-		height: $category-bar-height;
+		//height: $category-bar-height;
 		background: #d1e4d9;
-		overflow-x: auto;
+		box-sizing: content-box;
+		overflow-y: scroll;
 		white-space: nowrap;
 		user-select: none;
 		margin-top: 2%;
 		border-radius: 40px 0 0 40px;
 		margin-left: 4%;
 
-		/* define scrollbar */
+		/* Hide scrollbar for Chrome, Safari and Opera */
 		::-webkit-scrollbar {
-			height: 10px;
+			display: none;
 		}
 
-		::-webkit-scrollbar-track {
-			background: #ded7c1;
-			border-radius: 5px;
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: #888;
-			border-radius: 5px;
-		}
-
-		::-webkit-scrollbar-thumb:hover {
-			background: #555;
-		}
+		/* Hide scrollbar for IE and Edge */
+		-ms-overflow-style: none;
 
 		.category {
 			display: inline-block;
 			font-size: 14px;
 			padding: 1.5% 3.5%;
 			cursor: pointer;
-		}
-		//active für die gewählte Kategorie
-		.category:active {
-			background-color: #67a682;
-			color: #fff;
-			border: 1px solid black;
-			border-radius: 40px;
+
+			// active für die gewählte Kategorie
+			&.active {
+				background-color: #67a682;
+				color: #fff;
+				border-radius: 40px;
+			}
 		}
 	}
 }
 
 .challenges {
-	margin-top: $app-bar-height + $category-bar-height + 25px;
 	position: relative;
+	margin-top: $app-bar-height + $category-bar-height + 25px;
+	margin-bottom: 50px + 25px;
 
 	.challenge {
 		height: 300px;
@@ -100,7 +98,7 @@ $category-bar-height: 25px;
 		.challenge-title {
 			color: #fff;
 			font-size: 18px;
-			font-weight: 300;
+			font-weight: 500;
 			padding-top: 3%;
 			padding-left: 4%;
 		}
@@ -109,6 +107,7 @@ $category-bar-height: 25px;
 	.challenge-label {
 		height: 15%;
 	}
+
 	.challenge-profile {
 		width: 30px;
 		height: 30px;
@@ -119,47 +118,23 @@ $category-bar-height: 25px;
 	}
 
 	//Basisfarben aller Kategorien
-	.daily-color {
-		background: url('src/assets/images/360x60.png') center;
-		background-size: contain;
+	.category-daily-background {
+		background-image: url('src/assets/images/360x60.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
-	.beweg-dich-color {
-		background-color: #355c7d;
-	}
-	.roberts-koch-institut-color {
-		background-color: #ff9822;
-	}
-	.at-home-color {
-		background-color: #f672e8;
-	}
-	.kreativer-kopf-color {
-		background-color: #f5747e;
-	}
-	.know-how-color {
-		background-color: #87dde7;
-	}
-	.do-it-for-yourself-color {
-		background-color: #2d7986;
-	}
-	.eco-color {
-		background-color: #84bf04;
-	}
-	.fun-color {
-		background-color: #f09976;
-	}
-	.raus-aus-der-komfortzone-color {
-		background-color: #b12a2a;
-	}
-	.wir-voll-sozial-color {
-		background-color: #fed723;
-	}
+
 	.spezial-errungenschaften-color {
 		background-color: #67a682;
 	}
+
 	//End Basisfarben aller Kategorien
 
 	.challenge-picture {
-		background: #fff;
+		background-color: #fff;
+		//background-image: url('https://www.ndr.de/ratgeber/kochen/kochen584_v-contentxl.jpg');
+		//background-size: contain;
+		//background-repeat: no-repeat;
 		position: relative;
 		height: 85%;
 		border-left: 1px solid #b8b8b8;
@@ -167,7 +142,7 @@ $category-bar-height: 25px;
 		border-bottom: 1px solid #b8b8b8;
 	}
 
-	.daily-overlay {
+	.overlay-daily {
 		height: 25%;
 		background-image: linear-gradient(
 			to bottom,
@@ -176,14 +151,47 @@ $category-bar-height: 25px;
 			rgba(255, 255, 255, 0) 70%
 		);
 	}
+
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
-	.eco-overlay {
+	@mixin overlay($color) {
 		height: 25%;
 		background-image: linear-gradient(
 			to bottom,
-			#84bf04,
+			$color,
 			rgba(255, 255, 255, 0) 70%
 		);
+	}
+
+	.overlay-physical {
+		@include overlay($category-color-physical);
+	}
+
+	.overlay-cooking {
+		@include overlay($category-color-cooking);
+	}
+
+	.overlay-household {
+		@include overlay($category-color-household);
+	}
+
+	.overlay-creative {
+		@include overlay($category-color-creative);
+	}
+
+	.overlay-education {
+		@include overlay($category-color-education);
+	}
+
+	.overlay-selfcare {
+		@include overlay($category-color-selfcare);
+	}
+
+	.overlay-noComfortZone {
+		@include overlay($category-color-noComfortZone);
+	}
+
+	.overlay-social {
+		@include overlay($category-color-social);
 	}
 
 	.challenge-participants {
@@ -191,6 +199,7 @@ $category-bar-height: 25px;
 		bottom: 6%;
 		right: 30%;
 	}
+
 	.challenge-participants-profile {
 		position: absolute;
 		bottom: 3%;
@@ -221,8 +230,7 @@ $category-bar-height: 25px;
 	left: 0;
 	right: 0;
 	height: 50px;
-	background-color: #fff;
-	border: 1px solid black;
+	background-color: #e5e5e5;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;

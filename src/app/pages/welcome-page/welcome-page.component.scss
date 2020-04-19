@@ -1,70 +1,117 @@
-div {
-	color: rgb(13, 13, 13);
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-	& > * {
-		display: block;
-	}
+.background-image {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: scroll;
 
-	.name-field {
-		margin-top: 70px;
-
-		input {
-			display: block;
-			border: none;
-			border-bottom: 1px solid black;
-			margin: 0px auto;
-			width: 75vw;
-			text-align: center;
-		}
-	}
-
-	text-align: center;
-
-	button {
-		margin: 0 auto;
-	}
+	background: url('/assets/images/homepage.png') no-repeat local center;
+	background-size: cover;
 }
 
-//input,
-//span,
-//button {
-//	display: block;
-//	margin-top: 25px;
-//}
-//
-//button {
-//	color: black;
-//	background: white;
-//	padding: 0;
-//	box-shadow: none;
-//	border: 1px solid black;
-//	padding: 5px;
-//	cursor: pointer;
-//}
-//
-//button:disabled {
-//	background: red;
-//}
-//
-//input {
-//	color: black;
-//	background: white;
-//	padding: 0;
-//	box-shadow: none;
-//	border: 1px solid black;
-//	padding: 5px 10px;
-//}
-//
-//div {
-//	padding: 35px;
-//}
-//
-//.full-width {
-//	width: 100%;
-//}
-//
-//.login-btn {
-//	width: 50vw;
-//	margin-left: auto;
-//	margin-right: auto;
-//}
+.image-wrapper {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow-y: scroll;
+	background: rgba(0, 0, 0, 0.3);
+
+	.logo {
+		position: relative;
+		top: 100px;
+		left: 35%;
+		width: 30%;
+		border-radius: 50%;
+
+		margin-bottom: 100px;
+	}
+
+	form {
+		font-family: 'Lato', sans-serif;
+		font-weight: 900;
+		font-size: 18px;
+		color: #fff;
+		margin-bottom: 50px;
+
+		& > * {
+			display: block;
+		}
+
+		.name-field {
+			margin-top: 70px;
+
+			input {
+				display: block;
+				border: none;
+				background: transparent;
+				border-bottom: 2px solid #fff;
+				margin: 25px auto 0 auto;
+				width: 75vw;
+				text-align: center;
+
+				font-family: 'Lato', sans-serif;
+				font-weight: 900;
+				font-size: 18px;
+				color: #fff;
+			}
+		}
+
+		text-align: center;
+
+		button {
+			font-family: 'Lato', sans-serif;
+			font-weight: 900;
+			font-size: 16px;
+			color: #fff;
+			margin: 25px auto 0;
+
+			background-color: #67a682;
+			outline: none;
+			border: none;
+			border-radius: 40px;
+			padding: 10px 25px;
+		}
+
+		.checkboxes {
+			width: 60%;
+			margin: 50px auto;
+			text-align: left;
+
+			label {
+				display: block;
+				height: 20px;
+				line-height: 20px;
+				margin-bottom: 20px;
+				vertical-align: center;
+
+				input {
+					display: none;
+				}
+
+				span::before {
+					content: '';
+					width: 20px;
+					height: 20px;
+					background-color: #fff;
+					display: block;
+					float: left;
+					margin-right: 15px;
+				}
+
+				input:checked + span::before {
+					box-shadow: inset 0px 0px 0px 3px #fff;
+					background-color: #8cad2d;
+				}
+			}
+		}
+
+		.errors > span {
+			display: block;
+		}
+	}
+}

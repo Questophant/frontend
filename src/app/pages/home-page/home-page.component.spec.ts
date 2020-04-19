@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
-import { SimApiService } from 'src/app/shared/services/api-service/sim.api.service';
 import { HomePageComponent } from './home-page.component';
 import { FilterChallengesByCategoryNamePipe } from '../../shared/pipes/filter-challenges-by-category-name-pipe/filter-challenges-by-category-name.pipe';
+import { instance, mock, when } from 'ts-mockito';
 
 describe('HomePageComponent', () => {
 	let component: HomePageComponent;
 	let fixture: ComponentFixture<HomePageComponent>;
+	const mockApiService = mock(ApiService);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -17,7 +18,7 @@ describe('HomePageComponent', () => {
 			providers: [
 				{
 					provide: ApiService,
-					useValue: new SimApiService(),
+					useValue: instance(mockApiService),
 				},
 			],
 		}).compileComponents();
@@ -30,6 +31,13 @@ describe('HomePageComponent', () => {
 	});
 
 	it('should create', () => {
+		when(mockApiService.getDailyChallenge()).thenResolve({
+			id: 1,
+			category: null,
+			description: '',
+			durationSeconds: 0,
+			title: '',
+		});
 		expect(component).toBeTruthy();
 	});
 });

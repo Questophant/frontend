@@ -1,50 +1,68 @@
-<img
-	src="https://challengemeapp.de/wp-content/uploads/2020/04/cropped-Logo_test.jpg-2.png"
-	width="100%"
-/>
+<div class="background-image"></div>
 
-<div>
-	<label class="name-field">
-		Wähle einen Namen
-		<input type="text" name="name" />
-	</label>
+<div class="image-wrapper">
+	<img
+		alt="ChallengeMe Logo"
+		class="logo"
+		src="/assets/images/logo.png"
+		width="100%"
+	/>
 
-	<label>
-		<input name="dataprivacy" type="checkbox"/>
-		Datenschutzerklärung
-	</label>
+	<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
+		<label class="name-field">
+			Wähle einen Namen
+			<input formControlName="name" name="name" type="text" />
+		</label>
 
-	<label>
-		<input name="code-of-conduct" type="checkbox"/>
-		Code of Conduct
-	</label>
+		<div class="checkboxes">
+			<label>
+				<input
+					formControlName="dataPrivacy"
+					name="dataprivacy"
+					type="checkbox"
+				/>
+				<span>Datenschutzerklärung</span>
+			</label>
 
-	<button (click)="saveName()">Speichern</button>
-	<button (click)="skip()">Überspringen</button>
+			<label>
+				<input
+					formControlName="codeOfConduct"
+					name="code-of-conduct"
+					type="checkbox"
+				/>
+				<span>Code of Conduct</span>
+			</label>
+		</div>
 
-	<!--	<form [formGroup]="loginForm" (ngSubmit)="login()">-->
-	<!--		<input-->
-	<!--			class="full-width"-->
-	<!--			type="email"-->
-	<!--			name="email"-->
-	<!--			placeholder="E-Mail"-->
-	<!--			formControlName="email"-->
-	<!--		/>-->
-	<!--		<input-->
-	<!--			class="full-width"-->
-	<!--			type="password"-->
-	<!--			name="password"-->
-	<!--			placeholder="Passwort"-->
-	<!--			formControlName="password"-->
-	<!--		/>-->
+		<div
+			*ngIf="
+				(submitted && registrationForm.invalid) || nameIsAlreadyInUse
+			"
+			class="errors"
+			style="
+				padding: 10px;
+				border: 1px solid red;
+				margin: 15px;
+				background: rgba(255, 0, 0, 0.65);
+				color: #fff;
+				font-weight: 400;
+				font-size: 16px;
+			"
+		>
+			<span *ngIf="registrationForm.get('name').errors !== null"
+				>Du musst einen Namen angeben.</span
+			>
+			<span *ngIf="nameIsAlreadyInUse"
+				>Der Nutzername ist leider schon vergeben.</span
+			>
+			<span *ngIf="registrationForm.get('dataPrivacy').errors !== null"
+				>Du musst den Datenschutzbst. zustimmen.</span
+			>
+			<span *ngIf="registrationForm.get('codeOfConduct').errors !== null"
+				>Du musst dem CoC zustimmen.</span
+			>
+		</div>
 
-	<!--		<button type="submit" class="login-btn" [disabled]="!loginForm.valid">-->
-	<!--			Anmelden-->
-	<!--		</button>-->
-	<!--	</form>-->
-
-	<!--	<span>oder</span>-->
-
-	<!--	<button class="full-width" routerLink="register">Registrieren</button>-->
-	<!--	<button class="full-width">Verbinden mit Facebook</button>-->
+		<button type="submit">Weiter</button>
+	</form>
 </div>

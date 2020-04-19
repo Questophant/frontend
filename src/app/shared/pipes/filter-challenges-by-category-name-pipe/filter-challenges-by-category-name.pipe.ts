@@ -14,7 +14,7 @@ export class FilterChallengesByCategoryNamePipe implements PipeTransform {
 		}
 
 		return challenges.filter(
-			(challenge) => challenge.category === categoryName
+			(challenge) => challenge.category.name === categoryName
 		);
 	}
 }

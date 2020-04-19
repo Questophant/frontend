@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
 	selector: 'app-welcome-page',
@@ -9,34 +9,52 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 	styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
-	loginForm = new FormGroup({
-		email: new FormControl('', [Validators.required, Validators.email]),
-		password: new FormControl('', [Validators.required]),
+	submitted = false;
+	nameIsAlreadyInUse = false;
+
+	registrationForm = new FormGroup({
+		name: new FormControl('', [
+			Validators.required,
+			Validators.minLength(1),
+		]),
+		dataPrivacy: new FormControl(false, [Validators.requiredTrue]),
+		codeOfConduct: new FormControl(false, [Validators.requiredTrue]),
 	});
 
-	constructor(public api: ApiService, private router: Router) {}
-
-	ngOnInit(): void {}
-
-	login(): void {
-		if (this.loginForm.valid) {
-			alert(
-				'email: ' +
-					this.loginForm.get('email').value +
-					', password: ' +
-					this.loginForm.get('password').value
-			);
-		} else {
-			alert('invalid');
+	constructor(public auth: AuthService, private router: Router) {
+		if (this.auth.isUserRegistered()) {
+			this.router
+				.navigate(['/'])
+				.catch((reason) =>
+					alert('Es gab einen Fehler bei der Weiterleitung')
+				);
 		}
 	}
 
-	skip(): void {
-		this.router.navigateByUrl('select-challenge');
-	}
+	ngOnInit(): void {}
 
 	saveName(): void {
-		// ToDo: save name
-		this.skip();
+		this.submitted = true;
+
+		if (this.registrationForm.valid) {
+			const name = this.registrationForm.get('name').value;
+
+			this.auth.register(name).then(
+				(value) => {
+					this.router
+						.navigate(['/'])
+						.catch((reason) =>
+							alert('Es gab einen Fehler bei der Weiterleitung')
+						);
+				},
+				(reason) => {
+					if (reason === 'Username is already in use') {
+						this.nameIsAlreadyInUse = true;
+					} else {
+						alert(reason);
+					}
+				}
+			);
+		}
 	}
 }
