@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AchievementsPageComponent } from './pages/achievements-page/achievements-page.component';
-import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
-import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
+import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 
 const routes: Routes = [
 	{
@@ -50,7 +50,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { useHash: true })],
 	exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
