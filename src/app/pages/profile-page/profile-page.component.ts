@@ -10,12 +10,22 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
+	showDataPrivacy = false;
+	showRules = false;
 
 	constructor(private api: ApiService, private router: Router) {
 		this.challenges$ = api.getAllChallenges();
 	}
 
 	ngOnInit(): void {}
+
+	toggleRules(): void {
+		this.showRules = !this.showRules;
+	}
+
+	toggleDataPrivacy(): void {
+		this.showDataPrivacy = !this.showDataPrivacy;
+	}
 
 	challengeSelect(evt, status) {
 		// Declare all variables

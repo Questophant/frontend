@@ -1,3 +1,19 @@
+.option-btns {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	padding: 15px;
+
+	img {
+		height: 25px;
+
+		&:first-child {
+			margin-right: 15px;
+		}
+	}
+}
+
 div {
 	width: 92vw;
 	margin-left: auto;
