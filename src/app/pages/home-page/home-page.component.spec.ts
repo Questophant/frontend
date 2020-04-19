@@ -37,6 +37,7 @@ describe('HomePageComponent', () => {
 			description: '',
 			durationSeconds: 0,
 			title: '',
+			createdBy: 'someUser',
 		});
 		expect(component).toBeTruthy();
 	});
