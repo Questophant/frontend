@@ -10,18 +10,21 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 			description: '',
 			category: getCategoryByName('creative'),
 			durationSeconds: 0,
+			createdBy: 'someUser',
 		},
 		{
 			title: 'challenge 2',
 			description: '',
 			category: getCategoryByName('cooking'),
 			durationSeconds: 0,
+			createdBy: 'someUser',
 		},
 		{
 			title: 'challenge 3',
 			description: '',
 			category: getCategoryByName('cooking'),
 			durationSeconds: 0,
+			createdBy: 'someUser',
 		},
 	];
 
@@ -40,6 +43,7 @@ describe('FilterChallengesByCategoryNamePipe', () => {
 				description: '',
 				category: getCategoryByName('creative'),
 				durationSeconds: 0,
+				createdBy: 'someUser',
 			},
 		]);
 	});

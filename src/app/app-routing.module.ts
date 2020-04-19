@@ -6,6 +6,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 const routes: Routes = [
 	{
@@ -39,6 +40,10 @@ const routes: Routes = [
 			{
 				path: 'achievements',
 				component: AchievementsPageComponent,
+			},
+			{
+				path: 'profile',
+				component: ProfilePageComponent,
 			},
 		],
 	},
