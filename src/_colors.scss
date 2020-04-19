@@ -1,0 +1,44 @@
+$general-green: #67a682;
+$general-font-color: #7a7a7a;
+$general-background-color: #f1f1f1;
+
+$category-color-physical: #355c7d;
+$category-color-cooking: #ff9822;
+$category-color-household: #f672e8;
+$category-color-creative: #f5747e;
+$category-color-education: #87dde7;
+$category-color-selfcare: #2d7986;
+$category-color-noComfortZone: #b12a2a;
+$category-color-social: #fed723;
+
+.category-physical-background {
+	background-color: $category-color-physical;
+}
+
+.category-cooking-background {
+	background-color: $category-color-cooking;
+}
+
+.category-household-background {
+	background-color: $category-color-household;
+}
+
+.category-creative-background {
+	background-color: $category-color-creative;
+}
+
+.category-education-background {
+	background-color: $category-color-education;
+}
+
+.category-selfcare-background {
+	background-color: $category-color-selfcare;
+}
+
+.category-noComfortZone-background {
+	background-color: $category-color-noComfortZone;
+}
+
+.category-social-background {
+	background-color: $category-color-social;
+}

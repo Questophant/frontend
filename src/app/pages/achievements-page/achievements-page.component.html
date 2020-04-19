@@ -1,0 +1,52 @@
+<h1>Errungenschaften</h1>
+
+<!--I put everything in a different clas so that identify the achievement-blocks (circles), but im not sure whether this is enough to access each individual span
+
+Looks ok with iPhone 6/7/8, but its not adjusted to height of iPhone 11, achievement-blocks are cut of from the taskbar.
+Dont know how to change that yet-->
+<div class="overlay" id="coming-soon-notification">
+	<div class="teaser">
+		<div>
+			<h1>Holla!</h1>
+			<p>
+				Hier gibt's nichts zu sehen! <br /><br />Also wirklich nichts!
+			</p>
+			<h1>
+				Zumindest bis jetzt, bald kommt aber ein fantastisches Update:
+			</h1>
+			<p>
+				Mit deinen bei den Challenges verdienten Punkten, werden
+				Errungenschaften freigeschalten, die du hier finden wirst.
+				<br />
+				<br />
+				Wie bei den Stickeralben zur EM & WM, mit dem Unterscheid, dass
+				du dich nicht mit Schokolade vollstopfen musst, um an die
+				Sticker zu kommen.
+			</p>
+			<br /><br />
+		</div>
+		<span class="cantwait" routerLink="">Ich kann es kaum erwarten!</span>
+		<br /><br /><br />
+	</div>
+</div>
+
+<div *ngFor="let category of categories" class="{{ category.name }}">
+	<div class="text category-{{ category.name }}-background">
+		{{ category.display }}
+	</div>
+	<div class="achievements">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+</div>
+
+<!--<div class="for-visibility"></div>-->
+<!--<div class="taskbar"></div>-->

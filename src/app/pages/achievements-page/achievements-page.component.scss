@@ -1,0 +1,82 @@
+@import '../../../colors';
+
+h1 {
+	color: $general-green;
+	margin: 3vh 4vw 3vh 4vw;
+	font-size: 19px;
+	font-weight: 500;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.teaser {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		border-radius: 5vh;
+		color: $general-font-color;
+		background-color: $general-background-color;
+		width: 92vw;
+		padding: 2vw;
+
+		.cantwait {
+			position: relative;
+			top: 0;
+			color: white;
+			background: $general-green;
+			border: none;
+			border-radius: 20px;
+			font-size: 16px;
+			padding: 10px 25px;
+		}
+	}
+}
+
+div {
+	.text {
+		margin-left: 4vw;
+		text-align: center;
+		padding: 4px 10px;
+		display: inline-block;
+		color: #fff;
+		font-size: 1rem;
+		border-radius: 100px;
+	}
+
+	.achievements {
+		margin: 1.5vh 6vw 2.5vh 6vw;
+
+		span {
+			width: calc(60vw / 5);
+			margin: 1.5vw;
+			height: calc(60vw / 5);
+			border-radius: 50%;
+			border-style: solid;
+			display: inline-block;
+			border-color: rgba($color: #000000, $alpha: 0.5);
+			border-width: 1.5px;
+		}
+	}
+}
+
+.for-visibility {
+	height: 7vh;
+}
+
+.taskbar {
+	left: 0;
+	bottom: 0;
+	position: fixed;
+	height: 10vh;
+	width: 100%;
+	background: #c00707;
+}
