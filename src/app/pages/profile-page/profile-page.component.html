@@ -1,7 +1,27 @@
 <div class="option-btns">
-	<img class="dataprivacy-btn" src="/assets/icons/lock.svg" />
-	<img class="rules-btn" src="/assets/icons/document.svg" />
+	<img
+		(click)="toggleDataPrivacy()"
+		class="dataprivacy-btn"
+		src="/assets/icons/lock.svg"
+	/>
+	<img
+		(click)="toggleRules()"
+		class="rules-btn"
+		src="/assets/icons/document.svg"
+	/>
 </div>
+
+<app-data-privacy-overlay
+	(onClose)="toggleDataPrivacy()"
+	*ngIf="showDataPrivacy"
+></app-data-privacy-overlay>
+
+<app-rules-overlay
+	(onClose)="toggleRules()"
+	*ngIf="showRules"
+></app-rules-overlay>
+
+<!-- actual ProfilePage -->
 
 <img class="profile-picture" src="/assets/images/profile/panda.png" />
 
