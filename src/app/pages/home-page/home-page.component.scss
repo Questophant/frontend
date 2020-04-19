@@ -333,7 +333,7 @@ $category-color-social: #fed723;
 			top: 15%;
 		}
 		.plus-icon {
-			background-image: url('src/assets/images/Plusbutton.png');
+			background-image: url('src/assets/images/Plusbutton.svg');
 			background-size: contain;
 			background-repeat: no-repeat;
 			width: 120%;
@@ -344,6 +344,15 @@ $category-color-social: #fed723;
 		}
 		.friends-icon {
 			background-image: url('src/assets/images/Freunde.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			top: 20%;
+		}
+		.profile-icon {
+			background-image: url('src/assets/images/Profilbild.png');
 			background-size: contain;
 			background-repeat: no-repeat;
 			width: 80%;
