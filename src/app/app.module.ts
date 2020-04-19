@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
+import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 
 @NgModule({
 	declarations: [
@@ -18,6 +19,7 @@ import { CreateChallengePageComponent } from './pages/create-challenge-page/crea
 		ChallengeListPageComponent,
 		AchievementsPageComponent,
 		CreateChallengePageComponent,
+		ChallengeDetailsPageComponent,
 	],
 	imports: [
 		BrowserModule,
