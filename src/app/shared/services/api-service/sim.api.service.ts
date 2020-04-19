@@ -90,11 +90,11 @@ export class SimApiService implements ApiService {
 
 	async getChallenges(category: Category): Promise<ChallengeDto[]> {
 		if (!category) {
-			return this.challenges;
+			return this.challenges.slice();
 		}
-		return this.challenges.filter(
-			(challenge) => challenge.category.name === category.name
-		);
+		return this.challenges
+			.filter((challenge) => challenge.category.name === category.name)
+			.slice();
 	}
 
 	async getAllChallengesOfUser(): Promise<ChallengeDto[]> {
