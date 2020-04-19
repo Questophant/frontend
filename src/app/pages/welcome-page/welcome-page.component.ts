@@ -11,6 +11,8 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 export class WelcomePageComponent implements OnInit {
 	submitted = false;
 	nameIsAlreadyInUse = false;
+	showDataPrivacy = false;
+	showRules = false;
 
 	registrationForm = new FormGroup({
 		name: new FormControl('', [
@@ -18,7 +20,7 @@ export class WelcomePageComponent implements OnInit {
 			Validators.minLength(1),
 		]),
 		dataPrivacy: new FormControl(false, [Validators.requiredTrue]),
-		codeOfConduct: new FormControl(false, [Validators.requiredTrue]),
+		rules: new FormControl(false, [Validators.requiredTrue]),
 	});
 
 	constructor(public auth: AuthService, private router: Router) {
@@ -56,5 +58,13 @@ export class WelcomePageComponent implements OnInit {
 				}
 			);
 		}
+	}
+
+	toggleDataPrivacy() {
+		this.showDataPrivacy = !this.showDataPrivacy;
+	}
+
+	toggleRules() {
+		this.showRules = !this.showRules;
 	}
 }
