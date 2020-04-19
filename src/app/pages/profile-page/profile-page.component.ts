@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Categories, Category } from 'src/app/shared/dtos/category';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api-service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-profile-page',
@@ -10,18 +10,13 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 })
 export class ProfilePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
-	categories: Category[] = Categories;
-	filter: string;
 
-	constructor(private api: ApiService) {
+	constructor(private api: ApiService, private router: Router) {
 		this.challenges$ = api.getAllChallenges();
 	}
 
 	ngOnInit(): void {}
 
-	setCategoryFilter(name: string): void {
-		this.filter = name;
-	}
 	challengeSelect(evt, status) {
 		// Declare all variables
 		var i, tabcontent, tablinks;
@@ -44,5 +39,9 @@ export class ProfilePageComponent implements OnInit {
 		// Show the current tab, and add an "active" class to the button that opened the tab
 		document.getElementById(status).style.display = 'block';
 		evt.currentTarget.className += ' active';
+	}
+
+	navigateToChallengeDetails(challenge: ChallengeDto) {
+		this.router.navigate(['challenge'], { state: { challenge } });
 	}
 }

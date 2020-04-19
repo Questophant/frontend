@@ -5,32 +5,28 @@ div {
 }
 
 .profile-picture {
-	margin-top: 7.5%;
-	width: 120px;
+	display: block;
+	margin: 7.5% auto 0;
 	height: 120px;
-	border: 1px solid grey;
-	border-radius: 200px;
-
-	p {
-		text-align: center;
-		padding-top: 40px;
-	}
+	border-radius: 100%;
 }
 .username-block {
 	text-align: center;
 	margin-top: 3%;
-}
-.username {
-	display: inline;
-	font-size: 18px;
-	font-weight: 700;
-}
-.edit-icon {
-	width: 50px;
-	height: 50px;
-	border: 1px solid grey;
-	display: inline;
-	margin-left: 3%;
+
+	.username {
+		display: inline;
+		font-size: 18px;
+		font-weight: 500;
+	}
+
+	.edit-icon {
+		width: 50px;
+		height: 50px;
+		border: 1px solid grey;
+		display: inline;
+		margin-left: 3%;
+	}
 }
 
 .privacy-selector {
@@ -54,16 +50,22 @@ div {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-}
-.dashboard-bar-elements {
-	text-align: center;
-	font-weight: 700;
-}
-.points,
-.rank,
-.friends {
-	font-size: 22px;
-	font-weight: 400;
+
+	.dashboard-bar-element {
+		text-align: center;
+		font-size: 22px;
+
+		.value {
+			display: block;
+			font-weight: 700;
+		}
+
+		.label {
+			display: block;
+			font-weight: 400;
+			font-size: 18px;
+		}
+	}
 }
 
 .challenges {
@@ -83,86 +85,97 @@ div {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+
+	button {
+		background-color: inherit;
+		float: left;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 7px 15px;
+		transition: 0.3s;
+		font-size: 16px;
+
+		&:hover {
+			background-color: #67a682;
+			color: #fff;
+			border-radius: 20px;
+		}
+
+		&.active {
+			background-color: #67a682;
+			color: #fff;
+		}
+	}
 }
 
-/* Style the buttons that are used to open the tab content */
-.tab button {
-	background-color: inherit;
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 7px 15px;
-	transition: 0.3s;
-	font-size: 16px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-	background-color: #67a682;
-	color: #fff;
-	border-radius: 20px;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-	background-color: #67a682;
-	color: #fff;
-}
-
-div.challenge-container {
-	width: 100vw;
-}
 .challenges-container {
-	background: #f1f1f1;
+	width: 100%;
 	margin-top: 2%;
 	padding-bottom: 2%;
-}
-.challenges-box {
-	padding: 10px;
-}
-.challenge-element {
-	width: 92vw;
-	height: 20vw;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
+	margin-bottom: 50px;
+
+	.challenges-box {
+		padding: 10px;
+		background: #f1f1f1;
+
+		.challenge-element {
+			width: 100%;
+			height: 20vw;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			align-items: center;
+
+			.challenge-picture {
+				height: 100%;
+				width: 50%;
+				//background: #fff;
+				margin-right: 10px;
+
+				img {
+					display: block;
+					height: 100%;
+					margin: 0 auto;
+				}
+			}
+
+			.challenge-description {
+				height: 100%;
+				width: 50%;
+				//margin-left: 10px;
+
+				display: flex;
+				//flex-wrap: nowrap;
+				flex-direction: column;
+
+				.challenge-title {
+					width: 100%;
+					font-weight: 700;
+				}
+
+				.challenge-username {
+					width: 100%;
+					height: 100%;
+					font-size: 13px;
+				}
+
+				.challenge-category {
+					width: 100%;
+
+					span {
+						color: #fff;
+						font-size: 13px;
+						padding: 3px 5px;
+						border-radius: 20px;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
 }
 
-.challenge-picture {
-	width: 50%;
-	height: 100%;
-	border: 1px solid grey;
-	background: #fff;
-	margin-right: 6%;
-	display: inline-block;
-	position: relative;
-}
-//Schwierigkeiten mit der Verteilung der Elemente (50% gehen aus irgendeinem Grund nach rechts außen raus)
-.challenge-description {
-	display: inline-block;
-	position: relative;
-	max-width: 50%;
-}
-.challenge-title {
-	font-weight: 700;
-	margin-bottom: 4%;
-}
-.challenge-username {
-	font-size: 13px;
-}
-.challenge-category {
-	background: #67a682;
-	color: #fff;
-	font-size: 13px;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	border-radius: 20px;
-	width: 50%;
-	text-align: center;
-	float: left;
-}
 .sticky-footer-navigation {
 	position: fixed;
 	bottom: 0;
