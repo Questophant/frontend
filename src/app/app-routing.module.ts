@@ -7,6 +7,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 
 const routes: Routes = [
 	{
@@ -44,6 +45,10 @@ const routes: Routes = [
 			{
 				path: 'profile',
 				component: ProfilePageComponent,
+			},
+			{
+				path: 'friends',
+				component: FriendsPageComponent,
 			},
 		],
 	},
