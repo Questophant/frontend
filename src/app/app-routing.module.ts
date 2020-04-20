@@ -53,4 +53,4 @@ const routes: Routes = [
 	imports: [RouterModule.forRoot(routes, { useHash: true })],
 	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -11,26 +11,42 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 export class HomePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
 	categories: Category[] = Categories;
-	filter: string;
+	selectedCategory: Category = null;
+	dailyChallenge: ChallengeDto;
 
 	constructor(private api: ApiService) {
-		this.challenges$ = Promise.all([
-			api.getAllChallenges(),
-			api.getDailyChallenge(),
-		]).then((value) => {
-			const [allChallenges, dailyChallenge] = value;
-			dailyChallenge.category = {
-				name: 'daily',
-				display: 'Tageschallenge',
-			};
-			allChallenges.unshift(dailyChallenge);
-			return allChallenges;
-		});
+		this.getDailyChallenge();
+		this.updateChallenges();
 	}
 
 	ngOnInit(): void {}
 
-	setCategoryFilter(name: string): void {
-		this.filter = name;
+	setCategory(category: Category): void {
+		this.selectedCategory = category;
+		this.challenges$ = undefined;
+		this.updateChallenges();
+	}
+
+	private updateChallenges() {
+		setTimeout(() => {
+			this.challenges$ = this.api
+				.getChallenges(this.selectedCategory)
+				.then((challenges) => {
+					if (this.selectedCategory === null) {
+						challenges.unshift(this.dailyChallenge);
+					}
+					return challenges;
+				});
+		}, 1000);
+	}
+
+	private getDailyChallenge() {
+		this.api.getDailyChallenge().then((challenge) => {
+			challenge.category = {
+				name: 'daily',
+				display: 'Tageschallenge',
+			};
+			this.dailyChallenge = challenge;
+		});
 	}
 }
