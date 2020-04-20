@@ -39,7 +39,8 @@
 			<div
 				*ngFor="let challenge of challenges"
 				class="challenge"
-				routerLink="challenge/create"
+				[state]="{ challenge: challenge }"
+				routerLink="challenge/details"
 			>
 				<div
 					class="challenge-label category-{{

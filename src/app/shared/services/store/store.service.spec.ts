@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StoreService } from './store.service';
+import { getCategoryByName } from '../../dtos/category';
 
 describe('StoreService', () => {
 	let service: StoreService;
@@ -12,5 +13,61 @@ describe('StoreService', () => {
 
 	it('should be created', () => {
 		expect(service).toBeTruthy();
+	});
+
+	describe('rememberedChallenges', () => {
+		it('should return empty array when no Challenge remembered', () => {
+			localStorage.setItem('rememberedChallenges', '');
+
+			expect(service.getRememberedChallenges()).toEqual([]);
+		});
+
+		it('should add Challenge', () => {
+			localStorage.setItem('rememberedChallenges', '');
+
+			service.addRememberedChallenge({
+				id: 0,
+				title: 'asdasdasd',
+				description: 'lorem ipsum ...',
+				category: getCategoryByName('eco'),
+				durationSeconds: 300,
+				createdBy: 'Annete',
+			});
+
+			expect(service.getRememberedChallenges()).toEqual([
+				{
+					id: 0,
+					title: 'asdasdasd',
+					description: 'lorem ipsum ...',
+					category: getCategoryByName('eco'),
+					durationSeconds: 300,
+					createdBy: 'Annete',
+				},
+			]);
+		});
+
+		it('should remove challenge', () => {
+			localStorage.setItem('rememberedChallenges', '');
+
+			service.addRememberedChallenge({
+				id: 0,
+				title: 'asdasdasd',
+				description: 'lorem ipsum ...',
+				category: getCategoryByName('eco'),
+				durationSeconds: 300,
+				createdBy: 'Annete',
+			});
+
+			service.removeRememberedChallenge({
+				id: 0,
+				title: 'asdasdasd',
+				description: 'lorem ipsum ...',
+				category: getCategoryByName('eco'),
+				durationSeconds: 300,
+				createdBy: 'Annete',
+			});
+
+			expect(service.getRememberedChallenges()).toEqual([]);
+		});
 	});
 });
