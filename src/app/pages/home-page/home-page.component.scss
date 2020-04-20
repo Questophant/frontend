@@ -105,12 +105,6 @@ $category-bar-height: 25px;
 				padding-top: 3%;
 				padding-left: 4%;
 			}
-
-			&.category-daily-background {
-				background-image: url('src/assets/images/360x60.png');
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
 		}
 
 		.challenge-picture {
@@ -180,20 +174,6 @@ $category-bar-height: 25px;
 		background-color: #67a682;
 	}
 
-	.overlay-daily {
-		position: absolute;
-		left: 0;
-		right: 0;
-		height: 25%;
-		z-index: 99;
-		background-image: linear-gradient(
-			to bottom,
-			#6e8c78,
-			#c1cec5 40%,
-			rgba(255, 255, 255, 0) 70%
-		);
-	}
-
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
 	@mixin overlay($color) {
 		position: absolute;
@@ -206,6 +186,10 @@ $category-bar-height: 25px;
 			$color,
 			rgba(255, 255, 255, 0) 70%
 		);
+	}
+
+	.overlay-daily {
+		@include overlay($category-color-daily);
 	}
 
 	.overlay-physical {
