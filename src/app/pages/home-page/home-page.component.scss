@@ -88,12 +88,12 @@ $category-bar-height: 25px;
 .challenges {
 	position: relative;
 	margin-top: $app-bar-height + $category-bar-height + 25px;
-	margin-bottom: 50px + 25px;
+	margin-bottom: 70px + 25px;
 
 	.challenge {
 		position: relative;
 		width: 92vw;
-		margin: 10px auto;
+		margin: 25px auto;
 
 		.challenge-label {
 			height: 15%;
@@ -106,7 +106,7 @@ $category-bar-height: 25px;
 				padding-left: 4%;
 			}
 
-			.category-daily-background {
+			&.category-daily-background {
 				background-image: url('src/assets/images/360x60.png');
 				background-size: cover;
 				background-repeat: no-repeat;
@@ -181,9 +181,11 @@ $category-bar-height: 25px;
 	}
 
 	.overlay-daily {
-		z-index: 99;
-		position: relative;
+		position: absolute;
+		left: 0;
+		right: 0;
 		height: 25%;
+		z-index: 99;
 		background-image: linear-gradient(
 			to bottom,
 			#6e8c78,
