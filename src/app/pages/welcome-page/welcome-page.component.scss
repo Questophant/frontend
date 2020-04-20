@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import '../../../colors';
 
 .background-image {
 	position: absolute;
@@ -78,40 +79,97 @@
 		}
 
 		.checkboxes {
+			display: block;
 			width: 60%;
 			margin: 50px auto;
 			text-align: left;
 
-			label {
-				display: block;
-				height: 20px;
-				line-height: 20px;
+			.checkbox {
 				margin-bottom: 20px;
-				vertical-align: center;
 
-				input {
-					display: none;
+				.box {
+					display: inline-block;
+					vertical-align: top;
+					height: 100%;
+					margin: 0;
+					clear: both;
+
+					input {
+						display: none;
+					}
+
+					span::before {
+						content: '';
+						width: 22px;
+						height: 22px;
+						background-color: #fff;
+						display: block;
+						float: left;
+						margin-right: 15px;
+						cursor: pointer;
+					}
+
+					input:checked + span::before {
+						//box-shadow: inset 0px 0px 0px 3px #fff;
+						background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAlElEQVQ4T6WTXQ2AMAwGDwdIQAISQAEWsIQCQAkWkIAEJJCSNCljP7Dtdblb26+rKDxVIU+uoAY2YMoRKNwC61/BAwbGP4IXLPP7KvDCVtAARyCRIKyCBRiAHtgdSRRWwQjMwOlIkrBtwZVIO5LzHZVMO7RwdohWIoIk7EtBJXIXfVkr8sUoki5Wtm3n6x4E/1yx4AI+qiERKNFzCwAAAABJRU5ErkJggg==')
+							#ffffff;
+						background-repeat: no-repeat;
+						background-size: 75%;
+						background-position: center;
+						//background-color: #8cad2d;
+					}
 				}
 
-				span::before {
-					content: '';
-					width: 20px;
-					height: 20px;
-					background-color: #fff;
-					display: block;
-					float: left;
-					margin-right: 15px;
-				}
-
-				input:checked + span::before {
-					box-shadow: inset 0px 0px 0px 3px #fff;
-					background-color: #8cad2d;
+				.label {
+					display: inline-block;
+					height: 100%;
+					vertical-align: top;
+					text-decoration: underline;
+					cursor: pointer;
 				}
 			}
+
+			//label {
+			//	display: block;
+			//	height: 20px;
+			//	line-height: 20px;
+			//	margin-bottom: 20px;
+			//	vertical-align: center;
+			//
+			//	span {
+			//		text-decoration: underline;
+			//		cursor: pointer;
+			//	}
+			//
+			//	span::before {
+			//		content: '';
+			//		width: 20px;
+			//		height: 20px;
+			//		background-color: #fff;
+			//		display: block;
+			//		float: left;
+			//		margin-right: 15px;
+			//	}
+			//
+			//	input:checked + span::before {
+			//		box-shadow: inset 0px 0px 0px 3px #fff;
+			//		background-color: #8cad2d;
+			//	}
+			//}
 		}
 
-		.errors > span {
-			display: block;
+		.errors {
+			padding: 10px;
+			margin: 15px;
+			background: #fff;
+			color: #b12a2a;
+			border-radius: 8px;
+			font-weight: 400;
+			font-size: 14px;
+
+			& > span {
+				display: block;
+			}
 		}
 	}
 }

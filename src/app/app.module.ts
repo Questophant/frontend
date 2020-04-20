@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { AchievementsPageComponent } from './pages/achievements-page/achievements-page.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
@@ -20,6 +21,7 @@ import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/ch
 		AchievementsPageComponent,
 		CreateChallengePageComponent,
 		ChallengeDetailsPageComponent,
+		ProfilePageComponent,
 	],
 	imports: [
 		BrowserModule,
