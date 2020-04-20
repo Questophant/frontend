@@ -36,7 +36,11 @@
 <div class="challenges">
 	<div *ngIf="challenges$ | async as challenges; else loading">
 		<ng-container *ngIf="challenges.length; else noItems">
-			<div *ngFor="let challenge of challenges" class="challenge">
+			<div
+				*ngFor="let challenge of challenges"
+				class="challenge"
+				routerLink="challenge/create"
+			>
 				<div
 					class="challenge-label category-{{
 						challenge.category.name
@@ -49,17 +53,28 @@
 						{{ challenge.category.display }}
 					</p>
 				</div>
-				<div
-					class="challenge-picture picture-{{
-						challenge.category.name
-					}}"
-				>
-					<div class="challenge-participants">100 Challengers</div>
-					<div class="challenge-participants-profile">
-						<span class="circles"></span>
-						<span class="circles"></span>
-						<span class="circles"></span>
-					</div>
+				<div class="challenge-picture">
+					<img
+						src="/assets/images/categories/{{
+							challenge.category.name
+						}}.png"
+					/>
+					<!--					<div class="challenge-participants">-->
+					<!--						<div class="participants-count">-->
+					<!--							100 Challengers-->
+					<!--						</div>-->
+					<!--						<div class="participants-profiles">-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--						</div>-->
+					<!--					</div>-->
 				</div>
 			</div>
 		</ng-container>

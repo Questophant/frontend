@@ -91,21 +91,80 @@ $category-bar-height: 25px;
 	margin-bottom: 50px + 25px;
 
 	.challenge {
-		height: 300px;
+		position: relative;
 		width: 92vw;
 		margin: 10px auto;
 
-		.challenge-title {
-			color: #fff;
-			font-size: 18px;
-			font-weight: 500;
-			padding-top: 3%;
-			padding-left: 4%;
+		.challenge-label {
+			height: 15%;
+
+			.challenge-title {
+				color: #fff;
+				font-size: 18px;
+				font-weight: 500;
+				padding-top: 3%;
+				padding-left: 4%;
+			}
+
+			.category-daily-background {
+				background-image: url('src/assets/images/360x60.png');
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+		}
+
+		.challenge-picture {
+			position: relative;
+			background-color: #fff;
+			border-left: 1px solid #b8b8b8;
+			border-right: 1px solid #b8b8b8;
+			border-bottom: 1px solid #b8b8b8;
+
+			img {
+				display: block;
+				width: 100%;
+			}
+
+			.challenge-participants {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 10px;
+
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				justify-content: flex-end;
+				align-items: center;
+
+				.participants-count {
+				}
+
+				.participants-profiles {
+					margin: 0 10px;
+
+					.circles {
+						display: inline-block;
+						width: 30px;
+						height: 30px;
+						border-radius: 50%;
+						background: #fff;
+						border: 1px solid grey;
+						margin-right: -10px;
+					}
+				}
+			}
 		}
 	}
 
-	.challenge-label {
-		height: 15%;
+	.challenge-category {
+		float: left;
+		position: absolute;
+		top: 5%;
+		left: 4%;
+		font-size: 14px;
+		color: #fff;
 	}
 
 	.challenge-profile {
@@ -117,62 +176,8 @@ $category-bar-height: 25px;
 		margin: 2% 3% 0 3%;
 	}
 
-	//Basisfarben aller Kategorien
-	.category-daily-background {
-		background-image: url('src/assets/images/360x60.png');
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
 	.spezial-errungenschaften-color {
 		background-color: #67a682;
-	}
-
-	//End Basisfarben aller Kategorien
-
-	.challenge-picture {
-		background-color: #fff;
-		//background-image: url('https://www.ndr.de/ratgeber/kochen/kochen584_v-contentxl.jpg');
-		background-size: contain;
-		background-repeat: no-repeat;
-		position: relative;
-		height: 85%;
-		border-left: 1px solid #b8b8b8;
-		border-right: 1px solid #b8b8b8;
-		border-bottom: 1px solid #b8b8b8;
-		margin-top: -4.6em;
-
-		&.picture-cooking {
-			background-image: url('/assets/images/categories/cooking.png');
-		}
-
-		&.picture-social {
-			background-image: url('/assets/images/categories/social.png');
-		}
-
-		&.picture-creative {
-			background-image: url('/assets/images/categories/creative.png');
-		}
-
-		&.picture-physical {
-			background-image: url('/assets/images/categories/physical.png');
-		}
-
-		&.picture-household {
-			background-image: url('/assets/images/categories/household.png');
-		}
-
-		&.picture-education {
-			background-image: url('/assets/images/categories/education.png');
-		}
-
-		&.picture-selfcare {
-			background-image: url('/assets/images/categories/selfcare.png');
-		}
-
-		&.picture-noComfortZone {
-			background-image: url('/assets/images/categories/noComfortZone.png');
-		}
 	}
 
 	.overlay-daily {
@@ -189,7 +194,9 @@ $category-bar-height: 25px;
 
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
 	@mixin overlay($color) {
-		position: relative;
+		position: absolute;
+		left: 0;
+		right: 0;
 		height: 25%;
 		z-index: 99;
 		background-image: linear-gradient(
@@ -229,34 +236,5 @@ $category-bar-height: 25px;
 
 	.overlay-social {
 		@include overlay($category-color-social);
-	}
-
-	.challenge-participants {
-		position: absolute;
-		bottom: 6%;
-		right: 30%;
-	}
-
-	.challenge-participants-profile {
-		position: absolute;
-		bottom: 3%;
-		right: 5%;
-		.circles {
-			width: 30px;
-			height: 30px;
-			border-radius: 50%;
-			background: #fff;
-			border: 1px solid grey;
-			float: right;
-			margin-left: -10%;
-		}
-	}
-	.challenge-category {
-		float: left;
-		position: absolute;
-		top: 5%;
-		left: 4%;
-		font-size: 14px;
-		color: #fff;
 	}
 }
