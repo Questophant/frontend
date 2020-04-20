@@ -80,8 +80,14 @@
 		</ng-container>
 	</div>
 
-	<ng-template #noItems>Keine Challenges gefunden</ng-template>
-	<ng-template #loading>Lade Challenges...</ng-template>
+	<ng-template #noItems
+		><div class="onscreen-message">
+			Hier gibt es noch keine neuen Challenges. Schau einfach später
+			nochmal vorbei.
+		</div></ng-template
+	>
+
+	<ng-template #loading><div class="onscreen-message"></div></ng-template>
 </div>
 
 <app-navbar></app-navbar>

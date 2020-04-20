@@ -224,3 +224,10 @@ $category-bar-height: 25px;
 		@include overlay($category-color-social);
 	}
 }
+.onscreen-message {
+	color: #67a682;
+	font-style: italic;
+	font-size: 1.3em;
+	text-align: center !important;
+	padding: 20px;
+}
