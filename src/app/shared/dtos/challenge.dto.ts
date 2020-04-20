@@ -6,6 +6,7 @@ export interface ChallengeDto {
 	description: string;
 	category: Category;
 	durationSeconds: number;
+	createdBy: string;
 }
 
 export interface ChallengeResponse {
@@ -14,4 +15,5 @@ export interface ChallengeResponse {
 	description: string;
 	category: string;
 	durationSeconds: number;
+	createdBy: string;
 }

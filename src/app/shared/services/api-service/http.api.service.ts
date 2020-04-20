@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Categories, Category } from '../../dtos/category';
 import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
-import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
+import { UserDto } from '../../dtos/user.dto';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
@@ -31,8 +31,21 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
-	getAllChallenges(): Promise<ChallengeDto[]> {
-		throw new Error('Not implemented');
+	getChallenges(category: Category): Promise<ChallengeDto[]> {
+		if (category) {
+			return this.getChallengesFromUrl(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/challenge_stream?category=${
+					category.name
+				}&pageIndex=0&pageSize=10`
+			);
+		}
+		return this.getChallengesFromUrl(
+			`${
+				this.apiUrl
+			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=0&pageSize=10`
+		);
 	}
 
 	createNewUser(user: UserDto): Promise<UserDto> {
@@ -98,6 +111,7 @@ export abstract class HTTPApiService implements ApiService {
 			category: Categories.find((c) => c.name === challenge.category),
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
+			createdBy: challenge.createdBy,
 		});
 	}
 

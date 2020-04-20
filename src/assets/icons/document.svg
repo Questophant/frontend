@@ -1,0 +1,26 @@
+<svg data-name="Ebene 1" id="Ebene_1" viewBox="0 0 36 54" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<style>.cls-1 {
+			fill: #565656;
+		}
+
+		.cls-2 {
+			fill: none;
+			stroke: #565656;
+			stroke-miterlimit: 10;
+		}</style>
+	</defs>
+	<title>Dokument</title>
+	<path class="cls-1" d="M51,9V61H17V9H51m1-1H16V62H52V8Z" transform="translate(-16 -8)"/>
+	<line class="cls-2" x1="3.5" x2="11.5" y1="4.5" y2="4.5"/>
+	<line class="cls-2" x1="3.5" x2="11.5" y1="7.5" y2="7.5"/>
+	<line class="cls-2" x1="3.5" x2="11.5" y1="10.5" y2="10.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="21.5" y2="21.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="24.5" y2="24.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="27.5" y2="27.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="30.5" y2="30.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="33.5" y2="33.5"/>
+	<line class="cls-2" x1="3.5" x2="32.5" y1="36.5" y2="36.5"/>
+	<line class="cls-2" x1="24.5" x2="32.5" y1="45.5" y2="45.5"/>
+	<line class="cls-2" x1="24.5" x2="32.5" y1="48.5" y2="48.5"/>
+</svg>

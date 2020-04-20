@@ -6,5 +6,5 @@ import { HTTPApiService } from './http.api.service';
  * This API Service connects to the test backend running online.
  */
 export class TestApiService extends HTTPApiService {
-	apiUrl = 'https://homealonechallenge/api/v1';
+	apiUrl = 'https://test.challengemeapp.de/api/v1';
 }

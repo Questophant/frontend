@@ -17,16 +17,16 @@
 
 	<div class="category-bar">
 		<span
-			(click)="setCategoryFilter(null)"
-			[class.active]="filter == null"
+			(click)="setCategory(null)"
+			[class.active]="selectedCategory == null"
 			class="category"
 			>Alle</span
 		>
 		<span
 			class="category"
-			[class.active]="filter === category.name"
+			(click)="setCategory(category)"
 			*ngFor="let category of categories"
-			(click)="setCategoryFilter(category.name)"
+			[class.active]="selectedCategory === category"
 		>
 			{{ category.display }}
 		</span>
@@ -34,61 +34,54 @@
 </div>
 
 <div class="challenges">
-	<!--	<div class="challenge">-->
-	<!--		<div class="challenge-label color-daily">-->
-	<!--			<h1 class="challenge-title">Tageschallenge</h1>-->
-	<!--		</div>-->
-	<!--		<div class="challenge-picture">-->
-	<!--			<div class="daily-overlay">-->
-	<!--				<p class="challenge-category">-->
-	<!--					Roberts Koch-Institut-->
-	<!--				</p>-->
-	<!--			</div>-->
-	<!--			<div class="challenge-participants">100 Challengers</div>-->
-	<!--			<div class="challenge-participants-profile">-->
-	<!--				<span class="circles"></span>-->
-	<!--				<span class="circles"></span>-->
-	<!--				<span class="circles"></span>-->
-	<!--			</div>-->
-	<!--		</div>-->
-	<!--	</div>-->
-
-	<div
-		class="challenge"
-		*ngFor="
-			let challenge of challenges$
-				| async
-				| filterChallengesByCategoryName: filter
-		"
-	>
-		<div
-			class="challenge-label category-{{
-				challenge.category.name
-			}}-background"
-		>
-			<h1 class="challenge-title">{{ challenge.title }}</h1>
-		</div>
-		<div class="challenge-picture">
-			<div class="overlay-{{ challenge.category.name }}">
-				<p class="challenge-category">
-					{{ challenge.category.display }}
-				</p>
+	<div *ngIf="challenges$ | async as challenges; else loading">
+		<ng-container *ngIf="challenges.length; else noItems">
+			<div
+				*ngFor="let challenge of challenges"
+				class="challenge"
+				routerLink="challenge/create"
+			>
+				<div
+					class="challenge-label category-{{
+						challenge.category.name
+					}}-background"
+				>
+					<h1 class="challenge-title">{{ challenge.title }}</h1>
+				</div>
+				<div class="overlay-{{ challenge.category.name }}">
+					<p class="challenge-category">
+						{{ challenge.category.display }}
+					</p>
+				</div>
+				<div class="challenge-picture">
+					<img
+						src="/assets/images/categories/{{
+							challenge.category.name
+						}}.png"
+					/>
+					<!--					<div class="challenge-participants">-->
+					<!--						<div class="participants-count">-->
+					<!--							100 Challengers-->
+					<!--						</div>-->
+					<!--						<div class="participants-profiles">-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--							<span class="circles"></span>-->
+					<!--						</div>-->
+					<!--					</div>-->
+				</div>
 			</div>
-
-			<div class="challenge-participants">100 Challengers</div>
-			<div class="challenge-participants-profile">
-				<span class="circles"></span>
-				<span class="circles"></span>
-				<span class="circles"></span>
-			</div>
-		</div>
+		</ng-container>
 	</div>
+
+	<ng-template #noItems>Keine Challenges gefunden</ng-template>
+	<ng-template #loading>Lade Challenges...</ng-template>
 </div>
 
-<div class="sticky-footer-navigation">
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div>
-	<div class="icon"></div>
-</div>
+<app-navbar></app-navbar>

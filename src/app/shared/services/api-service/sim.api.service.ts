@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Category, getCategoryByName } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
-import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
+import { UserDto } from '../../dtos/user.dto';
 
 @Injectable()
 /**
@@ -16,6 +16,7 @@ export class SimApiService implements ApiService {
 		description: 'lorem ipsum ...',
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
+		createdBy: 'Annete',
 	};
 
 	private challenges: ChallengeDto[] = [
@@ -26,6 +27,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
+			createdBy: 'AnneteB',
 		},
 		{
 			id: 2,
@@ -34,6 +36,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
+			createdBy: 'Markus',
 		},
 		{
 			id: 3,
@@ -42,6 +45,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
+			createdBy: 'Gerhard99',
 		},
 		{
 			id: 4,
@@ -50,6 +54,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
+			createdBy: 'IngeBinge',
 		},
 		{
 			id: 5,
@@ -58,6 +63,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
+			createdBy: 'Kastanienblüte',
 		},
 		{
 			id: 6,
@@ -66,6 +72,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
+			createdBy: 'Markus',
 		},
 	];
 
@@ -81,8 +88,13 @@ export class SimApiService implements ApiService {
 		};
 	}
 
-	async getAllChallenges(): Promise<ChallengeDto[]> {
-		return this.challenges;
+	async getChallenges(category: Category): Promise<ChallengeDto[]> {
+		if (!category) {
+			return this.challenges.slice();
+		}
+		return this.challenges
+			.filter((challenge) => challenge.category.name === category.name)
+			.slice();
 	}
 
 	async getAllChallengesOfUser(): Promise<ChallengeDto[]> {
