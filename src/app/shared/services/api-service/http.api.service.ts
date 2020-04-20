@@ -112,6 +112,7 @@ export abstract class HTTPApiService implements ApiService {
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
 			createdBy: challenge.createdBy,
+			material: challenge.material,
 		});
 	}
 

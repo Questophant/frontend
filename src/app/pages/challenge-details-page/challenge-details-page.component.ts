@@ -3,6 +3,7 @@ import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { StoreService } from '../../shared/services/store/store.service';
+import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -15,6 +16,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
+		private location: Location,
 		private store: StoreService
 	) {
 		this.route.paramMap
@@ -29,9 +31,15 @@ export class ChallengeDetailsPageComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	acceptChallenge(challenge: ChallengeDto): void {}
+	acceptChallenge(challenge: ChallengeDto): void {
+		this.store.addAcceptedChallenge(challenge);
+	}
 
 	rememberChallenge(challenge: ChallengeDto): void {
 		this.store.addRememberedChallenge(challenge);
+	}
+
+	navigateBack() {
+		this.location.back();
 	}
 }

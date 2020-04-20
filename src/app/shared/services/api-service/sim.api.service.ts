@@ -17,6 +17,7 @@ export class SimApiService implements ApiService {
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
 		createdBy: 'Annete',
+		material: 'Farben, Pinsel',
 	};
 
 	private challenges: ChallengeDto[] = [
@@ -28,6 +29,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
 			createdBy: 'AnneteB',
+			material: null,
 		},
 		{
 			id: 2,
@@ -37,6 +39,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
 			createdBy: 'Markus',
+			material: null,
 		},
 		{
 			id: 3,
@@ -46,6 +49,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Gerhard99',
+			material: null,
 		},
 		{
 			id: 4,
@@ -55,6 +59,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'IngeBinge',
+			material: null,
 		},
 		{
 			id: 5,
@@ -64,6 +69,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Kastanienblüte',
+			material: null,
 		},
 		{
 			id: 6,
@@ -73,6 +79,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Markus',
+			material: null,
 		},
 	];
 

@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { StoreService } from './services/store/store.service';
 import { AuthService } from './services/auth/auth.service';
+import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
@@ -16,6 +17,7 @@ import { AuthService } from './services/auth/auth.service';
 		DataPrivacyOverlayComponent,
 		RulesOverlayComponent,
 		NavbarComponent,
+		ChallengeListComponent,
 	],
 	providers: [
 		{
@@ -30,6 +32,7 @@ import { AuthService } from './services/auth/auth.service';
 		DataPrivacyOverlayComponent,
 		RulesOverlayComponent,
 		NavbarComponent,
+		ChallengeListComponent,
 	],
 })
 export class SharedModule {}

@@ -27,6 +27,18 @@ export class StoreService {
 		return this.getArray<ChallengeDto>('rememberedChallenges');
 	}
 
+	addAcceptedChallenge(challenge: ChallengeDto): void {
+		this.addToArray<ChallengeDto>('acceptedChallenges', challenge);
+	}
+
+	removeAcceptedChallenge(challenge: ChallengeDto): void {
+		this.removeFromArray<ChallengeDto>('acceptedChallenges', challenge);
+	}
+
+	getAcceptedChallenges(): ChallengeDto[] {
+		return this.getArray<ChallengeDto>('acceptedChallenges');
+	}
+
 	private getArray<T>(key: string): T[] {
 		return JSON.parse(localStorage.getItem(key) || '[]');
 	}

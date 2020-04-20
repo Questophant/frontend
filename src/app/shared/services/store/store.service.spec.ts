@@ -32,6 +32,7 @@ describe('StoreService', () => {
 				category: getCategoryByName('eco'),
 				durationSeconds: 300,
 				createdBy: 'Annete',
+				material: null,
 			});
 
 			expect(service.getRememberedChallenges()).toEqual([
@@ -42,6 +43,7 @@ describe('StoreService', () => {
 					category: getCategoryByName('eco'),
 					durationSeconds: 300,
 					createdBy: 'Annete',
+					material: null,
 				},
 			]);
 		});
@@ -56,6 +58,7 @@ describe('StoreService', () => {
 				category: getCategoryByName('eco'),
 				durationSeconds: 300,
 				createdBy: 'Annete',
+				material: null,
 			});
 
 			service.removeRememberedChallenge({
@@ -65,6 +68,7 @@ describe('StoreService', () => {
 				category: getCategoryByName('eco'),
 				durationSeconds: 300,
 				createdBy: 'Annete',
+				material: null,
 			});
 
 			expect(service.getRememberedChallenges()).toEqual([]);

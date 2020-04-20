@@ -1,6 +1,6 @@
 <div class="picture">
 	<img src="/assets/images/categories/{{ challenge.category.name }}.png" />
-	<a class="back-home" routerLink=""><</a>
+	<a (click)="navigateBack()" class="back-home"><</a>
 </div>
 
 <div class="middle">
@@ -21,7 +21,9 @@
 		<textarea class="challenge-description">{{
 			challenge.description
 		}}</textarea>
-		<textarea class="challenge-materials"></textarea>
+		<textarea class="challenge-materials">{{
+			challenge.material || 'Keine Materialien benötigt'
+		}}</textarea>
 		<div (click)="acceptChallenge(challenge)" class="challenge-accept">
 			Challene annehmen
 		</div>

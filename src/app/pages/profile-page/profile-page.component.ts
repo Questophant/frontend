@@ -50,8 +50,4 @@ export class ProfilePageComponent implements OnInit {
 		document.getElementById(status).style.display = 'block';
 		evt.currentTarget.className += ' active';
 	}
-
-	navigateToChallengeDetails(challenge: ChallengeDto) {
-		this.router.navigate(['challenge'], { state: { challenge } });
-	}
 }
