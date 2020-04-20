@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/ch
 		CreateChallengePageComponent,
 		ChallengeDetailsPageComponent,
 		ProfilePageComponent,
+		FriendsPageComponent,
 	],
 	imports: [
 		BrowserModule,
