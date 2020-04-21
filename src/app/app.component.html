@@ -1,1 +1,8 @@
 <router-outlet></router-outlet>
+
+<div *ngIf="offline" class="offline-overlay">
+	<div class="offline-message">
+		<h1>Du scheinst offline zu sein.</h1>
+		<p>So können wir dir leider keine Challenges anbieten :(</p>
+	</div>
+</div>
