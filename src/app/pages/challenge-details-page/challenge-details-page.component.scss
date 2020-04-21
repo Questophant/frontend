@@ -83,7 +83,7 @@
 			font-family: 'Lato', sans-serif;
 		}
 
-		.challenge-accept {
+		.challenge-action {
 			display: block;
 			color: white;
 			background: $general-green;
@@ -92,16 +92,7 @@
 			font-size: 16px;
 			padding: 5px 15px;
 			margin: 10px 0;
-		}
-
-		.challenge-remind {
-			display: block;
-			color: white;
-			background: $general-green;
-			border: none;
-			border-radius: 20px;
-			font-size: 16px;
-			padding: 5px 15px;
+			text-align: center;
 		}
 	}
 }

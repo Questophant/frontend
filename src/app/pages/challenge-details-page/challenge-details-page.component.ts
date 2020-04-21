@@ -12,6 +12,8 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
+	remembered = false;
+	accepted = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -27,6 +29,14 @@ export class ChallengeDetailsPageComponent implements OnInit {
 				.then((challenge) => {
 					if (challenge) {
 						this.challenge = Promise.resolve(challenge);
+						this.remembered =
+							this.store
+								.getRememberedChallenges()
+								.indexOf(challenge.id) > -1;
+						this.accepted =
+							this.store
+								.getAcceptedChallenges()
+								.indexOf(challenge.id) > -1;
 					} else {
 						this.router.navigate(['']);
 					}
@@ -38,11 +48,19 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	ngOnInit(): void {}
 
 	acceptChallenge(challenge: ChallengeDto): void {
+		this.store.removeRememberedChallenge(challenge.id);
 		this.store.addAcceptedChallenge(challenge.id);
+		this.accepted = true;
 	}
 
-	rememberChallenge(challenge: ChallengeDto): void {
-		this.store.addRememberedChallenge(challenge.id);
+	toggleRemember(challenge: ChallengeDto): void {
+		if (this.remembered) {
+			this.store.removeRememberedChallenge(challenge.id);
+			this.remembered = false;
+		} else {
+			this.store.addRememberedChallenge(challenge.id);
+			this.remembered = true;
+		}
 	}
 
 	navigateBack() {
