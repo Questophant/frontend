@@ -99,6 +99,7 @@
 .othersolutions {
 	margin-left: 4vw;
 	margin-right: 4vw;
+
 	.solutionpicleft {
 		float: left;
 		border: none;
@@ -109,6 +110,7 @@
 			10vh + 4vw
 		); //10vh refering to sticky task bar, so change if taskbar other height
 	}
+
 	.solutionpicright {
 		float: right;
 		border: none;
