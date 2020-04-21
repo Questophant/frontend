@@ -11,7 +11,7 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 	styleUrls: ['./challenge-details-page.component.scss'],
 })
 export class ChallengeDetailsPageComponent implements OnInit {
-	challenge: ChallengeDto;
+	challenge: Promise<ChallengeDto>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 			api.getChallengeById(id)
 				.then((challenge) => {
 					if (challenge) {
-						this.challenge = challenge;
+						this.challenge = Promise.resolve(challenge);
 					} else {
 						this.router.navigate(['']);
 					}
@@ -38,11 +38,11 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	ngOnInit(): void {}
 
 	acceptChallenge(challenge: ChallengeDto): void {
-		this.store.addAcceptedChallenge(challenge);
+		this.store.addAcceptedChallenge(challenge.id);
 	}
 
 	rememberChallenge(challenge: ChallengeDto): void {
-		this.store.addRememberedChallenge(challenge);
+		this.store.addRememberedChallenge(challenge.id);
 	}
 
 	navigateBack() {

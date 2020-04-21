@@ -13,8 +13,4 @@ export class ChallengeListComponent implements OnInit {
 	constructor(private router: Router) {}
 
 	ngOnInit(): void {}
-
-	navigateToChallengeDetails(challenge: ChallengeDto) {
-		this.router.navigate(['challenge/details'], { state: { challenge } });
-	}
 }

@@ -1,6 +1,10 @@
-<div class="challenges-container">
-	<div *ngFor="let challenge of challenges | async" class="challenges-box">
+<div
+	*ngIf="challenges | async as challenges; else loading"
+	class="challenges-container"
+>
+	<div *ngIf="challenges.length; else noItems" class="challenges-box">
 		<div
+			*ngFor="let challenge of challenges"
 			[routerLink]="['/challenge', challenge.id, 'details']"
 			class="challenge-element"
 		>
@@ -32,3 +36,12 @@
 		</div>
 	</div>
 </div>
+
+<ng-template #noItems>
+	<div class="onscreen-message">
+		Keine Challenges vorhanden
+	</div>
+</ng-template>
+<ng-template #loading>
+	<div class="onscreen-message"></div>
+</ng-template>

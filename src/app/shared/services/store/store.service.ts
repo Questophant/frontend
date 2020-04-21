@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ChallengeDto } from '../../dtos/challenge.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,37 +14,45 @@ export class StoreService {
 		return localStorage.getItem('userId');
 	}
 
-	addRememberedChallenge(challenge: ChallengeDto): void {
-		this.addToArray<ChallengeDto>('rememberedChallenges', challenge);
+	addRememberedChallenge(challengeId: number): void {
+		this.addToArray<number>('rememberedChallenges', challengeId);
 	}
 
-	removeRememberedChallenge(challenge: ChallengeDto): void {
-		this.removeFromArray<ChallengeDto>('rememberedChallenges', challenge);
+	removeRememberedChallenge(challengeId: number): void {
+		this.removeFromArray<number>('rememberedChallenges', challengeId);
 	}
 
-	getRememberedChallenges(): ChallengeDto[] {
-		return this.getArray<ChallengeDto>('rememberedChallenges');
+	getRememberedChallenges(): number[] {
+		return this.getArray<number>('rememberedChallenges');
 	}
 
-	addAcceptedChallenge(challenge: ChallengeDto): void {
-		this.addToArray<ChallengeDto>('acceptedChallenges', challenge);
+	addAcceptedChallenge(challengeId: number): void {
+		this.addToArray<number>('acceptedChallenges', challengeId);
 	}
 
-	removeAcceptedChallenge(challenge: ChallengeDto): void {
-		this.removeFromArray<ChallengeDto>('acceptedChallenges', challenge);
+	removeAcceptedChallenge(challengeId: number): void {
+		this.removeFromArray<number>('acceptedChallenges', challengeId);
 	}
 
-	getAcceptedChallenges(): ChallengeDto[] {
-		return this.getArray<ChallengeDto>('acceptedChallenges');
+	getAcceptedChallenges(): number[] {
+		return this.getArray<number>('acceptedChallenges');
 	}
 
 	private getArray<T>(key: string): T[] {
-		return JSON.parse(localStorage.getItem(key) || '[]');
+		try {
+			return JSON.parse(localStorage.getItem(key) || '[]');
+		} catch (e) {
+			this.saveArray(key, []);
+			return [];
+		}
 	}
 
 	private addToArray<T>(key: string, item: T): void {
 		const values = this.getArray<T>(key);
-		values.push(item);
+
+		if (!(values.indexOf(item) > -1)) {
+			values.push(item);
+		}
 
 		this.saveArray(key, values);
 	}
@@ -55,14 +62,11 @@ export class StoreService {
 	}
 
 	private removeFromArray<T>(key: string, item: T): void {
-		let values = this.getArray<T>(key);
+		const values = this.getArray<T>(key);
 
-		values.forEach((element, index) => {
-			if (element === item) {
-				values.splice(index, 1);
-			}
-		});
-		// values = values.filter((e) => e !== item);
-		this.saveArray(key, values);
+		this.saveArray(
+			key,
+			values.filter((element) => element !== item)
+		);
 	}
 }

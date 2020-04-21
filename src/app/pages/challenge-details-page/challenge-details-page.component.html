@@ -1,46 +1,53 @@
-<div class="picture">
-	<img src="/assets/images/categories/{{ challenge.category.name }}.png" />
-	<a (click)="navigateBack()" class="back-home"><</a>
-</div>
+<ng-container *ngIf="challenge | async as challenge">
+	<div class="picture">
+		<img
+			src="/assets/images/categories/{{ challenge.category.name }}.png"
+		/>
+		<a (click)="navigateBack()" class="back-home"><</a>
+	</div>
 
-<div class="middle">
-	<div class="profile">
-		<img class="profilepic" src="/assets/images/profile/panda.png" />
-		<div class="text">
-			von
-			<br />
-			<div style="font-size: 1.5rem;">{{ challenge.createdBy }}</div>
-			<br />
-			<div class="category">{{ challenge.category.display }}</div>
-			<!--			<div class="points">Punkte</div>-->
+	<div class="middle">
+		<div class="profile">
+			<img class="profilepic" src="/assets/images/profile/panda.png" />
+			<div class="text">
+				von
+				<br />
+				<div style="font-size: 1.5rem;">{{ challenge.createdBy }}</div>
+				<br />
+				<div class="category">{{ challenge.category.display }}</div>
+				<!--			<div class="points">Punkte</div>-->
+			</div>
+		</div>
+		<div class="challenge">
+			<div class="challenge-name">{{ challenge.title }}</div>
+			<textarea class="challenge-description">{{
+				challenge.description
+			}}</textarea>
+			<textarea class="challenge-materials">{{
+				challenge.material || 'Keine Materialien benötigt'
+			}}</textarea>
+			<div (click)="acceptChallenge(challenge)" class="challenge-accept">
+				Challene annehmen
+			</div>
+			<div
+				(click)="rememberChallenge(challenge)"
+				class="challenge-remind"
+			>
+				Challenge merken
+			</div>
 		</div>
 	</div>
-	<div class="challenge">
-		<div class="challenge-name">{{ challenge.title }}</div>
-		<textarea class="challenge-description">{{
-			challenge.description
-		}}</textarea>
-		<textarea class="challenge-materials">{{
-			challenge.material || 'Keine Materialien benötigt'
-		}}</textarea>
-		<div (click)="acceptChallenge(challenge)" class="challenge-accept">
-			Challene annehmen
-		</div>
-		<div (click)="rememberChallenge(challenge)" class="challenge-remind">
-			Challenge merken
-		</div>
-	</div>
-</div>
 
-<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
-<!--<div class="othersolutions">-->
-<!--	<div style="font-size: 1.5rem; color: #67a682; display: inline-block;">-->
-<!--		Andere Lösungen-->
-<!--	</div>-->
-<!--	<br />-->
-<!--	<br />-->
-<!--	<img class="solutionpicleft" src="../../../favicon.ico" alt="hello" />-->
-<!--	<img class="solutionpicright" src="../../../favicon.ico" alt="hello" />-->
-<!--</div>-->
+	<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
+	<!--<div class="othersolutions">-->
+	<!--	<div style="font-size: 1.5rem; color: #67a682; display: inline-block;">-->
+	<!--		Andere Lösungen-->
+	<!--	</div>-->
+	<!--	<br />-->
+	<!--	<br />-->
+	<!--	<img class="solutionpicleft" src="../../../favicon.ico" alt="hello" />-->
+	<!--	<img class="solutionpicright" src="../../../favicon.ico" alt="hello" />-->
+	<!--</div>-->
+</ng-container>
 
 <app-navbar></app-navbar>

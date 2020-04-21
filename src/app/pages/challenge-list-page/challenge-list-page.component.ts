@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { StoreService } from '../../shared/services/store/store.service';
+import { ApiService } from '../../shared/services/api-service/api.service';
 
 @Component({
 	selector: 'app-challenge-list-page',
@@ -12,19 +13,24 @@ export class ChallengeListPageComponent implements OnInit {
 	showProgress = false;
 	challenges$: Promise<ChallengeDto[]>;
 
-	constructor(private route: ActivatedRoute, private store: StoreService) {
+	constructor(
+		private route: ActivatedRoute,
+		private store: StoreService,
+		private api: ApiService
+	) {
 		this.route.data.subscribe((v) => {
 			this.showProgress = v.showProgress;
+			let challengeIds = [];
 
 			if (this.showProgress) {
-				this.challenges$ = Promise.resolve(
-					store.getAcceptedChallenges()
-				);
+				challengeIds = store.getAcceptedChallenges();
 			} else {
-				this.challenges$ = Promise.resolve(
-					this.store.getRememberedChallenges()
-				);
+				challengeIds = store.getRememberedChallenges();
 			}
+
+			this.challenges$ = Promise.all(
+				challengeIds.map((id) => api.getChallengeById(id))
+			);
 		});
 	}
 

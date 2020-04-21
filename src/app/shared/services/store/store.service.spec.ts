@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StoreService } from './store.service';
-import { getCategoryByName } from '../../dtos/category';
 
 describe('StoreService', () => {
 	let service: StoreService;
@@ -25,53 +24,59 @@ describe('StoreService', () => {
 		it('should add Challenge', () => {
 			localStorage.setItem('rememberedChallenges', '');
 
-			service.addRememberedChallenge({
-				id: 0,
-				title: 'asdasdasd',
-				description: 'lorem ipsum ...',
-				category: getCategoryByName('eco'),
-				durationSeconds: 300,
-				createdBy: 'Annete',
-				material: null,
-			});
+			service.addRememberedChallenge(99);
 
-			expect(service.getRememberedChallenges()).toEqual([
-				{
-					id: 0,
-					title: 'asdasdasd',
-					description: 'lorem ipsum ...',
-					category: getCategoryByName('eco'),
-					durationSeconds: 300,
-					createdBy: 'Annete',
-					material: null,
-				},
-			]);
+			expect(service.getRememberedChallenges()).toEqual([99]);
+		});
+
+		it('should not add when already exists', () => {
+			localStorage.setItem('rememberedChallenges', '');
+
+			service.addRememberedChallenge(99);
+			service.addRememberedChallenge(99);
+
+			expect(service.getRememberedChallenges()).toEqual([99]);
 		});
 
 		it('should remove challenge', () => {
-			localStorage.setItem('rememberedChallenges', '');
+			localStorage.setItem('rememberedChallenges', '[21,99]');
 
-			service.addRememberedChallenge({
-				id: 0,
-				title: 'asdasdasd',
-				description: 'lorem ipsum ...',
-				category: getCategoryByName('eco'),
-				durationSeconds: 300,
-				createdBy: 'Annete',
-				material: null,
-			});
+			service.removeRememberedChallenge(99);
 
-			service.removeRememberedChallenge({
-				id: 0,
-				title: 'asdasdasd',
-				description: 'lorem ipsum ...',
-				category: getCategoryByName('eco'),
-				durationSeconds: 300,
-				createdBy: 'Annete',
-				material: null,
-			});
+			expect(service.getRememberedChallenges()).toEqual([21]);
+		});
+	});
 
-			expect(service.getRememberedChallenges()).toEqual([]);
+	describe('acceptedChallenges', () => {
+		it('should return empty array when no Challenge accepted', () => {
+			localStorage.setItem('acceptedChallenges', '');
+
+			expect(service.getAcceptedChallenges()).toEqual([]);
+		});
+
+		it('should add Challenge', () => {
+			localStorage.setItem('acceptedChallenges', '');
+
+			service.addAcceptedChallenge(99);
+
+			expect(service.getAcceptedChallenges()).toEqual([99]);
+		});
+
+		it('should not add when already exists', () => {
+			localStorage.setItem('acceptedChallenges', '');
+
+			service.addAcceptedChallenge(99);
+			service.addAcceptedChallenge(99);
+
+			expect(service.getAcceptedChallenges()).toEqual([99]);
+		});
+
+		it('should remove challenge', () => {
+			localStorage.setItem('acceptedChallenges', '[21,99]');
+
+			service.removeAcceptedChallenge(99);
+
+			expect(service.getAcceptedChallenges()).toEqual([21]);
 		});
 	});
 });
