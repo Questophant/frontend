@@ -223,6 +223,14 @@ $category-bar-height: 25px;
 	.overlay-social {
 		@include overlay($category-color-social);
 	}
+
+	.overlay-fun {
+		@include overlay($category-color-fun);
+	}
+
+	.overlay-eco {
+		@include overlay($category-color-eco);
+	}
 }
 
 .onscreen-message {

@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 
 @NgModule({
@@ -31,6 +33,9 @@ import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/ch
 		SharedModule,
 		FormsModule,
 		ReactiveFormsModule,
+		ServiceWorkerModule.register('ngsw-worker.js', {
+			enabled: environment.production,
+		}),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
