@@ -135,4 +135,8 @@ export class SimApiService implements ApiService {
 		this.challenges = this.challenges.filter((c) => c.id !== challengeId);
 		return challenge;
 	}
+
+	async getChallengeById(id: number): Promise<ChallengeDto> {
+		return this.challenges.find((challenge) => challenge.id === id);
+	}
 }

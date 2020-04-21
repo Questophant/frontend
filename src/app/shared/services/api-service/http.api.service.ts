@@ -87,6 +87,10 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
+	getChallengeById(id: number): Promise<ChallengeDto> {
+		return this.getChallengeFromUrl(`${this.apiUrl}/challenge/${id}`);
+	}
+
 	protected checkCache() {
 		const date = new Date();
 		const day = date.getDate();
@@ -111,7 +115,7 @@ export abstract class HTTPApiService implements ApiService {
 			category: Categories.find((c) => c.name === challenge.category),
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
-			createdBy: challenge.createdBy,
+			createdBy: challenge.createdByUserName,
 			material: challenge.material,
 		});
 	}

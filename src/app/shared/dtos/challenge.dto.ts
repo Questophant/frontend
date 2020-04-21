@@ -16,6 +16,6 @@ export interface ChallengeResponse {
 	description: string;
 	category: string;
 	durationSeconds: number;
-	createdBy: string;
+	createdByUserName: string;
 	material?: string;
 }

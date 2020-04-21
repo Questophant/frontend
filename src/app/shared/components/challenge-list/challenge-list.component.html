@@ -1,7 +1,7 @@
 <div class="challenges-container">
 	<div *ngFor="let challenge of challenges | async" class="challenges-box">
 		<div
-			(click)="navigateToChallengeDetails(challenge)"
+			[routerLink]="['/challenge', challenge.id, 'details']"
 			class="challenge-element"
 		>
 			<div class="challenge-picture">

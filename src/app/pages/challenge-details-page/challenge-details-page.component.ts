@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
+import { ApiService } from '../../shared/services/api-service/api.service';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -16,17 +16,23 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private location: Location,
-		private store: StoreService
+		private api: ApiService,
+		private store: StoreService,
+		private location: Location
 	) {
-		this.route.paramMap
-			.pipe(map(() => window.history.state))
-			.subscribe((data) => {
-				if (!data.challenge) {
-					this.router.navigate(['']);
-				}
-				this.challenge = data.challenge;
-			});
+		this.route.params.subscribe((params) => {
+			const id = +params.id;
+
+			api.getChallengeById(id)
+				.then((challenge) => {
+					if (challenge) {
+						this.challenge = challenge;
+					} else {
+						this.router.navigate(['']);
+					}
+				})
+				.catch((reason) => this.router.navigate(['']));
+		});
 	}
 
 	ngOnInit(): void {}
