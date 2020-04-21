@@ -7,11 +7,11 @@ import { ConnectionService } from 'ng-connection-service';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-	offline = false;
+	offline = !navigator.onLine;
 
 	constructor(private connectionService: ConnectionService) {
-		this.connectionService.monitor().subscribe((isConnected) => {
-			this.offline = !isConnected;
+		this.connectionService.monitor().subscribe((currentState) => {
+			this.offline = !currentState;
 		});
 	}
 }
