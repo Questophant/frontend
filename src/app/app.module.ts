@@ -10,6 +10,9 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
 import { CreateChallengePageComponent } from './pages/create-challenge-page/create-challenge-page.component';
+import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -20,6 +23,7 @@ import { CreateChallengePageComponent } from './pages/create-challenge-page/crea
 		AchievementsPageComponent,
 		CreateChallengePageComponent,
 		ProfilePageComponent,
+		FriendsPageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -27,6 +31,9 @@ import { CreateChallengePageComponent } from './pages/create-challenge-page/crea
 		SharedModule,
 		FormsModule,
 		ReactiveFormsModule,
+		ServiceWorkerModule.register('ngsw-worker.js', {
+			enabled: environment.production,
+		}),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
