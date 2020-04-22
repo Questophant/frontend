@@ -34,6 +34,14 @@
             "scripts": []
           },
           "configurations": {
+			"local": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.local.ts"
+				  }
+				]
+			},
             "production": {
               "fileReplacements": [
                 {
@@ -63,7 +71,37 @@
 			  ],
 				"serviceWorker": true,
 				"ngswConfigPath": "ngsw-config.json"
-			}
+			},
+			"test": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.test.ts"
+				  }
+				],
+				"optimization": true,
+				"outputHashing": "all",
+				"sourceMap": false,
+				"extractCss": true,
+				"namedChunks": false,
+				"extractLicenses": true,
+				"vendorChunk": false,
+				"buildOptimizer": true,
+				"budgets": [
+					{
+						"type": "initial",
+						"maximumWarning": "2mb",
+						"maximumError": "5mb"
+					},
+					{
+						"type": "anyComponentStyle",
+						"maximumWarning": "6kb",
+						"maximumError": "10kb"
+					}
+				],
+				  "serviceWorker": true,
+				  "ngswConfigPath": "ngsw-config.json"
+			  }
           }
         },
         "serve": {
@@ -72,9 +110,15 @@
             "browserTarget": "HACAFrontend:build"
           },
           "configurations": {
-            "production": {
+			"local": {
+				"browserTarget": "HACAFrontend:build:local"
+			},
+			"production": {
               "browserTarget": "HACAFrontend:build:production"
-            }
+			},
+			"test": {
+				"browserTarget": "HACAFrontend:build:test"
+			}
           }
         },
         "extract-i18n": {
@@ -121,9 +165,15 @@
             "devServerTarget": "HACAFrontend:serve"
           },
           "configurations": {
+			"local": {
+				"devServerTarget": "HACAFrontend:serve:local"
+			},
             "production": {
               "devServerTarget": "HACAFrontend:serve:production"
-            }
+			},
+			"test": {
+				"devServerTarget": "HACAFrontend:serve:test"
+			  }
           }
         }
       }
