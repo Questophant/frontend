@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "HACAFrontend": {
+    "CMFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/HACAFrontend",
+            "outputPath": "dist/CMFrontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -34,6 +34,14 @@
             "scripts": []
           },
           "configurations": {
+			"local": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.local.ts"
+				  }
+				]
+			},
             "production": {
               "fileReplacements": [
                 {
@@ -63,24 +71,60 @@
 			  ],
 				"serviceWorker": true,
 				"ngswConfigPath": "ngsw-config.json"
-			}
+			},
+			"test": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.test.ts"
+				  }
+				],
+				"optimization": true,
+				"outputHashing": "all",
+				"sourceMap": false,
+				"extractCss": true,
+				"namedChunks": false,
+				"extractLicenses": true,
+				"vendorChunk": false,
+				"buildOptimizer": true,
+				"budgets": [
+					{
+						"type": "initial",
+						"maximumWarning": "2mb",
+						"maximumError": "5mb"
+					},
+					{
+						"type": "anyComponentStyle",
+						"maximumWarning": "6kb",
+						"maximumError": "10kb"
+					}
+				],
+				  "serviceWorker": true,
+				  "ngswConfigPath": "ngsw-config.json"
+			  }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "HACAFrontend:build"
+            "browserTarget": "CMFrontend:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "HACAFrontend:build:production"
-            }
+			"local": {
+				"browserTarget": "CMFrontend:build:local"
+			},
+			"production": {
+              "browserTarget": "CMFrontend:build:production"
+			},
+			"test": {
+				"browserTarget": "CMFrontend:build:test"
+			}
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "HACAFrontend:build"
+            "browserTarget": "CMFrontend:build"
           }
         },
         "test": {
@@ -118,15 +162,21 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "HACAFrontend:serve"
+            "devServerTarget": "CMFrontend:serve"
           },
           "configurations": {
+			"local": {
+				"devServerTarget": "CMFrontend:serve:local"
+			},
             "production": {
-              "devServerTarget": "HACAFrontend:serve:production"
-            }
+              "devServerTarget": "CMFrontend:serve:production"
+			},
+			"test": {
+				"devServerTarget": "CMFrontend:serve:test"
+			  }
           }
         }
       }
     }},
-  "defaultProject": "HACAFrontend"
+  "defaultProject": "CMFrontend"
 }
