@@ -17,6 +17,9 @@ export class SimApiService implements ApiService {
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
 		createdBy: 'Annete',
+		material: 'Farben, Pinsel',
+		pointsLoose: 0,
+		pointsWin: 0,
 	};
 
 	private challenges: ChallengeDto[] = [
@@ -28,6 +31,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
 			createdBy: 'AnneteB',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 2,
@@ -37,6 +43,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
 			createdBy: 'Markus',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 3,
@@ -46,6 +55,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Gerhard99',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 4,
@@ -55,6 +67,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'IngeBinge',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 5,
@@ -64,6 +79,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Kastanienblüte',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 6,
@@ -73,6 +91,9 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdBy: 'Markus',
+			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 	];
 
@@ -88,7 +109,11 @@ export class SimApiService implements ApiService {
 		};
 	}
 
-	async getChallenges(category: Category): Promise<ChallengeDto[]> {
+	async getChallenges(
+		category: Category,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		if (!category) {
 			return this.challenges.slice();
 		}
@@ -127,5 +152,9 @@ export class SimApiService implements ApiService {
 
 		this.challenges = this.challenges.filter((c) => c.id !== challengeId);
 		return challenge;
+	}
+
+	async getChallengeById(id: number): Promise<ChallengeDto> {
+		return this.challenges.find((challenge) => challenge.id === id);
 	}
 }

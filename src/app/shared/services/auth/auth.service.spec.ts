@@ -3,7 +3,6 @@ import { deepEqual, instance, mock, when } from 'ts-mockito';
 import { ApiService } from '../api-service/api.service';
 import { AuthService } from './auth.service';
 
-
 describe('AuthService', () => {
 	let service: AuthService;
 	const mockApiService = mock(ApiService);
@@ -26,7 +25,7 @@ describe('AuthService', () => {
 
 	describe('register', () => {
 		it('should set userId when successful', async () => {
-			localStorage.removeItem('simulation_userId');
+			localStorage.removeItem('test_userId');
 			when(
 				mockApiService.createNewUser(
 					deepEqual({
@@ -38,19 +37,19 @@ describe('AuthService', () => {
 
 			await service.register('anyUserName');
 
-			expect(localStorage.getItem('simulation_userId')).toEqual('anyUserId');
+			expect(localStorage.getItem('test_userId')).toEqual('anyUserId');
 		});
 	});
 
 	describe('isUserRegistered', () => {
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.removeItem('simulation_userId');
+			localStorage.removeItem('test_userId');
 
 			expect(service.isUserRegistered()).toBe(false);
 		});
 
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.setItem('simulation_userId', 'anyUserId');
+			localStorage.setItem('test_userId', 'anyUserId');
 
 			expect(service.isUserRegistered()).toBe(true);
 		});

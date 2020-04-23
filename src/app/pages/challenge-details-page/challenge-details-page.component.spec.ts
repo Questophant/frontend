@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
-import { ProfilePageComponent } from './profile-page.component';
-import { instance, mock } from 'ts-mockito';
+
+import { ChallengeDetailsPageComponent } from './challenge-details-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ApiService } from '../../shared/services/api-service/api.service';
+import { anyNumber, instance, mock, when } from 'ts-mockito';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('ProfilePageComponent', () => {
-	let component: ProfilePageComponent;
-	let fixture: ComponentFixture<ProfilePageComponent>;
+describe('ChallengeDetailsPageComponent', () => {
+	let component: ChallengeDetailsPageComponent;
+	let fixture: ComponentFixture<ChallengeDetailsPageComponent>;
 	const mockApiService = mock(ApiService);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [RouterTestingModule],
-			declarations: [ProfilePageComponent],
+			declarations: [ChallengeDetailsPageComponent],
 			providers: [
 				{
 					provide: ApiService,
@@ -22,10 +23,12 @@ describe('ProfilePageComponent', () => {
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
+
+		when(mockApiService.getChallengeById(anyNumber())).thenResolve(null);
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ProfilePageComponent);
+		fixture = TestBed.createComponent(ChallengeDetailsPageComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

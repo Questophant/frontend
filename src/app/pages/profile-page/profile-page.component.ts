@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 	showRules = false;
 
 	constructor(private api: ApiService, private router: Router) {
-		this.challenges$ = api.getChallenges(null); // TODO:
+		this.challenges$ = api.getChallenges(null, 0, 10); // TODO:
 	}
 
 	ngOnInit(): void {}
@@ -49,9 +49,5 @@ export class ProfilePageComponent implements OnInit {
 		// Show the current tab, and add an "active" class to the button that opened the tab
 		document.getElementById(status).style.display = 'block';
 		evt.currentTarget.className += ' active';
-	}
-
-	navigateToChallengeDetails(challenge: ChallengeDto) {
-		this.router.navigate(['challenge'], { state: { challenge } });
 	}
 }
