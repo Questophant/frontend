@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root',
 })
 export class StoreService {
-	constructor() { }
+	constructor() {}
 
 	setUserId(userId: string): void {
 		localStorage.setItem(environment.apiService + '_userId', userId);
