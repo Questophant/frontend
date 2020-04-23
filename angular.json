@@ -42,7 +42,23 @@
 				  }
 				]
 			},
-            "production": {
+			"productionServe": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.prod.ts"
+				  }
+				]
+			},
+			"testServe": {
+				"fileReplacements": [
+				  {
+					"replace": "src/environments/environment.ts",
+					"with": "src/environments/environment.test.ts"
+				  }
+				]
+			},
+            "productionBuild": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -72,7 +88,7 @@
 				"serviceWorker": true,
 				"ngswConfigPath": "ngsw-config.json"
 			},
-			"test": {
+			"testBuild": {
 				"fileReplacements": [
 				  {
 					"replace": "src/environments/environment.ts",
@@ -114,10 +130,10 @@
 				"browserTarget": "CMFrontend:build:local"
 			},
 			"production": {
-              "browserTarget": "CMFrontend:build:production"
+              "browserTarget": "CMFrontend:build:productionServe"
 			},
 			"test": {
-				"browserTarget": "CMFrontend:build:test"
+				"browserTarget": "CMFrontend:build:testServe"
 			}
           }
         },
@@ -169,10 +185,10 @@
 				"devServerTarget": "CMFrontend:serve:local"
 			},
             "production": {
-              "devServerTarget": "CMFrontend:serve:production"
+              "devServerTarget": "CMFrontend:serve:productionBuild"
 			},
 			"test": {
-				"devServerTarget": "CMFrontend:serve:test"
+				"devServerTarget": "CMFrontend:serve:testBuild"
 			  }
           }
         }
