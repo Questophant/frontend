@@ -18,6 +18,8 @@ jobs:
           accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
           outputDirectory: /tmp/artifacts
           urls: 'https://test.challengemeapp.de'
+          prCommentEnabled: true
+          prCommentSaveOld: true
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
