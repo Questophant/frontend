@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { StoreService } from './services/store/store.service';
 import { AuthService } from './services/auth/auth.service';
 import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
+import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
@@ -18,6 +19,7 @@ import { ChallengeListComponent } from './components/challenge-list/challenge-li
 		RulesOverlayComponent,
 		NavbarComponent,
 		ChallengeListComponent,
+		DurationPipe,
 	],
 	providers: [
 		{
@@ -33,6 +35,7 @@ import { ChallengeListComponent } from './components/challenge-list/challenge-li
 		RulesOverlayComponent,
 		NavbarComponent,
 		ChallengeListComponent,
+		DurationPipe,
 	],
 })
 export class SharedModule {}
