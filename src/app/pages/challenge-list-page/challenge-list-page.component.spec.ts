@@ -4,6 +4,7 @@ import { ChallengeListPageComponent } from './challenge-list-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { instance, mock } from 'ts-mockito';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ChallengeListPageComponent', () => {
 	let component: ChallengeListPageComponent;
@@ -20,6 +21,7 @@ describe('ChallengeListPageComponent', () => {
 					useValue: instance(mockApiService),
 				},
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 	}));
 

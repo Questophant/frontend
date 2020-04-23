@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('WelcomePageComponent', () => {
 	let component: WelcomePageComponent;
@@ -21,6 +22,7 @@ describe('WelcomePageComponent', () => {
 					useValue: instance(mockAuthService),
 				},
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 	}));
 

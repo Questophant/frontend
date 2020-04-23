@@ -4,6 +4,7 @@ import { ChallengeDetailsPageComponent } from './challenge-details-page.componen
 import { RouterTestingModule } from '@angular/router/testing';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { anyNumber, instance, mock, when } from 'ts-mockito';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ChallengeDetailsPageComponent', () => {
 	let component: ChallengeDetailsPageComponent;
@@ -20,6 +21,7 @@ describe('ChallengeDetailsPageComponent', () => {
 					useValue: instance(mockApiService),
 				},
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 
 		when(mockApiService.getChallengeById(anyNumber())).thenResolve(null);
