@@ -58,7 +58,7 @@
 				  }
 				]
 			},
-            "productionBuild": {
+            "production": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -88,7 +88,7 @@
 				"serviceWorker": true,
 				"ngswConfigPath": "ngsw-config.json"
 			},
-			"testBuild": {
+			"test": {
 				"fileReplacements": [
 				  {
 					"replace": "src/environments/environment.ts",
@@ -181,15 +181,15 @@
             "devServerTarget": "CMFrontend:serve"
           },
           "configurations": {
-			"local": {
-				"devServerTarget": "CMFrontend:serve:local"
-			},
-            "production": {
-              "devServerTarget": "CMFrontend:serve:productionBuild"
-			},
-			"test": {
-				"devServerTarget": "CMFrontend:serve:testBuild"
-			  }
+        "local": {
+          "devServerTarget": "CMFrontend:serve:local"
+        },
+              "production": {
+                "devServerTarget": "CMFrontend:serve:production"
+        },
+        "test": {
+          "devServerTarget": "CMFrontend:serve:test"
+        }
           }
         }
       }
