@@ -59,22 +59,21 @@
 							challenge.category.name
 						}}.jpg"
 					/>
-					<!--					<div class="challenge-participants">-->
-					<!--						<div class="participants-count">-->
-					<!--							100 Challengers-->
-					<!--						</div>-->
-					<!--						<div class="participants-profiles">-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--						</div>-->
-					<!--					</div>-->
+					<div class="challenge-participants">
+						<div class="challenge-duration">
+							{{ challenge.durationSeconds | duration }}
+						</div>
+						<!--						<div class="participants-count">-->
+						<!--							100 Challengers-->
+						<!--						</div>-->
+						<!--						<div class="participants-profiles">-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--						</div>-->
+					</div>
 				</div>
 			</div>
 		</ng-container>

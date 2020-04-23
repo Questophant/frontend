@@ -129,8 +129,13 @@ $category-bar-height: 25px;
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
-				justify-content: flex-end;
+				//justify-content: flex-end;
 				align-items: center;
+				color: white;
+
+				.challenge-duration {
+					//justify-content: flex-start;
+				}
 
 				.participants-count {
 				}
