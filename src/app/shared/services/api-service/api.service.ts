@@ -13,7 +13,11 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getChallenges(category: Category): Promise<ChallengeDto[]> {
+	public getChallenges(
+		category: Category,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 

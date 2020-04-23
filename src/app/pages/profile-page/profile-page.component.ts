@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 	showRules = false;
 
 	constructor(private api: ApiService, private router: Router) {
-		this.challenges$ = api.getChallenges(null); // TODO:
+		this.challenges$ = api.getChallenges(null, 0, 10); // TODO:
 	}
 
 	ngOnInit(): void {}

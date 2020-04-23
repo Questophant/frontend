@@ -31,20 +31,24 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
-	getChallenges(category: Category): Promise<ChallengeDto[]> {
+	getChallenges(
+		category: Category,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
 					this.apiUrl
 				}/users/${this.store.getUserId()}/challenge_stream?category=${
 					category.name
-				}&pageIndex=0&pageSize=10`
+				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
 				this.apiUrl
-			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=0&pageSize=10`
+			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
