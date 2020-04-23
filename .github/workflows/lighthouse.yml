@@ -1,0 +1,25 @@
+name: Lighthouse Check
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: []
+ 
+jobs:
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - run: mkdir /tmp/artifacts
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
+          outputDirectory: /tmp/artifacts
+          urls: 'https://test.challengemeapp.de'
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Lighthouse reports
+          path: /tmp/artifacts
