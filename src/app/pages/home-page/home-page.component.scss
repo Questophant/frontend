@@ -1,7 +1,11 @@
 @import '../../../colors';
 
 $app-bar-height: 50px;
-$category-bar-height: 25px;
+$category-bar-height: 40px;
+
+@media only screen and (min-width: 500px) {
+	$category-bar-height: 40px !important;
+}
 
 .sticky-header {
 	position: fixed;
