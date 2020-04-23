@@ -34,10 +34,10 @@
 </div>
 
 <div class="challenges">
-	<div *ngIf="challenges$ | async as challenges; else loading">
+	<div *ngIf="challenges as challenges; else loading">
 		<ng-container *ngIf="challenges.length; else noItems">
 			<div
-				*ngFor="let challenge of challenges"
+				*ngFor="let challenge of challenges; trackBy: trackChallenges"
 				class="challenge"
 				[routerLink]="['/challenge', challenge.id, 'details']"
 			>
