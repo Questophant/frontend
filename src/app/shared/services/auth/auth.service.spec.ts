@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AuthService } from './auth.service';
-import { ApiService } from '../api-service/api.service';
 import { deepEqual, instance, mock, when } from 'ts-mockito';
+import { ApiService } from '../api-service/api.service';
+import { AuthService } from './auth.service';
+
 
 describe('AuthService', () => {
 	let service: AuthService;
@@ -26,7 +26,7 @@ describe('AuthService', () => {
 
 	describe('register', () => {
 		it('should set userId when successful', async () => {
-			localStorage.removeItem('userId');
+			localStorage.removeItem('simulation_userId');
 			when(
 				mockApiService.createNewUser(
 					deepEqual({
@@ -38,19 +38,19 @@ describe('AuthService', () => {
 
 			await service.register('anyUserName');
 
-			expect(localStorage.getItem('userId')).toEqual('anyUserId');
+			expect(localStorage.getItem('simulation_userId')).toEqual('anyUserId');
 		});
 	});
 
 	describe('isUserRegistered', () => {
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.removeItem('userId');
+			localStorage.removeItem('simulation_userId');
 
 			expect(service.isUserRegistered()).toBe(false);
 		});
 
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.setItem('userId', 'anyUserId');
+			localStorage.setItem('simulation_userId', 'anyUserId');
 
 			expect(service.isUserRegistered()).toBe(true);
 		});
