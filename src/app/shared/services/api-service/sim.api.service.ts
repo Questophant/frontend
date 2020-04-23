@@ -18,6 +18,8 @@ export class SimApiService implements ApiService {
 		durationSeconds: 300,
 		createdBy: 'Annete',
 		material: 'Farben, Pinsel',
+		pointsLoose: 0,
+		pointsWin: 0,
 	};
 
 	private challenges: ChallengeDto[] = [
@@ -30,6 +32,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 30,
 			createdBy: 'AnneteB',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 2,
@@ -40,6 +44,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 60,
 			createdBy: 'Markus',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 3,
@@ -50,6 +56,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 300,
 			createdBy: 'Gerhard99',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 4,
@@ -60,6 +68,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 300,
 			createdBy: 'IngeBinge',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 5,
@@ -70,6 +80,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 300,
 			createdBy: 'Kastanienblüte',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 		{
 			id: 6,
@@ -80,6 +92,8 @@ export class SimApiService implements ApiService {
 			durationSeconds: 300,
 			createdBy: 'Markus',
 			material: null,
+			pointsLoose: 0,
+			pointsWin: 0,
 		},
 	];
 
