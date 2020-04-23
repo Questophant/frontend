@@ -4,8 +4,13 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
+		"start:local": "ng serve --configuration local",
+		"start:prod": "ng serve --configuration prod",
+		"start:test": "ng serve --configuration test",
 		"build": "ng build",
 		"build:prod": "ng build --prod",
+		"build:test": "ng build --configuration test",
+		"build:local": "ng build --configuration local",
 		"build:ci": "ng build --prod",
 		"test": "ng test --browsers=ChromeHeadlessCustom",
 		"test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
