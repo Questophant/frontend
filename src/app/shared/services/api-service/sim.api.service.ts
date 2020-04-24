@@ -97,6 +97,11 @@ export class SimApiService implements ApiService {
 		},
 	];
 
+	private testUser: UserDto = {
+		userName: 'TestUser',
+		userId: 'someUserId',
+	};
+
 	constructor(private store: StoreService) {}
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
@@ -160,5 +165,9 @@ export class SimApiService implements ApiService {
 
 	async getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
 		return this.challenges;
+	}
+
+	async getUser(userId: string): Promise<UserDto> {
+		return this.testUser;
 	}
 }

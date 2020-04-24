@@ -42,6 +42,10 @@ export abstract class ApiService {
 	createNewUser(user: UserDto): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
+
+	getUser(userId: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
 }
 
 import { Category } from '../../dtos/category';
