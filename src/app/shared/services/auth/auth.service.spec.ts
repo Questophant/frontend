@@ -25,7 +25,7 @@ describe('AuthService', () => {
 
 	describe('register', () => {
 		it('should set userId when successful', async () => {
-			localStorage.removeItem('test_userId');
+			localStorage.removeItem('simulation_userId');
 			when(
 				mockApiService.createNewUser(
 					deepEqual({
@@ -37,19 +37,21 @@ describe('AuthService', () => {
 
 			await service.register('anyUserName');
 
-			expect(localStorage.getItem('test_userId')).toEqual('anyUserId');
+			expect(localStorage.getItem('simulation_userId')).toEqual(
+				'anyUserId'
+			);
 		});
 	});
 
 	describe('isUserRegistered', () => {
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.removeItem('test_userId');
+			localStorage.removeItem('simulation_userId');
 
 			expect(service.isUserRegistered()).toBe(false);
 		});
 
 		it('should return false when no userId is saved in localstorage', () => {
-			localStorage.setItem('test_userId', 'anyUserId');
+			localStorage.setItem('simulation_userId', 'anyUserId');
 
 			expect(service.isUserRegistered()).toBe(true);
 		});
