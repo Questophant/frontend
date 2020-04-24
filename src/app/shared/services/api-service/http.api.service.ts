@@ -165,6 +165,18 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
+	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${userId}/done_challenges`
+		);
+	}
+
+	getUser(userId: string): Promise<UserDto> {
+		return this.http
+			.get<UserDto>(`${this.apiUrl}/users/${userId}`)
+			.toPromise();
+	}
+
 	protected checkCache() {
 		const date = new Date();
 		const day = date.getDate();
