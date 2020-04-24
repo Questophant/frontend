@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { Router } from '@angular/router';
+import { StoreService } from '../../shared/services/store/store.service';
+import { UserDto } from '../../shared/dtos/user.dto';
 
 @Component({
 	selector: 'app-profile-page',
@@ -10,11 +12,18 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
+	user$: Promise<UserDto>;
+
 	showDataPrivacy = false;
 	showRules = false;
 
-	constructor(private api: ApiService, private router: Router) {
-		this.challenges$ = api.getChallenges(null); // TODO:
+	constructor(
+		private api: ApiService,
+		private router: Router,
+		private store: StoreService
+	) {
+		this.user$ = api.getUser(store.getUserId());
+		this.challenges$ = api.getChallengesForUser(store.getUserId());
 	}
 
 	ngOnInit(): void {}
@@ -49,9 +58,5 @@ export class ProfilePageComponent implements OnInit {
 		// Show the current tab, and add an "active" class to the button that opened the tab
 		document.getElementById(status).style.display = 'block';
 		evt.currentTarget.className += ' active';
-	}
-
-	navigateToChallengeDetails(challenge: ChallengeDto) {
-		this.router.navigate(['challenge'], { state: { challenge } });
 	}
 }

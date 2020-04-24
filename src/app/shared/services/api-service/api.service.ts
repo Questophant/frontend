@@ -9,7 +9,19 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getChallenges(category: Category): Promise<ChallengeDto[]> {
+	public getChallengeById(id: number): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getChallenges(
+		category: Category,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -28,6 +40,10 @@ export abstract class ApiService {
 	}
 
 	createNewUser(user: UserDto): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	getUser(userId: string): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 }

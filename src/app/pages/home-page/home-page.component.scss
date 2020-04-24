@@ -18,7 +18,7 @@ $category-bar-height: 40px;
 	.app-bar {
 		height: $app-bar-height;
 
-		background-image: url('src/assets/images/360x60.png');
+		background-image: url('src/assets/images/app-bar-background.jpg');
 		background-size: cover;
 		background-repeat: no-repeat;
 
@@ -127,8 +127,13 @@ $category-bar-height: 40px;
 				display: flex;
 				flex-direction: row;
 				flex-wrap: nowrap;
-				justify-content: flex-end;
+				//justify-content: flex-end;
 				align-items: center;
+				color: white;
+
+				.challenge-duration {
+					//justify-content: flex-start;
+				}
 
 				.participants-count {
 				}
@@ -230,6 +235,7 @@ $category-bar-height: 40px;
 		@include overlay($category-color-eco);
 	}
 }
+
 .onscreen-message {
 	color: #67a682;
 	font-style: italic;

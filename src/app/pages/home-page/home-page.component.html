@@ -4,13 +4,13 @@
 		<img
 			class="favorite-challenges"
 			routerLink="/challenges/star"
-			src="/assets/icons/star.svg"
+			src="assets/icons/star.svg"
 			alt="Gemerkte Challenges"
 		/>
 		<img
 			class="running-challenges"
 			routerLink="/challenges/running"
-			src="/assets/icons/timer.svg"
+			src="assets/icons/timer.svg"
 			alt="Laufende Challenges"
 		/>
 	</div>
@@ -34,12 +34,12 @@
 </div>
 
 <div class="challenges">
-	<div *ngIf="challenges$ | async as challenges; else loading">
+	<div *ngIf="challenges as challenges; else loading">
 		<ng-container *ngIf="challenges.length; else noItems">
 			<div
-				*ngFor="let challenge of challenges"
+				*ngFor="let challenge of challenges; trackBy: trackChallenges"
 				class="challenge"
-				routerLink="challenge/create"
+				[routerLink]="['/challenge', challenge.id, 'details']"
 			>
 				<div
 					class="challenge-label category-{{
@@ -57,28 +57,28 @@
 					<img
 						src="/assets/images/categories/{{
 							challenge.category.name
-						}}.png"
+						}}.jpg"
 					/>
-					<!--					<div class="challenge-participants">-->
-					<!--						<div class="participants-count">-->
-					<!--							100 Challengers-->
-					<!--						</div>-->
-					<!--						<div class="participants-profiles">-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--							<span class="circles"></span>-->
-					<!--						</div>-->
-					<!--					</div>-->
+					<div class="challenge-participants">
+						<div class="challenge-duration">
+							{{ challenge.durationSeconds | duration }}
+						</div>
+						<!--						<div class="participants-count">-->
+						<!--							100 Challengers-->
+						<!--						</div>-->
+						<!--						<div class="participants-profiles">-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--							<span class="circles"></span>-->
+						<!--						</div>-->
+					</div>
 				</div>
 			</div>
 		</ng-container>
 	</div>
+
 
 	<ng-template #noItems
 		><div class="onscreen-message">

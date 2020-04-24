@@ -31,20 +31,24 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
-	getChallenges(category: Category): Promise<ChallengeDto[]> {
+	getChallenges(
+		category: Category,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
 					this.apiUrl
 				}/users/${this.store.getUserId()}/challenge_stream?category=${
 					category.name
-				}&pageIndex=0&pageSize=10`
+				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
 				this.apiUrl
-			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=0&pageSize=10`
+			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
@@ -87,6 +91,22 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
+	getChallengeById(id: number): Promise<ChallengeDto> {
+		return this.getChallengeFromUrl(`${this.apiUrl}/challenge/${id}`);
+	}
+
+	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${userId}/done_challenges`
+		);
+	}
+
+	getUser(userId: string): Promise<UserDto> {
+		return this.httpClient
+			.get<UserDto>(`${this.apiUrl}/users/${userId}`)
+			.toPromise();
+	}
+
 	protected checkCache() {
 		const date = new Date();
 		const day = date.getDate();
@@ -111,7 +131,11 @@ export abstract class HTTPApiService implements ApiService {
 			category: Categories.find((c) => c.name === challenge.category),
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
-			createdBy: challenge.createdBy,
+			createdBy: challenge.createdByUserName,
+			material: challenge.material,
+			imageUrl: challenge.imageUrl,
+			pointsLoose: challenge.pointsLoose,
+			pointsWin: challenge.pointsWin,
 		});
 	}
 
