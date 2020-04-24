@@ -157,4 +157,34 @@ export class SimApiService implements ApiService {
 	async getChallengeById(id: number): Promise<ChallengeDto> {
 		return this.challenges.find((challenge) => challenge.id === id);
 	}
+
+	changeChallengeState(
+		challenge: ChallengeDto,
+		state: ChallengeState
+	): Promise<void> {
+		return undefined;
+	}
+
+	getActiveChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return undefined;
+	}
+
+	getCreatedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return undefined;
+	}
+
+	getDoneChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return undefined;
+	}
+
+	getRememberedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return undefined;
+	}
+
+	rememberChallenge(
+		user: UserDto,
+		challenge: ChallengeDto
+	): Promise<ChallengeDto> {
+		return undefined;
+	}
 }

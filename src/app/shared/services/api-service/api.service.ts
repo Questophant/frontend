@@ -44,29 +44,43 @@ export abstract class ApiService {
 	public changeChallengeState(
 		challenge: ChallengeDto,
 		state: ChallengeState
-	): Promise<ChallengeDto[]> {
+	): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getCreatedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	public getCreatedChallenges(): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDoneChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	public getDoneChallenges(): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getRememberedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	public getRememberedChallenges(): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getActiveChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	public getActiveChallenges(): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
 	public rememberChallenge(
-		user: UserDto,
-		challenge: ChallengeDto
+		challenge: ChallengeDto,
+		remember: boolean
+	): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public activateChallenge(
+		challenge: ChallengeDto,
+		activate: boolean
+	): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public completeChallenge(
+		challenge: ChallengeDto,
+		remember: boolean
 	): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}

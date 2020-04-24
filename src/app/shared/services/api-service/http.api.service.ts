@@ -4,16 +4,14 @@ import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(
-		protected httpClient: HttpClient,
-		private store: StoreService
-	) {}
+	constructor(protected http: HttpClient, private store: StoreService) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
@@ -53,7 +51,7 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	createNewUser(user: UserDto): Promise<UserDto> {
-		return this.httpClient
+		return this.http
 			.post<UserDto>(`${this.apiUrl}/users`, user)
 			.toPromise();
 	}
@@ -65,7 +63,7 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.post<ChallengeResponse>(
 				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`,
 				challenge
@@ -75,7 +73,7 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	deleteChallenge(challengeId: number): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.delete<ChallengeResponse>(
 				`${
 					this.apiUrl
@@ -93,6 +91,62 @@ export abstract class HTTPApiService implements ApiService {
 
 	getChallengeById(id: number): Promise<ChallengeDto> {
 		return this.getChallengeFromUrl(`${this.apiUrl}/challenge/${id}`);
+	}
+
+	changeChallengeState(
+		challenge: ChallengeDto,
+		state: ChallengeState
+	): Promise<void> {
+		return this.http
+			.post<void>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/challenge_status/${
+					challenge.id
+				}?state=${state}`,
+				{}
+			)
+			.toPromise();
+	}
+
+	getActiveChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/ongoing_challenges`
+		);
+	}
+
+	getCreatedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/created_challenges`
+		);
+	}
+
+	getDoneChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/done_challenges`
+		);
+	}
+
+	getRememberedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/marked_challenges`
+		);
+	}
+
+	rememberChallenge(
+		user: UserDto,
+		challenge: ChallengeDto
+	): Promise<ChallengeDto> {
+		return this.http
+			.post<ChallengeDto>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/marked_challenges/${
+					challenge.id
+				}?marked=true`,
+				{}
+			)
+			.toPromise();
 	}
 
 	protected checkCache() {
@@ -128,14 +182,14 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.get<ChallengeResponse>(url)
 			.toPromise()
 			.then(this.mapChallenge());
 	}
 
 	private getChallengesFromUrl(url: string): Promise<ChallengeDto[]> {
-		return this.httpClient
+		return this.http
 			.get<ChallengeResponse[]>(url)
 			.toPromise()
 			.then(this.mapChallenges());
