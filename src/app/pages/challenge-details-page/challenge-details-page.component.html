@@ -12,7 +12,9 @@
 			<div class="text">
 				von
 				<br />
-				<div style="font-size: 1.5rem;">{{ challenge.createdBy }}</div>
+				<div class="username">
+					{{ challenge.createdBy }}
+				</div>
 				<br />
 				<div class="category">{{ challenge.category.display }}</div>
 				<div class="points">{{ challenge.pointsWin }} Punkte</div>
@@ -34,7 +36,7 @@
 				*ngIf="!accepted"
 				class="challenge-action"
 			>
-				Challene annehmen
+				Challenge annehmen
 			</div>
 			<div
 				(click)="toggleRemember(challenge)"
