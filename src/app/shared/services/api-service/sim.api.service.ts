@@ -4,6 +4,7 @@ import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
 
 @Injectable()
 /**
@@ -21,6 +22,11 @@ export class SimApiService implements ApiService {
 		pointsLoose: 0,
 		pointsWin: 0,
 	};
+
+	private rememberedChallenges: ChallengeDto[] = [];
+	private createdChallenges: ChallengeDto[] = [];
+	private doneChallenges: ChallengeDto[] = [];
+	private activeChallenges: ChallengeDto[] = [];
 
 	private challenges: ChallengeDto[] = [
 		{
@@ -165,26 +171,35 @@ export class SimApiService implements ApiService {
 		return undefined;
 	}
 
-	getActiveChallenges(user: UserDto): Promise<ChallengeDto[]> {
-		return undefined;
+	async getActiveChallenges(): Promise<ChallengeDto[]> {
+		return this.activeChallenges;
 	}
 
-	getCreatedChallenges(user: UserDto): Promise<ChallengeDto[]> {
-		return undefined;
+	async getCreatedChallenges(): Promise<ChallengeDto[]> {
+		return this.createdChallenges;
 	}
 
-	getDoneChallenges(user: UserDto): Promise<ChallengeDto[]> {
-		return undefined;
+	async getDoneChallenges(): Promise<ChallengeDto[]> {
+		return this.doneChallenges;
 	}
 
-	getRememberedChallenges(user: UserDto): Promise<ChallengeDto[]> {
-		return undefined;
+	async getRememberedChallenges(): Promise<ChallengeDto[]> {
+		return this.rememberedChallenges;
 	}
 
-	rememberChallenge(
-		user: UserDto,
-		challenge: ChallengeDto
+	async rememberChallenge(
+		challenge: ChallengeDto,
+		remember: boolean
 	): Promise<ChallengeDto> {
-		return undefined;
+		this.rememberedChallenges.push(challenge);
+		return challenge;
+	}
+
+	async activateChallenge(
+		challenge: ChallengeDto,
+		activate: boolean
+	): Promise<ChallengeDto> {
+		this.activeChallenges.push(challenge);
+		return challenge;
 	}
 }

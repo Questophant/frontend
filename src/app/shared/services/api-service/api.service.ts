@@ -77,11 +77,4 @@ export abstract class ApiService {
 	): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
-
-	public completeChallenge(
-		challenge: ChallengeDto,
-		remember: boolean
-	): Promise<ChallengeDto> {
-		throw new Error('Method not implemented.');
-	}
 }

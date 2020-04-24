@@ -109,33 +109,33 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	getActiveChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	getActiveChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
 			`${this.apiUrl}/users/${this.store.getUserId()}/ongoing_challenges`
 		);
 	}
 
-	getCreatedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	getCreatedChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
 			`${this.apiUrl}/users/${this.store.getUserId()}/created_challenges`
 		);
 	}
 
-	getDoneChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	getDoneChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
 			`${this.apiUrl}/users/${this.store.getUserId()}/done_challenges`
 		);
 	}
 
-	getRememberedChallenges(user: UserDto): Promise<ChallengeDto[]> {
+	getRememberedChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
 			`${this.apiUrl}/users/${this.store.getUserId()}/marked_challenges`
 		);
 	}
 
 	rememberChallenge(
-		user: UserDto,
-		challenge: ChallengeDto
+		challenge: ChallengeDto,
+		remember: boolean
 	): Promise<ChallengeDto> {
 		return this.http
 			.post<ChallengeDto>(
@@ -143,7 +143,23 @@ export abstract class HTTPApiService implements ApiService {
 					this.apiUrl
 				}/users/${this.store.getUserId()}/marked_challenges/${
 					challenge.id
-				}?marked=true`,
+				}?marked=${remember}`,
+				{}
+			)
+			.toPromise();
+	}
+
+	activateChallenge(
+		challenge: ChallengeDto,
+		activate: boolean
+	): Promise<ChallengeDto> {
+		return this.http
+			.post<ChallengeDto>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/ongoing_challenges/${
+					challenge.id
+				}?marked=${activate}`,
 				{}
 			)
 			.toPromise();
