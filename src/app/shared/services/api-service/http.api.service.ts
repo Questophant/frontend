@@ -140,4 +140,8 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise()
 			.then(this.mapChallenges());
 	}
+
+	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(`${this.apiUrl}/users/${userId}`);
+	}
 }

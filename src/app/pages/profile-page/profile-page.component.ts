@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { Router } from '@angular/router';
+import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
 	selector: 'app-profile-page',
@@ -13,8 +14,12 @@ export class ProfilePageComponent implements OnInit {
 	showDataPrivacy = false;
 	showRules = false;
 
-	constructor(private api: ApiService, private router: Router) {
-		this.challenges$ = api.getChallenges(null, 0, 10); // TODO:
+	constructor(
+		private api: ApiService,
+		private router: Router,
+		private store: StoreService
+	) {
+		this.challenges$ = api.getChallengesForUser(store.getUserId());
 	}
 
 	ngOnInit(): void {}

@@ -157,4 +157,8 @@ export class SimApiService implements ApiService {
 	async getChallengeById(id: number): Promise<ChallengeDto> {
 		return this.challenges.find((challenge) => challenge.id === id);
 	}
+
+	async getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
+		return this.challenges;
+	}
 }
