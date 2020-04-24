@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { Router } from '@angular/router';
+import { StoreService } from '../../shared/services/store/store.service';
+import { UserDto } from '../../shared/dtos/user.dto';
 
 @Component({
 	selector: 'app-profile-page',
@@ -10,11 +12,18 @@ import { Router } from '@angular/router';
 })
 export class ProfilePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
+	user$: Promise<UserDto>;
+
 	showDataPrivacy = false;
 	showRules = false;
 
-	constructor(private api: ApiService, private router: Router) {
-		this.challenges$ = api.getChallenges(null, 0, 10); // TODO:
+	constructor(
+		private api: ApiService,
+		private router: Router,
+		private store: StoreService
+	) {
+		this.user$ = api.getUser(store.getUserId());
+		this.challenges$ = api.getChallengesForUser(store.getUserId());
 	}
 
 	ngOnInit(): void {}

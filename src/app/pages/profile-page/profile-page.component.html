@@ -22,53 +22,53 @@
 ></app-rules-overlay>
 
 <!-- actual ProfilePage -->
+<ng-container *ngIf="user$ | async as user">
+  <img class="profile-picture" src="/assets/images/profile/panda.webp" />
 
-<img class="profile-picture" src="/assets/images/profile/panda.webp" />
+	<div class="username-block">
+		<div class="username">{{ user.userName }}</div>
+		<!--	<div class="edit-icon">Edit</div>-->
+	</div>
 
-<div class="username-block">
-	<div class="username">Benutzername</div>
-	<!--	<div class="edit-icon">Edit</div>-->
-</div>
+	<!--<div class="privacy-selector">-->
+	<!--	<select>-->
+	<!--		<option value="" disabled selected>Profileinstellung</option>-->
+	<!--		<option value="0">Profil öffentlich</option>-->
+	<!--		<option value="1">Profil privat</option>-->
+	<!--	</select>-->
+	<!--</div>-->
 
-<!--<div class="privacy-selector">-->
-<!--	<select>-->
-<!--		<option value="" disabled selected>Profileinstellung</option>-->
-<!--		<option value="0">Profil öffentlich</option>-->
-<!--		<option value="1">Profil privat</option>-->
-<!--	</select>-->
-<!--</div>-->
+	<div class="dashboard-bar">
+		<!--	<div class="dashboard-bar-element">-->
+		<!--		<span class="value">10</span>-->
+		<!--		<span class="label">Punkte</span>-->
+		<!--	</div>-->
+		<!--	<div class="dashboard-bar-element">-->
+		<!--		<span class="value">10</span>-->
+		<!--		<span class="label">Rang</span>-->
+		<!--	</div>-->
+		<!--	<div class="dashboard-bar-element">-->
+		<!--		<span class="value">10</span>-->
+		<!--		<span class="label">Freunde</span>-->
+		<!--	</div>-->
+	</div>
 
-<div class="dashboard-bar">
-	<!--	<div class="dashboard-bar-element">-->
-	<!--		<span class="value">10</span>-->
-	<!--		<span class="label">Punkte</span>-->
-	<!--	</div>-->
-	<!--	<div class="dashboard-bar-element">-->
-	<!--		<span class="value">10</span>-->
-	<!--		<span class="label">Rang</span>-->
-	<!--	</div>-->
-	<!--	<div class="dashboard-bar-element">-->
-	<!--		<span class="value">10</span>-->
-	<!--		<span class="label">Freunde</span>-->
-	<!--	</div>-->
-</div>
+	<div class="challenges">Absolvierte Challenges</div>
 
-<div class="challenges">Absolvierte Challenges</div>
+	<!--&lt;!&ndash; Tab links &ndash;&gt;-->
+	<!--<div class="tab">-->
+	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Absolviert')">-->
+	<!--		Absolviert-->
+	<!--	</button>-->
+	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Erstellt')">-->
+	<!--		Erstellt-->
+	<!--	</button>-->
+	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Markiert')">-->
+	<!--		Markiert-->
+	<!--	</button>-->
+	<!--</div>-->
 
-<!--&lt;!&ndash; Tab links &ndash;&gt;-->
-<!--<div class="tab">-->
-<!--	<button class="tablinks" onclick="challengeSelect(event, 'Absolviert')">-->
-<!--		Absolviert-->
-<!--	</button>-->
-<!--	<button class="tablinks" onclick="challengeSelect(event, 'Erstellt')">-->
-<!--		Erstellt-->
-<!--	</button>-->
-<!--	<button class="tablinks" onclick="challengeSelect(event, 'Markiert')">-->
-<!--		Markiert-->
-<!--	</button>-->
-<!--</div>-->
-
-<app-challenge-list [challenges]="challenges$"></app-challenge-list>
-
+	<app-challenge-list [challenges]="challenges$"></app-challenge-list>
+</ng-container>
 <!--Footer-->
 <app-navbar></app-navbar>
