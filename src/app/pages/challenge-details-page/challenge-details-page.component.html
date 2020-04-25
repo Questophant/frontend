@@ -1,0 +1,69 @@
+<ng-container *ngIf="challenge | async as challenge">
+	<div class="picture">
+		<img
+			src="/assets/images/categories/{{ challenge.category.name }}.jpg"
+		/>
+		<a (click)="navigateBack()" class="back-home"><</a>
+	</div>
+
+	<div class="middle">
+		<div class="profile">
+			<img class="profilepic" src="/assets/images/profile/panda.png" />
+			<div class="text">
+				von
+				<br />
+				<div class="username">
+					{{ challenge.createdBy }}
+				</div>
+				<br />
+				<div class="category">{{ challenge.category.display }}</div>
+				<div class="points">{{ challenge.pointsWin }} Punkte</div>
+				<div class="duration">
+					{{ challenge.durationSeconds | duration }}
+				</div>
+			</div>
+		</div>
+		<div class="challenge">
+			<div class="challenge-name">{{ challenge.title }}</div>
+			<textarea class="challenge-description">{{
+				challenge.description
+			}}</textarea>
+			<textarea class="challenge-materials">{{
+				challenge.material || 'Keine Materialien benötigt'
+			}}</textarea>
+			<div
+				(click)="acceptChallenge(challenge)"
+				*ngIf="!accepted"
+				class="challenge-action"
+			>
+				Challenge annehmen
+			</div>
+			<div
+				(click)="toggleRemember(challenge)"
+				*ngIf="!accepted"
+				class="challenge-action"
+			>
+				{{ remembered ? 'Nicht mehr merken' : 'Challenge merken' }}
+			</div>
+			<div *ngIf="accepted" class="challenge-action">
+				Geschafft!
+			</div>
+			<div *ngIf="accepted" class="challenge-action">
+				Aufgeben
+			</div>
+		</div>
+	</div>
+
+	<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
+	<!--<div class="othersolutions">-->
+	<!--	<div style="font-size: 1.5rem; color: #67a682; display: inline-block;">-->
+	<!--		Andere Lösungen-->
+	<!--	</div>-->
+	<!--	<br />-->
+	<!--	<br />-->
+	<!--	<img class="solutionpicleft" src="../../../favicon.ico" alt="hello" />-->
+	<!--	<img class="solutionpicright" src="../../../favicon.ico" alt="hello" />-->
+	<!--</div>-->
+</ng-container>
+
+<app-navbar></app-navbar>

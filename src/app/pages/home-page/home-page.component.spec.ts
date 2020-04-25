@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { HomePageComponent } from './home-page.component';
-import { instance, mock, when } from 'ts-mockito';
+import { anything, instance, mock, when } from 'ts-mockito';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('HomePageComponent', () => {
 	let component: HomePageComponent;
@@ -17,6 +18,7 @@ describe('HomePageComponent', () => {
 					useValue: instance(mockApiService),
 				},
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 
 		when(mockApiService.getDailyChallenge()).thenResolve({
@@ -26,7 +28,11 @@ describe('HomePageComponent', () => {
 			durationSeconds: 0,
 			title: '',
 			createdBy: 'someUser',
+			pointsWin: 0,
+			pointsLoose: 0,
 		});
+
+		when(mockApiService.getChallenges(anything(), 0, 10)).thenResolve([]);
 	}));
 
 	beforeEach(() => {
