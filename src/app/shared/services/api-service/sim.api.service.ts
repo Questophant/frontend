@@ -181,7 +181,27 @@ export class SimApiService implements ApiService {
 		challenge: ChallengeDto,
 		state: ChallengeState
 	): Promise<void> {
-		return undefined;
+		challenge.state = state;
+		switch (state) {
+			case ChallengeState.FAILURE:
+				this.doneChallenges.push(challenge);
+				break;
+			case ChallengeState.ONGOING:
+				this.activeChallenges.push(challenge);
+				break;
+			case ChallengeState.SUCCESS:
+				this.doneChallenges.push(challenge);
+				break;
+			default:
+				this.doneChallenges = this.doneChallenges.filter(
+					(c) => c.id === challenge.id
+				);
+				this.activeChallenges = this.activeChallenges.filter(
+					(c) => c.id !== challenge.id
+				);
+				challenge.state = undefined;
+		}
+		return;
 	}
 
 	async getActiveChallenges(): Promise<ChallengeDto[]> {
@@ -204,7 +224,15 @@ export class SimApiService implements ApiService {
 		challenge: ChallengeDto,
 		remember: boolean
 	): Promise<ChallengeDto> {
-		this.rememberedChallenges.push(challenge);
+		if (remember) {
+			challenge.state = ChallengeState.MARKED;
+			this.rememberedChallenges.push(challenge);
+		} else {
+			challenge.state = undefined;
+			this.rememberedChallenges = this.rememberedChallenges.filter(
+				(c) => c.id !== challenge.id
+			);
+		}
 		return challenge;
 	}
 }

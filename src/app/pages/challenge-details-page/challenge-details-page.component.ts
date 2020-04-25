@@ -33,9 +33,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 					if (challenge) {
 						this.challenge = Promise.resolve(challenge);
 						this.remembered =
-							this.store
-								.getRememberedChallenges()
-								.indexOf(challenge.id) > -1;
+							challenge.state === ChallengeState.MARKED;
 						this.accepted =
 							this.store
 								.getAcceptedChallenges()
@@ -53,8 +51,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	acceptChallenge(challenge: ChallengeDto): void {
 		this.api
 			.rememberChallenge(challenge, false)
-			.then((c) =>
-				this.api.changeChallengeState(c, ChallengeState.ONGOING)
+			.then((_) =>
+				this.api.changeChallengeState(challenge, ChallengeState.ONGOING)
 			)
 			.then((value) => {
 				this.accepted = true;
