@@ -15,6 +15,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
 	remembered = false;
 	accepted = false;
+	success = false;
+	failure = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -72,11 +74,19 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	}
 
 	challengeSuccess(challenge: ChallengeDto): void {
-		this.api.changeChallengeState(challenge, ChallengeState.SUCCESS);
+		this.api
+			.changeChallengeState(challenge, ChallengeState.SUCCESS)
+			.then((value) => {
+				this.success = true;
+			});
 	}
 
 	challengeFailure(challenge: ChallengeDto): void {
-		this.api.changeChallengeState(challenge, ChallengeState.FAILURE);
+		this.api
+			.changeChallengeState(challenge, ChallengeState.FAILURE)
+			.then((value) => {
+				this.failure = true;
+			});
 	}
 
 	navigateBack() {
