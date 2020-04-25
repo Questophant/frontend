@@ -149,22 +149,6 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	activateChallenge(
-		challenge: ChallengeDto,
-		activate: boolean
-	): Promise<ChallengeDto> {
-		return this.http
-			.post<ChallengeDto>(
-				`${
-					this.apiUrl
-				}/users/${this.store.getUserId()}/ongoing_challenges/${
-					challenge.id
-				}?marked=${activate}`,
-				{}
-			)
-			.toPromise();
-	}
-
 	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
 			`${this.apiUrl}/users/${userId}/done_challenges`

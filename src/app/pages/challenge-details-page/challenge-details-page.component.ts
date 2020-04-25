@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
+import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -48,19 +49,34 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	ngOnInit(): void {}
 
 	acceptChallenge(challenge: ChallengeDto): void {
-		this.store.removeRememberedChallenge(challenge.id);
-		this.store.addAcceptedChallenge(challenge.id);
-		this.accepted = true;
+		this.api
+			.rememberChallenge(challenge, false)
+			.then((c) =>
+				this.api.changeChallengeState(c, ChallengeState.ONGOING)
+			)
+			.then((value) => {
+				this.accepted = true;
+			});
 	}
 
 	toggleRemember(challenge: ChallengeDto): void {
 		if (this.remembered) {
-			this.store.removeRememberedChallenge(challenge.id);
-			this.remembered = false;
+			this.api.rememberChallenge(challenge, false).then((value) => {
+				this.remembered = false;
+			});
 		} else {
-			this.store.addRememberedChallenge(challenge.id);
-			this.remembered = true;
+			this.api.rememberChallenge(challenge, true).then((value) => {
+				this.remembered = true;
+			});
 		}
+	}
+
+	challengeSuccess(challenge: ChallengeDto): void {
+		this.api.changeChallengeState(challenge, ChallengeState.SUCCESS);
+	}
+
+	challengeFailure(challenge: ChallengeDto): void {
+		this.api.changeChallengeState(challenge, ChallengeState.FAILURE);
 	}
 
 	navigateBack() {

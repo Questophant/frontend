@@ -69,5 +69,16 @@
 				font-size: 16px;
 			}
 		}
+
+		.datenschutz li {
+			margin-left: 20px !important;
+			text-align: left;
+			margin-bottom: 5px;
+		}
+
+		.datenschutz-ende {
+			font-size: 1.1em;
+			color: $general-green;
+		}
 	}
 }

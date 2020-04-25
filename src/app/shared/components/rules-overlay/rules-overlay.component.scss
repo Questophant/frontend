@@ -69,5 +69,16 @@
 				font-size: 16px;
 			}
 		}
+
+		.nutzungsbedingungen li {
+			margin-left: 20px !important;
+			text-align: left;
+			margin-bottom: 5px;
+		}
+
+		.nutzungsbedingungen-ende {
+			font-size: 1.1em;
+			color: $general-green;
+		}
 	}
 }

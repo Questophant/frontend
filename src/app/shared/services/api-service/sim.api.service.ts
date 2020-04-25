@@ -207,12 +207,4 @@ export class SimApiService implements ApiService {
 		this.rememberedChallenges.push(challenge);
 		return challenge;
 	}
-
-	async activateChallenge(
-		challenge: ChallengeDto,
-		activate: boolean
-	): Promise<ChallengeDto> {
-		this.activeChallenges.push(challenge);
-		return challenge;
-	}
 }
