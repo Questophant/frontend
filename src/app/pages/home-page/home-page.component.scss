@@ -1,7 +1,7 @@
 @import '../../../colors';
 
 $app-bar-height: 50px;
-$category-bar-height: 40px;
+$category-bar-height: 36px;
 
 @media only screen and (min-width: 500px) {
 	$category-bar-height: 40px !important;
@@ -18,7 +18,7 @@ $category-bar-height: 40px;
 	.app-bar {
 		height: $app-bar-height;
 
-		background-image: url('src/assets/images/app-bar-background.jpg');
+		background-image: url('src/assets/images/app-bar-background.webp');
 		background-size: cover;
 		background-repeat: no-repeat;
 

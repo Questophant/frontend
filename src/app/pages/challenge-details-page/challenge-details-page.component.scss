@@ -4,6 +4,8 @@
 	position: relative;
 	max-height: 30vh;
 	width: 100vw;
+	overflow: hidden;
+
 
 	img {
 		display: block;
@@ -36,7 +38,7 @@
 		position: relative;
 		width: 40vw;
 		padding-right: 4vw;
-		border-right: 2px solid black;
+		//border-right: 2px solid black;
 		//background-color: rgb(109, 109, 216);
 		.profilepic {
 			display: block;
@@ -48,6 +50,10 @@
 		}
 		.text {
 			text-align: center;
+		}
+		.username {
+			font-weight: 600;
+			overflow-wrap: break-word;
 		}
 	}
 	.challenge {
