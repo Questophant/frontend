@@ -36,7 +36,22 @@ jobs:
       - name: build
         run: |
           npm run build:ci
-
+    
       - name: unit test
         run: |
           npm run test:ci
+          
+      - name: e2e test
+        run: |
+          npm run e2e:ci
+     
+      - name: deploy
+        if: github.event_name == 'push'
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: dist/CMFrontend
+          remote: /CM/deployTest
+          host: ${{ secrets.TEST_HOST }}
+          username: ${{ secrets.TEST_SSH_USER }}
+          password: ${{ secrets.TEST_PASSWORD }}     
+      
