@@ -202,7 +202,7 @@ export abstract class HTTPApiService implements ApiService {
 			pointsLoose: challenge.pointsLoose,
 			pointsWin: challenge.pointsWin,
 			ongoing: challenge.ongoing,
-			marked: challenge.ongoing,
+			marked: challenge.marked,
 		});
 	}
 
