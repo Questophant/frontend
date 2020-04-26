@@ -8,11 +8,19 @@ export class StoreService {
 	constructor() {}
 
 	setUserId(userId: string): void {
-		localStorage.setItem(environment.apiService + '_userId', userId);
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		localStorage.setItem(prefix + 'userId', userId);
 	}
 
 	getUserId(): string | null {
-		return localStorage.getItem(environment.apiService + '_userId');
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		return localStorage.getItem(prefix + 'userId');
 	}
 
 	addRememberedChallenge(challengeId: number): void {
