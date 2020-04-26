@@ -90,7 +90,9 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	getChallengeById(id: number): Promise<ChallengeDto> {
-		return this.getChallengeFromUrl(`${this.apiUrl}/challenge/${id}`);
+		return this.getChallengeFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/challenge/${id}`
+		);
 	}
 
 	changeChallengeState(
