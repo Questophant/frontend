@@ -50,11 +50,7 @@ export class WelcomePageComponent implements OnInit {
 						);
 				},
 				(reason) => {
-					if (reason === 'Username is already in use') {
-						this.nameIsAlreadyInUse = true;
-					} else {
-						alert(reason);
-					}
+					this.nameIsAlreadyInUse = true;
 				}
 			);
 		}
