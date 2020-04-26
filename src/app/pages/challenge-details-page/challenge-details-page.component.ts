@@ -13,8 +13,9 @@ import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
+	showActions: boolean;
 	remembered = false;
-	accepted = false;
+	running = false;
 	success = false;
 	failure = false;
 
@@ -25,6 +26,11 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private store: StoreService,
 		private location: Location
 	) {
+		this.showActions =
+			this.route.snapshot.queryParamMap.get('actions') !== 'false';
+
+		console.log(this.showActions);
+
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
@@ -32,12 +38,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 				.then((challenge) => {
 					if (challenge) {
 						this.challenge = Promise.resolve(challenge);
-						this.remembered =
-							challenge.state === ChallengeState.MARKED;
-						this.accepted =
-							this.store
-								.getAcceptedChallenges()
-								.indexOf(challenge.id) > -1;
+						this.remembered = challenge.marked;
+						this.running = challenge.ongoing;
 					} else {
 						this.router.navigate(['']);
 					}
@@ -55,7 +57,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 				this.api.changeChallengeState(challenge, ChallengeState.ONGOING)
 			)
 			.then((value) => {
-				this.accepted = true;
+				this.running = true;
 			});
 	}
 

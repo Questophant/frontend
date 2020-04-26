@@ -1,5 +1,4 @@
 import { Category } from './category';
-import { ChallengeState } from './challenge-state.enum';
 
 export interface ChallengeDto {
 	id?: number;
@@ -7,12 +6,13 @@ export interface ChallengeDto {
 	description: string;
 	category: Category;
 	imageUrl?: string;
-	state?: ChallengeState;
 	durationSeconds: number;
 	createdBy: string;
+	material?: string;
 	pointsLoose: number;
 	pointsWin: number;
-	material?: string;
+	ongoing: boolean;
+	marked: boolean;
 }
 
 export interface ChallengeResponse {
@@ -21,10 +21,11 @@ export interface ChallengeResponse {
 	description: string;
 	category: string;
 	imageUrl: string;
-	state: string;
 	durationSeconds: number;
 	createdByUserName: string;
 	pointsLoose: number;
 	pointsWin: number;
 	material?: string;
+	ongoing: boolean;
+	marked: boolean;
 }

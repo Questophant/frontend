@@ -22,6 +22,8 @@ export class SimApiService implements ApiService {
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
+		ongoing: false,
+		marked: false,
 	};
 
 	private rememberedChallenges: ChallengeDto[] = [];
@@ -41,6 +43,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 2,
@@ -53,6 +57,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 3,
@@ -65,6 +71,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 4,
@@ -77,6 +85,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 5,
@@ -89,6 +99,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 6,
@@ -101,6 +113,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 	];
 
@@ -182,15 +196,17 @@ export class SimApiService implements ApiService {
 		challenge: ChallengeDto,
 		state: ChallengeState
 	): Promise<void> {
-		challenge.state = state;
 		switch (state) {
 			case ChallengeState.FAILURE:
+				challenge.ongoing = false;
 				this.doneChallenges.push(challenge);
 				break;
 			case ChallengeState.ONGOING:
+				challenge.ongoing = true;
 				this.activeChallenges.push(challenge);
 				break;
 			case ChallengeState.SUCCESS:
+				challenge.ongoing = false;
 				this.doneChallenges.push(challenge);
 				break;
 			default:
@@ -200,7 +216,7 @@ export class SimApiService implements ApiService {
 				this.activeChallenges = this.activeChallenges.filter(
 					(c) => c.id !== challenge.id
 				);
-				challenge.state = undefined;
+				challenge.ongoing = false;
 		}
 		return;
 	}
@@ -226,10 +242,10 @@ export class SimApiService implements ApiService {
 		remember: boolean
 	): Promise<ChallengeDto> {
 		if (remember) {
-			challenge.state = ChallengeState.MARKED;
+			challenge.marked = true;
 			this.rememberedChallenges.push(challenge);
 		} else {
-			challenge.state = undefined;
+			challenge.marked = false;
 			this.rememberedChallenges = this.rememberedChallenges.filter(
 				(c) => c.id !== challenge.id
 			);

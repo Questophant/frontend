@@ -201,7 +201,8 @@ export abstract class HTTPApiService implements ApiService {
 			imageUrl: challenge.imageUrl,
 			pointsLoose: challenge.pointsLoose,
 			pointsWin: challenge.pointsWin,
-			state: ChallengeState[challenge.state],
+			ongoing: challenge.ongoing,
+			marked: challenge.ongoing,
 		});
 	}
 
