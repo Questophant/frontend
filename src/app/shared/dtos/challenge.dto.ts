@@ -5,8 +5,12 @@ export interface ChallengeDto {
 	title: string;
 	description: string;
 	category: Category;
+	imageUrl?: string;
 	durationSeconds: number;
 	createdBy: string;
+	pointsLoose: number;
+	pointsWin: number;
+	material?: string;
 }
 
 export interface ChallengeResponse {
@@ -14,6 +18,10 @@ export interface ChallengeResponse {
 	title: string;
 	description: string;
 	category: string;
+	imageUrl: string;
 	durationSeconds: number;
-	createdBy: string;
+	createdByUserName: string;
+	pointsLoose: number;
+	pointsWin: number;
+	material?: string;
 }

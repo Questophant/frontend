@@ -13,6 +13,7 @@ import { CreateChallengePageComponent } from './pages/create-challenge-page/crea
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +23,7 @@ import { environment } from '../environments/environment';
 		ChallengeListPageComponent,
 		AchievementsPageComponent,
 		CreateChallengePageComponent,
+		ChallengeDetailsPageComponent,
 		ProfilePageComponent,
 		FriendsPageComponent,
 	],

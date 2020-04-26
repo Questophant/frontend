@@ -8,6 +8,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
+import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 
 const routes: Routes = [
 	{
@@ -37,6 +38,10 @@ const routes: Routes = [
 			{
 				path: 'challenge/create',
 				component: CreateChallengePageComponent,
+			},
+			{
+				path: 'challenge/:id/details',
+				component: ChallengeDetailsPageComponent,
 			},
 			{
 				path: 'achievements',

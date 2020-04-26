@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { ProfilePageComponent } from './profile-page.component';
 import { instance, mock } from 'ts-mockito';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ProfilePageComponent', () => {
 	let component: ProfilePageComponent;
@@ -19,6 +20,7 @@ describe('ProfilePageComponent', () => {
 					useValue: instance(mockApiService),
 				},
 			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 	}));
 
