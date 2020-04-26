@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { PointsDto } from '../../dtos/points.dto';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
@@ -160,6 +161,14 @@ export abstract class HTTPApiService implements ApiService {
 	getUser(userId: string): Promise<UserDto> {
 		return this.http
 			.get<UserDto>(`${this.apiUrl}/users/${userId}`)
+			.toPromise();
+	}
+
+	getPointsOfUser(): Promise<PointsDto> {
+		return this.http
+			.get<PointsDto>(
+				`${this.apiUrl}/users/${this.store.getUserId()}/points`
+			)
 			.toPromise();
 	}
 

@@ -3,6 +3,7 @@ import { Category } from '../../dtos/category';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 
 import { UserDto } from '../../dtos/user.dto';
+import { PointsDto } from '../../dtos/points.dto';
 
 export abstract class ApiService {
 	public getDailyChallenge(): Promise<ChallengeDto> {
@@ -76,6 +77,10 @@ export abstract class ApiService {
 		challenge: ChallengeDto,
 		remember: boolean
 	): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getPointsOfUser(): Promise<PointsDto> {
 		throw new Error('Method not implemented.');
 	}
 }

@@ -4,6 +4,7 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 import { Router } from '@angular/router';
 import { StoreService } from '../../shared/services/store/store.service';
 import { UserDto } from '../../shared/dtos/user.dto';
+import { PointsDto } from '../../shared/dtos/points.dto';
 
 @Component({
 	selector: 'app-profile-page',
@@ -12,6 +13,7 @@ import { UserDto } from '../../shared/dtos/user.dto';
 })
 export class ProfilePageComponent implements OnInit {
 	challenges$: Promise<ChallengeDto[]>;
+	points$: Promise<PointsDto>;
 	user$: Promise<UserDto>;
 
 	showDataPrivacy = false;
@@ -23,6 +25,7 @@ export class ProfilePageComponent implements OnInit {
 		private store: StoreService
 	) {
 		this.user$ = api.getUser(store.getUserId());
+		this.points$ = api.getPointsOfUser();
 		this.challenges$ = api.getDoneChallenges();
 	}
 

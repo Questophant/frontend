@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { PointsDto } from '../../dtos/points.dto';
 
 @Injectable()
 /**
@@ -234,5 +235,9 @@ export class SimApiService implements ApiService {
 			);
 		}
 		return challenge;
+	}
+
+	async getPointsOfUser(): Promise<PointsDto> {
+		return { points: 10 };
 	}
 }
