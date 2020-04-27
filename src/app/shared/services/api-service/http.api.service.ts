@@ -6,6 +6,7 @@ import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { PointsDto } from '../../dtos/points.dto';
+import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
@@ -63,7 +64,7 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
-	createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
+	createNewChallenge(challenge: CreateChallengeDto): Promise<ChallengeDto> {
 		return this.http
 			.post<ChallengeResponse>(
 				`${

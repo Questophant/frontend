@@ -1,11 +1,13 @@
 @import '../../../colors';
 
 .picture {
-	display: block;
-	position: relative;
-	background: green;
-	height: 30vh;
-	width: 100vw;
+	img {
+		display: block;
+		width: 100vw;
+	}
+
+	max-height: 30vh;
+	overflow: hidden;
 }
 
 .form-wrapper {
@@ -13,8 +15,6 @@
 	padding: 10px;
 
 	form {
-		margin-bottom: 20vh;
-
 		input,
 		textarea,
 		select {
@@ -35,6 +35,21 @@
 			border: none;
 			border-radius: 40px;
 			padding: 10px 25px;
+		}
+
+		.errors {
+			text-align: center;
+			padding: 10px;
+			margin: 15px;
+			background: #d8d8d8;
+			color: #b12a2a;
+			border-radius: 8px;
+			font-weight: 400;
+			font-size: 14px;
+
+			& > span {
+				display: block;
+			}
 		}
 	}
 }

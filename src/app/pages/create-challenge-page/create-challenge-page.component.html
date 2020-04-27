@@ -1,4 +1,11 @@
-<div class="picture"></div>
+<div class="picture">
+	<img
+		alt="Challenge picture"
+		src="/assets/images/categories/{{
+			this.challengeCategory.value || 'daily'
+		}}.jpg"
+	/>
+</div>
 
 <div class="form-wrapper">
 	<form [formGroup]="createChallengeForm" (ngSubmit)="onSubmit()">
@@ -32,6 +39,21 @@
 			[formControl]="challengeMaterial"
 		>
 		</textarea>
+
+		<div *ngIf="submitted && createChallengeForm.invalid" class="errors">
+			<span *ngIf="challengeName.errors !== null">
+				Gib deiner Challenge einen Namen.
+			</span>
+			<span *ngIf="challengeDescription.errors !== null">
+				Gib deiner Challenge eine Beschreibung.
+			</span>
+			<span *ngIf="challengeCategory.errors !== null">
+				Gib deiner Challenge eine Kategorie.
+			</span>
+			<span *ngIf="challengeMaterial.errors !== null">
+				Das ist doch etwas zu viel, was für die Challenge benötigt wird.
+			</span>
+		</div>
 
 		<button type="submit">Challenge erstellen</button>
 	</form>
