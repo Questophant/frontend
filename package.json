@@ -22,7 +22,7 @@
 	},
 	"pre-commit": [
 		"precommit-msg",
-		"prettier"
+		"prettier" 
 	],
 	"private": true,
 	"dependencies": {
