@@ -8,35 +8,19 @@ export class StoreService {
 	constructor() {}
 
 	setUserId(userId: string): void {
-		localStorage.setItem(environment.apiService + '_userId', userId);
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		localStorage.setItem(prefix + 'userId', userId);
 	}
 
 	getUserId(): string | null {
-		return localStorage.getItem(environment.apiService + '_userId');
-	}
-
-	addRememberedChallenge(challengeId: number): void {
-		this.addToArray<number>('rememberedChallenges', challengeId);
-	}
-
-	removeRememberedChallenge(challengeId: number): void {
-		this.removeFromArray<number>('rememberedChallenges', challengeId);
-	}
-
-	getRememberedChallenges(): number[] {
-		return this.getArray<number>('rememberedChallenges');
-	}
-
-	addAcceptedChallenge(challengeId: number): void {
-		this.addToArray<number>('acceptedChallenges', challengeId);
-	}
-
-	removeAcceptedChallenge(challengeId: number): void {
-		this.removeFromArray<number>('acceptedChallenges', challengeId);
-	}
-
-	getAcceptedChallenges(): number[] {
-		return this.getArray<number>('acceptedChallenges');
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		return localStorage.getItem(prefix + 'userId');
 	}
 
 	private getArray<T>(key: string): T[] {

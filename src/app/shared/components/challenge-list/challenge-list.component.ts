@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ChallengeListComponent implements OnInit {
 	@Input() challenges: Promise<ChallengeDto[]>;
+	@Input() showActions? = true;
 
 	constructor(private router: Router) {}
 

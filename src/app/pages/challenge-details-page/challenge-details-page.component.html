@@ -8,7 +8,7 @@
 
 	<div class="middle">
 		<div class="profile">
-			<img class="profilepic" src="/assets/images/profile/panda.png" />
+			<img class="profilepic" src="/assets/images/profile/panda.webp" />
 			<div class="text">
 				von
 				<br />
@@ -25,32 +25,42 @@
 		</div>
 		<div class="challenge">
 			<div class="challenge-name">{{ challenge.title }}</div>
-			<textarea class="challenge-description">{{
+			<textarea class="challenge-description" readonly>{{
 				challenge.description
 			}}</textarea>
-			<textarea class="challenge-materials">{{
+			<textarea class="challenge-materials" readonly>{{
 				challenge.material || 'Keine Materialien benötigt'
 			}}</textarea>
-			<div
-				(click)="acceptChallenge(challenge)"
-				*ngIf="!accepted"
-				class="challenge-action"
-			>
-				Challenge annehmen
-			</div>
-			<div
-				(click)="toggleRemember(challenge)"
-				*ngIf="!accepted"
-				class="challenge-action"
-			>
-				{{ remembered ? 'Nicht mehr merken' : 'Challenge merken' }}
-			</div>
-			<div *ngIf="accepted" class="challenge-action">
-				Geschafft!
-			</div>
-			<div *ngIf="accepted" class="challenge-action">
-				Aufgeben
-			</div>
+			<ng-container *ngIf="showActions">
+				<div
+					(click)="acceptChallenge(challenge)"
+					*ngIf="!running"
+					class="challenge-action"
+				>
+					Challenge annehmen
+				</div>
+				<div
+					(click)="toggleRemember(challenge)"
+					*ngIf="!running"
+					class="challenge-action"
+				>
+					{{ remembered ? 'Nicht mehr merken' : 'Challenge merken' }}
+				</div>
+				<div
+					(click)="challengeSuccess(challenge)"
+					*ngIf="running"
+					class="challenge-action"
+				>
+					Geschafft!
+				</div>
+				<div
+					(click)="challengeFailure(challenge)"
+					*ngIf="running"
+					class="challenge-action"
+				>
+					Aufgeben
+				</div>
+			</ng-container>
 		</div>
 	</div>
 

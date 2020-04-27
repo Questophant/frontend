@@ -30,6 +30,8 @@ describe('HomePageComponent', () => {
 			createdBy: 'someUser',
 			pointsWin: 0,
 			pointsLoose: 0,
+			ongoing: false,
+			marked: false,
 		});
 
 		when(mockApiService.getChallenges(anything(), 0, 10)).thenResolve([]);

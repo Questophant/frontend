@@ -23,7 +23,7 @@
 
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
-  <img class="profile-picture" src="/assets/images/profile/panda.webp" />
+	<img class="profile-picture" src="/assets/images/profile/panda.webp" />
 
 	<div class="username-block">
 		<div class="username">{{ user.userName }}</div>
@@ -39,10 +39,10 @@
 	<!--</div>-->
 
 	<div class="dashboard-bar">
-		<!--	<div class="dashboard-bar-element">-->
-		<!--		<span class="value">10</span>-->
-		<!--		<span class="label">Punkte</span>-->
-		<!--	</div>-->
+		<div *ngIf="points$ | async as points" class="dashboard-bar-element">
+			<span class="value">{{ points.points }}</span>
+			<span class="label">Punkte</span>
+		</div>
 		<!--	<div class="dashboard-bar-element">-->
 		<!--		<span class="value">10</span>-->
 		<!--		<span class="label">Rang</span>-->
@@ -68,7 +68,10 @@
 	<!--	</button>-->
 	<!--</div>-->
 
-	<app-challenge-list [challenges]="challenges$"></app-challenge-list>
+	<app-challenge-list
+		[challenges]="challenges$"
+		[showActions]="false"
+	></app-challenge-list>
 </ng-container>
 <!--Footer-->
 <app-navbar></app-navbar>

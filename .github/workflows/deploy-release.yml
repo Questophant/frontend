@@ -1,10 +1,9 @@
-name: Check build
+name: Deploy Release
+
 
 on:
-  pull_request:
-    branches: [ master ]
   push:
-    branches: [ master ]
+    branches: [ release ]
 
 jobs:
   build:
@@ -36,7 +35,7 @@ jobs:
 
       - name: build
         run: |
-          npm run build:test
+          npm run build:prod
 
       - name: unit test
         run: |
@@ -51,18 +50,18 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
             local: dist/CMFrontend/.
-            remote: ${{ secrets.TEST_DEST }}
-            host: ${{ secrets.TEST_HOST }}
-            username: ${{ secrets.TEST_SSH_USER }}
-            privateKey: ${{ secrets.TEST_SSH_KEY }}
+            remote: ${{ secrets.RELEASE_DEST }}
+            host: ${{ secrets.RELEASE_HOST }}
+            username: ${{ secrets.RELEASE_SSH_USER }}
+            privateKey: ${{ secrets.RELEASE_SSH_KEY }}
        
       - name: deploy-script 
         if: github.event_name == 'push'
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.TEST_HOST }}
-          username: ${{ secrets.TEST_SSH_USER }}
-          key: ${{ secrets.TEST_SSH_KEY }}
-          script: ${{ secrets.TEST_SCRIPT }}
+          host: ${{ secrets.RELEASE_HOST }}
+          username: ${{ secrets.RELEASE_SSH_USER }}
+          key: ${{ secrets.RELEASE_SSH_KEY }}
+          script: ${{ secrets.RELEASE_SCRIPT }}
 
 

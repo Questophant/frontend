@@ -6,6 +6,7 @@
 		<div
 			*ngFor="let challenge of challenges"
 			[routerLink]="['/challenge', challenge.id, 'details']"
+			[queryParams]="{ actions: showActions }"
 			class="challenge-element"
 		>
 			<div class="challenge-picture">
