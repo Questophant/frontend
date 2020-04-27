@@ -23,30 +23,6 @@ export class StoreService {
 		return localStorage.getItem(prefix + 'userId');
 	}
 
-	addRememberedChallenge(challengeId: number): void {
-		this.addToArray<number>('rememberedChallenges', challengeId);
-	}
-
-	removeRememberedChallenge(challengeId: number): void {
-		this.removeFromArray<number>('rememberedChallenges', challengeId);
-	}
-
-	getRememberedChallenges(): number[] {
-		return this.getArray<number>('rememberedChallenges');
-	}
-
-	addAcceptedChallenge(challengeId: number): void {
-		this.addToArray<number>('acceptedChallenges', challengeId);
-	}
-
-	removeAcceptedChallenge(challengeId: number): void {
-		this.removeFromArray<number>('acceptedChallenges', challengeId);
-	}
-
-	getAcceptedChallenges(): number[] {
-		return this.getArray<number>('acceptedChallenges');
-	}
-
 	private getArray<T>(key: string): T[] {
 		try {
 			return JSON.parse(localStorage.getItem(key) || '[]');
