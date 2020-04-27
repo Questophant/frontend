@@ -46,13 +46,23 @@ jobs:
         run: |
             npm run e2e:ci
 
-      -   name: deploy
-          if: github.event_name == 'push'
-          uses: garygrossgarten/github-action-scp@release
-          with:
-              local: dist/CMFrontend/.
-              remote: /CM/test/war/ROOT
-              host: ${{ secrets.TEST_HOST }}
-              username: ${{ secrets.TEST_SSH_USER }}
-              privateKey: ${{ secrets.TEST_SSH_KEY }}
+      - name: deploy-upload
+        if: github.event_name == 'push'
+        uses: garygrossgarten/github-action-scp@release
+        with:
+            local: dist/CMFrontend/.
+            remote: ${{ secrets.TEST_DEST }}
+            host: ${{ secrets.TEST_HOST }}
+            username: ${{ secrets.TEST_SSH_USER }}
+            privateKey: ${{ secrets.TEST_SSH_KEY }}
+       
+      - name: deploy-script 
+        if: github.event_name == 'push'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_HOST }}
+          username: ${{ secrets.TEST_SSH_USER }}
+          key: ${{ secrets.TEST_SSH_KEY }}
+          script: ${{ secrets.TEST_SCRIPT }}
+
 
