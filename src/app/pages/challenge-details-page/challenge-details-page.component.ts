@@ -5,7 +5,14 @@ import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
-import { animate, style, transition, trigger } from '@angular/animations';
+import {
+	animate,
+	query,
+	stagger,
+	style,
+	transition,
+	trigger,
+} from '@angular/animations';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -14,15 +21,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
 	animations: [
 		trigger('inOutAnimation', [
 			transition(':enter', [
-				style({ display: 'none', visibility: 'hidden' }),
-				animate(
-					'1s 1s ease-out',
-					style({ display: 'block', visibility: 'visible' })
+				query(
+					'*',
+					[
+						style({ opacity: 0 }),
+						stagger('1s', [
+							animate('1s ease-in-out', style({ opacity: 1 })),
+						]),
+					],
+					{ delay: 1000 }
 				),
-			]),
-			transition(':leave', [
-				style({ height: 300, opacity: 1 }),
-				animate('1s ease-in', style({ height: 0, opacity: 0 })),
 			]),
 		]),
 	],
@@ -30,10 +38,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
 	showActions: boolean;
-	remembered = false;
-	running = false;
+	remembered: boolean;
+	running: boolean;
 	success = false;
 	failure = false;
+	animations = true;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -54,6 +63,9 @@ export class ChallengeDetailsPageComponent implements OnInit {
 						this.challenge = Promise.resolve(challenge);
 						this.remembered = challenge.marked;
 						this.running = challenge.ongoing;
+						if (this.running) {
+							this.animations = false;
+						}
 					} else {
 						this.router.navigate(['']);
 					}
