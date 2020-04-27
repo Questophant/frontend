@@ -10,9 +10,7 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public createNewChallenge(
-		challenge: ChallengeDto
-	): Promise<ChallengeDto | string> {
+	public createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
 

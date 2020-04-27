@@ -66,7 +66,9 @@ export abstract class HTTPApiService implements ApiService {
 	createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
 		return this.http
 			.post<ChallengeResponse>(
-				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`,
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
 			.toPromise()
@@ -78,7 +80,7 @@ export abstract class HTTPApiService implements ApiService {
 			.delete<ChallengeResponse>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/challenges/${challengeId}`
+				}/users/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
 			.then(this.mapChallenge());
