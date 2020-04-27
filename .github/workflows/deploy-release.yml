@@ -1,0 +1,67 @@
+name: Deploy Release
+
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install dependencies
+        run: |
+          sudo apt-get install libgbm1
+          npm ci
+
+      - name: build
+        run: |
+          npm run build:prod
+
+      - name: unit test
+        run: |
+          npm run test:ci
+
+      - name: e2e test
+        run: |
+            npm run e2e:ci
+
+      - name: deploy-upload
+        if: github.event_name == 'push'
+        uses: garygrossgarten/github-action-scp@release
+        with:
+            local: dist/CMFrontend/.
+            remote: ${{ secrets.RELEASE_DEST }}
+            host: ${{ secrets.RELEASE_HOST }}
+            username: ${{ secrets.RELEASE_SSH_USER }}
+            privateKey: ${{ secrets.RELEASE_SSH_KEY }}
+       
+      - name: deploy-script 
+        if: github.event_name == 'push'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.RELEASE_HOST }}
+          username: ${{ secrets.RELEASE_SSH_USER }}
+          key: ${{ secrets.RELEASE_SSH_KEY }}
+          script: ${{ secrets.RELEASE_SCRIPT }}
+
+
