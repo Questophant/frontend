@@ -6,7 +6,7 @@
 		<a (click)="navigateBack()" class="back-home"><</a>
 	</div>
 
-	<div class="middle">
+	<div *ngIf="!success && !failure" class="middle">
 		<div class="profile">
 			<img class="profilepic" src="/assets/images/profile/panda.webp" />
 			<div class="text">
@@ -50,6 +50,7 @@
 					(click)="challengeSuccess(challenge)"
 					*ngIf="running"
 					class="challenge-action"
+					[@inOutAnimation]
 				>
 					Challenge gemeistert?
 				</div>
@@ -57,11 +58,28 @@
 					(click)="challengeFailure(challenge)"
 					*ngIf="running"
 					class="challenge-action"
+					[@inOutAnimation]
 				>
 					Aufgeben
 				</div>
 			</ng-container>
 		</div>
+	</div>
+
+	<div *ngIf="success" class="action-message">
+		<h1>Respekt! Weiter so!</h1>
+		<p>
+			Du hast die Challenge <span>{{ challenge.title }}</span> erfolgreich
+			abgeschlossen
+		</p>
+
+		<p>
+			Teile deinen Erfolg mit deinen Freunden und verwende den Hashtag ...
+		</p>
+	</div>
+
+	<div *ngIf="failure" class="action-message">
+		<h1>Schade. Probier es mit einer anderen Challenge.</h1>
 	</div>
 
 	<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->

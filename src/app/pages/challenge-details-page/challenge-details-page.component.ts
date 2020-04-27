@@ -5,11 +5,27 @@ import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-challenge-details-page',
 	templateUrl: './challenge-details-page.component.html',
 	styleUrls: ['./challenge-details-page.component.scss'],
+	animations: [
+		trigger('inOutAnimation', [
+			transition(':enter', [
+				style({ display: 'none', visibility: 'hidden' }),
+				animate(
+					'1s 1s ease-out',
+					style({ display: 'block', visibility: 'visible' })
+				),
+			]),
+			transition(':leave', [
+				style({ height: 300, opacity: 1 }),
+				animate('1s ease-in', style({ height: 0, opacity: 0 })),
+			]),
+		]),
+	],
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
@@ -28,8 +44,6 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
-
-		console.log(this.showActions);
 
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
@@ -76,7 +90,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeSuccess(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.SUCCESS)
-			.then((value) => {
+			.then((_) => {
 				this.success = true;
 			});
 	}
@@ -84,7 +98,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeFailure(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.FAILURE)
-			.then((value) => {
+			.then((_) => {
 				this.failure = true;
 			});
 	}

@@ -101,6 +101,39 @@
 		}
 	}
 }
+
+.action-message {
+	margin: 10px;
+	padding: 25px 10px;
+	color: $general-font-color;
+	background-color: $general-background-color;
+	text-align: center;
+
+	h1 {
+		color: $general-green;
+		margin: 2vw;
+		font-size: 24px;
+		font-weight: 700;
+	}
+
+	h2 {
+		color: $general-green;
+		margin: 2vw;
+		font-size: 22px;
+		font-weight: 500;
+	}
+
+	p {
+		display: block;
+		margin-bottom: 15px;
+		font-size: 16px;
+	}
+
+	span {
+		color: $general-green;
+	}
+}
+
 .othersolutions {
 	margin-left: 4vw;
 	margin-right: 4vw;
