@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
-import { StoreService } from '../../shared/services/store/store.service';
 import { ApiService } from '../../shared/services/api-service/api.service';
 
 @Component({
@@ -13,24 +12,15 @@ export class ChallengeListPageComponent implements OnInit {
 	showProgress = false;
 	challenges$: Promise<ChallengeDto[]>;
 
-	constructor(
-		private route: ActivatedRoute,
-		private store: StoreService,
-		private api: ApiService
-	) {
+	constructor(private route: ActivatedRoute, private api: ApiService) {
 		this.route.data.subscribe((v) => {
 			this.showProgress = v.showProgress;
-			let challengeIds = [];
 
 			if (this.showProgress) {
-				challengeIds = store.getAcceptedChallenges();
+				this.challenges$ = this.api.getActiveChallenges();
 			} else {
-				challengeIds = store.getRememberedChallenges();
+				this.challenges$ = this.api.getRememberedChallenges();
 			}
-
-			this.challenges$ = Promise.all(
-				challengeIds.map((id) => api.getChallengeById(id))
-			);
 		});
 	}
 

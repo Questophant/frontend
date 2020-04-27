@@ -8,9 +8,11 @@ export interface ChallengeDto {
 	imageUrl?: string;
 	durationSeconds: number;
 	createdBy: string;
+	material?: string;
 	pointsLoose: number;
 	pointsWin: number;
-	material?: string;
+	ongoing: boolean;
+	marked: boolean;
 }
 
 export interface ChallengeResponse {
@@ -24,4 +26,6 @@ export interface ChallengeResponse {
 	pointsLoose: number;
 	pointsWin: number;
 	material?: string;
+	ongoing: boolean;
+	marked: boolean;
 }

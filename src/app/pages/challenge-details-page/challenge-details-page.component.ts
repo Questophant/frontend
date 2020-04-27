@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
+import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -12,8 +13,11 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
+	showActions: boolean;
 	remembered = false;
-	accepted = false;
+	running = false;
+	success = false;
+	failure = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -22,6 +26,11 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private store: StoreService,
 		private location: Location
 	) {
+		this.showActions =
+			this.route.snapshot.queryParamMap.get('actions') !== 'false';
+
+		console.log(this.showActions);
+
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
@@ -29,14 +38,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 				.then((challenge) => {
 					if (challenge) {
 						this.challenge = Promise.resolve(challenge);
-						this.remembered =
-							this.store
-								.getRememberedChallenges()
-								.indexOf(challenge.id) > -1;
-						this.accepted =
-							this.store
-								.getAcceptedChallenges()
-								.indexOf(challenge.id) > -1;
+						this.remembered = challenge.marked;
+						this.running = challenge.ongoing;
 					} else {
 						this.router.navigate(['']);
 					}
@@ -48,19 +51,42 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	ngOnInit(): void {}
 
 	acceptChallenge(challenge: ChallengeDto): void {
-		this.store.removeRememberedChallenge(challenge.id);
-		this.store.addAcceptedChallenge(challenge.id);
-		this.accepted = true;
+		this.api
+			.rememberChallenge(challenge, false)
+			.then((_) =>
+				this.api.changeChallengeState(challenge, ChallengeState.ONGOING)
+			)
+			.then((value) => {
+				this.running = true;
+			});
 	}
 
 	toggleRemember(challenge: ChallengeDto): void {
 		if (this.remembered) {
-			this.store.removeRememberedChallenge(challenge.id);
-			this.remembered = false;
+			this.api.rememberChallenge(challenge, false).then((value) => {
+				this.remembered = false;
+			});
 		} else {
-			this.store.addRememberedChallenge(challenge.id);
-			this.remembered = true;
+			this.api.rememberChallenge(challenge, true).then((value) => {
+				this.remembered = true;
+			});
 		}
+	}
+
+	challengeSuccess(challenge: ChallengeDto): void {
+		this.api
+			.changeChallengeState(challenge, ChallengeState.SUCCESS)
+			.then((value) => {
+				this.success = true;
+			});
+	}
+
+	challengeFailure(challenge: ChallengeDto): void {
+		this.api
+			.changeChallengeState(challenge, ChallengeState.FAILURE)
+			.then((value) => {
+				this.failure = true;
+			});
 	}
 
 	navigateBack() {

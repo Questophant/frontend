@@ -4,16 +4,15 @@ import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { PointsDto } from '../../dtos/points.dto';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(
-		protected httpClient: HttpClient,
-		private store: StoreService
-	) {}
+	constructor(protected http: HttpClient, private store: StoreService) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
@@ -53,7 +52,7 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	createNewUser(user: UserDto): Promise<UserDto> {
-		return this.httpClient
+		return this.http
 			.post<UserDto>(`${this.apiUrl}/users`, user)
 			.toPromise();
 	}
@@ -65,9 +64,11 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.post<ChallengeResponse>(
-				`${this.apiUrl}/users/${this.store.getUserId()}/challenges`,
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
 			.toPromise()
@@ -75,11 +76,11 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	deleteChallenge(challengeId: number): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.delete<ChallengeResponse>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/challenges/${challengeId}`
+				}/users/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
 			.then(this.mapChallenge());
@@ -92,7 +93,65 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	getChallengeById(id: number): Promise<ChallengeDto> {
-		return this.getChallengeFromUrl(`${this.apiUrl}/challenge/${id}`);
+		return this.getChallengeFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/challenge/${id}`
+		);
+	}
+
+	changeChallengeState(
+		challenge: ChallengeDto,
+		state: ChallengeState
+	): Promise<void> {
+		return this.http
+			.post<void>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/challenge_status/${
+					challenge.id
+				}?state=${state}`,
+				{}
+			)
+			.toPromise();
+	}
+
+	getActiveChallenges(): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/ongoing_challenges`
+		);
+	}
+
+	getCreatedChallenges(): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/created_challenges`
+		);
+	}
+
+	getDoneChallenges(): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/done_challenges`
+		);
+	}
+
+	getRememberedChallenges(): Promise<ChallengeDto[]> {
+		return this.getChallengesFromUrl(
+			`${this.apiUrl}/users/${this.store.getUserId()}/marked_challenges`
+		);
+	}
+
+	rememberChallenge(
+		challenge: ChallengeDto,
+		remember: boolean
+	): Promise<ChallengeDto> {
+		return this.http
+			.post<ChallengeDto>(
+				`${
+					this.apiUrl
+				}/users/${this.store.getUserId()}/marked_challenges/${
+					challenge.id
+				}?marked=${remember}`,
+				{}
+			)
+			.toPromise();
 	}
 
 	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
@@ -102,8 +161,16 @@ export abstract class HTTPApiService implements ApiService {
 	}
 
 	getUser(userId: string): Promise<UserDto> {
-		return this.httpClient
+		return this.http
 			.get<UserDto>(`${this.apiUrl}/users/${userId}`)
+			.toPromise();
+	}
+
+	getPointsOfUser(): Promise<PointsDto> {
+		return this.http
+			.get<PointsDto>(
+				`${this.apiUrl}/users/${this.store.getUserId()}/points`
+			)
 			.toPromise();
 	}
 
@@ -136,18 +203,20 @@ export abstract class HTTPApiService implements ApiService {
 			imageUrl: challenge.imageUrl,
 			pointsLoose: challenge.pointsLoose,
 			pointsWin: challenge.pointsWin,
+			ongoing: challenge.ongoing,
+			marked: challenge.marked,
 		});
 	}
 
 	private getChallengeFromUrl(url: string): Promise<ChallengeDto> {
-		return this.httpClient
+		return this.http
 			.get<ChallengeResponse>(url)
 			.toPromise()
 			.then(this.mapChallenge());
 	}
 
 	private getChallengesFromUrl(url: string): Promise<ChallengeDto[]> {
-		return this.httpClient
+		return this.http
 			.get<ChallengeResponse[]>(url)
 			.toPromise()
 			.then(this.mapChallenges());

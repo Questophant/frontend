@@ -4,6 +4,8 @@ import { ChallengeDto } from '../../dtos/challenge.dto';
 import { ApiService } from './api.service';
 import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { PointsDto } from '../../dtos/points.dto';
 
 @Injectable()
 /**
@@ -20,7 +22,14 @@ export class SimApiService implements ApiService {
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
+		ongoing: false,
+		marked: false,
 	};
+
+	private rememberedChallenges: ChallengeDto[] = [];
+	private createdChallenges: ChallengeDto[] = [];
+	private doneChallenges: ChallengeDto[] = [];
+	private activeChallenges: ChallengeDto[] = [];
 
 	private challenges: ChallengeDto[] = [
 		{
@@ -34,6 +43,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 2,
@@ -46,6 +57,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 3,
@@ -58,6 +71,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 4,
@@ -70,6 +85,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 5,
@@ -82,6 +99,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 		{
 			id: 6,
@@ -94,6 +113,8 @@ export class SimApiService implements ApiService {
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
+			ongoing: false,
+			marked: false,
 		},
 	];
 
@@ -169,5 +190,70 @@ export class SimApiService implements ApiService {
 
 	async getUser(userId: string): Promise<UserDto> {
 		return this.testUser;
+	}
+
+	changeChallengeState(
+		challenge: ChallengeDto,
+		state: ChallengeState
+	): Promise<void> {
+		switch (state) {
+			case ChallengeState.FAILURE:
+				challenge.ongoing = false;
+				this.doneChallenges.push(challenge);
+				break;
+			case ChallengeState.ONGOING:
+				challenge.ongoing = true;
+				this.activeChallenges.push(challenge);
+				break;
+			case ChallengeState.SUCCESS:
+				challenge.ongoing = false;
+				this.doneChallenges.push(challenge);
+				break;
+			default:
+				this.doneChallenges = this.doneChallenges.filter(
+					(c) => c.id === challenge.id
+				);
+				this.activeChallenges = this.activeChallenges.filter(
+					(c) => c.id !== challenge.id
+				);
+				challenge.ongoing = false;
+		}
+		return;
+	}
+
+	async getActiveChallenges(): Promise<ChallengeDto[]> {
+		return this.activeChallenges;
+	}
+
+	async getCreatedChallenges(): Promise<ChallengeDto[]> {
+		return this.createdChallenges;
+	}
+
+	async getDoneChallenges(): Promise<ChallengeDto[]> {
+		return this.doneChallenges;
+	}
+
+	async getRememberedChallenges(): Promise<ChallengeDto[]> {
+		return this.rememberedChallenges;
+	}
+
+	async rememberChallenge(
+		challenge: ChallengeDto,
+		remember: boolean
+	): Promise<ChallengeDto> {
+		if (remember) {
+			challenge.marked = true;
+			this.rememberedChallenges.push(challenge);
+		} else {
+			challenge.marked = false;
+			this.rememberedChallenges = this.rememberedChallenges.filter(
+				(c) => c.id !== challenge.id
+			);
+		}
+		return challenge;
+	}
+
+	async getPointsOfUser(): Promise<PointsDto> {
+		return { points: 10 };
 	}
 }
