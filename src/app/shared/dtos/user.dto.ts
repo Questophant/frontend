@@ -1,5 +1,5 @@
 export interface UserDto {
-	userId: string;
+	publicUserId: string;
 	privateUserId: string;
 	userName: string;
 }
