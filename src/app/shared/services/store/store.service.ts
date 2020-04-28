@@ -7,12 +7,28 @@ import { environment } from 'src/environments/environment';
 export class StoreService {
 	constructor() {}
 
-	setUserId(userId: string): void {
+	setPublicUserId(userId: string): void {
 		let prefix =
 			environment.apiService === 'production'
 				? ''
 				: environment.apiService + '_';
-		localStorage.setItem(prefix + 'userId', userId);
+		localStorage.setItem(prefix + 'publicUserId', userId);
+	}
+
+	getPublicUserId(): string | null {
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		return localStorage.getItem(prefix + 'publicUserId');
+	}
+
+	setUserId(privateUserId: string) {
+		let prefix =
+			environment.apiService === 'production'
+				? ''
+				: environment.apiService + '_';
+		localStorage.setItem(prefix + 'userId', privateUserId);
 	}
 
 	getUserId(): string | null {

@@ -121,6 +121,7 @@ export class SimApiService implements ApiService {
 	private testUser: UserDto = {
 		userName: 'TestUser',
 		userId: 'someUserId',
+		privateUserId: 'privateUserId',
 	};
 
 	constructor(private store: StoreService) {}
@@ -131,6 +132,7 @@ export class SimApiService implements ApiService {
 		}
 		return {
 			userId: 'anyUserId',
+			privateUserId: 'privateUserId',
 			userName: user.userName,
 		};
 	}

@@ -30,15 +30,23 @@ describe('AuthService', () => {
 				mockApiService.createNewUser(
 					deepEqual({
 						userId: null,
+						privateUserId: null,
 						userName: 'anyUserName',
 					})
 				)
-			).thenResolve({ userId: 'anyUserId', userName: 'anyUserName' });
+			).thenResolve({
+				userId: 'anyUserId',
+				privateUserId: 'privateUserId',
+				userName: 'anyUserName',
+			});
 
 			await service.register('anyUserName');
 
-			expect(localStorage.getItem('simulation_userId')).toEqual(
+			expect(localStorage.getItem('simulation_publicUserId')).toEqual(
 				'anyUserId'
+			);
+			expect(localStorage.getItem('simulation_userId')).toEqual(
+				'privateUserId'
 			);
 		});
 	});
