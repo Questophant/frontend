@@ -5,19 +5,32 @@ import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-challenge-details-page',
 	templateUrl: './challenge-details-page.component.html',
 	styleUrls: ['./challenge-details-page.component.scss'],
+	animations: [
+		trigger('inOutAnimation', [
+			transition(':enter', [
+				style({ opacity: 0, 'pointer-events': 'none' }),
+				animate(
+					'1s ease-in-out',
+					style({ opacity: 1, 'pointer-events': 'all' })
+				),
+			]),
+		]),
+	],
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
 	showActions: boolean;
-	remembered = false;
-	running = false;
+	remembered: boolean;
+	running: boolean;
 	success = false;
 	failure = false;
+	animations = true;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -29,8 +42,6 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
 
-		console.log(this.showActions);
-
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
@@ -40,6 +51,9 @@ export class ChallengeDetailsPageComponent implements OnInit {
 						this.challenge = Promise.resolve(challenge);
 						this.remembered = challenge.marked;
 						this.running = challenge.ongoing;
+						if (this.running) {
+							this.animations = false;
+						}
 					} else {
 						this.router.navigate(['']);
 					}
@@ -76,7 +90,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeSuccess(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.SUCCESS)
-			.then((value) => {
+			.then((_) => {
 				this.success = true;
 			});
 	}
@@ -84,7 +98,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeFailure(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.FAILURE)
-			.then((value) => {
+			.then((_) => {
 				this.failure = true;
 			});
 	}

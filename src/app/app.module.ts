@@ -14,6 +14,7 @@ import { FriendsPageComponent } from './pages/friends-page/friends-page.componen
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/ch
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		AppRoutingModule,
 		SharedModule,
 		FormsModule,
