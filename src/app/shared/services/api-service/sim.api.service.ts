@@ -120,7 +120,7 @@ export class SimApiService implements ApiService {
 
 	private testUser: UserDto = {
 		userName: 'TestUser',
-		userId: 'someUserId',
+		publicUserId: 'someUserId',
 		privateUserId: 'privateUserId',
 	};
 
@@ -131,7 +131,7 @@ export class SimApiService implements ApiService {
 			return Promise.reject('Username is already in use');
 		}
 		return {
-			userId: 'anyUserId',
+			publicUserId: 'anyUserId',
 			privateUserId: 'privateUserId',
 			userName: user.userName,
 		};
