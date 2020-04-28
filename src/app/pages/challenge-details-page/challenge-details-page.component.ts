@@ -5,14 +5,7 @@ import { StoreService } from '../../shared/services/store/store.service';
 import { Location } from '@angular/common';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
-import {
-	animate,
-	query,
-	stagger,
-	style,
-	transition,
-	trigger,
-} from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -21,15 +14,10 @@ import {
 	animations: [
 		trigger('inOutAnimation', [
 			transition(':enter', [
-				query(
-					'*',
-					[
-						style({ opacity: 0 }),
-						stagger('1s', [
-							animate('1s ease-in-out', style({ opacity: 1 })),
-						]),
-					],
-					{ delay: 1000 }
+				style({ opacity: 0, 'pointer-events': 'none' }),
+				animate(
+					'1s ease-in-out',
+					style({ opacity: 1, 'pointer-events': 'all' })
 				),
 			]),
 		]),
