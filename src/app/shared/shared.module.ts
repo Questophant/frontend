@@ -13,6 +13,7 @@ import { apiServiceFactory } from './services/api-service/apiService.factory';
 import { AuthService } from './services/auth/auth.service';
 import { StoreService } from './services/store/store.service';
 
+
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
 	declarations: [
