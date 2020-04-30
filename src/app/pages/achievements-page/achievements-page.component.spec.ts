@@ -27,9 +27,10 @@ describe('AchievementsPageComponent', () => {
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 
-		when(mockApiService.getAchievementsForUser(anyString())).thenResolve(
-			null
-		);
+		when(mockApiService.getAchievementsForUser(anyString())).thenResolve({
+			achievmentsByCategory: [],
+			overalLevel: [],
+		});
 		when(mockStoreService.getPublicUserId()).thenReturn('vklkvl');
 	}));
 

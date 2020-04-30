@@ -55,6 +55,8 @@ describe('WelcomePageComponent', () => {
 			mockApiService
 		);
 
-		verify(mockRouter.navigate(deepEqual(['/']))).called();
+		setTimeout(() => {
+			verify(mockRouter.navigate(deepEqual(['/']))).called();
+		}, 1000);
 	});
 });
