@@ -182,6 +182,27 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
+	public getDefaultExceptionHandler() {
+		return (httpErrorResponse: HttpErrorResponse) => {
+			if (
+				environment.resetOnUserNotFound &&
+				httpErrorResponse.status === 404 &&
+				httpErrorResponse.error === 'MyUser not found.'
+			) {
+				window.alert(
+					'Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.'
+				);
+				this.store.reset();
+				window.location.reload();
+			} else {
+				window.alert(
+					'Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.'
+				);
+			}
+			throw httpErrorResponse;
+		};
+	}
+
 	protected checkCache() {
 		const date = new Date();
 		const day = date.getDate();
@@ -229,26 +250,5 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise()
 			.then(this.mapChallenges())
 			.catch(this.getDefaultExceptionHandler());
-	}
-
-	public getDefaultExceptionHandler() {
-		return (httpErrorResponse: HttpErrorResponse) => {
-			if (
-				environment.resetOnUserNotFound &&
-				httpErrorResponse.status == 404 &&
-				httpErrorResponse.error == 'MyUser not found.'
-			) {
-				window.alert(
-					'Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.'
-				);
-				this.store.reset();
-				window.location.href = '/#/welcome'; // wasn't able to get router injected into this place, so using default js function
-			} else {
-				window.alert(
-					'Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.'
-				);
-			}
-			throw httpErrorResponse;
-		};
 	}
 }

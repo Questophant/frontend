@@ -60,7 +60,6 @@ export class WelcomePageComponent implements OnInit {
 						);
 				},
 				(reason) => {
-					console.log(reason);
 					this.nameIsAlreadyInUse = true;
 				}
 			);
