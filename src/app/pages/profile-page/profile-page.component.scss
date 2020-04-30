@@ -8,9 +8,10 @@
 	img {
 		height: 25px;
 		cursor: pointer;
+		margin-right: 15px;
 
-		&:first-child {
-			margin-right: 15px;
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 }
