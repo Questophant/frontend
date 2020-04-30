@@ -11,11 +11,13 @@ import { StoreService } from './services/store/store.service';
 import { AuthService } from './services/auth/auth.service';
 import { ChallengeListComponent } from './components/challenge-list/challenge-list.component';
 import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
+import { ImprintOverlayComponent } from './components/imprint-overlay/imprint-overlay.component';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
 	declarations: [
 		DataPrivacyOverlayComponent,
+		ImprintOverlayComponent,
 		RulesOverlayComponent,
 		NavbarComponent,
 		ChallengeListComponent,
@@ -32,6 +34,7 @@ import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 	],
 	exports: [
 		DataPrivacyOverlayComponent,
+		ImprintOverlayComponent,
 		RulesOverlayComponent,
 		NavbarComponent,
 		ChallengeListComponent,
