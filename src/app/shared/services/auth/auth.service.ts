@@ -16,11 +16,13 @@ export class AuthService {
 
 	register(name: string): Promise<void> {
 		const userO: UserDto = {
-			userId: null,
+			publicUserId: null,
+			privateUserId: null,
 			userName: name,
 		};
 		return this.api.createNewUser(userO).then((user) => {
-			this.store.setUserId(user.userId);
+			this.store.setPublicUserId(user.publicUserId);
+			this.store.setUserId(user.privateUserId);
 		});
 	}
 

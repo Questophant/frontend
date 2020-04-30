@@ -5,6 +5,7 @@ import { ChallengeDto } from '../../dtos/challenge.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
+import { AchievementDto } from '../../dtos/achievement.dto';
 
 export abstract class ApiService {
 	public getDailyChallenge(): Promise<ChallengeDto> {
@@ -74,6 +75,10 @@ export abstract class ApiService {
 	}
 
 	public getPointsOfUser(): Promise<PointsDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getAchievementsForUser(id: string): Promise<AchievementDto> {
 		throw new Error('Method not implemented.');
 	}
 }

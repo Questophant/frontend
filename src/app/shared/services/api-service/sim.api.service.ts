@@ -7,6 +7,7 @@ import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
+import { AchievementDto } from '../../dtos/achievement.dto';
 
 @Injectable()
 /**
@@ -121,7 +122,8 @@ export class SimApiService implements ApiService {
 
 	private testUser: UserDto = {
 		userName: 'TestUser',
-		userId: 'someUserId',
+		publicUserId: 'someUserId',
+		privateUserId: 'privateUserId',
 	};
 
 	constructor(private store: StoreService) {}
@@ -131,7 +133,8 @@ export class SimApiService implements ApiService {
 			return Promise.reject('Username is already in use');
 		}
 		return {
-			userId: 'anyUserId',
+			publicUserId: 'anyUserId',
+			privateUserId: 'privateUserId',
 			userName: user.userName,
 		};
 	}
@@ -162,7 +165,7 @@ export class SimApiService implements ApiService {
 	): Promise<ChallengeDto> {
 		const c: ChallengeDto = {
 			id: this.challenges.length + 1,
-			createdBy: this.testUser.userId,
+			createdBy: this.testUser.publicUserId,
 			durationSeconds: challenge.durationSeconds,
 			imageUrl: undefined,
 			pointsLoose: 0,
@@ -265,5 +268,9 @@ export class SimApiService implements ApiService {
 
 	async getPointsOfUser(): Promise<PointsDto> {
 		return { points: 10 };
+	}
+
+	getAchievementsForUser(id: string): Promise<AchievementDto> {
+		return undefined;
 	}
 }

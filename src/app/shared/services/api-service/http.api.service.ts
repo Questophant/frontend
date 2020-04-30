@@ -7,6 +7,7 @@ import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
+import { AchievementDto } from '../../dtos/achievement.dto';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
@@ -40,7 +41,7 @@ export abstract class HTTPApiService implements ApiService {
 			return this.getChallengesFromUrl(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/challenge_stream?category=${
+				}/myUser/${this.store.getUserId()}/challenge_stream?category=${
 					category.name
 				}&pageIndex=${page}&pageSize=${size}`
 			);
@@ -48,19 +49,19 @@ export abstract class HTTPApiService implements ApiService {
 		return this.getChallengesFromUrl(
 			`${
 				this.apiUrl
-			}/users/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
+			}/myUser/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
 	createNewUser(user: UserDto): Promise<UserDto> {
 		return this.http
-			.post<UserDto>(`${this.apiUrl}/users`, user)
+			.post<UserDto>(`${this.apiUrl}/myUser`, user)
 			.toPromise();
 	}
 
 	getAllChallengesOfUser(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/challenges`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/challenges`
 		);
 	}
 
@@ -69,7 +70,7 @@ export abstract class HTTPApiService implements ApiService {
 			.post<ChallengeResponse>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/created_challenges`,
+				}/myUser/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
 			.toPromise()
@@ -81,7 +82,7 @@ export abstract class HTTPApiService implements ApiService {
 			.delete<ChallengeResponse>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/created_challenges/${challengeId}`
+				}/myUser/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
 			.then(this.mapChallenge());
@@ -95,7 +96,7 @@ export abstract class HTTPApiService implements ApiService {
 
 	getChallengeById(id: number): Promise<ChallengeDto> {
 		return this.getChallengeFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/challenge/${id}`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/challenge/${id}`
 		);
 	}
 
@@ -107,7 +108,7 @@ export abstract class HTTPApiService implements ApiService {
 			.post<void>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/challenge_status/${
+				}/myUser/${this.store.getUserId()}/challenge_status/${
 					challenge.id
 				}?state=${state}`,
 				{}
@@ -117,25 +118,25 @@ export abstract class HTTPApiService implements ApiService {
 
 	getActiveChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/ongoing_challenges`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/ongoing_challenges`
 		);
 	}
 
 	getCreatedChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/created_challenges`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/created_challenges`
 		);
 	}
 
 	getDoneChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/done_challenges`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/done_challenges`
 		);
 	}
 
 	getRememberedChallenges(): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${this.store.getUserId()}/marked_challenges`
+			`${this.apiUrl}/myUser/${this.store.getUserId()}/marked_challenges`
 		);
 	}
 
@@ -147,7 +148,7 @@ export abstract class HTTPApiService implements ApiService {
 			.post<ChallengeDto>(
 				`${
 					this.apiUrl
-				}/users/${this.store.getUserId()}/marked_challenges/${
+				}/myUser/${this.store.getUserId()}/marked_challenges/${
 					challenge.id
 				}?marked=${remember}`,
 				{}
@@ -157,21 +158,27 @@ export abstract class HTTPApiService implements ApiService {
 
 	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/users/${userId}/done_challenges`
+			`${this.apiUrl}/myUser/${userId}/done_challenges`
 		);
 	}
 
 	getUser(userId: string): Promise<UserDto> {
 		return this.http
-			.get<UserDto>(`${this.apiUrl}/users/${userId}`)
+			.get<UserDto>(`${this.apiUrl}/myUser/${userId}`)
 			.toPromise();
 	}
 
 	getPointsOfUser(): Promise<PointsDto> {
 		return this.http
 			.get<PointsDto>(
-				`${this.apiUrl}/users/${this.store.getUserId()}/points`
+				`${this.apiUrl}/myUser/${this.store.getUserId()}/points`
 			)
+			.toPromise();
+	}
+
+	getAchievementsForUser(id: string): Promise<AchievementDto> {
+		return this.http
+			.get<AchievementDto>(`${this.apiUrl}/publicUser/${id}/achievments`)
 			.toPromise();
 	}
 
