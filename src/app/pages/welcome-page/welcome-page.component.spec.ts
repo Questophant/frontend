@@ -1,10 +1,19 @@
+import { WelcomePageComponent } from './welcome-page.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { ApiService } from '../../shared/services/api-service/api.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
 
-// TODO: please fix TypeError: this.auth.checkUserRegistered(...).then is not a function
 describe('WelcomePageComponent', () => {
-	/*let component: WelcomePageComponent;
+	let component: WelcomePageComponent;
 	let fixture: ComponentFixture<WelcomePageComponent>;
 	const mockAuthService = mock(AuthService);
-	//const mockApiService = mock(ApiService);
+	const mockApiService = mock(ApiService);
+	const mockRouter = mock(Router);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
@@ -15,9 +24,15 @@ describe('WelcomePageComponent', () => {
 					provide: AuthService,
 					useValue: instance(mockAuthService),
 				},
+				{
+					provide: ApiService,
+					useValue: instance(mockApiService),
+				},
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
+
+		when(mockAuthService.checkUserRegistered()).thenResolve(true);
 	}));
 
 	beforeEach(() => {
@@ -30,18 +45,16 @@ describe('WelcomePageComponent', () => {
 		expect(component).toBeTruthy();
 	});
 
-
 	it('should redirect to root if user already registered', () => {
-		const mockRouter = mock(Router);
-		when(mockAuthService.isUserRegistered()).thenReturn(true);
 		when(mockRouter.navigate(deepEqual(['/']))).thenResolve();
+		when(mockAuthService.checkUserRegistered()).thenResolve(true);
 
 		const comp = new WelcomePageComponent(
-			mockAuthService,
+			instance(mockAuthService),
 			instance(mockRouter),
 			mockApiService
 		);
 
 		verify(mockRouter.navigate(deepEqual(['/']))).called();
-	});*/
+	});
 });
