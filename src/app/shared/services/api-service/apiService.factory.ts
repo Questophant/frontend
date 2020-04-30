@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
 import { LocalApiService } from './local.api.service';
 import { ProdApiService } from './prod.api.service';
 import { SimApiService } from './sim.api.service';
 import { TestApiService } from './test.api.service';
-import { StoreService } from '../store/store.service';
 
 export function apiServiceFactory(
 	httpClient: HttpClient,
