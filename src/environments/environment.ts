@@ -5,6 +5,7 @@
 export const environment = {
 	production: false,
 	apiService: 'simulation',
+	resetOnUserNotFound: false,
 };
 
 /*
