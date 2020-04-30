@@ -28,7 +28,7 @@ describe('AchievementsPageComponent', () => {
 		}).compileComponents();
 
 		when(mockApiService.getAchievementsForUser(anyString())).thenResolve({
-			achievmentsByCategory: [],
+			achievmentsByCategory: {},
 			overalLevel: [],
 		});
 		when(mockStoreService.getPublicUserId()).thenReturn('vklkvl');

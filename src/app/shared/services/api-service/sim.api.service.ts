@@ -119,6 +119,254 @@ export class SimApiService implements ApiService {
 		},
 	];
 
+	private achievements: AchievementDto = {
+		achievmentsByCategory: {
+			household: [
+				{
+					name: 'Heimscheisser',
+					imageUrl: '',
+					achieved: true,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			social: [
+				{
+					name: 'Einsiedlereule',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			physical: [
+				{
+					name: 'Couch-Potatoe',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			selfcare: [
+				{
+					name: 'Einstiegsyogi',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			cooking: [
+				{
+					name: 'Tellerwäscher',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			noComfortZone: [
+				{
+					name: 'Schnabeltassennutzer',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			creative: [
+				{
+					name: 'Tuschkastenvergesser',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			education: [
+				{
+					name: 'Ich-mag-Toastbrot!',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+		},
+		overalLevel: [
+			{
+				name: 'Holzmedaille',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+		],
+	};
+
 	private testUser: UserDto = {
 		userName: 'TestUser',
 		publicUserId: 'someUserId',
@@ -260,8 +508,8 @@ export class SimApiService implements ApiService {
 		return { points: 10 };
 	}
 
-	getAchievementsForUser(id: string): Promise<AchievementDto> {
-		return undefined;
+	async getAchievementsForUser(id: string): Promise<AchievementDto> {
+		return this.achievements;
 	}
 
 	public getDefaultExceptionHandler() {

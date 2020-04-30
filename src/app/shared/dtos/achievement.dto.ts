@@ -1,5 +1,5 @@
 export interface AchievementDto {
-	achievmentsByCategory: { [category: string]: Achievement[] }[];
+	achievmentsByCategory: { [category: string]: Achievement[] };
 	overalLevel: Achievement[];
 }
 
