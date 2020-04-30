@@ -24,19 +24,26 @@ export class WelcomePageComponent implements OnInit {
 		rules: new FormControl(false, [Validators.requiredTrue]),
 	});
 
-	constructor(public auth: AuthService, private router: Router, private api: ApiService) {
-		this.auth.checkUserRegistered().then((registered) => {
-			if (registered) {
-				this.router
-					.navigate(['/'])
-					.catch((reason) =>
-						alert('Es gab einen Fehler bei der Weiterleitung')
-					);
-			}
-		}).catch(api.getDefaultExceptionHandler);
+	constructor(
+		public auth: AuthService,
+		private router: Router,
+		private api: ApiService
+	) {
+		this.auth
+			.checkUserRegistered()
+			.then((registered) => {
+				if (registered) {
+					this.router
+						.navigate(['/'])
+						.catch((reason) =>
+							alert('Es gab einen Fehler bei der Weiterleitung')
+						);
+				}
+			})
+			.catch(api.getDefaultExceptionHandler);
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	saveName(): void {
 		this.submitted = true;

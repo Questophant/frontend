@@ -38,4 +38,4 @@ import { StoreService } from './services/store/store.service';
 		DurationPipe,
 	],
 })
-export class SharedModule { }
+export class SharedModule {}

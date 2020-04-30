@@ -5,9 +5,7 @@ import { ChallengeDto } from '../../dtos/challenge.dto';
 import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 
-
 export abstract class ApiService {
-
 	public getDailyChallenge(): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}

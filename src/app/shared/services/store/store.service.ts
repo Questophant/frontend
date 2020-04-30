@@ -5,8 +5,7 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root',
 })
 export class StoreService {
-
-	constructor() { }
+	constructor() {}
 
 	reset() {
 		this.setUserId(null);

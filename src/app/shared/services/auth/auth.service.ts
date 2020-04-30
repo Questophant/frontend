@@ -13,7 +13,7 @@ import { StoreService } from '../store/store.service';
  * - save userName on browser
  */
 export class AuthService {
-	constructor(private store: StoreService, private api: ApiService) { }
+	constructor(private store: StoreService, private api: ApiService) {}
 
 	register(name: string): Promise<void> {
 		const userO: UserDto = {
@@ -32,14 +32,19 @@ export class AuthService {
 	}
 
 	checkUserRegistered(): Promise<boolean> {
-		return this.api.getUser(this.store.getUserId()).then((user) => {
-			return true;
-		}
-		).catch((httpErrorResponse: HttpErrorResponse) => {
-			if (httpErrorResponse.status == 404 && httpErrorResponse.error == "MyUser not found.") {
-				return false;
-			}
-			throw httpErrorResponse;
-		});
+		return this.api
+			.getUser(this.store.getUserId())
+			.then((user) => {
+				return true;
+			})
+			.catch((httpErrorResponse: HttpErrorResponse) => {
+				if (
+					httpErrorResponse.status == 404 &&
+					httpErrorResponse.error == 'MyUser not found.'
+				) {
+					return false;
+				}
+				throw httpErrorResponse;
+			});
 	}
 }

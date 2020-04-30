@@ -125,7 +125,7 @@ export class SimApiService implements ApiService {
 		privateUserId: 'privateUserId',
 	};
 
-	constructor(private store: StoreService) { }
+	constructor(private store: StoreService) {}
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
 		if (user.userName === 'existingUserName') {

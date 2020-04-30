@@ -14,7 +14,7 @@ export abstract class HTTPApiService implements ApiService {
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(protected http: HttpClient, private store: StoreService) { }
+	constructor(protected http: HttpClient, private store: StoreService) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
@@ -40,15 +40,15 @@ export abstract class HTTPApiService implements ApiService {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_stream?category=${
-				category.name
+					category.name
 				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
-			this.apiUrl
+				this.apiUrl
 			}/myUser/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
@@ -69,7 +69,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeResponse>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
@@ -81,7 +81,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.delete<ChallengeResponse>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
@@ -107,9 +107,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<void>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_status/${
-				challenge.id
+					challenge.id
 				}?state=${state}`,
 				{}
 			)
@@ -147,9 +147,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeDto>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/marked_challenges/${
-				challenge.id
+					challenge.id
 				}?marked=${remember}`,
 				{}
 			)
@@ -233,16 +233,22 @@ export abstract class HTTPApiService implements ApiService {
 
 	public getDefaultExceptionHandler() {
 		return (httpErrorResponse: HttpErrorResponse) => {
-			if (environment.resetOnUserNotFound && httpErrorResponse.status == 404 && httpErrorResponse.error == "MyUser not found.") {
-
-				window.alert("Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.");
+			if (
+				environment.resetOnUserNotFound &&
+				httpErrorResponse.status == 404 &&
+				httpErrorResponse.error == 'MyUser not found.'
+			) {
+				window.alert(
+					'Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.'
+				);
 				this.store.reset();
-				window.location.href = "/#/welcome"; // wasn't able to get router injected into this place, so using default js function
-
+				window.location.href = '/#/welcome'; // wasn't able to get router injected into this place, so using default js function
 			} else {
-				window.alert("Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.");
+				window.alert(
+					'Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.'
+				);
 			}
 			throw httpErrorResponse;
-		}
+		};
 	}
 }
