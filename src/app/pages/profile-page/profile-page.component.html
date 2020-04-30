@@ -9,6 +9,12 @@
 		class="rules-btn"
 		src="/assets/icons/document.svg"
 	/>
+	<img
+		(click)="toggleImprint()"
+		alt="Impressum"
+		class="imprint-btn"
+		src="/assets/icons/imprint.svg"
+	/>
 </div>
 
 <app-data-privacy-overlay
@@ -20,6 +26,11 @@
 	(onClose)="toggleRules()"
 	*ngIf="showRules"
 ></app-rules-overlay>
+
+<app-imprint-overlay
+	(onClose)="toggleImprint()"
+	*ngIf="showImprint"
+></app-imprint-overlay>
 
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
