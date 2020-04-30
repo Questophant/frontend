@@ -1,19 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Categories, Category } from '../../dtos/category';
-import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
-import { ApiService } from './api.service';
-import { StoreService } from '../store/store.service';
-import { UserDto } from '../../dtos/user.dto';
-import { ChallengeState } from '../../dtos/challenge-state.enum';
-import { PointsDto } from '../../dtos/points.dto';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { AchievementDto } from '../../dtos/achievement.dto';
+import { Categories, Category } from '../../dtos/category';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
+import { PointsDto } from '../../dtos/points.dto';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
+import { ApiService } from './api.service';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDay: number;
 
-	constructor(protected http: HttpClient, private store: StoreService) {}
+	constructor(protected http: HttpClient, private store: StoreService) { }
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		this.checkCache();
@@ -39,15 +40,15 @@ export abstract class HTTPApiService implements ApiService {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_stream?category=${
-					category.name
+				category.name
 				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
-				this.apiUrl
+			this.apiUrl
 			}/myUser/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
@@ -68,7 +69,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeResponse>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
@@ -80,7 +81,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.delete<ChallengeResponse>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
@@ -106,9 +107,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<void>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_status/${
-					challenge.id
+				challenge.id
 				}?state=${state}`,
 				{}
 			)
@@ -146,9 +147,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeDto>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/marked_challenges/${
-					challenge.id
+				challenge.id
 				}?marked=${remember}`,
 				{}
 			)
@@ -185,7 +186,7 @@ export abstract class HTTPApiService implements ApiService {
 		const date = new Date();
 		const day = date.getDate();
 
-		// new values at 1:30h => reset at 2 o'clock
+		// new values every day
 		if (this.cacheDay !== day) {
 			console.log('Resetting caches.');
 			this.cacheDay = day;
@@ -226,6 +227,22 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.get<ChallengeResponse[]>(url)
 			.toPromise()
-			.then(this.mapChallenges());
+			.then(this.mapChallenges())
+			.catch(this.getDefaultExceptionHandler());
+	}
+
+	public getDefaultExceptionHandler() {
+		return (httpErrorResponse: HttpErrorResponse) => {
+			if (environment.resetOnUserNotFound && httpErrorResponse.status == 404 && httpErrorResponse.error == "MyUser not found.") {
+
+				window.alert("Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.");
+				this.store.reset();
+				window.location.href = "/#/welcome"; // wasn't able to get router injected into this place, so using default js function
+
+			} else {
+				window.alert("Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.");
+			}
+			throw httpErrorResponse;
+		}
 	}
 }
