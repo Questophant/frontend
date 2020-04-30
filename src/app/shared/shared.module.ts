@@ -12,6 +12,7 @@ import { ApiService } from './services/api-service/api.service';
 import { apiServiceFactory } from './services/api-service/apiService.factory';
 import { AuthService } from './services/auth/auth.service';
 import { StoreService } from './services/store/store.service';
+import { ChallengeService } from './services/challenge-service/challenge.service';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
@@ -31,6 +32,7 @@ import { StoreService } from './services/store/store.service';
 		},
 		AuthService,
 		StoreService,
+		ChallengeService,
 	],
 	exports: [
 		DataPrivacyOverlayComponent,
