@@ -55,6 +55,7 @@ describe('WelcomePageComponent', () => {
 			mockApiService
 		);
 
+		// Need to wait here because method call happens inside then method of promise. Otherwise fails because checking too early
 		setTimeout(() => {
 			verify(mockRouter.navigate(deepEqual(['/']))).called();
 		}, 1000);
