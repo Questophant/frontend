@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserDto } from '../../dtos/user.dto';
 import { ApiService } from '../api-service/api.service';
 import { StoreService } from '../store/store.service';
-import { UserDto } from '../../dtos/user.dto';
 
 @Injectable({
 	providedIn: 'root',
@@ -28,5 +29,22 @@ export class AuthService {
 
 	isUserRegistered(): boolean {
 		return this.store.getUserId() !== null;
+	}
+
+	checkUserRegistered(): Promise<boolean> {
+		return this.api
+			.getUser(this.store.getUserId())
+			.then((user) => {
+				return true;
+			})
+			.catch((httpErrorResponse: HttpErrorResponse) => {
+				if (
+					httpErrorResponse.status == 404 &&
+					httpErrorResponse.error == 'MyUser not found.'
+				) {
+					return false;
+				}
+				throw httpErrorResponse;
+			});
 	}
 }

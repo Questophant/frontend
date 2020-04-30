@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Category, getCategoryByName } from '../../dtos/category';
-import { ChallengeDto } from '../../dtos/challenge.dto';
-import { ApiService } from './api.service';
-import { StoreService } from '../store/store.service';
-import { UserDto } from '../../dtos/user.dto';
-import { ChallengeState } from '../../dtos/challenge-state.enum';
-import { PointsDto } from '../../dtos/points.dto';
 import { AchievementDto } from '../../dtos/achievement.dto';
+import { Category, getCategoryByName } from '../../dtos/category';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { ChallengeDto } from '../../dtos/challenge.dto';
+import { PointsDto } from '../../dtos/points.dto';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
+import { ApiService } from './api.service';
 
 @Injectable()
 /**
@@ -262,5 +262,9 @@ export class SimApiService implements ApiService {
 
 	getAchievementsForUser(id: string): Promise<AchievementDto> {
 		return undefined;
+	}
+
+	public getDefaultExceptionHandler() {
+		// NO OP
 	}
 }
