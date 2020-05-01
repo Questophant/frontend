@@ -27,7 +27,6 @@ export class HomePageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private api: ApiService
 	) {
-		console.log('called');
 		this.route.queryParamMap.subscribe((params) => {
 			const category = getCategoryByName(params.get('category'));
 
