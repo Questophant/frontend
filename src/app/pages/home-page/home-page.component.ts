@@ -29,8 +29,18 @@ export class HomePageComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	setCategory(category: Category): void {
+		this.selectedCategory = category;
+		this.challenges = [];
+		this.updateChallenges();
+	}
+
+	trackChallenges(index: number, challenge: ChallengeDto): number {
+		return challenge.id;
+	}
+
 	@HostListener('window:scroll', [])
-	onScroll(): void {
+	private onScroll(): void {
 		if (
 			!this.updateInProgress &&
 			window.innerHeight + window.scrollY >= document.body.offsetHeight
@@ -48,16 +58,6 @@ export class HomePageComponent implements OnInit {
 					this.challenges = this.challenges.concat(newChallenges);
 				});
 		}
-	}
-
-	setCategory(category: Category): void {
-		this.selectedCategory = category;
-		this.challenges = [];
-		this.updateChallenges();
-	}
-
-	trackChallenges(index: number, challenge: ChallengeDto): number {
-		return challenge.id;
 	}
 
 	private updateChallenges(): void {

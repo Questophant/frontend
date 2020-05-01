@@ -33,9 +33,6 @@ export class CacheRouteReuseStrategy implements RouteReuseStrategy {
 		this.shouldStore =
 			curr.routeConfig?.path === 'challenge/:id/details' &&
 			future.routeConfig?.path === '';
-		this.test =
-			future.routeConfig?.path === 'challenge/:id/details' &&
-			curr.routeConfig?.path === '';
 
 		return future.routeConfig === curr.routeConfig;
 	}
