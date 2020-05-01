@@ -27,17 +27,18 @@ export class HomePageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private api: ApiService
 	) {
+		console.log('called');
 		this.route.queryParamMap.subscribe((params) => {
 			const category = getCategoryByName(params.get('category'));
 
-			this.selectedCategory = category ?? null;
+			// this.selectedCategory = category ?? null;
 			this.getDailyChallenge();
 			this.updateChallenges();
 
-			if (!category) {
-				// Remove query-param when no valid category selected
-				this.setCategoryParam(null);
-			}
+			// if (!category) {
+			// 	// Remove query-param when no valid category selected
+			// 	this.setCategoryParam(null);
+			// }
 		});
 	}
 
@@ -69,14 +70,14 @@ export class HomePageComponent implements OnInit {
 		this.challenges = [];
 		this.updateChallenges();
 
-		this.setCategoryParam(category?.name);
+		// this.setCategoryParam(category?.name);
 	}
 
 	trackChallenges(index: number, challenge: ChallengeDto): number {
 		return challenge.id;
 	}
 
-	private setCategoryParam(category: string) {
+	private setCategoryParam(category: string): void {
 		this.router
 			.navigate([], {
 				queryParams: {
@@ -89,7 +90,7 @@ export class HomePageComponent implements OnInit {
 			});
 	}
 
-	private updateChallenges() {
+	private updateChallenges(): void {
 		this.api
 			.getChallenges(this.selectedCategory, 0, this.pageSize)
 			.then((challenges) => {
@@ -100,7 +101,7 @@ export class HomePageComponent implements OnInit {
 			});
 	}
 
-	private getDailyChallenge() {
+	private getDailyChallenge(): void {
 		this.api.getDailyChallenge().then((challenge) => {
 			challenge.category = {
 				name: 'daily',
