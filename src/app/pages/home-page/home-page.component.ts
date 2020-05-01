@@ -15,11 +15,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 	challenges: ChallengeDto[];
+	dailyChallenge: ChallengeDto;
 	categories: Category[] = Categories;
 	selectedCategory: Category;
-	dailyChallenge: ChallengeDto;
-	pageIndex = 0;
-	pageSize = 10;
+	private pageIndex = 0;
+	private pageSize = 10;
 	private updateInProgress = false;
 
 	constructor(
@@ -35,6 +35,7 @@ export class HomePageComponent implements OnInit {
 			this.updateChallenges();
 
 			if (!category) {
+				// Remove query-param when no valid category selected
 				this.setCategoryParam(null);
 			}
 		});
