@@ -5,17 +5,9 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root',
 })
 export class StoreService {
-	constructor() {}
-
-	reset() {
+	reset(): void {
 		this.setUserId(null);
 		this.setPublicUserId(null);
-	}
-
-	private getUserStorageKey(key: string): string {
-		return environment.apiService === 'production'
-			? key
-			: environment.apiService + '_' + key;
 	}
 
 	setPublicUserId(userId: string): void {
@@ -26,12 +18,18 @@ export class StoreService {
 		return localStorage.getItem(this.getUserStorageKey('publicUserId'));
 	}
 
-	setUserId(privateUserId: string) {
+	setUserId(privateUserId: string): void {
 		localStorage.setItem(this.getUserStorageKey('userId'), privateUserId);
 	}
 
 	getUserId(): string | null {
 		return localStorage.getItem(this.getUserStorageKey('userId'));
+	}
+
+	private getUserStorageKey(key: string): string {
+		return environment.apiService === 'production'
+			? key
+			: environment.apiService + '_' + key;
 	}
 
 	private getArray<T>(key: string): T[] {

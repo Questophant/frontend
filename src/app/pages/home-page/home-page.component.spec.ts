@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/shared/services/api-service/api.service';
 import { HomePageComponent } from './home-page.component';
 import { anything, instance, mock, when } from 'ts-mockito';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomePageComponent', () => {
 	let component: HomePageComponent;
@@ -11,6 +12,7 @@ describe('HomePageComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [RouterTestingModule],
 			declarations: [HomePageComponent],
 			providers: [
 				{

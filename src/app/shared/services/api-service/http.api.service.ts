@@ -11,22 +11,24 @@ import { ApiService } from './api.service';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
+
 	private cachedDailyChallenge: ChallengeDto;
-	private cacheDay: number;
+	private cacheDate: number;
 
 	constructor(protected http: HttpClient, private store: StoreService) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
-		this.checkCache();
-		if (this.cachedDailyChallenge) {
-			return new Promise((resolve, reject) => {
-				resolve(this.cachedDailyChallenge);
-			});
+		const date = new Date().getDate();
+
+		if (this.cacheDate && this.cacheDate === date) {
+			// Return cached DailyChallenge
+			return Promise.resolve(this.cachedDailyChallenge);
 		}
 
 		return this.getChallengeFromUrl(`${this.apiUrl}/daily_challenge`).then(
 			(challenge) => {
 				this.cachedDailyChallenge = challenge;
+				this.cacheDate = date;
 				return challenge;
 			}
 		);
@@ -201,18 +203,6 @@ export abstract class HTTPApiService implements ApiService {
 			}
 			throw httpErrorResponse;
 		};
-	}
-
-	protected checkCache() {
-		const date = new Date();
-		const day = date.getDate();
-
-		// new values every day
-		if (this.cacheDay !== day) {
-			console.log('Resetting caches.');
-			this.cacheDay = day;
-			this.cachedDailyChallenge = null;
-		}
 	}
 
 	private mapChallenges() {
