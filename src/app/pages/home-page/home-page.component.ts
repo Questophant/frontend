@@ -1,9 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import {
-	Categories,
-	Category,
-	getCategoryByName,
-} from 'src/app/shared/dtos/category';
+import { Categories, Category } from 'src/app/shared/dtos/category';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api-service/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +13,7 @@ export class HomePageComponent implements OnInit {
 	challenges: ChallengeDto[];
 	dailyChallenge: ChallengeDto;
 	categories: Category[] = Categories;
-	selectedCategory: Category;
+	selectedCategory: Category = null;
 	private pageIndex = 0;
 	private pageSize = 10;
 	private updateInProgress = false;
@@ -27,18 +23,8 @@ export class HomePageComponent implements OnInit {
 		private route: ActivatedRoute,
 		private api: ApiService
 	) {
-		this.route.queryParamMap.subscribe((params) => {
-			const category = getCategoryByName(params.get('category'));
-
-			// this.selectedCategory = category ?? null;
-			this.getDailyChallenge();
-			this.updateChallenges();
-
-			// if (!category) {
-			// 	// Remove query-param when no valid category selected
-			// 	this.setCategoryParam(null);
-			// }
-		});
+		this.getDailyChallenge();
+		this.updateChallenges();
 	}
 
 	ngOnInit(): void {}
@@ -68,25 +54,10 @@ export class HomePageComponent implements OnInit {
 		this.selectedCategory = category;
 		this.challenges = [];
 		this.updateChallenges();
-
-		// this.setCategoryParam(category?.name);
 	}
 
 	trackChallenges(index: number, challenge: ChallengeDto): number {
 		return challenge.id;
-	}
-
-	private setCategoryParam(category: string): void {
-		this.router
-			.navigate([], {
-				queryParams: {
-					category,
-				},
-				queryParamsHandling: 'merge',
-			})
-			.catch((reason) => {
-				// No handling needed.
-			});
 	}
 
 	private updateChallenges(): void {
