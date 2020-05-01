@@ -18,7 +18,7 @@ $category-bar-height: 36px;
 	.app-bar {
 		height: $app-bar-height;
 
-		background-image: url('src/assets/images/app-bar-background.webp');
+		background: #788fb9;
 		background-size: cover;
 		background-repeat: no-repeat;
 
@@ -50,7 +50,7 @@ $category-bar-height: 36px;
 	.category-bar {
 		position: relative;
 		height: $category-bar-height;
-		background: #d1e4d9;
+		background: #a3b9e0;
 		box-sizing: content-box;
 		overflow-y: scroll;
 		white-space: nowrap;
@@ -58,6 +58,7 @@ $category-bar-height: 36px;
 		margin-top: 15px;
 		border-radius: 40px 0 0 40px;
 		margin-left: 4%;
+		color: #fff;
 
 		/* Hide scrollbar for Chrome, Safari and Opera */
 		::-webkit-scrollbar {
@@ -75,7 +76,7 @@ $category-bar-height: 36px;
 
 			// active für die gewählte Kategorie
 			&.active {
-				background-color: #67a682;
+				background-color: #788fb9;
 				color: #fff;
 				border-radius: 40px;
 			}
@@ -174,7 +175,7 @@ $category-bar-height: 36px;
 	}
 
 	.spezial-errungenschaften-color {
-		background-color: #67a682;
+		background-color: #788fb9;
 	}
 
 	//Gradient des Overlays ist immer background-image: linear-gradient(to bottom, Basisfarbe der Challenge-Kategorie, Transparenz 70%)
@@ -237,7 +238,7 @@ $category-bar-height: 36px;
 }
 
 .onscreen-message {
-	color: #67a682;
+	color: #788fb9;
 	font-style: italic;
 	font-size: 1.3em;
 	text-align: center !important;
