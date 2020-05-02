@@ -26,6 +26,8 @@ describe('AuthService', () => {
 	describe('register', () => {
 		it('should set userId when successful', async () => {
 			localStorage.removeItem('simulation_userId');
+			localStorage.removeItem('simulation_publicUserId');
+
 			when(
 				mockApiService.createNewUser(
 					deepEqual({
@@ -58,10 +60,36 @@ describe('AuthService', () => {
 			expect(service.isUserRegistered()).toBe(false);
 		});
 
-		it('should return false when no userId is saved in localstorage', () => {
+		it('should return true when userId is saved in localstorage', () => {
 			localStorage.setItem('simulation_userId', 'anyUserId');
 
 			expect(service.isUserRegistered()).toBe(true);
+		});
+	});
+
+	describe('checkUserRegistered', () => {
+		it('should return false when no userId is saved in localstorage', (done) => {
+			localStorage.removeItem('simulation_userId');
+
+			service.checkUserRegistered().then((result) => {
+				expect(result).toBe(false);
+				done();
+			});
+		});
+
+		it('should return true when api returns true', (done) => {
+			localStorage.setItem('simulation_userId', 'anyUserId');
+
+			when(mockApiService.getUser('anyUserId')).thenResolve({
+				userName: 'anyUserName',
+				publicUserId: 'anyUserId',
+				privateUserId: 'privateUserId',
+			});
+
+			service.checkUserRegistered().then((result) => {
+				expect(result).toBe(true);
+				done();
+			});
 		});
 	});
 });

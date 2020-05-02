@@ -32,15 +32,21 @@ export class AuthService {
 	}
 
 	checkUserRegistered(): Promise<boolean> {
+		const userId = this.store.getUserId();
+
+		if (userId === null) {
+			return Promise.resolve(false);
+		}
+
 		return this.api
-			.getUser(this.store.getUserId())
+			.getUser(userId)
 			.then((user) => {
 				return true;
 			})
 			.catch((httpErrorResponse: HttpErrorResponse) => {
 				if (
-					httpErrorResponse.status == 404 &&
-					httpErrorResponse.error == 'MyUser not found.'
+					httpErrorResponse.status === 404 &&
+					httpErrorResponse.error === 'MyUser not found.'
 				) {
 					return false;
 				}
