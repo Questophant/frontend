@@ -31,17 +31,23 @@ describe('HasRegisteredGuard', () => {
 		expect(guard).toBeTruthy();
 	});
 
-	it('should return false when not registered', () => {
-		when(mockAuthService.isUserRegistered()).thenReturn(false);
+	it('should return false when not registered', async (done) => {
+		when(mockAuthService.checkUserRegistered()).thenResolve(false);
 		when(mockRouter.navigate(deepEqual(['/welcome']))).thenResolve(true);
 
-		expect(guard.canActivate()).toBe(false);
-		verify(mockRouter.navigate(deepEqual(['/welcome']))).called();
+		guard.canActivate().then((value) => {
+			expect(value).toBe(false);
+			verify(mockRouter.navigate(deepEqual(['/welcome']))).called();
+			done();
+		});
 	});
 
-	it('should true when registered', () => {
-		when(mockAuthService.isUserRegistered()).thenReturn(true);
+	it('should return true when registered', (done) => {
+		when(mockAuthService.checkUserRegistered()).thenResolve(true);
 
-		expect(guard.canActivate()).toBe(true);
+		guard.canActivate().then((value) => {
+			expect(value).toBe(true);
+			done();
+		});
 	});
 });
