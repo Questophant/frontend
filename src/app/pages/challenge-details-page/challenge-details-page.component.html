@@ -16,7 +16,14 @@
 					{{ challenge.createdBy }}
 				</div>
 				<br />
-				<div class="category">{{ challenge.category.display }}</div>
+				<div
+					style="border-radius: 40px; color: #fff; padding: 5px;"
+					class="category challenge-label category-{{
+						challenge.category.name
+					}}-background"
+				>
+					{{ challenge.category.display }}
+				</div>
 				<div class="points">{{ challenge.pointsWin }} Punkte</div>
 				<div class="duration">
 					{{ challenge.durationSeconds | duration }}
@@ -35,21 +42,21 @@
 				<div
 					(click)="acceptChallenge(challenge)"
 					*ngIf="!running"
-					class="challenge-action"
+					class="challenge-action color-one"
 				>
 					Challenge annehmen
 				</div>
 				<div
 					(click)="toggleRemember(challenge)"
 					*ngIf="!running"
-					class="challenge-action"
+					class="challenge-action color-two"
 				>
 					{{ remembered ? 'Nicht mehr merken' : 'Challenge merken' }}
 				</div>
 				<div
 					(click)="challengeSuccess(challenge)"
 					*ngIf="running"
-					class="challenge-action"
+					class="challenge-action color-one"
 					[@inOutAnimation]
 					[@.disabled]="!animations"
 				>
@@ -58,7 +65,7 @@
 				<div
 					(click)="challengeFailure(challenge)"
 					*ngIf="running"
-					class="challenge-action"
+					class="challenge-action color-two"
 					[@inOutAnimation]
 					[@.disabled]="!animations"
 				>
