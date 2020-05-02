@@ -18,9 +18,7 @@ $category-bar-height: 36px;
 	.app-bar {
 		height: $app-bar-height;
 
-		background: #788fb9;
-		background-size: cover;
-		background-repeat: no-repeat;
+		background-color: #788fb9;
 
 		padding: 0 15px;
 
@@ -49,10 +47,10 @@ $category-bar-height: 36px;
 
 	.category-bar {
 		position: relative;
-		height: $category-bar-height;
+		//height: $category-bar-height;
 		background: #a3b9e0;
 		box-sizing: content-box;
-		overflow-y: scroll;
+		//overflow-y: scroll;
 		white-space: nowrap;
 		user-select: none;
 		margin-top: 15px;
