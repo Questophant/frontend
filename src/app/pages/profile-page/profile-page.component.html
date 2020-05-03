@@ -64,20 +64,24 @@
 		<!--	</div>-->
 	</div>
 
-	<div class="challenges">Absolvierte Quests</div>
+	<div class="challenges">Deine Quests</div>
 
-	<!--&lt;!&ndash; Tab links &ndash;&gt;-->
-	<!--<div class="tab">-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Absolviert')">-->
-	<!--		Absolviert-->
-	<!--	</button>-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Erstellt')">-->
-	<!--		Erstellt-->
-	<!--	</button>-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Markiert')">-->
-	<!--		Markiert-->
-	<!--	</button>-->
-	<!--</div>-->
+	<div class="tabs">
+		<span
+			(click)="displayDoneChallenges()"
+			[class.active]="showDoneChallenges"
+			class="tab"
+		>
+			Absolviert
+		</span>
+		<span
+			(click)="displayCreatedChallenges()"
+			[class.active]="showCreatedChallenges"
+			class="tab"
+		>
+			Erstellt
+		</span>
+	</div>
 
 	<app-challenge-list
 		[challenges]="challenges$"
