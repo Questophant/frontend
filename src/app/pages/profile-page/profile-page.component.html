@@ -34,7 +34,10 @@
 
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
-	<img class="profile-picture" src="/assets/images/profile/panda.webp" />
+	<div id="profilePictureContainer" (click)="openProfilePictureEditor()">
+		<img class="profile-picture" src="{{ getProfilePicture(user) }}" />
+		<div class="edit">editieren</div>
+	</div>
 
 	<div class="username-block">
 		<div class="username">{{ user.userName }}</div>

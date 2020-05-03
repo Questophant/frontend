@@ -24,11 +24,19 @@ div {
 	margin-right: auto;
 }
 
-.profile-picture {
-	display: block;
-	margin: 7.5% auto 0;
-	height: 120px;
-	border-radius: 100%;
+#profilePictureContainer {
+	.profile-picture {
+		display: block;
+		margin: 7.5% auto 0;
+		height: 120px;
+		border-radius: 100%;
+	}
+	.edit {
+		width: 120px;
+		padding-top: 8px;
+		text-align: center;
+		color: $general-green;
+	}
 }
 
 .username-block {
