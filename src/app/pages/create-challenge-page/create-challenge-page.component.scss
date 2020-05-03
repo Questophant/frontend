@@ -11,14 +11,23 @@
 }
 
 .form-wrapper {
+	box-sizing: border-box;
 	width: 100%;
-	padding: 10px;
+	padding: 2vh 4vw 2vh 4vw;
+
+	h1 {
+		color: $general-green;
+		font-size: 19px;
+		font-weight: 500;
+	}
 
 	form {
 		input,
 		textarea,
 		select {
 			width: 100%;
+			box-sizing: border-box;
+			display: block;
 			margin: 10px 0;
 		}
 
@@ -35,6 +44,17 @@
 			border: none;
 			border-radius: 40px;
 			padding: 10px 25px;
+		}
+
+		textarea {
+			color: $general-font-color;
+			border: none;
+			width: 100%;
+			height: 20vh;
+			background-color: $general-background-color;
+			margin-top: 1vh;
+			padding: 5px;
+			font-family: 'Lato', sans-serif;
 		}
 
 		.errors {
