@@ -43,7 +43,7 @@ export class WelcomePageComponent implements OnInit {
 			.catch(api.getDefaultExceptionHandler);
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	saveName(): void {
 		this.submitted = true;

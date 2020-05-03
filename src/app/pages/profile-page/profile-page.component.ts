@@ -35,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
 		this.displayDoneChallenges();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
@@ -56,7 +56,6 @@ export class ProfilePageComponent implements OnInit {
 	}
 
 	displayCreatedChallenges(): void {
-		console.log('hello');
 		this.showDoneChallenges = false;
 		this.showCreatedChallenges = true;
 		this.challenges$ = this.api.getCreatedChallenges();
@@ -66,7 +65,7 @@ export class ProfilePageComponent implements OnInit {
 		return this.urlResolverService.getProfilePicture(user, '.120x120');
 	}
 
-	openProfilePictureEditor() {
+	openProfilePictureEditor(): void {
 		this.router.navigate(['/uploadProfilePicture']);
 	}
 }

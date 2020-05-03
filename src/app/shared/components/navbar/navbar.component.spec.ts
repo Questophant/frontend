@@ -4,7 +4,6 @@ import { instance, mock } from 'ts-mockito';
 import { ApiService } from '../../services/api/api.service';
 import { NavbarComponent } from './navbar.component';
 
-
 describe('NavbarComponent', () => {
 	let component: NavbarComponent;
 	let fixture: ComponentFixture<NavbarComponent>;
@@ -22,7 +21,8 @@ describe('NavbarComponent', () => {
 				{
 					provide: ApiService,
 					useValue: instance(mockApiService),
-				}]
+				},
+			],
 		}).compileComponents();
 	}));
 

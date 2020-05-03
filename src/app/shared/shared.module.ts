@@ -48,4 +48,4 @@ import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy
 		DurationPipe,
 	],
 })
-export class SharedModule { }
+export class SharedModule {}

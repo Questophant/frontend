@@ -3,7 +3,6 @@ import { instance, mock } from 'ts-mockito';
 import { ApiService } from '../api/api.service';
 import { ChallengeService } from './challenge.service';
 
-
 describe('ChallengeService', () => {
 	let service: ChallengeService;
 	const mockApiService = mock(ApiService);

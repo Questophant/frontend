@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth/auth.service';
  * Secures that a user has set a userName (registered) before entering any other page
  */
 export class HasRegisteredGuard implements CanActivate {
-	constructor(private auth: AuthService, private router: Router) { }
+	constructor(private auth: AuthService, private router: Router) {}
 
 	canActivate(): Promise<boolean> {
 		return this.auth.checkUserRegistered().then((registered) => {
