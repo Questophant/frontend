@@ -11,7 +11,7 @@
 	<form [formGroup]="createChallengeForm" (ngSubmit)="onSubmit()">
 		<input
 			type="text"
-			placeholder="Challengename"
+			placeholder="Questname"
 			class="challenge-name"
 			[formControl]="challengeName"
 		/>
@@ -28,7 +28,7 @@
 		<textarea
 			rows="12"
 			cols="24"
-			placeholder="Beschreibe deine Challenge..."
+			placeholder="Beschreibe deine Quest..."
 			[formControl]="challengeDescription"
 		></textarea>
 
@@ -42,20 +42,20 @@
 
 		<div *ngIf="submitted && createChallengeForm.invalid" class="errors">
 			<span *ngIf="challengeName.errors !== null">
-				Gib deiner Challenge einen Namen.
+				Gib deiner Quest einen Namen.
 			</span>
 			<span *ngIf="challengeDescription.errors !== null">
-				Gib deiner Challenge eine Beschreibung.
+				Gib deiner Quest eine Beschreibung.
 			</span>
 			<span *ngIf="challengeCategory.errors !== null">
-				Gib deiner Challenge eine Kategorie.
+				Gib deiner Quest eine Kategorie.
 			</span>
 			<span *ngIf="challengeMaterial.errors !== null">
-				Das ist doch etwas zu viel, was für die Challenge benötigt wird.
+				Das ist doch etwas zu viel, was für die Quest benötigt wird.
 			</span>
 		</div>
 
-		<button type="submit">Challenge erstellen</button>
+		<button type="submit">Quest erstellen</button>
 	</form>
 </div>
 
