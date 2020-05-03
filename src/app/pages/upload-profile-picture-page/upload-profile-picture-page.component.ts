@@ -66,7 +66,7 @@ export class UploadProfilePicturePageComponent implements OnInit {
 		let element = document.getElementsByClassName('container')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight + '.webp'
+			'.' + element.clientWidth + 'x' + element.clientHeight
 		);
 	}
 }

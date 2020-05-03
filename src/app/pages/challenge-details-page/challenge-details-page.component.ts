@@ -117,7 +117,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		let element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight + '.webp'
+			'.' + element.clientWidth + 'x' + element.clientHeight
 		);
 	}
 }

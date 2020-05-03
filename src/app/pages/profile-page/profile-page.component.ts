@@ -63,7 +63,7 @@ export class ProfilePageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		return this.urlResolverService.getProfilePicture(user, '.120x120.webp');
+		return this.urlResolverService.getProfilePicture(user, '.120x120');
 	}
 
 	openProfilePictureEditor() {

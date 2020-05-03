@@ -6,7 +6,17 @@ import { ApiService } from '../api/api.service';
 	providedIn: 'root',
 })
 export class UrlResolverService {
-	constructor(private api: ApiService) { }
+
+	private profilePictureFormat: string;
+	private canUseWebP: boolean;
+
+	constructor(private api: ApiService) {
+		this.canUseWebP = this.checkWebPCompatibility();
+		if (this.canUseWebP) {
+			this.profilePictureFormat = "webp";
+		}
+		else { this.profilePictureFormat = "jpg" };
+	}
 
 	private hash(s: string): number {
 		var hash = 0,
@@ -20,7 +30,20 @@ export class UrlResolverService {
 		return hash;
 	}
 
-	public getProfilePicture(user: UserDto, sizeAndFormat: string): string {
+	// TODO: externalize this for the whole app?
+	private checkWebPCompatibility(): boolean {
+		var elem = document.createElement('canvas');
+
+		if (!!(elem.getContext && elem.getContext('2d'))) {
+			// was able or not to get WebP representation
+			return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+		}
+
+		// very old browser like IE 8, canvas not supported
+		return false;
+	}
+
+	public getProfilePicture(user: UserDto, size: string): string {
 		if (
 			user == null ||
 			user.imageUrl == null ||
@@ -29,18 +52,18 @@ export class UrlResolverService {
 			var fileName;
 			switch (Math.abs(this.hash(user.userName) % 3)) {
 				case 1:
-					fileName = 'alpaca.webp';
+					fileName = 'alpaca';
 					break;
 				case 2:
-					fileName = 'penguin.webp';
+					fileName = 'penguin';
 					break;
 				default:
-					fileName = 'panda.webp';
+					fileName = 'panda';
 					break;
 			}
 
-			return '/assets/images/profile/' + fileName;
+			return '/assets/images/profile/' + fileName + "." + (this.canUseWebP ? "webp" : "png");
 		}
-		return this.api.getApiUrl() + user.imageUrl + sizeAndFormat;
+		return this.api.getApiUrl() + user.imageUrl + size + "." + this.profilePictureFormat;
 	}
 }
