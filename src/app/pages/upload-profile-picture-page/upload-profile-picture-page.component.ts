@@ -14,11 +14,16 @@ import { UrlResolverService } from 'src/app/shared/services/url-resolver.service
 export class UploadProfilePicturePageComponent implements OnInit {
 	user$: Promise<UserDto>;
 
-	constructor(private location: Location, private store: StoreService, private api: ApiService, private urlResolverService: UrlResolverService, ) {
+	constructor(
+		private location: Location,
+		private store: StoreService,
+		private api: ApiService,
+		private urlResolverService: UrlResolverService
+	) {
 		this.user$ = api.getMyUser(store.getUserId());
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	fileLoaded: boolean;
 	imageChangedEvent: any = '';
@@ -58,7 +63,10 @@ export class UploadProfilePicturePageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		let element = document.getElementsByClassName("container")[0];
-		return this.urlResolverService.getProfilePicture(user, "." + element.clientWidth + "x" + element.clientHeight + ".webp");
+		let element = document.getElementsByClassName('container')[0];
+		return this.urlResolverService.getProfilePicture(
+			user,
+			'.' + element.clientWidth + 'x' + element.clientHeight + '.webp'
+		);
 	}
 }

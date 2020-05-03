@@ -28,14 +28,14 @@ export class ProfilePageComponent implements OnInit {
 		private api: ApiService,
 		private router: Router,
 		private store: StoreService,
-		private urlResolverService: UrlResolverService,
+		private urlResolverService: UrlResolverService
 	) {
 		this.user$ = api.getMyUser(store.getUserId());
 		this.points$ = api.getPointsOfUser();
 		this.displayDoneChallenges();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
@@ -63,10 +63,10 @@ export class ProfilePageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		return this.urlResolverService.getProfilePicture(user, ".120x120.webp");
+		return this.urlResolverService.getProfilePicture(user, '.120x120.webp');
 	}
 
 	openProfilePictureEditor() {
-		this.router.navigate(["/uploadProfilePicture"]);
+		this.router.navigate(['/uploadProfilePicture']);
 	}
 }

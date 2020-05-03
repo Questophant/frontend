@@ -371,10 +371,10 @@ export class SimApiService implements ApiService {
 		userName: 'TestUser',
 		publicUserId: 'someUserId',
 		privateUserId: 'privateUserId',
-		imageUrl: "",
+		imageUrl: '',
 	};
 
-	constructor(private store: StoreService) { }
+	constructor(private store: StoreService) {}
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
 		if (user.userName === 'existingUserName') {
@@ -384,7 +384,7 @@ export class SimApiService implements ApiService {
 			publicUserId: 'anyUserId',
 			privateUserId: 'privateUserId',
 			userName: user.userName,
-			imageUrl: "",
+			imageUrl: '',
 		};
 	}
 
@@ -523,7 +523,7 @@ export class SimApiService implements ApiService {
 	}
 
 	public getApiUrl(): string {
-		return "";
+		return '';
 	}
 
 	async getPublicUserProfile(publicUserId: string): Promise<UserDto> {
