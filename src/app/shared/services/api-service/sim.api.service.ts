@@ -35,7 +35,7 @@ export class SimApiService implements ApiService {
 	private challenges: ChallengeDto[] = [
 		{
 			id: 1,
-			title: 'Challenge 1',
+			title: 'Quest 1',
 			category: getCategoryByName('creative'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
@@ -49,7 +49,7 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 2,
-			title: 'Challenge 2',
+			title: 'Quest 2',
 			category: getCategoryByName('cooking'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
@@ -63,7 +63,7 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 3,
-			title: 'Challenge 3',
+			title: 'Quest 3',
 			category: getCategoryByName('social'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
@@ -77,7 +77,7 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 4,
-			title: 'Challenge 4',
+			title: 'Quest 4',
 			category: getCategoryByName('physical'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
@@ -91,7 +91,7 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 5,
-			title: 'Challenge 5',
+			title: 'Quest 5',
 			category: getCategoryByName('selfcare'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
@@ -105,7 +105,7 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 6,
-			title: 'Challenge 6',
+			title: 'Quest 6',
 			category: getCategoryByName('education'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
