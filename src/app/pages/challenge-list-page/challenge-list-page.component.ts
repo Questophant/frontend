@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api/api.service';
 
 @Component({
 	selector: 'app-challenge-list-page',
@@ -24,5 +24,5 @@ export class ChallengeListPageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 }

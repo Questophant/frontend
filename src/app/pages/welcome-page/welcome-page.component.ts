@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
+import { ApiService } from 'src/app/shared/services/api/api.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class WelcomePageComponent implements OnInit {
 			.catch(api.getDefaultExceptionHandler);
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	saveName(): void {
 		this.submitted = true;

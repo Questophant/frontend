@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { instance, mock } from 'ts-mockito';
-import { ApiService } from '../api-service/api.service';
+import { ApiService } from '../api/api.service';
 import { UrlResolverService } from './url-resolver.service';
 
 describe('UrlResolverService', () => {

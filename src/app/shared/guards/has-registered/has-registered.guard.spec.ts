@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-
-import { HasRegisteredGuard } from './has-registered.guard';
-import { AuthService } from '../../services/auth/auth.service';
-import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
 import { Router } from '@angular/router';
+import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
+import { AuthService } from '../../services/auth/auth.service';
+import { HasRegisteredGuard } from './has-registered.guard';
+
 
 describe('HasRegisteredGuard', () => {
 	let guard: HasRegisteredGuard;

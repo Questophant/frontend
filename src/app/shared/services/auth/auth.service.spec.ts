@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { deepEqual, instance, mock, when } from 'ts-mockito';
-import { ApiService } from '../api-service/api.service';
+import { ApiService } from '../api/api.service';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
