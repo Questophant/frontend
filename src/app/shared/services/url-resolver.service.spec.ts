@@ -3,9 +3,9 @@ import { instance, mock } from 'ts-mockito';
 import { ApiService } from './api-service/api.service';
 import { UrlResolverService } from './url-resolver.service';
 
-
 describe('UrlResolverService', () => {
-	let service: UrlResolverService; const mockApiService = mock(ApiService);
+	let service: UrlResolverService;
+	const mockApiService = mock(ApiService);
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('UrlResolverService', () => {
 					provide: ApiService,
 					useValue: instance(mockApiService),
 				},
-			]
+			],
 		});
 		service = TestBed.inject(UrlResolverService);
 	});

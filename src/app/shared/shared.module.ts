@@ -14,6 +14,7 @@ import { AuthService } from './services/auth/auth.service';
 import { StoreService } from './services/store/store.service';
 import { ChallengeService } from './services/challenge-service/challenge.service';
 import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
+import { UrlResolverService } from './services/url-resolver.service';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
@@ -38,6 +39,7 @@ import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy
 		AuthService,
 		StoreService,
 		ChallengeService,
+		UrlResolverService,
 	],
 	exports: [
 		DataPrivacyOverlayComponent,
