@@ -1,0 +1,94 @@
+@import '../../../colors';
+
+$app-bar-height: 50px;
+
+.sticky-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 999;
+	overflow: hidden;
+
+	.app-bar {
+		height: $app-bar-height;
+
+		background-color: #788fb9;
+
+		padding: 0 15px;
+
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		align-items: center;
+
+		font-size: 18px;
+		color: #fff;
+
+		div {
+			cursor: pointer;
+		}
+
+		.back-home {
+			position: absolute;
+			top: 4vw;
+			left: 4vw;
+			width: 40px;
+			height: 40px;
+
+			text-align: center;
+			background-color: $general-green;
+			color: white;
+			text-decoration: none;
+			font-size: 2rem;
+			border-radius: 100%;
+		}
+
+		#uploadButton {
+			position: relative;
+			margin-left: auto;
+		}
+	}
+}
+
+.container {
+	position: absolute;
+	top: $app-bar-height;
+	right: 0;
+	left: 0;
+	bottom: 0;
+
+	#fileSelection {
+		position: relative;
+
+		.profile-picture {
+			padding-top: calc(#{$app-bar-height} / 2);
+			width: 100%;
+			height: calc(100vh - #{$app-bar-height} - #{$app-bar-height});
+			object-fit: contain;
+		}
+	}
+
+	#imageCropper {
+		padding-top: calc(#{$app-bar-height} / 2);
+		width: 100%;
+		height: calc(100vh - #{$app-bar-height} - #{$app-bar-height});
+	}
+}
+
+.fileInput {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	font-size: 100px;
+	z-index: 2;
+
+	opacity: 0; /* Standard: FF gt 1.5, Opera, Safari */
+	filter: alpha(opacity=0); /* IE lt 8 */
+	-ms-filter: 'alpha(opacity=0)'; /* IE 8 */
+	-khtml-opacity: 0; /* Safari 1.x */
+	-moz-opacity: 0; /* FF lt 1.5, Netscape */
+}

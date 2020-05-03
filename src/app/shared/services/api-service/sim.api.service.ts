@@ -20,7 +20,7 @@ export class SimApiService implements ApiService {
 		description: 'lorem ipsum ...',
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
-		createdBy: 'Annete',
+		createdByPublicUserId: null,
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
@@ -41,7 +41,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
-			createdBy: 'AnneteB',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -55,7 +55,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
-			createdBy: 'Markus',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -69,7 +69,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Gerhard99',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -83,7 +83,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'IngeBinge',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -97,7 +97,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Kastanienblüte',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -111,7 +111,7 @@ export class SimApiService implements ApiService {
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Markus',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -372,9 +372,10 @@ export class SimApiService implements ApiService {
 		userName: 'TestUser',
 		publicUserId: 'someUserId',
 		privateUserId: 'privateUserId',
+		imageUrl: "",
 	};
 
-	constructor(private store: StoreService) {}
+	constructor(private store: StoreService) { }
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
 		if (user.userName === 'existingUserName') {
@@ -384,6 +385,7 @@ export class SimApiService implements ApiService {
 			publicUserId: 'anyUserId',
 			privateUserId: 'privateUserId',
 			userName: user.userName,
+			imageUrl: "",
 		};
 	}
 
@@ -449,7 +451,7 @@ export class SimApiService implements ApiService {
 		return this.challenges;
 	}
 
-	async getUser(userId: string): Promise<UserDto> {
+	async getMyUser(userId: string): Promise<UserDto> {
 		return this.testUser;
 	}
 
@@ -524,5 +526,17 @@ export class SimApiService implements ApiService {
 
 	public getDefaultExceptionHandler() {
 		// NO OP
+	}
+
+	public setUserImage(imageBase64: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getApiUrl(): string {
+		return "";
+	}
+
+	async getPublicUserProfile(publicUserId: string): Promise<UserDto> {
+		throw this.testUser;
 	}
 }

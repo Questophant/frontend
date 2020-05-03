@@ -62,7 +62,11 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	getUser(userId: string): Promise<UserDto> {
+	getMyUser(userId: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getPublicUserProfile(publicUserId: string): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -83,5 +87,13 @@ export abstract class ApiService {
 
 	public getDefaultExceptionHandler() {
 		// NO OP
+	}
+
+	public setUserImage(imageBase64: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getApiUrl(): string {
+		throw new Error('Method not implemented.');
 	}
 }

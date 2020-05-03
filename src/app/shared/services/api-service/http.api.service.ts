@@ -16,7 +16,7 @@ export abstract class HTTPApiService implements ApiService {
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDate: number;
 
-	constructor(protected http: HttpClient, private store: StoreService) {}
+	constructor(protected http: HttpClient, private store: StoreService) { }
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		const date = new Date().getDate();
@@ -43,15 +43,15 @@ export abstract class HTTPApiService implements ApiService {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_stream?category=${
-					category.name
+				category.name
 				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
-				this.apiUrl
+			this.apiUrl
 			}/myUser/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
@@ -72,7 +72,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeResponse>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
@@ -84,7 +84,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.delete<ChallengeResponse>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
@@ -110,9 +110,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<void>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_status/${
-					challenge.id
+				challenge.id
 				}?state=${state}`,
 				{}
 			)
@@ -150,9 +150,9 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.post<ChallengeDto>(
 				`${
-					this.apiUrl
+				this.apiUrl
 				}/myUser/${this.store.getUserId()}/marked_challenges/${
-					challenge.id
+				challenge.id
 				}?marked=${remember}`,
 				{}
 			)
@@ -165,9 +165,15 @@ export abstract class HTTPApiService implements ApiService {
 		);
 	}
 
-	getUser(userId: string): Promise<UserDto> {
+	getMyUser(userId: string): Promise<UserDto> {
 		return this.http
 			.get<UserDto>(`${this.apiUrl}/myUser/${userId}`)
+			.toPromise();
+	}
+
+	public getPublicUserProfile(publicUserId: string): Promise<UserDto> {
+		return this.http
+			.get<UserDto>(`${this.apiUrl}/publicUser/${publicUserId}`)
 			.toPromise();
 	}
 
@@ -218,7 +224,7 @@ export abstract class HTTPApiService implements ApiService {
 			category: Categories.find((c) => c.name === challenge.category),
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
-			createdBy: challenge.createdByUserName,
+			createdByPublicUserId: challenge.createdByPublicUserId,
 			material: challenge.material,
 			imageUrl: challenge.imageUrl,
 			pointsLoose: challenge.pointsLoose,
@@ -242,4 +248,16 @@ export abstract class HTTPApiService implements ApiService {
 			.then(this.mapChallenges())
 			.catch(this.getDefaultExceptionHandler());
 	}
+
+	public setUserImage(imageBase64: string): Promise<UserDto> {
+		return this.http.post<UserDto>(`${
+			this.apiUrl
+			}/myUser/${this.store.getUserId()}/image`, imageBase64).toPromise().catch(this.getDefaultExceptionHandler());
+	}
+
+	public getApiUrl(): string {
+		return this.apiUrl;
+	}
+
+
 }
