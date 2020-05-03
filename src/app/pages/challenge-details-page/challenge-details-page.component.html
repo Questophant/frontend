@@ -50,14 +50,18 @@
 						*ngIf="!running"
 						class="challenge-action color-one"
 					>
-						Quest annehmen
+						Herausforderung annehmen
 					</div>
 					<div
 						(click)="toggleRemember(challenge)"
 						*ngIf="!running"
 						class="challenge-action color-two"
 					>
-						{{ remembered ? 'Nicht mehr merken' : 'Quest merken' }}
+						{{
+							remembered
+								? 'Nicht mehr merken'
+								: 'Herausforderung merken'
+						}}
 					</div>
 					<div
 						(click)="challengeSuccess(challenge)"
@@ -66,7 +70,7 @@
 						[@inOutAnimation]
 						[@.disabled]="!animations"
 					>
-						Quest gemeistert?
+						Herausforderung gemeistert?
 					</div>
 					<div
 						(click)="challengeFailure(challenge)"
@@ -84,8 +88,8 @@
 		<div *ngIf="success" class="action-message">
 			<h1>Respekt! Weiter so!</h1>
 			<p>
-				Du hast die Quest <span>{{ challenge.title }}</span> erfolgreich
-				abgeschlossen
+				Du hast die Herausforderung
+				<span>{{ challenge.title }}</span> erfolgreich abgeschlossen
 			</p>
 
 			<p>
@@ -95,7 +99,7 @@
 		</div>
 
 		<div *ngIf="failure" class="action-message">
-			<h1>Schade. Probier es mit einer anderen Quest.</h1>
+			<h1>Schade. Probier es mit einer anderen Herausforderung.</h1>
 		</div>
 
 		<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
