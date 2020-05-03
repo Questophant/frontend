@@ -66,11 +66,11 @@ export class WelcomePageComponent implements OnInit {
 		}
 	}
 
-	toggleDataPrivacy() {
+	toggleDataPrivacy(): void {
 		this.showDataPrivacy = !this.showDataPrivacy;
 	}
 
-	toggleRules() {
+	toggleRules(): void {
 		this.showRules = !this.showRules;
 	}
 }
