@@ -21,6 +21,9 @@ export class ProfilePageComponent implements OnInit {
 	showRules = false;
 	showImprint = false;
 
+	showDoneChallenges = true;
+	showCreatedChallenges = false;
+
 	constructor(
 		private api: ApiService,
 		private router: Router,
@@ -29,7 +32,7 @@ export class ProfilePageComponent implements OnInit {
 	) {
 		this.user$ = api.getMyUser(store.getUserId());
 		this.points$ = api.getPointsOfUser();
-		this.challenges$ = api.getDoneChallenges();
+		this.displayDoneChallenges();
 	}
 
 	ngOnInit(): void {}
@@ -46,28 +49,17 @@ export class ProfilePageComponent implements OnInit {
 		this.showImprint = !this.showImprint;
 	}
 
-	challengeSelect(evt, status) {
-		// Declare all variables
-		var i, tabcontent, tablinks;
+	displayDoneChallenges(): void {
+		this.showDoneChallenges = true;
+		this.showCreatedChallenges = false;
+		this.challenges$ = this.api.getDoneChallenges();
+	}
 
-		// Get all elements with class="tabcontent" and hide them
-		tabcontent = document.getElementsByClassName('tabcontent');
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = 'none';
-		}
-
-		// Get all elements with class="tablinks" and remove the class "active"
-		tablinks = document.getElementsByClassName('tablinks');
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(
-				' active',
-				''
-			);
-		}
-
-		// Show the current tab, and add an "active" class to the button that opened the tab
-		document.getElementById(status).style.display = 'block';
-		evt.currentTarget.className += ' active';
+	displayCreatedChallenges(): void {
+		console.log('hello');
+		this.showDoneChallenges = false;
+		this.showCreatedChallenges = true;
+		this.challenges$ = this.api.getCreatedChallenges();
 	}
 
 	getProfilePicture(user: UserDto): string {
