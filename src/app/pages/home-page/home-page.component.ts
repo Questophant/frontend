@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categories, Category } from 'src/app/shared/dtos/category';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api/api.service';
 
 @Component({
 	selector: 'app-home-page',
@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit {
 		this.updateChallenges();
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	setCategory(category: Category): void {
 		this.selectedCategory = category;

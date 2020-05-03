@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ChallengeService } from './challenge.service';
-import { ApiService } from '../api-service/api.service';
 import { instance, mock } from 'ts-mockito';
+import { ApiService } from '../api/api.service';
+import { UrlResolverService } from './url-resolver.service';
 
-describe('ChallengeService', () => {
-	let service: ChallengeService;
+describe('UrlResolverService', () => {
+	let service: UrlResolverService;
 	const mockApiService = mock(ApiService);
 
 	beforeEach(() => {
@@ -17,7 +16,7 @@ describe('ChallengeService', () => {
 				},
 			],
 		});
-		service = TestBed.inject(ChallengeService);
+		service = TestBed.inject(UrlResolverService);
 	});
 
 	it('should be created', () => {

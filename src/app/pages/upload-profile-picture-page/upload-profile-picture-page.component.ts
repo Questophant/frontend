@@ -2,9 +2,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { UserDto } from 'src/app/shared/dtos/user.dto';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
+import { ApiService } from 'src/app/shared/services/api/api.service';
 import { StoreService } from 'src/app/shared/services/store/store.service';
-import { UrlResolverService } from 'src/app/shared/services/url-resolver.service';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 
 @Component({
 	selector: 'app-upload-profile-picture-page',
@@ -23,7 +23,7 @@ export class UploadProfilePicturePageComponent implements OnInit {
 		this.user$ = api.getMyUser(store.getUserId());
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	fileLoaded: boolean;
 	imageChangedEvent: any = '';

@@ -3,10 +3,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDto } from 'src/app/shared/dtos/user.dto';
-import { UrlResolverService } from 'src/app/shared/services/url-resolver.service';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
@@ -68,7 +68,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	acceptChallenge(challenge: ChallengeDto): void {
 		this.api
