@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit {
 		this.updateChallenges();
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	setCategory(category: Category): void {
 		this.selectedCategory = category;
@@ -75,7 +75,7 @@ export class HomePageComponent implements OnInit {
 		this.api.getDailyChallenge().then((challenge) => {
 			challenge.category = {
 				name: 'daily',
-				display: 'Quest des Tages',
+				display: 'Herausforderung des Tages',
 			};
 			this.dailyChallenge = challenge;
 		});
