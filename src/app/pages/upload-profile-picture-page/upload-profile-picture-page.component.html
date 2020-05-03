@@ -1,0 +1,54 @@
+<div class="sticky-header">
+	<div class="app-bar">
+		<div id="backButton" (click)="navigateBack()">&lt; Zurück</div>
+		<ng-container *ngIf="!fileLoaded">
+			<div id="uploadButton">
+				<input
+					class="fileInput"
+					type="file"
+					(change)="fileChangeEvent($event)"
+					accept="image/*"
+				/>Auswählen
+			</div>
+		</ng-container>
+		<ng-container *ngIf="fileLoaded">
+			<div id="uploadButton" (click)="upload()">
+				Hochladen
+			</div></ng-container
+		>
+	</div>
+</div>
+
+<div class="container">
+	<ng-container *ngIf="user$ | async as user">
+		<ng-container *ngIf="!fileLoaded">
+			<div id="fileSelection">
+				<input
+					class="fileInput"
+					type="file"
+					(change)="fileChangeEvent($event)"
+					accept="image/*"
+				/>
+				<img
+					class="profile-picture"
+					src="{{ getProfilePicture(user) }}"
+				/>
+			</div>
+		</ng-container>
+	</ng-container>
+	<ng-container *ngIf="fileLoaded">
+		<image-cropper
+			id="imageCropper"
+			[imageChangedEvent]="imageChangedEvent"
+			[maintainAspectRatio]="true"
+			[aspectRatio]="4 / 4"
+			[resizeToWidth]="256"
+			format="png"
+			roundCropper="true"
+			(imageCropped)="imageCropped($event)"
+			(imageLoaded)="imageLoaded()"
+			(cropperReady)="cropperReady()"
+			(loadImageFailed)="loadImageFailed()"
+		></image-cropper>
+	</ng-container>
+</div>

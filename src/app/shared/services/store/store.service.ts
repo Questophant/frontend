@@ -5,22 +5,31 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root',
 })
 export class StoreService {
-	constructor() {}
+	reset(): void {
+		this.setUserId(null);
+		this.setPublicUserId(null);
+	}
 
-	setUserId(userId: string): void {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		localStorage.setItem(prefix + 'userId', userId);
+	setPublicUserId(userId: string): void {
+		localStorage.setItem(this.getUserStorageKey('publicUserId'), userId);
+	}
+
+	getPublicUserId(): string | null {
+		return localStorage.getItem(this.getUserStorageKey('publicUserId'));
+	}
+
+	setUserId(privateUserId: string): void {
+		localStorage.setItem(this.getUserStorageKey('userId'), privateUserId);
 	}
 
 	getUserId(): string | null {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		return localStorage.getItem(prefix + 'userId');
+		return localStorage.getItem(this.getUserStorageKey('userId'));
+	}
+
+	private getUserStorageKey(key: string): string {
+		return environment.apiService === 'production'
+			? key
+			: environment.apiService + '_' + key;
 	}
 
 	private getArray<T>(key: string): T[] {

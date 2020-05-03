@@ -1,3 +1,5 @@
+@import '../../../colors';
+
 .option-btns {
 	position: absolute;
 	top: 0;
@@ -8,9 +10,10 @@
 	img {
 		height: 25px;
 		cursor: pointer;
+		margin-right: 15px;
 
-		&:first-child {
-			margin-right: 15px;
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 }
@@ -21,12 +24,21 @@ div {
 	margin-right: auto;
 }
 
-.profile-picture {
-	display: block;
-	margin: 7.5% auto 0;
-	height: 120px;
-	border-radius: 100%;
+#profilePictureContainer {
+	.profile-picture {
+		display: block;
+		margin: 7.5% auto 0;
+		height: 120px;
+		border-radius: 100%;
+	}
+	.edit {
+		width: 120px;
+		padding-top: 8px;
+		text-align: center;
+		color: $general-green;
+	}
 }
+
 .username-block {
 	text-align: center;
 	margin-top: 3%;
@@ -52,7 +64,7 @@ div {
 
 	select {
 		color: #fff;
-		background: #67a682;
+		background: #788fb9;
 		padding: 5px 10px;
 		border-radius: 20px;
 		text-align: center;
@@ -87,25 +99,22 @@ div {
 
 .challenges {
 	font-size: 24px;
-	color: #67a682;
+	color: #788fb9;
 	margin-bottom: 3%;
 	padding-left: 3%;
 }
 
 /* Style the tab */
-.tab {
+.tabs {
+	display: flex;
+	flex-direction: row;
 	overflow: hidden;
 	border: 1px solid #ccc;
 	border-radius: 100px;
-	background-color: #d1e4d9;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	background-color: #a3b9e0;
 	align-items: center;
 
-	button {
-		background-color: inherit;
-		float: left;
+	.tab {
 		border: none;
 		outline: none;
 		cursor: pointer;
@@ -114,13 +123,13 @@ div {
 		font-size: 16px;
 
 		&:hover {
-			background-color: #67a682;
+			background-color: $general-green;
 			color: #fff;
 			border-radius: 20px;
 		}
 
 		&.active {
-			background-color: #67a682;
+			background-color: $general-green;
 			color: #fff;
 		}
 	}

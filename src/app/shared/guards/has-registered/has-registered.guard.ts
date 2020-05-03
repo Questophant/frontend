@@ -11,10 +11,12 @@ import { AuthService } from '../../services/auth/auth.service';
 export class HasRegisteredGuard implements CanActivate {
 	constructor(private auth: AuthService, private router: Router) {}
 
-	canActivate(): boolean {
-		if (this.auth.isUserRegistered()) {
-			return true;
-		} else {
+	canActivate(): Promise<boolean> {
+		return this.auth.checkUserRegistered().then((registered) => {
+			if (registered) {
+				return true;
+			}
+
 			this.router.navigate(['/welcome']).then(
 				(value) => {
 					if (!value) {
@@ -26,6 +28,6 @@ export class HasRegisteredGuard implements CanActivate {
 				}
 			);
 			return false;
-		}
+		});
 	}
 }

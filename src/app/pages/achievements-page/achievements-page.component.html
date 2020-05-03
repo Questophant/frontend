@@ -1,45 +1,29 @@
 <h1>Errungenschaften</h1>
 
-<div class="overlay" id="coming-soon-notification">
-	<div class="teaser">
-		<div>
-			<h1>Holla!</h1>
-			<p>Hier gibt's nichts zu sehen!<br /><br />Also wirklich nichts!</p>
-			<h1>
-				Zumindest bis jetzt, bald kommt aber ein fantastisches Update:
-			</h1>
-			<p>
-				Mit deinen bei den Challenges verdienten Punkten werden
-				Errungenschaften freigeschaltet, die du hier finden wirst.
-				<br />
-				<br />
-				Wie bei den Stickeralben zur EM & WM, mit dem Unterschied, dass
-				du dich nicht mit Schokolade vollstopfen musst, um an die
-				Sticker zu kommen.
-			</p>
-			<br /><br />
+<ng-container *ngIf="achievements$ | async as achievements">
+	<div *ngFor="let c of categories">
+		<div class="text category-{{ categoryName(c).name }}-background">
+			{{ categoryName(c).display }}
 		</div>
-		<span class="cantwait" routerLink="">Ich kann es kaum erwarten!</span>
-		<br /><br /><br />
-	</div>
-</div>
 
-<div *ngFor="let category of categories" class="{{ category.name }}">
-	<div class="text category-{{ category.name }}-background">
-		{{ category.display }}
+		<div class="achievements">
+			<img
+				*ngFor="let a of achievements.achievmentsByCategory[c]"
+				src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
+			/>
+		</div>
 	</div>
-	<div class="achievements">
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
-		<span></span>
+	<div style="margin-bottom: 70px;">
+		<div class="text category-special-background">
+			Spezial-Errungenschaften
+		</div>
+		<div class="achievements">
+			<img
+				*ngFor="let a of achievements.overalLevel"
+				src="/assets/icons/questionmark.webp"
+			/>
+		</div>
 	</div>
-</div>
+</ng-container>
 
 <app-navbar></app-navbar>

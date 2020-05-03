@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Categories } from '../../shared/dtos/category';
+import { AchievementDto } from '../../shared/dtos/achievement.dto';
+import { Category, getCategoryByName } from '../../shared/dtos/category';
+import { ApiService } from '../../shared/services/api/api.service';
+import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
 	selector: 'app-achievements-page',
@@ -7,9 +10,21 @@ import { Categories } from '../../shared/dtos/category';
 	styleUrls: ['./achievements-page.component.scss'],
 })
 export class AchievementsPageComponent implements OnInit {
-	categories = Categories;
+	achievements$: Promise<AchievementDto>;
+	categories: string[];
 
-	constructor() {}
+	constructor(private api: ApiService, private store: StoreService) {
+		this.achievements$ = this.api
+			.getAchievementsForUser(this.store.getPublicUserId())
+			.then((value) => {
+				this.categories = Object.keys(value.achievmentsByCategory);
+				return value;
+			});
+	}
 
 	ngOnInit(): void {}
+
+	categoryName(key: string): Category {
+		return getCategoryByName(key);
+	}
 }

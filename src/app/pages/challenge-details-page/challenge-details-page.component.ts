@@ -1,50 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-import { ChallengeDto } from '../../shared/dtos/challenge.dto';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StoreService } from '../../shared/services/store/store.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserDto } from 'src/app/shared/dtos/user.dto';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
+import { ChallengeDto } from '../../shared/dtos/challenge.dto';
+import { ApiService } from '../../shared/services/api/api.service';
+import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
 	selector: 'app-challenge-details-page',
 	templateUrl: './challenge-details-page.component.html',
 	styleUrls: ['./challenge-details-page.component.scss'],
+	animations: [
+		trigger('inOutAnimation', [
+			transition(':enter', [
+				style({ opacity: 0, 'pointer-events': 'none' }),
+				animate(
+					'1s ease-in-out',
+					style({ opacity: 1, 'pointer-events': 'all' })
+				),
+			]),
+		]),
+	],
 })
 export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
+	createdByUser: Promise<UserDto>;
 	showActions: boolean;
-	remembered = false;
-	running = false;
+	remembered: boolean;
+	running: boolean;
 	success = false;
 	failure = false;
+	animations = true;
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private api: ApiService,
 		private store: StoreService,
-		private location: Location
+		private location: Location,
+		private urlResolverService: UrlResolverService
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
 
-		console.log(this.showActions);
-
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
-			api.getChallengeById(id)
-				.then((challenge) => {
-					if (challenge) {
-						this.challenge = Promise.resolve(challenge);
-						this.remembered = challenge.marked;
-						this.running = challenge.ongoing;
-					} else {
-						this.router.navigate(['']);
+			api.getChallengeById(id).then((challenge) => {
+				if (challenge) {
+					this.createdByUser = this.api.getPublicUserProfile(
+						challenge.createdByPublicUserId
+					);
+
+					this.challenge = Promise.resolve(challenge);
+					this.remembered = challenge.marked;
+					this.running = challenge.ongoing;
+					if (this.running) {
+						this.animations = false;
 					}
-				})
-				.catch((reason) => this.router.navigate(['']));
+				} else {
+					this.router.navigate(['']);
+				}
+			});
 		});
 	}
 
@@ -76,7 +96,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeSuccess(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.SUCCESS)
-			.then((value) => {
+			.then((_) => {
 				this.success = true;
 			});
 	}
@@ -84,12 +104,20 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeFailure(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.FAILURE)
-			.then((value) => {
+			.then((_) => {
 				this.failure = true;
 			});
 	}
 
 	navigateBack() {
 		this.location.back();
+	}
+
+	getProfilePicture(user: UserDto): string {
+		let element = document.getElementsByClassName('profilepic')[0];
+		return this.urlResolverService.getProfilePicture(
+			user,
+			'.' + element.clientWidth + 'x' + element.clientHeight
+		);
 	}
 }

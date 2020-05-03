@@ -1,24 +1,27 @@
 <div class="sticky-footer-navigation">
 	<div class="icon">
-		<img routerLink="/" src="/assets/images/Home.svg" />
+		<img routerLink="/" src="/assets/icons/home.svg" />
 	</div>
 	<div class="icon">
-		<img
-			routerLink="/achievements"
-			src="/assets/images/Errungenschaften.svg"
-		/>
+		<img routerLink="/achievements" src="/assets/icons/achievements.svg" />
 	</div>
 	<div class="icon">
 		<img
 			class="plus-icon"
 			routerLink="/challenge/create"
-			src="/assets/images/Plusbutton.svg"
+			src="/assets/icons/plus.svg"
 		/>
 	</div>
 	<div class="icon">
-		<img routerLink="/friends" src="/assets/images/Freunde.svg" />
+		<img routerLink="/friends" src="/assets/icons/friends.svg" />
 	</div>
 	<div class="icon">
-		<img routerLink="/profile" src="/assets/images/profile/penguin.webp" />
+		<ng-container *ngIf="user$ | async as user">
+			<img
+				class="navbarProfilePicture"
+				routerLink="/profile"
+				src="{{ getProfilePicture(user) }}"
+			/>
+		</ng-container>
 	</div>
 </div>

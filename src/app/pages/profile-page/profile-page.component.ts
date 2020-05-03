@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
 import { Router } from '@angular/router';
-import { StoreService } from '../../shared/services/store/store.service';
-import { UserDto } from '../../shared/dtos/user.dto';
+import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { PointsDto } from '../../shared/dtos/points.dto';
+import { UserDto } from '../../shared/dtos/user.dto';
+import { ApiService } from '../../shared/services/api/api.service';
+import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
 	selector: 'app-profile-page',
@@ -18,15 +19,20 @@ export class ProfilePageComponent implements OnInit {
 
 	showDataPrivacy = false;
 	showRules = false;
+	showImprint = false;
+
+	showDoneChallenges = true;
+	showCreatedChallenges = false;
 
 	constructor(
 		private api: ApiService,
 		private router: Router,
-		private store: StoreService
+		private store: StoreService,
+		private urlResolverService: UrlResolverService
 	) {
-		this.user$ = api.getUser(store.getUserId());
+		this.user$ = api.getMyUser(store.getUserId());
 		this.points$ = api.getPointsOfUser();
-		this.challenges$ = api.getDoneChallenges();
+		this.displayDoneChallenges();
 	}
 
 	ngOnInit(): void {}
@@ -39,27 +45,27 @@ export class ProfilePageComponent implements OnInit {
 		this.showDataPrivacy = !this.showDataPrivacy;
 	}
 
-	challengeSelect(evt, status) {
-		// Declare all variables
-		var i, tabcontent, tablinks;
+	toggleImprint(): void {
+		this.showImprint = !this.showImprint;
+	}
 
-		// Get all elements with class="tabcontent" and hide them
-		tabcontent = document.getElementsByClassName('tabcontent');
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = 'none';
-		}
+	displayDoneChallenges(): void {
+		this.showDoneChallenges = true;
+		this.showCreatedChallenges = false;
+		this.challenges$ = this.api.getDoneChallenges();
+	}
 
-		// Get all elements with class="tablinks" and remove the class "active"
-		tablinks = document.getElementsByClassName('tablinks');
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(
-				' active',
-				''
-			);
-		}
+	displayCreatedChallenges(): void {
+		this.showDoneChallenges = false;
+		this.showCreatedChallenges = true;
+		this.challenges$ = this.api.getCreatedChallenges();
+	}
 
-		// Show the current tab, and add an "active" class to the button that opened the tab
-		document.getElementById(status).style.display = 'block';
-		evt.currentTarget.className += ' active';
+	getProfilePicture(user: UserDto): string {
+		return this.urlResolverService.getProfilePicture(user, '.120x120');
+	}
+
+	openProfilePictureEditor(): void {
+		this.router.navigate(['/uploadProfilePicture']);
 	}
 }

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { AchievementDto } from '../../dtos/achievement.dto';
 import { Category, getCategoryByName } from '../../dtos/category';
-import { ChallengeDto } from '../../dtos/challenge.dto';
-import { ApiService } from './api.service';
-import { StoreService } from '../store/store.service';
-import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { ChallengeDto } from '../../dtos/challenge.dto';
 import { PointsDto } from '../../dtos/points.dto';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
+import { ApiService } from './api.service';
 
 @Injectable()
 /**
@@ -18,7 +19,7 @@ export class SimApiService implements ApiService {
 		description: 'lorem ipsum ...',
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
-		createdBy: 'Annete',
+		createdByPublicUserId: null,
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
@@ -34,12 +35,12 @@ export class SimApiService implements ApiService {
 	private challenges: ChallengeDto[] = [
 		{
 			id: 1,
-			title: 'Challenge 1',
+			title: 'Quest 1',
 			category: getCategoryByName('creative'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
-			createdBy: 'AnneteB',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -48,12 +49,12 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 2,
-			title: 'Challenge 2',
+			title: 'Quest 2',
 			category: getCategoryByName('cooking'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
-			createdBy: 'Markus',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -62,12 +63,12 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 3,
-			title: 'Challenge 3',
+			title: 'Quest 3',
 			category: getCategoryByName('social'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Gerhard99',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -76,12 +77,12 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 4,
-			title: 'Challenge 4',
+			title: 'Quest 4',
 			category: getCategoryByName('physical'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'IngeBinge',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -90,12 +91,12 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 5,
-			title: 'Challenge 5',
+			title: 'Quest 5',
 			category: getCategoryByName('selfcare'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Kastanienblüte',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -104,12 +105,12 @@ export class SimApiService implements ApiService {
 		},
 		{
 			id: 6,
-			title: 'Challenge 6',
+			title: 'Quest 6',
 			category: getCategoryByName('education'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
-			createdBy: 'Markus',
+			createdByPublicUserId: null,
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -118,9 +119,259 @@ export class SimApiService implements ApiService {
 		},
 	];
 
+	private achievements: AchievementDto = {
+		achievmentsByCategory: {
+			household: [
+				{
+					name: 'Heimscheisser',
+					imageUrl: '',
+					achieved: true,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			social: [
+				{
+					name: 'Einsiedlereule',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			physical: [
+				{
+					name: 'Couch-Potatoe',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			selfcare: [
+				{
+					name: 'Einstiegsyogi',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			cooking: [
+				{
+					name: 'Tellerwäscher',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			noComfortZone: [
+				{
+					name: 'Schnabeltassennutzer',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			creative: [
+				{
+					name: 'Tuschkastenvergesser',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+			education: [
+				{
+					name: 'Ich-mag-Toastbrot!',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+				{
+					name: '',
+					imageUrl: '',
+					achieved: false,
+				},
+			],
+		},
+		overalLevel: [
+			{
+				name: 'Holzmedaille',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+			{
+				name: '',
+				imageUrl: '',
+				achieved: false,
+			},
+		],
+	};
+
 	private testUser: UserDto = {
 		userName: 'TestUser',
-		userId: 'someUserId',
+		publicUserId: 'someUserId',
+		privateUserId: 'privateUserId',
+		imageUrl: '',
 	};
 
 	constructor(private store: StoreService) {}
@@ -130,8 +381,10 @@ export class SimApiService implements ApiService {
 			return Promise.reject('Username is already in use');
 		}
 		return {
-			userId: 'anyUserId',
+			publicUserId: 'anyUserId',
+			privateUserId: 'privateUserId',
 			userName: user.userName,
+			imageUrl: '',
 		};
 	}
 
@@ -188,7 +441,7 @@ export class SimApiService implements ApiService {
 		return this.challenges;
 	}
 
-	async getUser(userId: string): Promise<UserDto> {
+	async getMyUser(userId: string): Promise<UserDto> {
 		return this.testUser;
 	}
 
@@ -255,5 +508,25 @@ export class SimApiService implements ApiService {
 
 	async getPointsOfUser(): Promise<PointsDto> {
 		return { points: 10 };
+	}
+
+	async getAchievementsForUser(id: string): Promise<AchievementDto> {
+		return this.achievements;
+	}
+
+	public getDefaultExceptionHandler() {
+		// NO OP
+	}
+
+	public setUserImage(imageBase64: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getApiUrl(): string {
+		return '';
+	}
+
+	async getPublicUserProfile(publicUserId: string): Promise<UserDto> {
+		throw this.testUser;
 	}
 }

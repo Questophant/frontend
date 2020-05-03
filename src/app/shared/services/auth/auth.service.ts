@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiService } from '../api-service/api.service';
-import { StoreService } from '../store/store.service';
 import { UserDto } from '../../dtos/user.dto';
+import { ApiService } from '../api/api.service';
+import { StoreService } from '../store/store.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -16,15 +17,41 @@ export class AuthService {
 
 	register(name: string): Promise<void> {
 		const userO: UserDto = {
-			userId: null,
+			publicUserId: null,
+			privateUserId: null,
 			userName: name,
+			imageUrl: null,
 		};
 		return this.api.createNewUser(userO).then((user) => {
-			this.store.setUserId(user.userId);
+			this.store.setPublicUserId(user.publicUserId);
+			this.store.setUserId(user.privateUserId);
 		});
 	}
 
 	isUserRegistered(): boolean {
 		return this.store.getUserId() !== null;
+	}
+
+	checkUserRegistered(): Promise<boolean> {
+		const userId = this.store.getUserId();
+
+		if (userId === null) {
+			return Promise.resolve(false);
+		}
+
+		return this.api
+			.getMyUser(userId)
+			.then((user) => {
+				return true;
+			})
+			.catch((httpErrorResponse: HttpErrorResponse) => {
+				if (
+					httpErrorResponse.status === 404 &&
+					httpErrorResponse.error === 'MyUser not found.'
+				) {
+					return false;
+				}
+				throw httpErrorResponse;
+			});
 	}
 }

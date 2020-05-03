@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/shared/services/api/api.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
@@ -23,14 +24,23 @@ export class WelcomePageComponent implements OnInit {
 		rules: new FormControl(false, [Validators.requiredTrue]),
 	});
 
-	constructor(public auth: AuthService, private router: Router) {
-		if (this.auth.isUserRegistered()) {
-			this.router
-				.navigate(['/'])
-				.catch((reason) =>
-					alert('Es gab einen Fehler bei der Weiterleitung')
-				);
-		}
+	constructor(
+		public auth: AuthService,
+		private router: Router,
+		private api: ApiService
+	) {
+		this.auth
+			.checkUserRegistered()
+			.then((registered) => {
+				if (registered) {
+					this.router
+						.navigate(['/'])
+						.catch((reason) =>
+							alert('Es gab einen Fehler bei der Weiterleitung')
+						);
+				}
+			})
+			.catch(api.getDefaultExceptionHandler);
 	}
 
 	ngOnInit(): void {}

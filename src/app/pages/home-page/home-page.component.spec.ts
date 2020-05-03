@@ -1,8 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
-import { HomePageComponent } from './home-page.component';
-import { anything, instance, mock, when } from 'ts-mockito';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ApiService } from 'src/app/shared/services/api/api.service';
+import { anything, instance, mock, when } from 'ts-mockito';
+import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
 	let component: HomePageComponent;
@@ -11,6 +12,7 @@ describe('HomePageComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [RouterTestingModule],
 			declarations: [HomePageComponent],
 			providers: [
 				{
@@ -27,7 +29,7 @@ describe('HomePageComponent', () => {
 			description: '',
 			durationSeconds: 0,
 			title: '',
-			createdBy: 'someUser',
+			createdByPublicUserId: null,
 			pointsWin: 0,
 			pointsLoose: 0,
 			ongoing: false,

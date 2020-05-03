@@ -1,9 +1,9 @@
-import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { AchievementDto } from '../../dtos/achievement.dto';
 import { Category } from '../../dtos/category';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto } from '../../dtos/challenge.dto';
-
-import { UserDto } from '../../dtos/user.dto';
 import { PointsDto } from '../../dtos/points.dto';
+import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
 	public getDailyChallenge(): Promise<ChallengeDto> {
@@ -67,7 +67,11 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	getUser(userId: string): Promise<UserDto> {
+	getMyUser(userId: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getPublicUserProfile(publicUserId: string): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -79,6 +83,22 @@ export abstract class ApiService {
 	}
 
 	public getPointsOfUser(): Promise<PointsDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getAchievementsForUser(id: string): Promise<AchievementDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getDefaultExceptionHandler() {
+		// NO OP
+	}
+
+	public setUserImage(imageBase64: string): Promise<UserDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getApiUrl(): string {
 		throw new Error('Method not implemented.');
 	}
 }

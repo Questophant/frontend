@@ -2,12 +2,18 @@
 	<img
 		(click)="toggleDataPrivacy()"
 		class="dataprivacy-btn"
-		src="/assets/icons/lock.svg"
+		src="/assets/icons/dataprivacy.svg"
 	/>
 	<img
 		(click)="toggleRules()"
 		class="rules-btn"
-		src="/assets/icons/document.svg"
+		src="/assets/icons/rules.svg"
+	/>
+	<img
+		(click)="toggleImprint()"
+		alt="Impressum"
+		class="imprint-btn"
+		src="/assets/icons/imprint.svg"
 	/>
 </div>
 
@@ -21,9 +27,17 @@
 	*ngIf="showRules"
 ></app-rules-overlay>
 
+<app-imprint-overlay
+	(onClose)="toggleImprint()"
+	*ngIf="showImprint"
+></app-imprint-overlay>
+
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
-	<img class="profile-picture" src="/assets/images/profile/panda.webp" />
+	<div id="profilePictureContainer" (click)="openProfilePictureEditor()">
+		<img class="profile-picture" src="{{ getProfilePicture(user) }}" />
+		<div class="edit">editieren</div>
+	</div>
 
 	<div class="username-block">
 		<div class="username">{{ user.userName }}</div>
@@ -53,25 +67,29 @@
 		<!--	</div>-->
 	</div>
 
-	<div class="challenges">Absolvierte Challenges</div>
+	<div class="challenges">Deine Quests</div>
 
-	<!--&lt;!&ndash; Tab links &ndash;&gt;-->
-	<!--<div class="tab">-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Absolviert')">-->
-	<!--		Absolviert-->
-	<!--	</button>-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Erstellt')">-->
-	<!--		Erstellt-->
-	<!--	</button>-->
-	<!--	<button class="tablinks" onclick="challengeSelect(event, 'Markiert')">-->
-	<!--		Markiert-->
-	<!--	</button>-->
-	<!--</div>-->
+	<div class="tabs">
+		<span
+			(click)="displayDoneChallenges()"
+			[class.active]="showDoneChallenges"
+			class="tab"
+		>
+			Absolviert
+		</span>
+		<span
+			(click)="displayCreatedChallenges()"
+			[class.active]="showCreatedChallenges"
+			class="tab"
+		>
+			Erstellt
+		</span>
+	</div>
 
 	<app-challenge-list
 		[challenges]="challenges$"
 		[showActions]="false"
 	></app-challenge-list>
 </ng-container>
-<!--Footer-->
+
 <app-navbar></app-navbar>
