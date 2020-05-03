@@ -18,6 +18,7 @@ export class ProfilePageComponent implements OnInit {
 
 	showDataPrivacy = false;
 	showRules = false;
+	showImprint = false;
 
 	constructor(
 		private api: ApiService,
@@ -37,6 +38,10 @@ export class ProfilePageComponent implements OnInit {
 
 	toggleDataPrivacy(): void {
 		this.showDataPrivacy = !this.showDataPrivacy;
+	}
+
+	toggleImprint(): void {
+		this.showImprint = !this.showImprint;
 	}
 
 	challengeSelect(evt, status) {

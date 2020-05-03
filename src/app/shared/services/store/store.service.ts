@@ -5,38 +5,31 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root',
 })
 export class StoreService {
-	constructor() {}
+	reset(): void {
+		this.setUserId(null);
+		this.setPublicUserId(null);
+	}
 
 	setPublicUserId(userId: string): void {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		localStorage.setItem(prefix + 'publicUserId', userId);
+		localStorage.setItem(this.getUserStorageKey('publicUserId'), userId);
 	}
 
 	getPublicUserId(): string | null {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		return localStorage.getItem(prefix + 'publicUserId');
+		return localStorage.getItem(this.getUserStorageKey('publicUserId'));
 	}
 
-	setUserId(privateUserId: string) {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		localStorage.setItem(prefix + 'userId', privateUserId);
+	setUserId(privateUserId: string): void {
+		localStorage.setItem(this.getUserStorageKey('userId'), privateUserId);
 	}
 
 	getUserId(): string | null {
-		let prefix =
-			environment.apiService === 'production'
-				? ''
-				: environment.apiService + '_';
-		return localStorage.getItem(prefix + 'userId');
+		return localStorage.getItem(this.getUserStorageKey('userId'));
+	}
+
+	private getUserStorageKey(key: string): string {
+		return environment.apiService === 'production'
+			? key
+			: environment.apiService + '_' + key;
 	}
 
 	private getArray<T>(key: string): T[] {

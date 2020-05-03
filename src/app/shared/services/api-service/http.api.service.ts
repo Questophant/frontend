@@ -1,32 +1,35 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { AchievementDto } from '../../dtos/achievement.dto';
 import { Categories, Category } from '../../dtos/category';
-import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
-import { ApiService } from './api.service';
-import { StoreService } from '../store/store.service';
-import { UserDto } from '../../dtos/user.dto';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
 import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
-import { AchievementDto } from '../../dtos/achievement.dto';
+import { UserDto } from '../../dtos/user.dto';
+import { StoreService } from '../store/store.service';
+import { ApiService } from './api.service';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;
+
 	private cachedDailyChallenge: ChallengeDto;
-	private cacheDay: number;
+	private cacheDate: number;
 
 	constructor(protected http: HttpClient, private store: StoreService) {}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
-		this.checkCache();
-		if (this.cachedDailyChallenge) {
-			return new Promise((resolve, reject) => {
-				resolve(this.cachedDailyChallenge);
-			});
+		const date = new Date().getDate();
+
+		if (this.cacheDate && this.cacheDate === date) {
+			// Return cached DailyChallenge
+			return Promise.resolve(this.cachedDailyChallenge);
 		}
 
 		return this.getChallengeFromUrl(`${this.apiUrl}/daily_challenge`).then(
 			(challenge) => {
 				this.cachedDailyChallenge = challenge;
+				this.cacheDate = date;
 				return challenge;
 			}
 		);
@@ -182,16 +185,25 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	protected checkCache() {
-		const date = new Date();
-		const day = date.getDate();
-
-		// new values at 1:30h => reset at 2 o'clock
-		if (this.cacheDay !== day) {
-			console.log('Resetting caches.');
-			this.cacheDay = day;
-			this.cachedDailyChallenge = null;
-		}
+	public getDefaultExceptionHandler() {
+		return (httpErrorResponse: HttpErrorResponse) => {
+			if (
+				environment.resetOnUserNotFound &&
+				httpErrorResponse.status === 404 &&
+				httpErrorResponse.error === 'MyUser not found.'
+			) {
+				window.alert(
+					'Die Datenbank ist zurückgesetzt worden.\nSetze die App ebenfalls zurück.'
+				);
+				this.store.reset();
+				window.location.reload();
+			} else {
+				window.alert(
+					'Fehler bei der Kontaktaufnahme mit dem Server.\nVersuchen Sie es später noch einmal.'
+				);
+			}
+			throw httpErrorResponse;
+		};
 	}
 
 	private mapChallenges() {
@@ -227,6 +239,7 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.get<ChallengeResponse[]>(url)
 			.toPromise()
-			.then(this.mapChallenges());
+			.then(this.mapChallenges())
+			.catch(this.getDefaultExceptionHandler());
 	}
 }

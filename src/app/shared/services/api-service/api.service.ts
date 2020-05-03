@@ -1,11 +1,10 @@
-import { ChallengeState } from '../../dtos/challenge-state.enum';
+import { AchievementDto } from '../../dtos/achievement.dto';
 import { Category } from '../../dtos/category';
+import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto } from '../../dtos/challenge.dto';
-
-import { UserDto } from '../../dtos/user.dto';
 import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
-import { AchievementDto } from '../../dtos/achievement.dto';
+import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
 	public getDailyChallenge(): Promise<ChallengeDto> {
@@ -80,5 +79,9 @@ export abstract class ApiService {
 
 	public getAchievementsForUser(id: string): Promise<AchievementDto> {
 		throw new Error('Method not implemented.');
+	}
+
+	public getDefaultExceptionHandler() {
+		// NO OP
 	}
 }

@@ -1,8 +1,8 @@
 ![Check build](https://github.com/ChallengeMeApp/frontend/workflows/Check%20build/badge.svg?branch=master)
 
-# ChallengeMe Frontend
+# Questophant Frontend
 
-Hi, this is the frontend of the ChallengeMe App.
+Hi, this is the frontend of the Questophant App.
 It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
 ## Getting started
