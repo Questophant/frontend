@@ -11,6 +11,9 @@ import { ApiService } from '../../shared/services/api-service/api.service';
 export class CreateChallengePageComponent implements OnInit {
 	categories = Categories;
 	submitted = false;
+	showForm = true;
+	challengeCreated = false;
+	error = false;
 
 	challengeName = new FormControl('', [
 		Validators.required,
@@ -24,7 +27,7 @@ export class CreateChallengePageComponent implements OnInit {
 	]);
 	challengeCategory = new FormControl('', [Validators.required]);
 	challengeMaterial = new FormControl('', [Validators.maxLength(255)]);
-	challengeDuration = new FormControl(0, [Validators.required]);
+	challengeDuration = new FormControl(null, []);
 
 	createChallengeForm = new FormGroup({
 		title: this.challengeName,
@@ -40,7 +43,6 @@ export class CreateChallengePageComponent implements OnInit {
 
 	onSubmit(): void {
 		this.submitted = true;
-		console.log(this.createChallengeForm.errors);
 		const category = getCategoryByName(this.challengeCategory.value);
 
 		if (this.createChallengeForm.valid && category !== undefined) {
@@ -54,10 +56,12 @@ export class CreateChallengePageComponent implements OnInit {
 					kind: 'self',
 				})
 				.then((value) => {
-					alert('Challenge created');
+					this.showForm = false;
+					this.challengeCreated = true;
 				})
 				.catch((reason) => {
-					alert(JSON.stringify(reason));
+					this.showForm = false;
+					this.error = true;
 				});
 		}
 	}

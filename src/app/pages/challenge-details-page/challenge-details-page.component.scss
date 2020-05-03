@@ -168,12 +168,3 @@
 		); //10vh refering to sticky task bar, so change if taskbar other height
 	}
 }
-
-.taskbar {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 10vh;
-	background: #c00707;
-}

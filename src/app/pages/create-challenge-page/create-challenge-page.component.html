@@ -7,58 +7,76 @@
 	/>
 </div>
 
-<div class="form-wrapper">
-	<h1>Quest erstellen</h1>
+<div class="wrapper">
+	<ng-container *ngIf="showForm">
+		<h1>Quest erstellen</h1>
 
-	<form [formGroup]="createChallengeForm" (ngSubmit)="onSubmit()">
-		<input
-			type="text"
-			placeholder="Questname"
-			class="challenge-name"
-			[formControl]="challengeName"
-		/>
+		<form (ngSubmit)="onSubmit()" [formGroup]="createChallengeForm">
+			<input
+				[formControl]="challengeName"
+				class="challenge-name"
+				placeholder="Questname"
+				type="text"
+			/>
 
-		<select class="category" [formControl]="challengeCategory">
-			<option value="" disabled selected>Kategorie</option>
-			<option
-				*ngFor="let category of categories"
-				value="{{ category.name }}"
-				>{{ category.display }}</option
+			<select [formControl]="challengeCategory" class="category">
+				<option disabled selected value="">Kategorie</option>
+				<option
+					*ngFor="let category of categories"
+					value="{{ category.name }}"
+					>{{ category.display }}</option
+				>
+			</select>
+
+			<textarea
+				[formControl]="challengeDescription"
+				cols="24"
+				placeholder="Beschreibe deine Quest..."
+				rows="12"
+			></textarea>
+
+			<textarea
+				[formControl]="challengeMaterial"
+				cols="24"
+				placeholder="Benötigtes Material..."
+				rows="7"
 			>
-		</select>
+			</textarea>
 
-		<textarea
-			rows="12"
-			cols="24"
-			placeholder="Beschreibe deine Quest..."
-			[formControl]="challengeDescription"
-		></textarea>
+			<div
+				*ngIf="submitted && createChallengeForm.invalid"
+				class="errors"
+			>
+				<span *ngIf="challengeName.errors !== null">
+					Gib deiner Quest einen Namen.
+				</span>
+				<span *ngIf="challengeDescription.errors !== null">
+					Gib deiner Quest eine Beschreibung.
+				</span>
+				<span *ngIf="challengeCategory.errors !== null">
+					Gib deiner Quest eine Kategorie.
+				</span>
+				<span *ngIf="challengeMaterial.errors !== null">
+					Das ist doch etwas zu viel, was für die Quest benötigt wird.
+				</span>
+			</div>
 
-		<textarea
-			cols="24"
-			rows="7"
-			placeholder="Benötigtes Material..."
-			[formControl]="challengeMaterial"
-		>
-		</textarea>
-
-		<div *ngIf="submitted && createChallengeForm.invalid" class="errors">
-			<span *ngIf="challengeName.errors !== null">
-				Gib deiner Quest einen Namen.
-			</span>
-			<span *ngIf="challengeDescription.errors !== null">
-				Gib deiner Quest eine Beschreibung.
-			</span>
-			<span *ngIf="challengeCategory.errors !== null">
-				Gib deiner Quest eine Kategorie.
-			</span>
-			<span *ngIf="challengeMaterial.errors !== null">
-				Das ist doch etwas zu viel, was für die Quest benötigt wird.
-			</span>
+			<button type="submit">Quest erstellen</button>
+		</form>
+	</ng-container>
+	<ng-container *ngIf="challengeCreated">
+		<div class="action-message">
+			<h1>Dein Quest wurde erfolgreich erstellt.</h1>
+			<p>
+				Teile deine Quest mit Freunden und fordere sie heraus.
+			</p>
 		</div>
-
-		<button type="submit">Quest erstellen</button>
-	</form>
+	</ng-container>
+	<ng-container *ngIf="error">
+		<div class="action-message">
+			<h1>Dein Quest konnte leider nicht erstellt werden.</h1>
+		</div>
+	</ng-container>
 </div>
 
 <app-navbar></app-navbar>
