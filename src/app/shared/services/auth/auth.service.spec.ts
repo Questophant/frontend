@@ -34,12 +34,14 @@ describe('AuthService', () => {
 						publicUserId: null,
 						privateUserId: null,
 						userName: 'anyUserName',
+						imageUrl: null,
 					})
 				)
 			).thenResolve({
 				publicUserId: 'anyUserId',
 				privateUserId: 'privateUserId',
 				userName: 'anyUserName',
+				imageUrl: null,
 			});
 
 			await service.register('anyUserName');
@@ -80,10 +82,11 @@ describe('AuthService', () => {
 		it('should return true when api returns true', (done) => {
 			localStorage.setItem('simulation_userId', 'anyUserId');
 
-			when(mockApiService.getUser('anyUserId')).thenResolve({
+			when(mockApiService.getMyUser('anyUserId')).thenResolve({
 				userName: 'anyUserName',
 				publicUserId: 'anyUserId',
 				privateUserId: 'privateUserId',
+				imageUrl: null,
 			});
 
 			service.checkUserRegistered().then((result) => {

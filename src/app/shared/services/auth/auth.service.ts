@@ -13,13 +13,14 @@ import { StoreService } from '../store/store.service';
  * - save userName on browser
  */
 export class AuthService {
-	constructor(private store: StoreService, private api: ApiService) {}
+	constructor(private store: StoreService, private api: ApiService) { }
 
 	register(name: string): Promise<void> {
 		const userO: UserDto = {
 			publicUserId: null,
 			privateUserId: null,
 			userName: name,
+			imageUrl: null,
 		};
 		return this.api.createNewUser(userO).then((user) => {
 			this.store.setPublicUserId(user.publicUserId);
@@ -39,7 +40,7 @@ export class AuthService {
 		}
 
 		return this.api
-			.getUser(userId)
+			.getMyUser(userId)
 			.then((user) => {
 				return true;
 			})

@@ -7,7 +7,7 @@ export interface ChallengeDto {
 	category: Category;
 	imageUrl?: string;
 	durationSeconds: number;
-	createdBy: string;
+	createdByPublicUserId: string;
 	material?: string;
 	pointsLoose: number;
 	pointsWin: number;
@@ -22,7 +22,7 @@ export interface ChallengeResponse {
 	category: string;
 	imageUrl: string;
 	durationSeconds: number;
-	createdByUserName: string;
+	createdByPublicUserId: string;
 	pointsLoose: number;
 	pointsWin: number;
 	material?: string;

@@ -1,106 +1,114 @@
 <ng-container *ngIf="challenge | async as challenge">
-	<div class="picture">
-		<img
-			src="/assets/images/categories/{{ challenge.category.name }}.jpg"
-		/>
-		<a (click)="navigateBack()" class="back-home"><</a>
-	</div>
+	<ng-container *ngIf="createdByUser | async as createdByUser">
+		<div class="picture">
+			<img
+				src="/assets/images/categories/{{
+					challenge.category.name
+				}}.jpg"
+			/>
+			<a (click)="navigateBack()" class="back-home"></a>
+		</div>
 
-	<div *ngIf="!success && !failure" class="middle">
-		<div class="profile">
-			<img class="profilepic" src="/assets/images/profile/panda.webp" />
-			<div class="text">
-				von
-				<br />
-				<div class="username">
-					{{ challenge.createdBy }}
-				</div>
-				<br />
-				<div
-					style="border-radius: 40px; color: #fff; padding: 5px;"
-					class="category challenge-label category-{{
-						challenge.category.name
-					}}-background"
-				>
-					{{ challenge.category.display }}
-				</div>
-				<div class="points">{{ challenge.pointsWin }} Punkte</div>
-				<div class="duration">
-					{{ challenge.durationSeconds | duration }}
+		<div *ngIf="!success && !failure" class="middle">
+			<div class="profile">
+				<img
+					class="profilepic"
+					src="{{ getProfilePicture(createdByUser) }}"
+				/>
+				<div class="text">
+					von
+					<br />
+					<div class="username">
+						{{ createdByUser.userName }}
+					</div>
+					<br />
+					<div
+						style="border-radius: 40px; color: #fff; padding: 5px;"
+						class="category challenge-label category-{{
+							challenge.category.name
+						}}-background"
+					>
+						{{ challenge.category.display }}
+					</div>
+					<div class="points">{{ challenge.pointsWin }} Punkte</div>
+					<div class="duration">
+						{{ challenge.durationSeconds | duration }}
+					</div>
 				</div>
 			</div>
+			<div class="challenge">
+				<div class="challenge-name">{{ challenge.title }}</div>
+				<textarea class="challenge-description" readonly>{{
+					challenge.description
+				}}</textarea>
+				<textarea class="challenge-materials" readonly>{{
+					challenge.material || 'Keine Materialien benötigt'
+				}}</textarea>
+				<ng-container *ngIf="showActions">
+					<div
+						(click)="acceptChallenge(challenge)"
+						*ngIf="!running"
+						class="challenge-action color-one"
+					>
+						Quest annehmen
+					</div>
+					<div
+						(click)="toggleRemember(challenge)"
+						*ngIf="!running"
+						class="challenge-action color-two"
+					>
+						{{ remembered ? 'Nicht mehr merken' : 'Quest merken' }}
+					</div>
+					<div
+						(click)="challengeSuccess(challenge)"
+						*ngIf="running"
+						class="challenge-action color-one"
+						[@inOutAnimation]
+						[@.disabled]="!animations"
+					>
+						Quest gemeistert?
+					</div>
+					<div
+						(click)="challengeFailure(challenge)"
+						*ngIf="running"
+						class="challenge-action color-two"
+						[@inOutAnimation]
+						[@.disabled]="!animations"
+					>
+						Aufgeben
+					</div>
+				</ng-container>
+			</div>
 		</div>
-		<div class="challenge">
-			<div class="challenge-name">{{ challenge.title }}</div>
-			<textarea class="challenge-description" readonly>{{
-				challenge.description
-			}}</textarea>
-			<textarea class="challenge-materials" readonly>{{
-				challenge.material || 'Keine Materialien benötigt'
-			}}</textarea>
-			<ng-container *ngIf="showActions">
-				<div
-					(click)="acceptChallenge(challenge)"
-					*ngIf="!running"
-					class="challenge-action color-one"
-				>
-					Quest annehmen
-				</div>
-				<div
-					(click)="toggleRemember(challenge)"
-					*ngIf="!running"
-					class="challenge-action color-two"
-				>
-					{{ remembered ? 'Nicht mehr merken' : 'Quest merken' }}
-				</div>
-				<div
-					(click)="challengeSuccess(challenge)"
-					*ngIf="running"
-					class="challenge-action color-one"
-					[@inOutAnimation]
-					[@.disabled]="!animations"
-				>
-					Quest gemeistert?
-				</div>
-				<div
-					(click)="challengeFailure(challenge)"
-					*ngIf="running"
-					class="challenge-action color-two"
-					[@inOutAnimation]
-					[@.disabled]="!animations"
-				>
-					Aufgeben
-				</div>
-			</ng-container>
+
+		<div *ngIf="success" class="action-message">
+			<h1>Respekt! Weiter so!</h1>
+			<p>
+				Du hast die Quest <span>{{ challenge.title }}</span> erfolgreich
+				abgeschlossen
+			</p>
+
+			<p>
+				Teile deinen Erfolg mit deinen Freunden und verwende den Hashtag
+				...
+			</p>
 		</div>
-	</div>
 
-	<div *ngIf="success" class="action-message">
-		<h1>Respekt! Weiter so!</h1>
-		<p>
-			Du hast die Quest <span>{{ challenge.title }}</span> erfolgreich
-			abgeschlossen
-		</p>
+		<div *ngIf="failure" class="action-message">
+			<h1>Schade. Probier es mit einer anderen Quest.</h1>
+		</div>
 
-		<p>
-			Teile deinen Erfolg mit deinen Freunden und verwende den Hashtag ...
-		</p>
-	</div>
-
-	<div *ngIf="failure" class="action-message">
-		<h1>Schade. Probier es mit einer anderen Quest.</h1>
-	</div>
-
-	<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
-	<!--<div class="othersolutions">-->
-	<!--	<div style="font-size: 1.5rem; color: #67a682; display: inline-block;">-->
-	<!--		Andere Lösungen-->
-	<!--	</div>-->
-	<!--	<br />-->
-	<!--	<br />-->
-	<!--	<img class="solutionpicleft" src="../../../favicon.ico" alt="hello" />-->
-	<!--	<img class="solutionpicright" src="../../../favicon.ico" alt="hello" />-->
-	<!--</div>-->
-</ng-container>
+		<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
+		<!--<div class="othersolutions">-->
+		<!--	<div style="font-size: 1.5rem; color: #67a682; display: inline-block;">-->
+		<!--		Andere Lösungen-->
+		<!--	</div>-->
+		<!--	<br />-->
+		<!--	<br />-->
+		<!--	<img class="solutionpicleft" src="../../../favicon.ico" alt="hello" />-->
+		<!--	<img class="solutionpicright" src="../../../favicon.ico" alt="hello" />-->
+		<!--</div>-->
+	</ng-container></ng-container
+>
 
 <app-navbar></app-navbar>

@@ -9,6 +9,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { HasRegisteredGuard } from './shared/guards/has-registered/has-registered.guard';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
+import { UploadProfilePicturePageComponent } from './pages/upload-profile-picture-page/upload-profile-picture-page.component';
 
 const routes: Routes = [
 	{
@@ -54,6 +55,10 @@ const routes: Routes = [
 			{
 				path: 'friends',
 				component: FriendsPageComponent,
+			},
+			{
+				path: 'uploadProfilePicture',
+				component: UploadProfilePicturePageComponent,
 			},
 		],
 	},
