@@ -13,7 +13,7 @@ import { StoreService } from '../store/store.service';
  * - save userName on browser
  */
 export class AuthService {
-	constructor(private store: StoreService, private api: ApiService) { }
+	constructor(private store: StoreService, private api: ApiService) {}
 
 	register(name: string): Promise<void> {
 		const userO: UserDto = {
