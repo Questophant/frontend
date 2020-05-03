@@ -5,7 +5,6 @@ import { anyNumber, instance, mock, when } from 'ts-mockito';
 import { ApiService } from '../../shared/services/api/api.service';
 import { ChallengeDetailsPageComponent } from './challenge-details-page.component';
 
-
 describe('ChallengeDetailsPageComponent', () => {
 	let component: ChallengeDetailsPageComponent;
 	let fixture: ComponentFixture<ChallengeDetailsPageComponent>;

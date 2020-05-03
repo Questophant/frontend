@@ -5,5 +5,5 @@ import { ApiService } from '../api/api.service';
 	providedIn: 'root',
 })
 export class ChallengeService {
-	constructor(private api: ApiService) { }
+	constructor(private api: ApiService) {}
 }

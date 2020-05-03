@@ -24,5 +24,5 @@ export class ChallengeListPageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

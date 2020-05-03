@@ -6,16 +6,16 @@ import { ApiService } from '../api/api.service';
 	providedIn: 'root',
 })
 export class UrlResolverService {
-
 	private profilePictureFormat: string;
 	private canUseWebP: boolean;
 
 	constructor(private api: ApiService) {
 		this.canUseWebP = this.checkWebPCompatibility();
 		if (this.canUseWebP) {
-			this.profilePictureFormat = "webp";
+			this.profilePictureFormat = 'webp';
+		} else {
+			this.profilePictureFormat = 'jpg';
 		}
-		else { this.profilePictureFormat = "jpg" };
 	}
 
 	private hash(s: string): number {
@@ -62,8 +62,19 @@ export class UrlResolverService {
 					break;
 			}
 
-			return '/assets/images/profile/' + fileName + "." + (this.canUseWebP ? "webp" : "png");
+			return (
+				'/assets/images/profile/' +
+				fileName +
+				'.' +
+				(this.canUseWebP ? 'webp' : 'png')
+			);
 		}
-		return this.api.getApiUrl() + user.imageUrl + size + "." + this.profilePictureFormat;
+		return (
+			this.api.getApiUrl() +
+			user.imageUrl +
+			size +
+			'.' +
+			this.profilePictureFormat
+		);
 	}
 }

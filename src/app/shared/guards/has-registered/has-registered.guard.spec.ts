@@ -4,7 +4,6 @@ import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
 import { AuthService } from '../../services/auth/auth.service';
 import { HasRegisteredGuard } from './has-registered.guard';
 
-
 describe('HasRegisteredGuard', () => {
 	let guard: HasRegisteredGuard;
 	const mockAuthService = mock(AuthService);

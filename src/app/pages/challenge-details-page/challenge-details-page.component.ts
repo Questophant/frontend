@@ -68,7 +68,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	acceptChallenge(challenge: ChallengeDto): void {
 		this.api

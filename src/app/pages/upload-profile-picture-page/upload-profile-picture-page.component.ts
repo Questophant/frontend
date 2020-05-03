@@ -23,7 +23,7 @@ export class UploadProfilePicturePageComponent implements OnInit {
 		this.user$ = api.getMyUser(store.getUserId());
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	fileLoaded: boolean;
 	imageChangedEvent: any = '';

@@ -11,19 +11,23 @@ import { UrlResolverService } from '../../services/url/url-resolver.service';
 	styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
 	user$: Promise<UserDto>;
 
-	constructor(private api: ApiService,
+	constructor(
+		private api: ApiService,
 		private router: Router,
-		private store: StoreService, private urlResolverService: UrlResolverService, ) {
+		private store: StoreService,
+		private urlResolverService: UrlResolverService
+	) {
 		this.user$ = api.getMyUser(store.getUserId());
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	getProfilePicture(user: UserDto): string {
-		let element = document.getElementsByClassName('navbarProfilePicture')[0];
+		let element = document.getElementsByClassName(
+			'navbarProfilePicture'
+		)[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
 			'.' + element.clientWidth + 'x' + element.clientHeight

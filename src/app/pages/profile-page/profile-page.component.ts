@@ -35,7 +35,7 @@ export class ProfilePageComponent implements OnInit {
 		this.displayDoneChallenges();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
