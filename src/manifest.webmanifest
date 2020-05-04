@@ -1,6 +1,6 @@
 {
-	"name": "ChallengeMeApp",
-	"short_name": "ChallengeMe",
+	"name": "Questophant",
+	"short_name": "Questophant",
 	"theme_color": "#67a682",
 	"background_color": "#fafafa",
 	"display": "standalone",

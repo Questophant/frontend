@@ -6,5 +6,5 @@ import { HTTPApiService } from './http.api.service';
  * This API Service connects to the backend.
  */
 export class ProdApiService extends HTTPApiService {
-	apiUrl = 'https://app.challengemeapp.de/api/v1';
+	apiUrl = 'https://app.questophant.de/api/v1';
 }
