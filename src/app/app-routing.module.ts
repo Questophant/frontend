@@ -28,7 +28,23 @@ const routes: Routes = [
 			},
 			{
 				path: 'challenges',
-				component: ChallengeListPageComponent,
+				children: [
+					{
+						path: '',
+						component: ChallengeListPageComponent,
+						data: { tab: 'active' },
+					},
+					{
+						path: 'active',
+						component: ChallengeListPageComponent,
+						data: { tab: 'active' },
+					},
+					{
+						path: 'marked',
+						component: ChallengeListPageComponent,
+						data: { tab: 'marked' },
+					},
+				],
 			},
 			{
 				path: 'challenge/create',
