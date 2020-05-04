@@ -42,7 +42,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private api: ApiService,
 		private store: StoreService,
 		private location: Location,
-		private urlResolverService: UrlResolverService,
+		private urlResolverService: UrlResolverService
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
@@ -50,22 +50,22 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
-			api.getChallengeById(id)
-				.then((challenge) => {
-					if (challenge) {
+			api.getChallengeById(id).then((challenge) => {
+				if (challenge) {
+					this.createdByUser = this.api.getPublicUserProfile(
+						challenge.createdByPublicUserId
+					);
 
-						this.createdByUser = this.api.getPublicUserProfile(challenge.createdByPublicUserId);
-
-						this.challenge = Promise.resolve(challenge);
-						this.remembered = challenge.marked;
-						this.running = challenge.ongoing;
-						if (this.running) {
-							this.animations = false;
-						}
-					} else {
-						this.router.navigate(['']);
+					this.challenge = Promise.resolve(challenge);
+					this.remembered = challenge.marked;
+					this.running = challenge.ongoing;
+					if (this.running) {
+						this.animations = false;
 					}
-				});
+				} else {
+					this.router.navigate(['']);
+				}
+			});
 		});
 	}
 

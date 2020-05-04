@@ -28,7 +28,7 @@ export class ProfilePageComponent implements OnInit {
 		private api: ApiService,
 		private router: Router,
 		private store: StoreService,
-		private urlResolverService: UrlResolverService,
+		private urlResolverService: UrlResolverService
 	) {
 		this.user$ = api.getMyUser(store.getUserId());
 		this.points$ = api.getPointsOfUser();
