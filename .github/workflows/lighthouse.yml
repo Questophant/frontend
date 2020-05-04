@@ -14,14 +14,16 @@ jobs:
       -   run: mkdir /tmp/artifacts
 
       -   name: Start angular
-          run: docker-compose up -d
+          run: |
+              docker build -t questophant-frontend .
+              docker run -p 80:80 -p 443:443 -d questophant-frontend
 
       -   name: Run Lighthouse
           uses: foo-software/lighthouse-check-action@master
           with:
               accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
               outputDirectory: /tmp/artifacts
-              urls: 'localhost:4200'
+              urls: 'http://localhost'
               prCommentEnabled: true
               prCommentSaveOld: true
 
