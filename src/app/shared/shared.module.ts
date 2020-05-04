@@ -14,6 +14,7 @@ import { AuthService } from './services/auth/auth.service';
 import { ChallengeService } from './services/challenge/challenge.service';
 import { StoreService } from './services/store/store.service';
 import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
+import { UrlResolverService } from './services/url/url-resolver.service';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
