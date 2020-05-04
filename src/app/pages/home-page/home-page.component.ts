@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit {
 		this.updateChallenges();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	setCategory(category: Category): void {
 		this.selectedCategory = category;

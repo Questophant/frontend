@@ -8,6 +8,7 @@ export interface ChallengeDto {
 	imageUrl?: string;
 	durationSeconds: number;
 	createdByPublicUserId: string;
+	createdByUserName: string;
 	material?: string;
 	pointsLoose: number;
 	pointsWin: number;
@@ -23,6 +24,7 @@ export interface ChallengeResponse {
 	imageUrl: string;
 	durationSeconds: number;
 	createdByPublicUserId: string;
+	createdByUserName: string;
 	pointsLoose: number;
 	pointsWin: number;
 	material?: string;

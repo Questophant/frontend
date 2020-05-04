@@ -20,6 +20,7 @@ export class SimApiService implements ApiService {
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
 		createdByPublicUserId: null,
+		createdByUserName: '',
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
@@ -41,6 +42,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -55,6 +57,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -69,6 +72,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -83,6 +87,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -97,6 +102,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -111,6 +117,7 @@ export class SimApiService implements ApiService {
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
 			pointsWin: 0,
@@ -374,7 +381,7 @@ export class SimApiService implements ApiService {
 		imageUrl: '',
 	};
 
-	constructor(private store: StoreService) { }
+	constructor(private store: StoreService) {}
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
 		if (user.userName === 'existingUserName') {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 
@@ -9,20 +9,46 @@ import { ApiService } from '../../shared/services/api/api.service';
 	styleUrls: ['./challenge-list-page.component.scss'],
 })
 export class ChallengeListPageComponent implements OnInit {
-	showProgress = false;
 	challenges$: Promise<ChallengeDto[]>;
 
-	constructor(private route: ActivatedRoute, private api: ApiService) {
-		this.route.data.subscribe((v) => {
-			this.showProgress = v.showProgress;
+	showActive = true;
+	showMarked = false;
 
-			if (this.showProgress) {
-				this.challenges$ = this.api.getActiveChallenges();
-			} else {
-				this.challenges$ = this.api.getRememberedChallenges();
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+		private api: ApiService
+	) {
+		this.route.queryParamMap.subscribe((params) => {
+			const tab = params.get('tab') || 'active';
+
+			if (tab === 'active') {
+				this.showActiveChallenges();
+			} else if (tab === 'marked') {
+				this.showMarkedChallenges();
 			}
 		});
 	}
 
 	ngOnInit(): void {}
+
+	showMarkedChallenges(): void {
+		this.showActive = false;
+		this.showMarked = true;
+		this.challenges$ = this.api.getRememberedChallenges();
+
+		this.router.navigate([], {
+			queryParams: { tab: 'marked' },
+		});
+	}
+
+	showActiveChallenges(): void {
+		this.showActive = true;
+		this.showMarked = false;
+		this.challenges$ = this.api.getActiveChallenges();
+
+		this.router.navigate([], {
+			queryParams: { tab: 'active' },
+		});
+	}
 }

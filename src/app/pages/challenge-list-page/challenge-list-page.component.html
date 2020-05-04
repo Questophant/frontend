@@ -1,5 +1,22 @@
 <div class="header">
-	{{ this.showProgress ? 'Laufende' : 'Markierte' }} Herausforderungen
+	Deine Herausforderungen
+</div>
+
+<div class="tabs">
+	<span
+		(click)="showActiveChallenges()"
+		[class.active]="showActive"
+		class="tab"
+	>
+		Laufend
+	</span>
+	<span
+		(click)="showMarkedChallenges()"
+		[class.active]="showMarked"
+		class="tab"
+	>
+		Gemerkt
+	</span>
 </div>
 
 <app-challenge-list [challenges]="challenges$"></app-challenge-list>
