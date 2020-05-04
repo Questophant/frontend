@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChallengeDto } from 'src/app/shared/dtos/challenge.dto';
-import { UrlResolverService } from 'src/app/shared/services/url-resolver.service';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { PointsDto } from '../../shared/dtos/points.dto';
 import { UserDto } from '../../shared/dtos/user.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
