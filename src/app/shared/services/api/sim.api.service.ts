@@ -45,7 +45,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -60,7 +60,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -75,7 +75,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -90,7 +90,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -105,7 +105,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -120,7 +120,7 @@ export class SimApiService implements ApiService {
 			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -534,6 +534,6 @@ export class SimApiService implements ApiService {
 	}
 
 	async getPublicUserProfile(publicUserId: string): Promise<UserDto> {
-		throw this.testUser;
+		return this.testUser;
 	}
 }
