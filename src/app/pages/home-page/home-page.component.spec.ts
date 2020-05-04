@@ -30,6 +30,7 @@ describe('HomePageComponent', () => {
 			durationSeconds: 0,
 			title: '',
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			pointsWin: 0,
 			pointsLoose: 0,
 			ongoing: false,
