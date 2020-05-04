@@ -9,13 +9,13 @@
 
 <div class="wrapper">
 	<ng-container *ngIf="showForm">
-		<h1>Quest erstellen</h1>
+		<h1>Herausforderung erstellen</h1>
 
 		<form (ngSubmit)="onSubmit()" [formGroup]="createChallengeForm">
 			<input
 				[formControl]="challengeName"
 				class="challenge-name"
-				placeholder="Questname"
+				placeholder="Name"
 				type="text"
 			/>
 
@@ -31,7 +31,7 @@
 			<textarea
 				[formControl]="challengeDescription"
 				cols="24"
-				placeholder="Beschreibe deine Quest..."
+				placeholder="Beschreibe deine Herausforderung..."
 				rows="12"
 			></textarea>
 
@@ -48,33 +48,34 @@
 				class="errors"
 			>
 				<span *ngIf="challengeName.errors !== null">
-					Gib deiner Quest einen Namen.
+					Gib deiner Herausforderung einen Namen.
 				</span>
 				<span *ngIf="challengeDescription.errors !== null">
-					Gib deiner Quest eine Beschreibung.
+					Gib deiner Herausforderung eine Beschreibung.
 				</span>
 				<span *ngIf="challengeCategory.errors !== null">
-					Gib deiner Quest eine Kategorie.
+					Gib deiner Herausforderung eine Kategorie.
 				</span>
 				<span *ngIf="challengeMaterial.errors !== null">
-					Das ist doch etwas zu viel, was für die Quest benötigt wird.
+					Das ist doch etwas zu viel, was für die Herausforderung
+					benötigt wird.
 				</span>
 			</div>
 
-			<button type="submit">Quest erstellen</button>
+			<button type="submit">Herausforderung erstellen</button>
 		</form>
 	</ng-container>
 	<ng-container *ngIf="challengeCreated">
 		<div class="action-message">
-			<h1>Dein Quest wurde erfolgreich erstellt.</h1>
+			<h1>Deine Herausforderung wurde erfolgreich erstellt.</h1>
 			<p>
-				Teile deine Quest mit Freunden und fordere sie heraus.
+				Teile deine sie mit Freunden und fordere sie heraus.
 			</p>
 		</div>
 	</ng-container>
 	<ng-container *ngIf="error">
 		<div class="action-message">
-			<h1>Dein Quest konnte leider nicht erstellt werden.</h1>
+			<h1>Deine Herausforderung konnte leider nicht erstellt werden.</h1>
 		</div>
 	</ng-container>
 </div>
