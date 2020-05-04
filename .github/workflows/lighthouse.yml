@@ -10,16 +10,21 @@ jobs:
   lighthouse-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - run: mkdir /tmp/artifacts
-      - name: Run Lighthouse
-        uses: foo-software/lighthouse-check-action@master
-        with:
-          accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
-          outputDirectory: /tmp/artifacts
-          urls: 'https://test.questophant.de'
-          prCommentEnabled: true
-          prCommentSaveOld: true
+      -   uses: actions/checkout@master
+      -   run: mkdir /tmp/artifacts
+
+      -   name: Start angular
+          run: docker-compose up -d
+
+      -   name: Run Lighthouse
+          uses: foo-software/lighthouse-check-action@master
+          with:
+              accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
+              outputDirectory: /tmp/artifacts
+              urls: 'localhost:4200'
+              prCommentEnabled: true
+              prCommentSaveOld: true
+
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
