@@ -109,7 +109,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 			});
 	}
 
-	navigateBack() {
+	navigateBack(): void {
 		this.location.back();
 	}
 

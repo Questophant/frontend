@@ -224,6 +224,7 @@ export abstract class HTTPApiService implements ApiService {
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
 			createdByPublicUserId: challenge.createdByPublicUserId,
+			createdByUserName: challenge.createdByUserName,
 			material: challenge.material,
 			imageUrl: challenge.imageUrl,
 			pointsLoose: challenge.pointsLoose,
