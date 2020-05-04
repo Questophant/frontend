@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AchievementsPageComponent } from './achievements-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { anyString, instance, mock, when } from 'ts-mockito';
+import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
+import { AchievementsPageComponent } from './achievements-page.component';
 
 describe('AchievementsPageComponent', () => {
 	let component: AchievementsPageComponent;

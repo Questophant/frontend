@@ -1,5 +1,39 @@
+@import '../../../colors';
+
 .header {
 	font-size: 1.5em;
-	margin: 4vw 4vw;
+	margin: 2vh 4vw;
 	color: #788fb9;
+}
+
+.tabs {
+	display: flex;
+	flex-direction: row;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	background-color: #a3b9e0;
+	align-items: center;
+	margin: 1vh 10px;
+
+	.tab {
+		border: none;
+		outline: none;
+		cursor: pointer;
+		padding: 7px 15px;
+		transition: 0.3s;
+		font-size: 16px;
+
+		&:hover {
+			background-color: $general-green;
+			color: #fff;
+			border-radius: 20px;
+		}
+
+		&.active {
+			background-color: $general-green;
+			color: #fff;
+		}
+	}
 }

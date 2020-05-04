@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CMFrontend": {
+    "QuestophantFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/CMFrontend",
+            "outputPath": "dist/QuestophantFrontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -123,24 +123,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CMFrontend:build"
+            "browserTarget": "QuestophantFrontend:build"
           },
           "configurations": {
 			"local": {
-				"browserTarget": "CMFrontend:build:local"
+				"browserTarget": "QuestophantFrontend:build:local"
 			},
 			"production": {
-              "browserTarget": "CMFrontend:build:productionServe"
+            	"browserTarget": "QuestophantFrontend:build:productionServe"
 			},
 			"test": {
-				"browserTarget": "CMFrontend:build:testServe"
+				"browserTarget": "QuestophantFrontend:build:testServe"
 			}
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CMFrontend:build"
+            "browserTarget": "QuestophantFrontend:build"
           }
         },
         "test": {
@@ -178,21 +178,21 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "CMFrontend:serve"
+            "devServerTarget": "QuestophantFrontend:serve"
           },
           "configurations": {
         "local": {
-          "devServerTarget": "CMFrontend:serve:local"
+          "devServerTarget": "QuestophantFrontend:serve:local"
         },
               "production": {
-                "devServerTarget": "CMFrontend:serve:production"
+                "devServerTarget": "QuestophantFrontend:serve:production"
         },
         "test": {
-          "devServerTarget": "CMFrontend:serve:test"
+          "devServerTarget": "QuestophantFrontend:serve:test"
         }
           }
         }
       }
     }},
-  "defaultProject": "CMFrontend"
+  "defaultProject": "QuestophantFrontend"
 }

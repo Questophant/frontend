@@ -171,7 +171,7 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	public getPublicUserProfile(publicUserId: string): Promise<UserDto> {
+	getPublicUserProfile(publicUserId: string): Promise<UserDto> {
 		return this.http
 			.get<UserDto>(`${this.apiUrl}/publicUser/${publicUserId}`)
 			.toPromise();
@@ -191,7 +191,7 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	public getDefaultExceptionHandler() {
+	getDefaultExceptionHandler() {
 		return (httpErrorResponse: HttpErrorResponse) => {
 			if (
 				environment.resetOnUserNotFound &&
@@ -212,6 +212,20 @@ export abstract class HTTPApiService implements ApiService {
 		};
 	}
 
+	setUserImage(imageBase64: string): Promise<UserDto> {
+		return this.http
+			.post<UserDto>(
+				`${this.apiUrl}/myUser/${this.store.getUserId()}/image`,
+				imageBase64
+			)
+			.toPromise()
+			.catch(this.getDefaultExceptionHandler());
+	}
+
+	getApiUrl(): string {
+		return this.apiUrl;
+	}
+
 	private mapChallenges() {
 		return (challenges: ChallengeResponse[]) =>
 			challenges.map(this.mapChallenge());
@@ -225,6 +239,7 @@ export abstract class HTTPApiService implements ApiService {
 			description: challenge.description,
 			durationSeconds: challenge.durationSeconds,
 			createdByPublicUserId: challenge.createdByPublicUserId,
+			createdByUserName: challenge.createdByUserName,
 			material: challenge.material,
 			imageUrl: challenge.imageUrl,
 			pointsLoose: challenge.pointsLoose,
@@ -247,19 +262,5 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise()
 			.then(this.mapChallenges())
 			.catch(this.getDefaultExceptionHandler());
-	}
-
-	public setUserImage(imageBase64: string): Promise<UserDto> {
-		return this.http
-			.post<UserDto>(
-				`${this.apiUrl}/myUser/${this.store.getUserId()}/image`,
-				imageBase64
-			)
-			.toPromise()
-			.catch(this.getDefaultExceptionHandler());
-	}
-
-	public getApiUrl(): string {
-		return this.apiUrl;
 	}
 }

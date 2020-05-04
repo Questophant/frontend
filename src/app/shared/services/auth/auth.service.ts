@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserDto } from '../../dtos/user.dto';
-import { ApiService } from '../api-service/api.service';
+import { ApiService } from '../api/api.service';
 import { StoreService } from '../store/store.service';
 
 @Injectable({

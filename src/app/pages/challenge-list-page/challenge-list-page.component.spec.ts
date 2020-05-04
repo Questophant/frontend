@@ -1,10 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ChallengeListPageComponent } from './challenge-list-page.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ApiService } from '../../shared/services/api-service/api.service';
-import { instance, mock } from 'ts-mockito';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { instance, mock } from 'ts-mockito';
+import { ApiService } from '../../shared/services/api/api.service';
+import { ChallengeListPageComponent } from './challenge-list-page.component';
 
 describe('ChallengeListPageComponent', () => {
 	let component: ChallengeListPageComponent;

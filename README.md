@@ -1,4 +1,4 @@
-![Check build](https://github.com/ChallengeMeApp/frontend/workflows/Check%20build/badge.svg?branch=master)
+![Check build](https://github.com/Questophant/frontend/workflows/Check%20build/badge.svg?branch=master)
 
 # Questophant Frontend
 
@@ -33,8 +33,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 When starting the development server or the build process, the backend of the application is selectable via command line. Choose one of the following options by passing the argument "--configuration=local/test/production"
 
 -   "local": The app tries to connect to a backend, running locally.
--   "test": The app connects to test.challengemeapp.de.
--   "production": The app connects to app.challengemeapp.de.
+-   "test": The app connects to test.questophant.de.
+-   "production": The app connects to app.questophant.de.
 
 If you do not pass any of these values, a simulation backend is employed, which does not open any connection anywhere.
 

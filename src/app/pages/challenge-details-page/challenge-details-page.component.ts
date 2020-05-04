@@ -3,9 +3,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserDto } from 'src/app/shared/dtos/user.dto';
+import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
-import { ApiService } from '../../shared/services/api-service/api.service';
+import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
 import { UrlResolverService } from '../../shared/services/url-resolver.service';
 
@@ -41,7 +42,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private api: ApiService,
 		private store: StoreService,
 		private location: Location,
-		private urlResolverService: UrlResolverService
+		private urlResolverService: UrlResolverService,
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
@@ -49,22 +50,22 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		this.route.params.subscribe((params) => {
 			const id = +params.id;
 
-			api.getChallengeById(id).then((challenge) => {
-				if (challenge) {
-					this.createdByUser = this.api.getPublicUserProfile(
-						challenge.createdByPublicUserId
-					);
+			api.getChallengeById(id)
+				.then((challenge) => {
+					if (challenge) {
 
-					this.challenge = Promise.resolve(challenge);
-					this.remembered = challenge.marked;
-					this.running = challenge.ongoing;
-					if (this.running) {
-						this.animations = false;
+						this.createdByUser = this.api.getPublicUserProfile(challenge.createdByPublicUserId);
+
+						this.challenge = Promise.resolve(challenge);
+						this.remembered = challenge.marked;
+						this.running = challenge.ongoing;
+						if (this.running) {
+							this.animations = false;
+						}
+					} else {
+						this.router.navigate(['']);
 					}
-				} else {
-					this.router.navigate(['']);
-				}
-			});
+				});
 		});
 	}
 
@@ -109,15 +110,15 @@ export class ChallengeDetailsPageComponent implements OnInit {
 			});
 	}
 
-	navigateBack() {
+	navigateBack(): void {
 		this.location.back();
 	}
 
 	getProfilePicture(user: UserDto): string {
-		let element = document.getElementsByClassName('profilepic')[0];
+		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight + '.webp'
+			'.' + element.clientWidth + 'x' + element.clientHeight
 		);
 	}
 }

@@ -1,12 +1,12 @@
-import { WelcomePageComponent } from './welcome-page.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
-import { AuthService } from '../../shared/services/auth/auth.service';
-import { ApiService } from '../../shared/services/api-service/api.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { deepEqual, instance, mock, verify, when } from 'ts-mockito';
+import { ApiService } from '../../shared/services/api/api.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { WelcomePageComponent } from './welcome-page.component';
 
 describe('WelcomePageComponent', () => {
 	let component: WelcomePageComponent;

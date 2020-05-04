@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApiService } from 'src/app/shared/services/api-service/api.service';
-import { ProfilePageComponent } from './profile-page.component';
-import { instance, mock } from 'ts-mockito';
-import { RouterTestingModule } from '@angular/router/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ApiService } from 'src/app/shared/services/api/api.service';
+import { instance, mock } from 'ts-mockito';
+import { ProfilePageComponent } from './profile-page.component';
 
 describe('ProfilePageComponent', () => {
 	let component: ProfilePageComponent;

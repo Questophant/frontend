@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Category, getCategoryByName } from '../../shared/dtos/category';
-import { ApiService } from '../../shared/services/api-service/api.service';
-import { StoreService } from '../../shared/services/store/store.service';
 import { AchievementDto } from '../../shared/dtos/achievement.dto';
+import { Category, getCategoryByName } from '../../shared/dtos/category';
+import { ApiService } from '../../shared/services/api/api.service';
+import { StoreService } from '../../shared/services/store/store.service';
 
 @Component({
 	selector: 'app-achievements-page',

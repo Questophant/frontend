@@ -49,13 +49,13 @@ jobs:
         if: github.event_name == 'push'
         uses: garygrossgarten/github-action-scp@release
         with:
-            local: dist/CMFrontend/.
+            local: dist/QuestophantFrontend/.
             remote: ${{ secrets.RELEASE_DEST }}
             host: ${{ secrets.RELEASE_HOST }}
             username: ${{ secrets.RELEASE_SSH_USER }}
             privateKey: ${{ secrets.RELEASE_SSH_KEY }}
-       
-      - name: deploy-script 
+
+      - name: deploy-script
         if: github.event_name == 'push'
         uses: appleboy/ssh-action@master
         with:
