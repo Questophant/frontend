@@ -1,11 +1,11 @@
 name: Lighthouse Check
-on: 
+on:
   push:
     branches:
       - master
   pull_request:
     branches: []
- 
+
 jobs:
   lighthouse-check:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
         with:
           accessToken: ${{ secrets.LIGHTHOUSE_ACTION_ACCESS_TOKEN }}
           outputDirectory: /tmp/artifacts
-          urls: 'https://test.challengemeapp.de'
+          urls: 'https://test.questophant.de'
           prCommentEnabled: true
           prCommentSaveOld: true
       - name: Upload artifacts
