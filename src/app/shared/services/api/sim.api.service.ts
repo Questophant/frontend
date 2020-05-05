@@ -423,6 +423,7 @@ export class SimApiService implements ApiService {
 		const c: ChallengeDto = {
 			id: this.challenges.length + 1,
 			createdByPublicUserId: this.testUser.publicUserId,
+			createdByUserName: this.testUser.userName,
 			durationSeconds: challenge.durationSeconds,
 			imageUrl: undefined,
 			pointsLoose: 0,
