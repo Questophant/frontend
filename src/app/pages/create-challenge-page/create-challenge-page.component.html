@@ -1,82 +1,92 @@
-<div class="overlay" id="coming-soon-notification">
-	<div class="teaser">
-		<div>
-			<h1>Holla!</h1>
+<div class="picture">
+	<img
+		alt="Challenge picture"
+		src="/assets/images/categories/{{
+			this.challengeCategory.value || 'daily'
+		}}.jpg"
+	/>
+</div>
+
+<div class="wrapper">
+	<ng-container *ngIf="showForm">
+		<h1>Herausforderung erstellen</h1>
+
+		<form (ngSubmit)="onSubmit()" [formGroup]="createChallengeForm">
+			<input
+				[formControl]="challengeName"
+				class="challenge-name"
+				placeholder="Name"
+				type="text"
+			/>
+
+			<select [formControl]="challengeCategory" class="category">
+				<option disabled selected value="">Kategorie</option>
+				<option
+					*ngFor="let category of categories"
+					value="{{ category.name }}"
+					>{{ category.display }}</option
+				>
+			</select>
+
+			<input
+				[formControl]="challengeDuration"
+				placeholder="Etwa benötigte Zeit (in Minuten)"
+				type="text"
+			/>
+
+			<textarea
+				[formControl]="challengeDescription"
+				cols="24"
+				placeholder="Beschreibe deine Herausforderung..."
+				rows="12"
+			></textarea>
+
+			<textarea
+				[formControl]="challengeMaterial"
+				cols="24"
+				placeholder="Benötigtes Material..."
+				rows="7"
+			>
+			</textarea>
+
+			<div
+				*ngIf="submitted && createChallengeForm.invalid"
+				class="errors"
+			>
+				<span *ngIf="challengeName.errors !== null">
+					Gib deiner Herausforderung einen Namen.
+				</span>
+				<span *ngIf="challengeCategory.errors !== null">
+					Gib deiner Herausforderung eine Kategorie.
+				</span>
+				<span *ngIf="challengeDuration.errors !== null">
+					Du musst eine Nummer angeben.
+				</span>
+				<span *ngIf="challengeDescription.errors !== null">
+					Gib deiner Herausforderung eine Beschreibung.
+				</span>
+				<span *ngIf="challengeMaterial.errors !== null">
+					Das ist doch etwas zu viel, was für die Herausforderung
+					benötigt wird.
+				</span>
+			</div>
+
+			<button type="submit">Herausforderung erstellen</button>
+		</form>
+	</ng-container>
+	<ng-container *ngIf="challengeCreated">
+		<div class="action-message">
+			<h1>Deine Herausforderung wurde erfolgreich erstellt.</h1>
 			<p>
-				Hier gibt's nichts zu sehen! <br /><br />Also wirklich nichts!
+				Teile deine sie mit Freunden und fordere sie heraus.
 			</p>
-			<h1>
-				Zumindest bis jetzt, bald kommt aber ein fantastisches Update:
-			</h1>
-			<p>
-				Erstelle eigene Herausforderungen und teile sie mit Freunden
-				oder der ganzen Welt.
-				<br />
-				<br />
-			</p>
-			<br /><br />
 		</div>
-		<span class="cantwait" routerLink="">Ich kann es kaum erwarten!</span>
-		<br /><br /><br />
-	</div>
+	</ng-container>
+	<ng-container *ngIf="error">
+		<div class="action-message">
+			<h1>Deine Herausforderung konnte leider nicht erstellt werden.</h1>
+		</div>
+	</ng-container>
 </div>
 
 <app-navbar></app-navbar>
-
-<!--<div class="picture"></div>-->
-
-<!--<form action="">-->
-<!--	<div class="middle">-->
-<!--		<div class="profile">-->
-<!--			<div class="profilepic"></div>-->
-<!--			<div class="name">-->
-<!--				<br />-->
-<!--				von-->
-<!--				<br />-->
-<!--				<br />-->
-<!--				<span style="font-size: 200%;">Name</span>-->
-<!--			</div>-->
-<!--			<br />-->
-<!--			<div class="category">-->
-<!--				<select style="width: 100%;" required>-->
-<!--					<option value="" disabled selected>Kategorie</option>-->
-<!--					<option value="0">@home</option>-->
-<!--					<option value="1">Beweg' dich!</option>-->
-<!--					<option value="2">Do it for yourself</option>-->
-<!--					<option value="3">Eco</option>-->
-<!--					<option value="4">Fun</option>-->
-<!--					<option value="5">Know-How</option>-->
-<!--					<option value="6">Kreativer Kopf</option>-->
-<!--					<option value="6">Raus aus der Komfortzone</option>-->
-<!--					<option value="6">Roberts Koch Institut</option>-->
-<!--					<option value="6">Wir - voll sozial</option>-->
-<!--				</select>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--		<div class="create">-->
-<!--			<input-->
-<!--				type="text"-->
-<!--				maxlength="50"-->
-<!--				placeholder="Challengename"-->
-<!--				class="challengename"-->
-<!--			/>-->
-<!--			<textarea-->
-<!--				maxlength="250"-->
-<!--				rows="12"-->
-<!--				placeholder="Beschreibe deine Challenge..."-->
-<!--				cols="24"-->
-<!--			>-->
-<!--			</textarea>-->
-<!--			<textarea-->
-<!--				maxlength="100"-->
-<!--				cols="24"-->
-<!--				rows="7"-->
-<!--				placeholder="Benötigtes Material..."-->
-<!--			>-->
-<!--			</textarea>-->
-<!--			<button type="submit">Challenge erstellen</button>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</form>-->
-
-<!--<div class="taskbar"></div>-->

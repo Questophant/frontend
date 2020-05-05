@@ -7,6 +7,7 @@ import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
+import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 
 @Injectable()
 /**
@@ -416,17 +417,27 @@ export class SimApiService implements ApiService {
 		return this.dailyChallenge;
 	}
 
-	async getRandomChallenge(category: Category): Promise<ChallengeDto> {
-		return this.challenges[
-			Math.floor(Math.random() * this.challenges.length)
-		];
-	}
+	async createNewChallenge(
+		challenge: CreateChallengeDto
+	): Promise<ChallengeDto> {
+		const c: ChallengeDto = {
+			id: this.challenges.length + 1,
+			createdByPublicUserId: this.testUser.publicUserId,
+			createdByUserName: this.testUser.userName,
+			durationSeconds: challenge.durationSeconds,
+			imageUrl: undefined,
+			pointsLoose: 0,
+			pointsWin: 0,
+			ongoing: false,
+			marked: false,
+			material: challenge.material,
+			category: getCategoryByName(challenge.category),
+			description: challenge.description,
+			title: challenge.title,
+		};
 
-	async createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
-		challenge.id = this.challenges.length + 1;
-		this.challenges.push(challenge);
-
-		return challenge;
+		this.challenges.push(c);
+		return c;
 	}
 
 	async deleteChallenge(challengeId: number): Promise<ChallengeDto> {
