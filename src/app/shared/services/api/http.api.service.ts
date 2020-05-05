@@ -1,5 +1,4 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { AchievementDto } from '../../dtos/achievement.dto';
 import { Categories, Category } from '../../dtos/category';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
@@ -9,6 +8,7 @@ import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
+import { environment } from '../../../../environments/environment';
 
 export abstract class HTTPApiService implements ApiService {
 	protected apiUrl: string;

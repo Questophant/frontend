@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApiService } from 'src/app/shared/services/api/api.service';
 import { instance, mock } from 'ts-mockito';
 import { UploadProfilePicturePageComponent } from './upload-profile-picture-page.component';
+import { ApiService } from '../../shared/services/api/api.service';
 
 describe('UploadProfilePicturePageComponent', () => {
 	let component: UploadProfilePicturePageComponent;
