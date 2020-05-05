@@ -28,6 +28,12 @@
 				>
 			</select>
 
+			<input
+				[formControl]="challengeDuration"
+				placeholder="Etwa benötigte Zeit (in Minuten)"
+				type="text"
+			/>
+
 			<textarea
 				[formControl]="challengeDescription"
 				cols="24"
@@ -50,11 +56,14 @@
 				<span *ngIf="challengeName.errors !== null">
 					Gib deiner Herausforderung einen Namen.
 				</span>
-				<span *ngIf="challengeDescription.errors !== null">
-					Gib deiner Herausforderung eine Beschreibung.
-				</span>
 				<span *ngIf="challengeCategory.errors !== null">
 					Gib deiner Herausforderung eine Kategorie.
+				</span>
+				<span *ngIf="challengeDuration.errors !== null">
+					Du musst eine Nummer angeben.
+				</span>
+				<span *ngIf="challengeDescription.errors !== null">
+					Gib deiner Herausforderung eine Beschreibung.
 				</span>
 				<span *ngIf="challengeMaterial.errors !== null">
 					Das ist doch etwas zu viel, was für die Herausforderung

@@ -27,7 +27,11 @@ export class CreateChallengePageComponent implements OnInit {
 	]);
 	challengeCategory = new FormControl('', [Validators.required]);
 	challengeMaterial = new FormControl('', [Validators.maxLength(255)]);
-	challengeDuration = new FormControl(null, []);
+	challengeDuration = new FormControl(null, [
+		Validators.pattern('[0-9]*'),
+		Validators.min(0),
+		Validators.max(24 * 60),
+	]);
 
 	createChallengeForm = new FormGroup({
 		title: this.challengeName,
