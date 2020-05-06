@@ -1,26 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import '../../../colors';
 
-.background-image {
+.form-wrapper {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	overflow-y: scroll;
-
-	background: url('src/assets/images/homepage.webp') no-repeat local center;
-	background-size: cover;
-}
-
-.image-wrapper {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	overflow-y: scroll;
-	background: rgba(0, 0, 0, 0.3);
+	background-color: #a3b9e0;
 
 	.logo {
 		position: relative;
@@ -71,7 +58,7 @@
 			color: #fff;
 			margin: 25px auto 0;
 
-			background-color: #67a682;
+			background-color: $general-green;
 			outline: none;
 			border: none;
 			border-radius: 40px;
