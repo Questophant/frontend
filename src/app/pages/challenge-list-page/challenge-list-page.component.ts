@@ -39,6 +39,7 @@ export class ChallengeListPageComponent implements OnInit {
 
 		this.router.navigate([], {
 			queryParams: { tab: 'marked' },
+			skipLocationChange: true,
 		});
 	}
 
@@ -49,6 +50,7 @@ export class ChallengeListPageComponent implements OnInit {
 
 		this.router.navigate([], {
 			queryParams: { tab: 'active' },
+			skipLocationChange: true,
 		});
 	}
 }
