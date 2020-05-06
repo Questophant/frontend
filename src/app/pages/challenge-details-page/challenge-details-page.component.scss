@@ -19,7 +19,7 @@
 		height: 40px;
 
 		text-align: center;
-		background-color: $general-green;
+		background-color: $general-blue;
 		color: white;
 		text-decoration: none;
 		font-size: 2rem;
@@ -79,7 +79,7 @@
 
 		.challenge-name {
 			font-size: 1.5rem;
-			color: $general-green;
+			color: $general-blue;
 		}
 
 		.challenge-description {
@@ -107,7 +107,7 @@
 		.challenge-action {
 			display: block;
 			color: white;
-			background: $general-green;
+			background: $general-blue;
 			border: none;
 			border-radius: 20px;
 			font-size: 16px;
@@ -127,14 +127,14 @@
 	text-align: center;
 
 	h1 {
-		color: $general-green;
+		color: $general-blue;
 		margin: 2vw;
 		font-size: 24px;
 		font-weight: 700;
 	}
 
 	h2 {
-		color: $general-green;
+		color: $general-blue;
 		margin: 2vw;
 		font-size: 22px;
 		font-weight: 500;
@@ -147,7 +147,7 @@
 	}
 
 	span {
-		color: $general-green;
+		color: $general-blue;
 	}
 }
 
