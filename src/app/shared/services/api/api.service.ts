@@ -3,6 +3,7 @@ import { Category } from '../../dtos/category';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto } from '../../dtos/challenge.dto';
 import { PointsDto } from '../../dtos/points.dto';
+import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
@@ -10,15 +11,13 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
+	public createNewChallenge(
+		challenge: CreateChallengeDto
+	): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
 
 	public getChallengeById(id: number): Promise<ChallengeDto> {
-		throw new Error('Method not implemented.');
-	}
-
-	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -33,10 +32,6 @@ export abstract class ApiService {
 	public deleteChallenge(
 		challengeId: number
 	): Promise<ChallengeDto | string> {
-		throw new Error('Method not implemented.');
-	}
-
-	public getRandomChallenge(category: Category): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
 

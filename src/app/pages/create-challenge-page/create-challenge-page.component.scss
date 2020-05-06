@@ -1,144 +1,110 @@
 @import '../../../colors';
 
-.overlay {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	background-color: rgba(0, 0, 0, 0.5);
+.picture {
+	img {
+		display: block;
+		width: 100vw;
+	}
 
-	.teaser {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		border-radius: 5vh;
-		color: $general-font-color;
-		background-color: $general-background-color;
-		width: 92vw;
-		padding: 2vw;
+	max-height: 30vh;
+	overflow: hidden;
+}
 
-		h1 {
-			color: $general-green;
-			margin: 3vh 4vw 3vh 4vw;
-			font-size: 19px;
-			font-weight: 500;
+.wrapper {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 1.5vh 4vw 1.5vh 4vw;
+	margin-bottom: 70px;
+
+	h1 {
+		color: $general-blue;
+		font-size: 19px;
+		font-weight: 500;
+	}
+
+	form {
+		input,
+		textarea,
+		select {
+			width: 100%;
+			box-sizing: border-box;
+			display: block;
+			margin: 10px 0;
+			outline: none;
+			border: none;
+			background-color: $general-background-color;
+			color: #000;
+			font-family: 'Lato', sans-serif;
+			padding: 5px;
 		}
 
-		.cantwait {
-			position: relative;
-			top: 0;
-			color: white;
-			background: $general-green;
-			border: none;
-			border-radius: 20px;
+		button {
+			display: block;
+			font-family: 'Lato', sans-serif;
+			font-weight: 900;
 			font-size: 16px;
+			color: #fff;
+			margin: 10px auto;
+
+			background-color: $general-blue;
+			outline: none;
+			border: none;
+			border-radius: 40px;
 			padding: 10px 25px;
 		}
-	}
-}
 
-.picture {
-	display: block;
-	position: relative;
-	background: green;
-	height: 30vh;
-	width: 100vw;
-}
-
-form {
-	margin-bottom: 20vh;
-}
-
-.middle {
-	top: 30vh;
-	width: calc(100% - 32px);
-	margin: 16px;
-
-	.profile {
-		vertical-align: top;
-		float: left;
-		width: 35%;
-		height: 40%;
-		padding-right: 5%;
-		background: #ffffff;
-		border-right: 3px solid rgba(0, 0, 0, 0.75);
-
-		.profilepic {
-			margin: auto;
-			height: 12vh;
-			width: 12vh;
-			background-color: rgba(0, 0, 0, 0.1);
-			border: solid;
-			border-color: black;
-			border-radius: 100px;
+		textarea {
+			border: none;
+			width: 100%;
+			height: 20vh;
+			margin-top: 1vh;
 		}
 
-		.name {
+		.errors {
 			text-align: center;
-		}
+			padding: 10px;
+			margin: 15px;
+			background: #d8d8d8;
+			color: #b12a2a;
+			border-radius: 8px;
+			font-weight: 400;
+			font-size: 14px;
 
-		.category {
-			position: relative;
-
-			& select {
-				text-align: center;
-				border-radius: 100px;
-				background: #67a682;
-				color: #fff;
-				padding: 5%;
-				border: 0;
-				appearance: none;
-				box-shadow: none;
-				outline: none;
+			& > span {
+				display: block;
 			}
 		}
 	}
 
-	.create {
-		vertical-align: top;
-		float: right;
-		height: 50vh;
-		width: 55%;
-		background-color: #fff;
+	.action-message {
+		margin: 10px;
+		padding: 25px 10px;
+		color: $general-font-color;
+		background-color: $general-background-color;
+		text-align: center;
 
-		.challengename {
-			font-size: 1.5rem;
-			border: none;
-			width: 100%;
+		h1 {
+			color: $general-blue;
+			margin: 2vw;
+			font-size: 24px;
+			font-weight: 700;
 		}
 
-		textarea {
-			margin-top: 8%;
-			width: 100%;
+		h2 {
+			color: $general-blue;
+			margin: 2vw;
+			font-size: 22px;
+			font-weight: 500;
+		}
+
+		p {
 			display: block;
-			border: none;
-			background-color: rgba(0, 0, 0, 0.1);
+			margin-bottom: 15px;
+			font-size: 16px;
 		}
 
-		button {
-			margin-top: 8%;
-			width: 100%;
-			font-size: 1.25rem;
-			background: #67a682;
-			color: #fff;
-			text-align: center;
-			text-decoration: none;
-			border: none;
-			padding: 5%;
-			border-radius: 100px;
+		span {
+			color: $general-blue;
 		}
 	}
-}
-
-.taskbar {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 10vh;
-	background: #c00707;
 }

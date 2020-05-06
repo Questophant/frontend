@@ -7,6 +7,7 @@ import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
+import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 
 @Injectable()
 /**
@@ -20,6 +21,7 @@ export class SimApiService implements ApiService {
 		category: getCategoryByName('art'),
 		durationSeconds: 300,
 		createdByPublicUserId: null,
+		createdByUserName: '',
 		material: 'Farben, Pinsel',
 		pointsLoose: 0,
 		pointsWin: 0,
@@ -35,85 +37,91 @@ export class SimApiService implements ApiService {
 	private challenges: ChallengeDto[] = [
 		{
 			id: 1,
-			title: 'Quest 1',
+			title: 'Herausforderung 1',
 			category: getCategoryByName('creative'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 30,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
 		{
 			id: 2,
-			title: 'Quest 2',
+			title: 'Herausforderung 2',
 			category: getCategoryByName('cooking'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 60,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
 		{
 			id: 3,
-			title: 'Quest 3',
+			title: 'Herausforderung 3',
 			category: getCategoryByName('social'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
 		{
 			id: 4,
-			title: 'Quest 4',
+			title: 'Herausforderung 4',
 			category: getCategoryByName('physical'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
 		{
 			id: 5,
-			title: 'Quest 5',
+			title: 'Herausforderung 5',
 			category: getCategoryByName('selfcare'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
 		{
 			id: 6,
-			title: 'Quest 6',
+			title: 'Herausforderung 6',
 			category: getCategoryByName('education'),
 			description:
 				'Einfach eine einfache Beschreibung um einfach mal was zu sagen.',
 			durationSeconds: 300,
 			createdByPublicUserId: null,
+			createdByUserName: '',
 			material: null,
 			pointsLoose: 0,
-			pointsWin: 0,
+			pointsWin: 10,
 			ongoing: false,
 			marked: false,
 		},
@@ -409,17 +417,27 @@ export class SimApiService implements ApiService {
 		return this.dailyChallenge;
 	}
 
-	async getRandomChallenge(category: Category): Promise<ChallengeDto> {
-		return this.challenges[
-			Math.floor(Math.random() * this.challenges.length)
-		];
-	}
+	async createNewChallenge(
+		challenge: CreateChallengeDto
+	): Promise<ChallengeDto> {
+		const c: ChallengeDto = {
+			id: this.challenges.length + 1,
+			createdByPublicUserId: this.testUser.publicUserId,
+			createdByUserName: this.testUser.userName,
+			durationSeconds: challenge.durationSeconds,
+			imageUrl: undefined,
+			pointsLoose: 0,
+			pointsWin: 0,
+			ongoing: false,
+			marked: false,
+			material: challenge.material,
+			category: getCategoryByName(challenge.category),
+			description: challenge.description,
+			title: challenge.title,
+		};
 
-	async createNewChallenge(challenge: ChallengeDto): Promise<ChallengeDto> {
-		challenge.id = this.challenges.length + 1;
-		this.challenges.push(challenge);
-
-		return challenge;
+		this.challenges.push(c);
+		return c;
 	}
 
 	async deleteChallenge(challengeId: number): Promise<ChallengeDto> {
@@ -527,6 +545,6 @@ export class SimApiService implements ApiService {
 	}
 
 	async getPublicUserProfile(publicUserId: string): Promise<UserDto> {
-		throw this.testUser;
+		return this.testUser;
 	}
 }

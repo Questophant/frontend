@@ -2,16 +2,10 @@
 	<div class="app-bar">
 		<span class="branding">Questophant</span>
 		<img
-			class="favorite-challenges"
-			routerLink="/challenges/star"
-			src="assets/icons/star.svg"
-			alt="Gemerkte Quests"
-		/>
-		<img
-			class="running-challenges"
-			routerLink="/challenges/running"
-			src="assets/icons/timer.svg"
-			alt="Laufende Quests"
+			class="my-challenges"
+			[routerLink]="['/challenges']"
+			src="assets/icons/mychallenges.svg"
+			alt="Meine Herausforderungen"
 		/>
 	</div>
 
@@ -81,8 +75,8 @@
 
 	<ng-template #noItems
 		><div class="onscreen-message">
-			Hier gibt es noch keine neuen Quests. Schau einfach später nochmal
-			vorbei.
+			Hier gibt es noch keine neuen Herausforderungen. Schau einfach
+			später nochmal vorbei.
 		</div>
 	</ng-template>
 

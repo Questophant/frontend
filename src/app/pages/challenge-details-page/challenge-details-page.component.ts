@@ -2,12 +2,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserDto } from 'src/app/shared/dtos/user.dto';
-import { UrlResolverService } from 'src/app/shared/services/url/url-resolver.service';
 import { ChallengeState } from '../../shared/dtos/challenge-state.enum';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
+import { UserDto } from '../../shared/dtos/user.dto';
+import { UrlResolverService } from '../../shared/services/url/url-resolver.service';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -109,12 +109,12 @@ export class ChallengeDetailsPageComponent implements OnInit {
 			});
 	}
 
-	navigateBack() {
+	navigateBack(): void {
 		this.location.back();
 	}
 
 	getProfilePicture(user: UserDto): string {
-		let element = document.getElementsByClassName('profilepic')[0];
+		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
 			'.' + element.clientWidth + 'x' + element.clientHeight

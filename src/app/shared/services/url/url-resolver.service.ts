@@ -6,8 +6,8 @@ import { ApiService } from '../api/api.service';
 	providedIn: 'root',
 })
 export class UrlResolverService {
-	private profilePictureFormat: string;
-	private canUseWebP: boolean;
+	private readonly profilePictureFormat: string;
+	private readonly canUseWebP: boolean;
 
 	constructor(private api: ApiService) {
 		this.canUseWebP = this.checkWebPCompatibility();
@@ -18,38 +18,13 @@ export class UrlResolverService {
 		}
 	}
 
-	private hash(s: string): number {
-		var hash = 0,
-			i,
-			chr;
-		for (i = 0; i < s.length; i++) {
-			chr = s.charCodeAt(i);
-			hash = (hash << 5) - hash + chr;
-			hash |= 0; // Convert to 32bit integer
-		}
-		return hash;
-	}
-
-	// TODO: externalize this for the whole app?
-	private checkWebPCompatibility(): boolean {
-		var elem = document.createElement('canvas');
-
-		if (!!(elem.getContext && elem.getContext('2d'))) {
-			// was able or not to get WebP representation
-			return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-		}
-
-		// very old browser like IE 8, canvas not supported
-		return false;
-	}
-
-	public getProfilePicture(user: UserDto, size: string): string {
+	getProfilePicture(user: UserDto, size: string): string {
 		if (
 			user == null ||
 			user.imageUrl == null ||
-			user.imageUrl.length == 0
+			user.imageUrl.length === 0
 		) {
-			var fileName;
+			let fileName;
 			switch (Math.abs(this.hash(user.userName) % 3)) {
 				case 1:
 					fileName = 'alpaca';
@@ -76,5 +51,32 @@ export class UrlResolverService {
 			'.' +
 			this.profilePictureFormat
 		);
+	}
+
+	private hash(s: string): number {
+		let hash = 0,
+			i,
+			chr;
+		for (i = 0; i < s.length; i++) {
+			chr = s.charCodeAt(i);
+			hash = (hash << 5) - hash + chr;
+			hash |= 0; // Convert to 32bit integer
+		}
+		return hash;
+	}
+
+	// TODO: externalize this for the whole app?
+	private checkWebPCompatibility(): boolean {
+		const elem = document.createElement('canvas');
+
+		if (!!(elem.getContext && elem.getContext('2d'))) {
+			// was able or not to get WebP representation
+			return (
+				elem.toDataURL('image/webp').indexOf('data:image/webp') === 0
+			);
+		}
+
+		// very old browser like IE 8, canvas not supported
+		return false;
 	}
 }

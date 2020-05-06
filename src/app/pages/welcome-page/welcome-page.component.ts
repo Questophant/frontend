@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api/api.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { ApiService } from '../../shared/services/api/api.service';
 
 @Component({
 	selector: 'app-welcome-page',
@@ -66,11 +66,11 @@ export class WelcomePageComponent implements OnInit {
 		}
 	}
 
-	toggleDataPrivacy() {
+	toggleDataPrivacy(): void {
 		this.showDataPrivacy = !this.showDataPrivacy;
 	}
 
-	toggleRules() {
+	toggleRules(): void {
 		this.showRules = !this.showRules;
 	}
 }

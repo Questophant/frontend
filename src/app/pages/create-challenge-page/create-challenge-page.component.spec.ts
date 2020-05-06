@@ -1,15 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CreateChallengePageComponent } from './create-challenge-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { instance, mock } from 'ts-mockito';
+import { ApiService } from '../../shared/services/api/api.service';
 
 describe('CreateChallengePageComponent', () => {
 	let component: CreateChallengePageComponent;
 	let fixture: ComponentFixture<CreateChallengePageComponent>;
+	const mockApiService = mock(ApiService);
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [CreateChallengePageComponent],
+			providers: [
+				{
+					provide: ApiService,
+					useValue: instance(mockApiService),
+				},
+			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 		}).compileComponents();
 	}));

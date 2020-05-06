@@ -27,14 +27,24 @@ const routes: Routes = [
 				component: HomePageComponent,
 			},
 			{
-				path: 'challenges/star',
-				component: ChallengeListPageComponent,
-				data: { showProgress: false },
-			},
-			{
-				path: 'challenges/running',
-				component: ChallengeListPageComponent,
-				data: { showProgress: true },
+				path: 'challenges',
+				children: [
+					{
+						path: '',
+						component: ChallengeListPageComponent,
+						data: { tab: 'active' },
+					},
+					{
+						path: 'active',
+						component: ChallengeListPageComponent,
+						data: { tab: 'active' },
+					},
+					{
+						path: 'marked',
+						component: ChallengeListPageComponent,
+						data: { tab: 'marked' },
+					},
+				],
 			},
 			{
 				path: 'challenge/create',
