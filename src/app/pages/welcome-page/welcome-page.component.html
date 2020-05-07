@@ -1,63 +1,66 @@
-<div class="form-wrapper">
-	<img
-		alt="ChallengeMe Logo"
-		class="logo"
-		src="/assets/icons/questophant_white.png"
-		width="100%"
-	/>
+<div class="background">
+	<div class="form-wrapper">
+		<img
+			alt="ChallengeMe Logo"
+			class="logo"
+			src="/assets/icons/questophant_white.png"
+			width="100%"
+		/>
 
-	<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
-		<label class="name-field">
-			Wähle einen Namen
-			<input formControlName="name" name="name" type="text" />
-		</label>
+		<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
+			<label class="name-field">
+				Wähle einen Namen
+				<input formControlName="name" name="name" type="text" />
+			</label>
 
-		<div class="checkboxes">
-			<div class="checkbox">
-				<label class="box">
-					<input formControlName="dataPrivacy" type="checkbox" />
-					<span></span>
-				</label>
-				<span (click)="toggleDataPrivacy()" class="label"
-					>Datenschutzerklärung</span
-				>
+			<div class="checkboxes">
+				<div class="checkbox">
+					<label class="box">
+						<input formControlName="dataPrivacy" type="checkbox" />
+						<span></span>
+					</label>
+					<span (click)="toggleDataPrivacy()" class="label"
+						>Datenschutzerklärung</span
+					>
+				</div>
+
+				<div class="checkbox">
+					<label class="box">
+						<input formControlName="rules" type="checkbox" />
+						<span></span>
+					</label>
+					<span (click)="toggleRules()" class="label"
+						>Nutzungsbedingungen</span
+					>
+				</div>
 			</div>
 
-			<div class="checkbox">
-				<label class="box">
-					<input formControlName="rules" type="checkbox" />
-					<span></span>
-				</label>
-				<span (click)="toggleRules()" class="label"
-					>Nutzungsbedingungen</span
-				>
-			</div>
-		</div>
-
-		<div
-			*ngIf="
-				(submitted && registrationForm.invalid) || nameIsAlreadyInUse
-			"
-			class="errors"
-		>
-			<span *ngIf="registrationForm.get('name').errors !== null"
-				>Wir brauchen einen Namen.</span
-			>
-			<span *ngIf="nameIsAlreadyInUse"
-				>Der Nutzername ist leider schon vergeben.</span
-			>
-			<span
+			<div
 				*ngIf="
-					registrationForm.get('dataPrivacy').errors !== null ||
-					registrationForm.get('rules').errors !== null
+					(submitted && registrationForm.invalid) ||
+					nameIsAlreadyInUse
 				"
-				>Es lohnt sich die Datenschutzerklärung und die Verhaltensregeln
-				zu akzeptieren. Versprochen!
-			</span>
-		</div>
+				class="errors"
+			>
+				<span *ngIf="registrationForm.get('name').errors !== null"
+					>Wir brauchen einen Namen.</span
+				>
+				<span *ngIf="nameIsAlreadyInUse"
+					>Der Nutzername ist leider schon vergeben.</span
+				>
+				<span
+					*ngIf="
+						registrationForm.get('dataPrivacy').errors !== null ||
+						registrationForm.get('rules').errors !== null
+					"
+					>Es lohnt sich die Datenschutzerklärung und die
+					Verhaltensregeln zu akzeptieren. Versprochen!
+				</span>
+			</div>
 
-		<button type="submit">Weiter</button>
-	</form>
+			<button type="submit">Weiter</button>
+		</form>
+	</div>
 </div>
 
 <app-data-privacy-overlay
