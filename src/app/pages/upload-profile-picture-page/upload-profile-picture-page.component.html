@@ -9,7 +9,8 @@
 					type="file"
 					(change)="fileChangeEvent($event)"
 					accept="image/*"
-				/>Auswählen
+				/>
+				Auswählen
 			</div>
 		</ng-container>
 		<ng-container *ngIf="fileLoaded">
@@ -33,6 +34,7 @@
 				<img
 					class="profile-picture"
 					src="{{ getProfilePicture(user) }}"
+					alt="Profile picture"
 				/>
 			</div>
 		</ng-container>
