@@ -10,7 +10,7 @@
 
 	<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 		<label class="name-field">
-			Wähle einen Namen
+			Wie möchtest du heißen?
 			<input formControlName="name" name="name" type="text" />
 		</label>
 
@@ -43,7 +43,7 @@
 			class="errors"
 		>
 			<span *ngIf="registrationForm.get('name').errors !== null"
-				>Wir brauchen einen Namen.</span
+				>Bitte gib einen Namen an.</span
 			>
 			<span *ngIf="nameIsAlreadyInUse"
 				>Der Nutzername ist leider schon vergeben.</span
@@ -53,8 +53,8 @@
 					registrationForm.get('dataPrivacy').errors !== null ||
 					registrationForm.get('rules').errors !== null
 				"
-				>Es lohnt sich die Datenschutzerklärung und die Verhaltensregeln
-				zu akzeptieren. Versprochen!
+				>Es lohnt sich, die Datenschutzerklärung und die
+				Verhaltensregeln zu akzeptieren. Versprochen!
 			</span>
 		</div>
 

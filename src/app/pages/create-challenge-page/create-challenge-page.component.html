@@ -15,7 +15,7 @@
 			<input
 				[formControl]="challengeName"
 				class="challenge-name"
-				placeholder="Name"
+				placeholder="Titel deiner Herausforderung"
 				type="text"
 			/>
 
@@ -30,7 +30,7 @@
 
 			<input
 				[formControl]="challengeDuration"
-				placeholder="Etwa benötigte Zeit (in Minuten)"
+				placeholder="Geschätzte benötigte Zeit (in Minuten)"
 				type="text"
 			/>
 
@@ -44,7 +44,7 @@
 			<textarea
 				[formControl]="challengeMaterial"
 				cols="24"
-				placeholder="Benötigtes Material..."
+				placeholder="Benötigte Materialien..."
 				rows="7"
 			>
 			</textarea>
@@ -54,20 +54,19 @@
 				class="errors"
 			>
 				<span *ngIf="challengeName.errors !== null">
-					Gib deiner Herausforderung einen Namen.
+					Gib deiner Herausforderung einen Titel.
 				</span>
 				<span *ngIf="challengeCategory.errors !== null">
-					Gib deiner Herausforderung eine Kategorie.
+					Ordne deine Herausforderung einer Kategorie zu.
 				</span>
 				<span *ngIf="challengeDuration.errors !== null">
-					Du musst eine Nummer angeben.
+					Bitte gib eine ungefähre Dauer in Minuten an.
 				</span>
 				<span *ngIf="challengeDescription.errors !== null">
-					Gib deiner Herausforderung eine Beschreibung.
+					Bitte beschreibe deine Herausforderung.
 				</span>
 				<span *ngIf="challengeMaterial.errors !== null">
-					Das ist doch etwas zu viel, was für die Herausforderung
-					benötigt wird.
+					Bitte gib weniger benötigte Materialien an.
 				</span>
 			</div>
 
@@ -76,9 +75,9 @@
 	</ng-container>
 	<ng-container *ngIf="challengeCreated">
 		<div class="action-message">
-			<h1>Deine Herausforderung wurde erfolgreich erstellt.</h1>
+			<h1>Deine Herausforderung wurde erfolgreich erstellt!</h1>
 			<p>
-				Teile deine sie mit Freunden und fordere sie heraus.
+				Teile sie mit deinen Freunden und fordere sie heraus.
 			</p>
 		</div>
 	</ng-container>
