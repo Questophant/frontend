@@ -35,11 +35,9 @@ export class WelcomePageComponent implements OnInit {
 			.checkUserRegistered()
 			.then((registered) => {
 				if (registered) {
-					this.router
-						.navigate(['/'])
-						.catch((reason) =>
-							alert('Es gab einen Fehler bei der Weiterleitung')
-						);
+					this.router.navigate(['/']).catch((reason) => {
+						alert('Es gab einen Fehler bei der Weiterleitung');
+					});
 				}
 			})
 			.catch(api.getDefaultExceptionHandler);

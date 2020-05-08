@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth/auth.service';
 	providedIn: 'root',
 })
 /**
- * Secures that a user has set a userName (registered) before entering any other page
+ * Secures that a user has set a userId (registered) before entering any other page
  */
 export class HasRegisteredGuard implements CanActivate {
 	constructor(private auth: AuthService, private router: Router) {}
@@ -19,12 +19,12 @@ export class HasRegisteredGuard implements CanActivate {
 
 			this.router.navigate(['/welcome']).then(
 				(value) => {
-					if (!value) {
+					if (value === false) {
 						alert('Redirect failed');
 					}
 				},
 				(reason) => {
-					alert(reason);
+					alert('Redirect failed');
 				}
 			);
 			return false;
