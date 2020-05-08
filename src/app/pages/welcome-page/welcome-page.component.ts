@@ -18,7 +18,9 @@ export class WelcomePageComponent implements OnInit {
 	registrationForm = new FormGroup({
 		name: new FormControl('', [
 			Validators.required,
-			Validators.minLength(1),
+			Validators.minLength(3),
+			Validators.maxLength(30),
+			Validators.pattern('([a-zA-Z0-9 ])+'),
 		]),
 		dataPrivacy: new FormControl(false, [Validators.requiredTrue]),
 		rules: new FormControl(false, [Validators.requiredTrue]),
