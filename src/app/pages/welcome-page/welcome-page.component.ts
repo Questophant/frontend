@@ -15,11 +15,15 @@ export class WelcomePageComponent implements OnInit {
 	showDataPrivacy = false;
 	showRules = false;
 
+	nameFormControl = new FormControl('', [
+		Validators.required,
+		Validators.minLength(3),
+		Validators.maxLength(30),
+		Validators.pattern('([a-zA-Z0-9 ])+'),
+	]);
+
 	registrationForm = new FormGroup({
-		name: new FormControl('', [
-			Validators.required,
-			Validators.minLength(1),
-		]),
+		name: this.nameFormControl,
 		dataPrivacy: new FormControl(false, [Validators.requiredTrue]),
 		rules: new FormControl(false, [Validators.requiredTrue]),
 	});
@@ -70,5 +74,21 @@ export class WelcomePageComponent implements OnInit {
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
+	}
+
+	getErrorMessageForName(): string {
+		console.log(this.nameFormControl.errors);
+		if (this.nameFormControl.hasError('required')) {
+			return 'Wir brauchen einen Namen von dir.';
+		}
+		if (this.nameFormControl.hasError('minlength')) {
+			return 'Dein Name ist zu kurz';
+		}
+		if (this.nameFormControl.hasError('maxlength')) {
+			return 'Dein Name ist zu lang';
+		}
+		if (this.nameFormControl.hasError('pattern')) {
+			return 'Dein Name enthält ungültige Zeichen';
+		}
 	}
 }

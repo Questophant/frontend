@@ -34,14 +34,14 @@
 
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
-	<div id="profilePictureContainer" (click)="openProfilePictureEditor()">
+	<div (click)="openProfilePictureEditor()" class="profile-picture-container">
 		<img class="profile-picture" src="{{ getProfilePicture(user) }}" />
-		<div class="edit">editieren</div>
+		editieren
 	</div>
 
 	<div class="username-block">
 		<div class="username">{{ user.userName }}</div>
-		<!--	<div class="edit-icon">Edit</div>-->
+		<!--		<div class="edit-icon">Edit</div>-->
 	</div>
 
 	<!--<div class="privacy-selector">-->

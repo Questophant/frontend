@@ -28,9 +28,9 @@ export class CreateChallengePageComponent implements OnInit {
 	challengeCategory = new FormControl('', [Validators.required]);
 	challengeMaterial = new FormControl('', [Validators.maxLength(255)]);
 	challengeDuration = new FormControl(null, [
-		Validators.pattern('[0-9]*'),
 		Validators.min(0),
 		Validators.max(24 * 60),
+		Validators.pattern('[0-9]*'),
 	]);
 
 	createChallengeForm = new FormGroup({
@@ -67,6 +67,30 @@ export class CreateChallengePageComponent implements OnInit {
 					this.showForm = false;
 					this.error = true;
 				});
+		}
+	}
+
+	getErrorForDescription(): string {
+		if (this.challengeDescription.hasError('required')) {
+			return 'Gib deiner Herausforderung eine Beschreibung.';
+		}
+		if (this.challengeDescription.hasError('minlength')) {
+			return 'Beschreibe deine Herausforderung genauer.';
+		}
+		if (this.challengeDescription.hasError('maxlength')) {
+			return 'Fasse dich in der Beschreibung etwas kürzer.';
+		}
+	}
+
+	getErrorForName(): string {
+		if (this.challengeDescription.hasError('required')) {
+			return 'Gib deiner Herausforderung einen Namen.';
+		}
+		if (this.challengeDescription.hasError('minlength')) {
+			return 'Der Name ist etwas kurz.';
+		}
+		if (this.challengeDescription.hasError('maxlength')) {
+			return 'Der Name ist etwas lang.';
 		}
 	}
 }

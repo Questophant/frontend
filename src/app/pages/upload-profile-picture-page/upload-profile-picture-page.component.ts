@@ -34,29 +34,29 @@ export class UploadProfilePicturePageComponent implements OnInit {
 		this.imageChangedEvent = event;
 	}
 
-	imageCropped(event: ImageCroppedEvent) {
+	imageCropped(event: ImageCroppedEvent): void {
 		this.croppedImage = event.base64;
 	}
 
-	imageLoaded() {
+	imageLoaded(): void {
 		// show cropper
 	}
 
-	cropperReady() {
+	cropperReady(): void {
 		// cropper ready
 	}
 
-	loadImageFailed() {
+	loadImageFailed(): void {
 		// show message
 		alert('Bild konnte nicht geöffnet werden.');
 		this.fileLoaded = false;
 	}
 
-	navigateBack() {
+	navigateBack(): void {
 		this.location.back();
 	}
 
-	upload() {
+	upload(): void {
 		this.api.setUserImage(this.croppedImage).then((userDto) => {
 			this.navigateBack();
 		});
