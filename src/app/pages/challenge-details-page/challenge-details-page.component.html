@@ -89,17 +89,23 @@
 			<h1>Respekt! Weiter so!</h1>
 			<p>
 				Du hast die Herausforderung
-				<span>{{ challenge.title }}</span> erfolgreich abgeschlossen
+				<br/>
+				<span>{{ challenge.title }}</span>
+				<br/>
+				erfolgreich abgeschlossen
 			</p>
 
 			<p>
-				Teile deinen Erfolg mit deinen Freunden und verwende den Hashtag
-				...
+				Mache ein Bild und teile deinen Erfolg mit deinen Freunden oder der ganzen Welt.
+			</p>
+
+			<p>
+				Teile diese Herausforderung mit deinen Freunden und vordere sie heraus.
 			</p>
 		</div>
 
 		<div *ngIf="failure" class="action-message">
-			<h1>Schade. Probier es mit einer anderen Herausforderung.</h1>
+			<h1>Schade. Probiere es mit einer anderen Herausforderung.</h1>
 		</div>
 
 		<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->
