@@ -2,26 +2,42 @@
 
 <ng-container *ngIf="achievements$ | async as achievements">
 	<div *ngFor="let c of categories">
-		<div class="text category-{{ categoryName(c).name }}-background">
+		<span class="category category-{{ categoryName(c).name }}-background">
 			{{ categoryName(c).display }}
-		</div>
+		</span>
 
 		<div class="achievements">
-			<img
+			<div
+				class="achievement"
 				*ngFor="let a of achievements.achievmentsByCategory[c]"
-				src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
-			/>
+			>
+				<img
+					alt="achievement image"
+					src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
+				/>
+				<span>
+					{{ a.name }}
+				</span>
+			</div>
 		</div>
 	</div>
 	<div style="margin-bottom: 70px;">
-		<div class="text category-special-background">
+		<div class="category category-special-background">
 			Spezial-Errungenschaften
 		</div>
 		<div class="achievements">
-			<img
+			<div
 				*ngFor="let a of achievements.overalLevel"
-				src="/assets/icons/questionmark.webp"
-			/>
+				class="achievement"
+			>
+				<img
+					alt="achievement image"
+					src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
+				/>
+				<span>
+					{{ a.name }}
+				</span>
+			</div>
 		</div>
 	</div>
 </ng-container>
