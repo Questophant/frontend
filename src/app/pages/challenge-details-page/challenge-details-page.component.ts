@@ -117,7 +117,21 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight
+			'.' + element.clientWidth + 'x' + element.clientHeight,
 		);
+	}
+
+	share(): void {
+		if (navigator.share) {
+			navigator.share({
+				title: 'web.dev',
+				text: 'Check out web.dev.',
+				url: 'https://web.dev/',
+			})
+				.then(() => alert('Successful share'))
+				.catch((error) => alert(error));
+		} else {
+			alert('Your browser does not provide the WebShareApi');
+		}
 	}
 }

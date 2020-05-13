@@ -96,12 +96,19 @@
 			</p>
 
 			<p>
-				Mache ein Bild und teile deinen Erfolg mit deinen Freunden oder der ganzen Welt.
+				Mache ein Bild und teile deinen Erfolg mit deinen Freunden oder
+				der ganzen Welt.
 			</p>
 
 			<p>
-				Teile diese Herausforderung mit deinen Freunden und vordere sie heraus.
+				Teile diese Herausforderung mit deinen Freunden und vordere sie
+				heraus.
+
+				<a data-action="share/whatsapp/share" href="whatsapp://send?text=The text to share!">Share via
+					Whatsapp</a>
 			</p>
+
+			<button (click)="share()">Share me</button>
 		</div>
 
 		<div *ngIf="failure" class="action-message">
