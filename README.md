@@ -2,6 +2,8 @@
 
 # Questophant Frontend
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a96268df117640b891f75b308eebc1eb)](https://app.codacy.com/gh/Questophant/frontend?utm_source=github.com&utm_medium=referral&utm_content=Questophant/frontend&utm_campaign=Badge_Grade_Dashboard)
+
 Hi, this is the frontend of the Questophant App.
 It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
