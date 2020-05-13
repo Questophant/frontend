@@ -47,7 +47,7 @@ export class WelcomePageComponent implements OnInit {
 			})
 			.catch(api.getDefaultExceptionHandler);
 
-		this.route.queryParamMap.subscribe(params => {
+		this.route.queryParamMap.subscribe((params) => {
 			const param = params.get('redirect');
 			this.redirectRoute = param ? atob(param) : '/';
 		});
@@ -72,7 +72,7 @@ export class WelcomePageComponent implements OnInit {
 				},
 				(reason) => {
 					this.nameIsAlreadyInUse = true;
-				},
+				}
 			);
 		}
 	}

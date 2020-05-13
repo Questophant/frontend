@@ -63,7 +63,7 @@ describe('HasRegisteredGuard', () => {
 			mockRouter.navigate(
 				deepEqual(['/welcome']),
 				deepEqual({ queryParams: { redirect: btoa('/profile') } }),
-			),
+			)
 		).thenResolve(true);
 		when(mockState.url).thenReturn('/profile');
 
@@ -73,7 +73,7 @@ describe('HasRegisteredGuard', () => {
 				mockRouter.navigate(
 					deepEqual(['/welcome']),
 					deepEqual({ queryParams: { redirect: btoa('/profile') } }),
-				),
+				)
 			).called();
 			done();
 		});

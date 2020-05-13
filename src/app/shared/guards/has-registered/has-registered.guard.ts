@@ -34,7 +34,7 @@ export class HasRegisteredGuard implements CanActivate {
 				},
 				(reason) => {
 					alert('Redirect failed');
-				},
+				}
 			);
 			return false;
 		});
