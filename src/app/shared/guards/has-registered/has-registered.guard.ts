@@ -12,13 +12,19 @@ export class HasRegisteredGuard implements CanActivate {
 	constructor(private auth: AuthService, private router: Router) {
 	}
 
-	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+	canActivate(
+		route: ActivatedRouteSnapshot,
+		state: RouterStateSnapshot,
+	): Promise<boolean> {
 		return this.auth.checkUserRegistered().then((registered) => {
 			if (registered) {
 				return true;
 			}
 
-			const queryParams = (state.url && state.url !== '/') ? { queryParams: { redirect: btoa(state.url) } } : undefined;
+			const queryParams =
+				state.url && state.url !== '/'
+					? { queryParams: { redirect: btoa(state.url) } }
+					: undefined;
 
 			this.router.navigate(['/welcome'], queryParams).then(
 				(value) => {

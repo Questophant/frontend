@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { ApiService } from '../../shared/services/api/api.service';
 
@@ -14,6 +14,8 @@ export class WelcomePageComponent implements OnInit {
 	nameIsAlreadyInUse = false;
 	showDataPrivacy = false;
 	showRules = false;
+
+	redirectRoute: string;
 
 	nameFormControl = new FormControl('', [
 		Validators.required,
@@ -31,7 +33,8 @@ export class WelcomePageComponent implements OnInit {
 	constructor(
 		public auth: AuthService,
 		private router: Router,
-		private api: ApiService
+		private api: ApiService,
+		private route: ActivatedRoute,
 	) {
 		this.auth
 			.checkUserRegistered()
@@ -43,9 +46,15 @@ export class WelcomePageComponent implements OnInit {
 				}
 			})
 			.catch(api.getDefaultExceptionHandler);
+
+		this.route.queryParamMap.subscribe(params => {
+			const param = params.get('redirect');
+			this.redirectRoute = param ? atob(param) : '/';
+		});
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+	}
 
 	saveName(): void {
 		this.submitted = true;
@@ -56,14 +65,14 @@ export class WelcomePageComponent implements OnInit {
 			this.auth.register(name).then(
 				(value) => {
 					this.router
-						.navigate(['/'])
+						.navigate([this.redirectRoute])
 						.catch((reason) =>
-							alert('Es gab einen Fehler bei der Weiterleitung')
+							alert('Es gab einen Fehler bei der Weiterleitung'),
 						);
 				},
 				(reason) => {
 					this.nameIsAlreadyInUse = true;
-				}
+				},
 			);
 		}
 	}

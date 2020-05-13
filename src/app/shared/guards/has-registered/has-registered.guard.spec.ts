@@ -35,11 +35,15 @@ describe('HasRegisteredGuard', () => {
 
 	it('should return false when not registered', async (done) => {
 		when(mockAuthService.checkUserRegistered()).thenResolve(false);
-		when(mockRouter.navigate(deepEqual(['/welcome']), undefined)).thenResolve(true);
+		when(
+			mockRouter.navigate(deepEqual(['/welcome']), undefined),
+		).thenResolve(true);
 
 		guard.canActivate(undefined, instance(mockState)).then((value) => {
 			expect(value).toBe(false);
-			verify(mockRouter.navigate(deepEqual(['/welcome']), undefined)).called();
+			verify(
+				mockRouter.navigate(deepEqual(['/welcome']), undefined),
+			).called();
 			done();
 		});
 	});
@@ -55,12 +59,22 @@ describe('HasRegisteredGuard', () => {
 
 	it('should append previous page as parameter', (done) => {
 		when(mockAuthService.checkUserRegistered()).thenResolve(false);
-		when(mockRouter.navigate(deepEqual(['/welcome']), deepEqual({ queryParams: { redirect: btoa('/profile') } }))).thenResolve(true);
+		when(
+			mockRouter.navigate(
+				deepEqual(['/welcome']),
+				deepEqual({ queryParams: { redirect: btoa('/profile') } }),
+			),
+		).thenResolve(true);
 		when(mockState.url).thenReturn('/profile');
 
 		guard.canActivate(undefined, instance(mockState)).then((value) => {
 			expect(value).toBe(false);
-			verify(mockRouter.navigate(deepEqual(['/welcome']), deepEqual({ queryParams: { redirect: btoa('/profile') } }))).called();
+			verify(
+				mockRouter.navigate(
+					deepEqual(['/welcome']),
+					deepEqual({ queryParams: { redirect: btoa('/profile') } }),
+				),
+			).called();
 			done();
 		});
 	});
