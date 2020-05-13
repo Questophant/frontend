@@ -72,7 +72,7 @@ export class WelcomePageComponent implements OnInit {
 				},
 				(reason) => {
 					this.nameIsAlreadyInUse = true;
-				}
+				},
 			);
 		}
 	}
