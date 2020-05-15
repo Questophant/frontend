@@ -161,9 +161,10 @@
 	align-items: center;
 
 	.share-option {
+		display: block;
 		width: 40px;
 		height: 40px;
-		margin: 5px;
+		margin: 5px 10px;
 
 		img {
 			display: block;
