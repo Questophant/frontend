@@ -97,20 +97,18 @@
 			</p>
 
 			<p>
-				Mache ein Bild und teile deinen Erfolg mit deinen Freunden oder
-				der ganzen Welt.
+				Mache ein Bild und teile deinen Erfolg mit dem Hashtag <span>#questophant</span>.
 			</p>
 
 			<p>
-				Teile deinen Erfolg mit deinen Freunden oder motiviere sie für
-				diese Herausforderung.
+				Teile deinen Erfolg mit deinen Freunden und fordere sie heraus.
 			</p>
 
 			<div class="share-options">
 				<a
 					class="share-option"
 					data-action="share/whatsapp/share"
-					href="whatsapp://send?text=The text to share!"
+					[href]="getWhatsAppText(challenge.title)"
 				>
 					<img
 						alt="Whatsapp"
@@ -119,27 +117,19 @@
 				</a>
 				<a
 					class="share-option"
-					data-action="share/whatsapp/share"
-					href="whatsapp://send?text=The text to share!"
+					[href]="getFacebookUrl(challenge.title)"
 				>
 					<img
-						alt="Whatsapp"
+						alt="Facebook"
 						src="/assets/icons/social/facebook.png"
 					/>
 				</a>
-				<a
-					class="share-option"
-					data-action="share/whatsapp/share"
-					href="whatsapp://send?text=The text to share!"
-				>
-					<img
-						alt="Whatsapp"
-						src="/assets/icons/social/instagram.png"
-					/>
-				</a>
+				<!-- https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href=URL_TO_SHARE&redirect_uri=RETURN_URL
+					https://stackoverflow.com/questions/26106447/is-it-possible-to-generate-a-share-on-facebook-link-that-opens-the-native-face
+				-->
 			</div>
 
-			<button (click)="share()">Share me</button>
+			<!--			<button (click)="share()">Share me</button>-->
 		</div>
 
 		<div *ngIf="failure" class="action-message">
