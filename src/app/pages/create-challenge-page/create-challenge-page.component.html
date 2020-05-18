@@ -53,19 +53,19 @@
 				*ngIf="submitted && createChallengeForm.invalid"
 				class="errors"
 			>
-				<span *ngIf="challengeName.errors !== null">
-					Gib deiner Herausforderung einen Namen.
+				<span *ngIf="challengeName.invalid">
+					{{ getErrorForName() }}
 				</span>
-				<span *ngIf="challengeCategory.errors !== null">
+				<span *ngIf="challengeCategory.invalid">
 					Gib deiner Herausforderung eine Kategorie.
 				</span>
-				<span *ngIf="challengeDuration.errors !== null">
+				<span *ngIf="challengeDuration.invalid">
 					Du musst eine Nummer angeben.
 				</span>
-				<span *ngIf="challengeDescription.errors !== null">
-					Gib deiner Herausforderung eine Beschreibung.
+				<span *ngIf="challengeDescription.invalid">
+					{{ getErrorForDescription() }}
 				</span>
-				<span *ngIf="challengeMaterial.errors !== null">
+				<span *ngIf="challengeMaterial.invalid">
 					Das ist doch etwas zu viel, was für die Herausforderung
 					benötigt wird.
 				</span>

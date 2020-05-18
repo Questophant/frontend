@@ -42,12 +42,14 @@
 				"
 				class="errors"
 			>
-				<span *ngIf="registrationForm.get('name').errors !== null"
-					>Wir brauchen einen Namen.</span
-				>
+				<span *ngIf="nameFormControl.invalid">{{
+					getErrorMessageForName()
+				}}</span>
+
 				<span *ngIf="nameIsAlreadyInUse"
 					>Der Nutzername ist leider schon vergeben.</span
 				>
+
 				<span
 					*ngIf="
 						registrationForm.get('dataPrivacy').errors !== null ||

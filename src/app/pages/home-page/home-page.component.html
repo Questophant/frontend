@@ -52,6 +52,9 @@
 						src="/assets/images/categories/{{
 							challenge.category.name
 						}}.jpg"
+						class="category-{{
+							challenge.category.name
+						}}-background"
 					/>
 					<div class="challenge-participants">
 						<div class="challenge-duration">
@@ -81,7 +84,7 @@
 	</ng-template>
 
 	<ng-template #loading>
-		<div class="onscreen-message"></div>
+		<app-spinner></app-spinner>
 	</ng-template>
 </div>
 

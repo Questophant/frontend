@@ -108,6 +108,7 @@ $category-bar-height: 36px;
 			img {
 				display: block;
 				width: 100%;
+				min-height: 200px;
 			}
 
 			.challenge-participants {
@@ -235,4 +236,9 @@ $category-bar-height: 36px;
 	font-size: 1.3em;
 	text-align: center !important;
 	padding: 20px;
+}
+
+app-spinner {
+	width: 60vw !important;
+	margin: 0 auto;
 }

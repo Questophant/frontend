@@ -1,15 +1,15 @@
 @import '../../../colors';
 
 h1 {
+	font-size: 1.5em;
+	margin: 2vh 4vw;
 	color: $general-blue;
-	margin: 3vh 4vw 3vh 4vw;
-	font-size: 19px;
-	font-weight: 500;
 }
 
 div {
-	.text {
-		margin-left: 4vw;
+	margin: 0 4vw;
+
+	.category {
 		text-align: center;
 		padding: 4px 10px;
 		display: inline-block;
@@ -23,15 +23,31 @@ div {
 	}
 
 	.achievements {
-		margin: 1.5vh 6vw 2.5vh 6vw;
+		margin: 2vh 0;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 
-		img {
-			width: calc(60vw / 5);
-			margin: 1.5vw;
-			height: calc(60vw / 5);
-			border-radius: 50%;
-			display: inline-block;
-			border-width: 1.5px;
+		.achievement {
+			padding: 0;
+			width: 30%;
+			max-width: 200px;
+			margin: 0 0 15px;
+
+			img {
+				display: block;
+				width: 60%;
+				margin: 0 auto;
+				border-radius: 50%;
+				border-width: 1.5px;
+			}
+
+			span {
+				display: block;
+				text-align: center;
+				width: 100%;
+				word-break: break-word;
+			}
 		}
 	}
 }
