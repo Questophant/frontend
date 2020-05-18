@@ -143,6 +143,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	}
 
 	getFacebookUrl(title: string): SafeUrl {
-		return this.sanitizer.bypassSecurityTrustUrl(`https://www.facebook.com/sharer/sharer.php?u=${location.href}`);
+		return this.sanitizer.bypassSecurityTrustUrl(
+			`https://www.facebook.com/sharer/sharer.php?u=${location.href}`,
+		);
 	}
 }
