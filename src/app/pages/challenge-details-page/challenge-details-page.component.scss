@@ -148,6 +148,29 @@
 
 	span {
 		color: $general-blue;
+		font-size: 20px;
+		margin: 5px 0;
+	}
+}
+
+.share-options {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+
+	.share-option {
+		display: block;
+		width: 40px;
+		height: 40px;
+		margin: 5px 10px;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 
