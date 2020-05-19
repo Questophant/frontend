@@ -17,11 +17,11 @@
 				/>
 				<div class="text">
 					von
-					<br />
+					<br/>
 					<div class="username">
 						{{ createdByUser.userName }}
 					</div>
-					<br />
+					<br/>
 					<div
 						style="border-radius: 40px; color: #fff; padding: 5px;"
 						class="category challenge-label category-{{
@@ -40,10 +40,10 @@
 				<div class="challenge-name">{{ challenge.title }}</div>
 				<textarea class="challenge-description" readonly>{{
 					challenge.description
-				}}</textarea>
+					}}</textarea>
 				<textarea class="challenge-materials" readonly>{{
 					challenge.material || 'Keine Materialien benötigt'
-				}}</textarea>
+					}}</textarea>
 				<ng-container *ngIf="showActions">
 					<div
 						(click)="acceptChallenge(challenge)"
@@ -58,9 +58,9 @@
 						class="challenge-action color-two"
 					>
 						{{
-							remembered
-								? 'Nicht mehr merken'
-								: 'Herausforderung merken'
+						remembered
+							? 'Nicht mehr merken'
+							: 'Herausforderung merken'
 						}}
 					</div>
 					<div
@@ -89,17 +89,52 @@
 			<h1>Respekt! Weiter so!</h1>
 			<p>
 				Du hast die Herausforderung
-				<span>{{ challenge.title }}</span> erfolgreich abgeschlossen
+				<br/>
+				<span>{{ challenge.title }}</span>
+				<br/>
+				erfolgreich abgeschlossen und
+				<span>{{ challenge.pointsWin }} Punkte</span> erhalten
 			</p>
 
 			<p>
-				Teile deinen Erfolg mit deinen Freunden und verwende den Hashtag
-				...
+				Mache ein Bild und teile deinen Erfolg mit dem Hashtag
+				<span>#questophant</span>.
 			</p>
+
+			<p>
+				Teile deinen Erfolg mit deinen Freunden und fordere sie heraus.
+			</p>
+
+			<div class="share-options">
+				<a
+					class="share-option"
+					data-action="share/whatsapp/share"
+					[href]="getWhatsAppText(challenge.title)"
+				>
+					<img
+						alt="Whatsapp"
+						src="/assets/icons/social/whatsapp.png"
+					/>
+				</a>
+				<a
+					class="share-option"
+					[href]="getFacebookUrl(challenge.title)"
+				>
+					<img
+						alt="Facebook"
+						src="/assets/icons/social/facebook.png"
+					/>
+				</a>
+				<!-- https://www.facebook.com/dialog/share?app_id=145634995501895&display=popup&href=URL_TO_SHARE&redirect_uri=RETURN_URL
+					https://stackoverflow.com/questions/26106447/is-it-possible-to-generate-a-share-on-facebook-link-that-opens-the-native-face
+				-->
+			</div>
+
+			<!--			<button (click)="share()">Share me</button>-->
 		</div>
 
 		<div *ngIf="failure" class="action-message">
-			<h1>Schade. Probier es mit einer anderen Herausforderung.</h1>
+			<h1>Schade. Probiere es mit einer anderen Herausforderung.</h1>
 		</div>
 
 		<!-- If clause to check whether other solutions were uploaded yet, otherwise dont display -->

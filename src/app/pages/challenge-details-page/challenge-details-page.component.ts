@@ -8,6 +8,7 @@ import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
 import { UserDto } from '../../shared/dtos/user.dto';
 import { UrlResolverService } from '../../shared/services/url/url-resolver.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -41,7 +42,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private api: ApiService,
 		private store: StoreService,
 		private location: Location,
-		private urlResolverService: UrlResolverService
+		private urlResolverService: UrlResolverService,
+		private sanitizer: DomSanitizer,
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
@@ -117,7 +119,32 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight
+			'.' + element.clientWidth + 'x' + element.clientHeight,
+		);
+	}
+
+	share(): void {
+		// if (navigator.share) {
+		// 	navigator.share({
+		// 		title: 'web.dev',
+		// 		text: 'Check out web.dev.',
+		// 		url: 'https://web.dev/',
+		// 	})
+		// 		.then(() => alert('Successful share'))
+		// 		.catch((error) => alert(error));
+		// } else {
+		// 	alert('Your browser does not provide the WebShareApi');
+		// }
+	}
+
+	getWhatsAppText(title: string): SafeUrl {
+		const url = `whatsapp://send?text=Ich habe gerade die Herausforderung "${title}" absolviert. Jetzt bist du dran! ${location.href}`;
+		return this.sanitizer.bypassSecurityTrustUrl(url);
+	}
+
+	getFacebookUrl(title: string): SafeUrl {
+		return this.sanitizer.bypassSecurityTrustUrl(
+			`https://www.facebook.com/sharer/sharer.php?u=${location.href}`,
 		);
 	}
 }
