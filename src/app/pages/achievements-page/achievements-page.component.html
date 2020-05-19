@@ -26,10 +26,7 @@
 			Spezial-Errungenschaften
 		</span>
 		<div class="achievements">
-			<div
-				*ngFor="let a of achievements.overalLevel"
-				class="achievement"
-			>
+			<div *ngFor="let a of achievements.overalLevel" class="achievement">
 				<img
 					alt="achievement image"
 					[src]="getAchievementImageUrl(a)"

@@ -187,7 +187,7 @@ export abstract class HTTPApiService implements ApiService {
 
 	getAchievementsForUser(id: string): Promise<AchievementDto> {
 		return this.http
-			.get<AchievementDto>(`${this.apiUrl}/publicUser/${id}/achievments`)
+			.get<AchievementDto>(`${this.apiUrl}/publicUser/${id}/achievements`)
 			.toPromise();
 	}
 

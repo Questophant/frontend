@@ -17,7 +17,7 @@ export class AchievementsPageComponent implements OnInit {
 		this.achievements$ = this.api
 			.getAchievementsForUser(this.store.getPublicUserId())
 			.then((value) => {
-				this.categories = Object.keys(value.achievmentsByCategory);
+				this.categories = Object.keys(value.achievementsByCategory);
 				return value;
 			});
 	}
