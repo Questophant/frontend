@@ -13,7 +13,7 @@
 			>
 				<img
 					alt="achievement image"
-					src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
+					[src]="getAchievementImageUrl(a)"
 				/>
 				<span>
 					{{ a.name }}
@@ -32,7 +32,7 @@
 			>
 				<img
 					alt="achievement image"
-					src="{{ a.imageUrl || '/assets/icons/questionmark.webp' }}"
+					[src]="getAchievementImageUrl(a)"
 				/>
 				<span>
 					{{ a.name }}
