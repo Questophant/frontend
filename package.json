@@ -16,8 +16,8 @@
 		"test:ci": "ng test --watch=false --browsers=ChromeHeadlessCustom",
 		"lint": "ng lint",
 		"pree2e": "rm -rf ./node_modules/protractor/node_modules/webdriver-manager/selenium/* && ./node_modules/protractor/bin/webdriver-manager clean && mkdir ./node_modules/protractor/node_modules/webdriver-manager/selenium/geckodriver && node ./node_modules/protractor/bin/webdriver-manager update --versions.chrome=83.0.4103.0",
-		"e2e": "pree2e && ng e2e --webdriver-update false",
-		"e2e:ci": "pree2e && ng e2e --webdriver-update false",
+		"e2e": "npm run pree2e && ng e2e --webdriver-update false",
+		"e2e:ci": "npm run pree2e && ng e2e --webdriver-update false",
 		"precommit-msg": "echo 'Pre-commit checks...' && exit 0",
 		"prettier": "prettier --write ."
 	},
