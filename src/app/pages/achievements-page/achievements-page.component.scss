@@ -48,6 +48,16 @@ div {
 				width: 100%;
 				word-break: break-word;
 			}
+
+			&.blurred {
+				img {
+					filter: grayscale(100%) blur(4px);
+				}
+
+				span {
+					color: #9e9e9e;
+				}
+			}
 		}
 	}
 }

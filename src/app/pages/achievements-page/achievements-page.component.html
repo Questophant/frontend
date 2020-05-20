@@ -10,6 +10,7 @@
 			<div
 				class="achievement"
 				*ngFor="let a of achievements.achievementsByCategory[c]"
+				[class.blurred]="!a.achieved"
 			>
 				<img
 					alt="achievement image"
@@ -26,7 +27,7 @@
 			Spezial-Errungenschaften
 		</span>
 		<div class="achievements">
-			<div *ngFor="let a of achievements.overalLevel" class="achievement">
+			<div *ngFor="let a of achievements.overalLevel" [class.blurred]="!a.achieved" class="achievement">
 				<img
 					alt="achievement image"
 					[src]="getAchievementImageUrl(a)"
