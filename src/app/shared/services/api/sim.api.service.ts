@@ -128,7 +128,7 @@ export class SimApiService implements ApiService {
 	];
 
 	private achievements: AchievementDto = {
-		achievmentsByCategory: {
+		achievementsByCategory: {
 			household: [
 				{
 					name: 'Heimscheisser',
