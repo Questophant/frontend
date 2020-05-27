@@ -51,7 +51,7 @@ div {
 
 			&.blurred {
 				img {
-					filter: grayscale(100%) blur(4px);
+					filter: grayscale(50%) blur(2px);
 				}
 
 				span {
