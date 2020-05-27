@@ -56,7 +56,7 @@ describe('WelcomePageComponent', () => {
 			instance(mockAuthService),
 			instance(mockRouter),
 			mockApiService,
-			instance(mockRoute),
+			instance(mockRoute)
 		);
 
 		// Need to wait here because method call happens inside then method of promise. Otherwise fails because checking too early

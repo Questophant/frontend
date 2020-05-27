@@ -22,8 +22,7 @@ export class AchievementsPageComponent implements OnInit {
 			});
 	}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	categoryName(key: string): Category {
 		return getCategoryByName(key);
