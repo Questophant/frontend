@@ -12,18 +12,15 @@
 		<div *ngIf="!success && !failure" class="middle">
 			<div class="profile">
 				<img
-					class="profilepic"
+					class="profile-picture"
 					src="{{ getProfilePicture(createdByUser) }}"
 				/>
-				<div class="text">
+				<div class="profile-details">
 					von
-					<br/>
 					<div class="username">
 						{{ createdByUser.userName }}
 					</div>
-					<br/>
 					<div
-						style="border-radius: 40px; color: #fff; padding: 5px;"
 						class="category challenge-label category-{{
 							challenge.category.name
 						}}-background"

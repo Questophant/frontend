@@ -45,7 +45,7 @@
 		width: 30vw;
 		padding-right: 4vw;
 
-		.profilepic {
+		.profile-picture {
 			display: block;
 			margin: auto;
 			height: 22vw;
@@ -53,21 +53,29 @@
 			border-radius: 100%;
 		}
 
-		.text {
+		.profile-details {
 			text-align: center;
-		}
 
-		.username {
-			font-weight: 600;
-			overflow-wrap: break-word;
-		}
+			.username {
+				font-weight: 600;
+				overflow-wrap: break-word;
+				margin-bottom: 7px;
+			}
 
-		.points {
-			margin-top: 5px;
-		}
+			.category {
+				border-radius: 40px;
+				padding: 5px;
+				color: #fff;
+				font-size: 12px;
+			}
 
-		.duration {
-			margin-top: 5px;
+			.points {
+				margin-top: 5px;
+			}
+
+			.duration {
+				margin-top: 5px;
+			}
 		}
 	}
 

@@ -116,10 +116,9 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight,
+			'.' + window.document.body.clientWidth + 'x' + window.document.body.clientHeight,
 		);
 	}
 
