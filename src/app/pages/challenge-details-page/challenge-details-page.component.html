@@ -37,10 +37,10 @@
 				<div class="challenge-name">{{ challenge.title }}</div>
 				<textarea class="challenge-description" readonly>{{
 					challenge.description
-					}}</textarea>
+				}}</textarea>
 				<textarea class="challenge-materials" readonly>{{
 					challenge.material || 'Keine Materialien benötigt'
-					}}</textarea>
+				}}</textarea>
 				<ng-container *ngIf="showActions">
 					<div
 						(click)="acceptChallenge(challenge)"
@@ -55,9 +55,9 @@
 						class="challenge-action color-two"
 					>
 						{{
-						remembered
-							? 'Nicht mehr merken'
-							: 'Herausforderung merken'
+							remembered
+								? 'Nicht mehr merken'
+								: 'Herausforderung merken'
 						}}
 					</div>
 					<div
@@ -86,9 +86,9 @@
 			<h1>Respekt! Weiter so!</h1>
 			<p>
 				Du hast die Herausforderung
-				<br/>
+				<br />
 				<span>{{ challenge.title }}</span>
-				<br/>
+				<br />
 				erfolgreich abgeschlossen und
 				<span>{{ challenge.pointsWin }} Punkte</span> erhalten
 			</p>

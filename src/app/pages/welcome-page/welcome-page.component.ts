@@ -34,7 +34,7 @@ export class WelcomePageComponent implements OnInit {
 		public auth: AuthService,
 		private router: Router,
 		private api: ApiService,
-		private route: ActivatedRoute,
+		private route: ActivatedRoute
 	) {
 		this.auth
 			.checkUserRegistered()
@@ -53,8 +53,7 @@ export class WelcomePageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	saveName(): void {
 		this.submitted = true;
@@ -67,7 +66,7 @@ export class WelcomePageComponent implements OnInit {
 					this.router
 						.navigate([this.redirectRoute])
 						.catch((reason) =>
-							alert('Es gab einen Fehler bei der Weiterleitung'),
+							alert('Es gab einen Fehler bei der Weiterleitung')
 						);
 				},
 				(reason) => {
