@@ -43,7 +43,11 @@
 
 				.challenge-title {
 					width: 100%;
+					height: 100%;
 					font-weight: 700;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				.challenge-username {
@@ -58,8 +62,8 @@
 					span {
 						display: inline-block;
 						color: #fff;
-						font-size: 13px;
-						padding: 3px 5px;
+						font-size: 11px;
+						padding: 5px 10px;
 						border-radius: 20px;
 						text-align: center;
 					}
