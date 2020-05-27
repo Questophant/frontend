@@ -43,7 +43,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private store: StoreService,
 		private location: Location,
 		private urlResolverService: UrlResolverService,
-		private sanitizer: DomSanitizer,
+		private sanitizer: DomSanitizer
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
@@ -116,10 +116,12 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		const element = document.getElementsByClassName('profilepic')[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight,
+			'.' +
+				window.document.body.clientWidth +
+				'x' +
+				window.document.body.clientHeight
 		);
 	}
 
@@ -144,7 +146,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 
 	getFacebookUrl(title: string): SafeUrl {
 		return this.sanitizer.bypassSecurityTrustUrl(
-			`https://www.facebook.com/sharer/sharer.php?u=${location.href}`,
+			`https://www.facebook.com/sharer/sharer.php?u=${location.href}`
 		);
 	}
 }
