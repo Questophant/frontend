@@ -7,8 +7,8 @@ h1 {
 }
 
 div {
-	  margin: 0  4vw;
- asd: test;
+	margin: 0 4vw;
+	asd: test;
 
 	.category {
 		text-align: center;
@@ -18,13 +18,10 @@ div {
 		font-size: 1rem;
 		border-radius: 100px;
 
-
 		&.category-special-background {
 			background-color: $general-blue;
 		}
-
 	}
-
 
 	.achievements {
 		margin: 2vh 0;

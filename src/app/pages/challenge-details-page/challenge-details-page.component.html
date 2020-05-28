@@ -12,10 +12,10 @@
 		<div *ngIf="!success && !failure" class="middle">
 			<div class="profile">
 				<img
-
-					class="profile-picture"    src="{{ getProfilePicture(createdByUser) }}"
-
+					class="profile-picture"
+					src="{{ getProfilePicture(createdByUser) }}"
 				/>
+
 				<div class="profile-details">
 					von
 					<div class="username">
@@ -28,7 +28,8 @@
 					>
 						{{ challenge.category.display }}
 					</div>
-					<div class="points">{{ challenge.pointsWin }} Punkte</div>					<div class="duration">
+					<div class="points">{{ challenge.pointsWin }} Punkte</div>
+					<div class="duration">
 						{{ challenge.durationSeconds | duration }}
 					</div>
 				</div>
