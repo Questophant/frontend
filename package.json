@@ -17,18 +17,14 @@
 		"lint": "ng lint",
 		"pree2e": "./node_modules/protractor/bin/webdriver-manager clean && node ./node_modules/protractor/bin/webdriver-manager update --versions.chrome=83.0.4103.0",
 		"e2e": "npm run pree2e && ng e2e --webdriver-update false",
-		"e2e:ci": "npm run pree2e && ng e2e --webdriver-update false"
+		"e2e:ci": "npm run pree2e && ng e2e --webdriver-update false",
+		"precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+		"prettier": "prettier --write . && git add -u"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*": [
-			"prettier --write ."
-		]
-	},
+	"pre-commit": [
+		"precommit-msg",
+		"prettier"
+	],
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "~9.0.7",
@@ -56,7 +52,6 @@
 		"@types/jasminewd2": "~2.0.3",
 		"@types/node": "^12.11.1",
 		"codelyzer": "^5.1.2",
-		"husky": "^4.2.5",
 		"jasmine-core": "~3.5.0",
 		"jasmine-spec-reporter": "~4.2.1",
 		"karma": "~4.3.0",
@@ -64,9 +59,8 @@
 		"karma-coverage-istanbul-reporter": "~2.1.0",
 		"karma-jasmine": "~2.0.1",
 		"karma-jasmine-html-reporter": "^1.4.2",
-		"lint-staged": "^10.2.6",
 		"pre-commit": "^1.2.2",
-		"prettier": "^2.0.5",
+		"prettier": "^2.0.4",
 		"protractor": "~5.4.4",
 		"puppeteer": "^3.1.0",
 		"ts-mockito": "^2.5.0",
