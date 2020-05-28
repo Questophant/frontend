@@ -30,6 +30,7 @@
 .color-one {
 	background-color: #788fb9 !important;
 }
+
 .color-two {
 	background-color: #a3b9e0 !important;
 }
@@ -182,29 +183,29 @@
 	}
 }
 
-.othersolutions {
-	margin-left: 4vw;
-	margin-right: 4vw;
-
-	.solutionpicleft {
-		float: left;
-		border: none;
-		background-color: blue;
-		width: 44vw;
-		height: 44vh;
-		margin-bottom: calc(
-			10vh + 4vw
-		); //10vh refering to sticky task bar, so change if taskbar other height
-	}
-
-	.solutionpicright {
-		float: right;
-		border: none;
-		background-color: blue;
-		width: 44vw;
-		height: 44vh;
-		margin-bottom: calc(
-			10vh + 4vw
-		); //10vh refering to sticky task bar, so change if taskbar other height
-	}
-}
+//.othersolutions {
+//	margin-left: 4vw;
+//	margin-right: 4vw;
+//
+//	.solutionpicleft {
+//		float: left;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//
+//	.solutionpicright {
+//		float: right;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//}
