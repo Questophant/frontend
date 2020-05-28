@@ -1,22 +1,24 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 import { AchievementDto } from '../../dtos/achievement.dto';
 import { Categories, Category } from '../../dtos/category';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto, ChallengeResponse } from '../../dtos/challenge.dto';
-import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
+import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
-import { environment } from '../../../../environments/environment';
 
-export abstract class HTTPApiService implements ApiService {
+export abstract class HTTPApiService extends ApiService {
 	protected apiUrl: string;
 
 	private cachedDailyChallenge: ChallengeDto;
 	private cacheDate: number;
 
-	constructor(protected http: HttpClient, private store: StoreService) {}
+	constructor(protected http: HttpClient, private store: StoreService) {
+		super();
+	}
 
 	getDailyChallenge(): Promise<ChallengeDto> {
 		const date = new Date().getDate();
@@ -253,7 +255,8 @@ export abstract class HTTPApiService implements ApiService {
 		return this.http
 			.get<ChallengeResponse>(url)
 			.toPromise()
-			.then(this.mapChallenge());
+			.then(this.mapChallenge())
+			.catch(this.getDefaultExceptionHandler());
 	}
 
 	private getChallengesFromUrl(url: string): Promise<ChallengeDto[]> {
