@@ -532,8 +532,8 @@ export class SimApiService implements ApiService {
 		return this.achievements;
 	}
 
-	public getDefaultExceptionHandler() {
-		// NO OP
+	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
+		return console.log;
 	}
 
 	public setUserImage(imageBase64: string): Promise<UserDto> {

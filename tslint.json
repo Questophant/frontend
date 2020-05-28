@@ -116,8 +116,8 @@
 		  "call-signature",
 		  "property-declaration"
 	  ],
-	  "triple-equals": [true, "allow-null-check", "allow-undefined-check"]
-
+	  "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
+	  "curly": true
 	  // "newline-per-chained-call": true
   },
   "rulesDirectory": [

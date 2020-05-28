@@ -85,8 +85,8 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDefaultExceptionHandler() {
-		// NO OP
+	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
+		throw new Error('Method not implemented.');
 	}
 
 	public setUserImage(imageBase64: string): Promise<UserDto> {

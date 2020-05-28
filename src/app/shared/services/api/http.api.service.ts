@@ -191,7 +191,7 @@ export abstract class HTTPApiService implements ApiService {
 			.toPromise();
 	}
 
-	getDefaultExceptionHandler() {
+	getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
 		return (httpErrorResponse: HttpErrorResponse) => {
 			if (
 				environment.resetOnUserNotFound &&
@@ -226,12 +226,14 @@ export abstract class HTTPApiService implements ApiService {
 		return this.apiUrl;
 	}
 
-	private mapChallenges() {
+	private mapChallenges(): (
+		challenges: ChallengeResponse[]
+	) => ChallengeDto[] {
 		return (challenges: ChallengeResponse[]) =>
 			challenges.map(this.mapChallenge());
 	}
 
-	private mapChallenge() {
+	private mapChallenge(): (challenge: ChallengeResponse) => ChallengeDto {
 		return (challenge: ChallengeResponse) => ({
 			id: challenge.id,
 			title: challenge.title,
