@@ -18,8 +18,8 @@ It was generated with [Angular CLI](https://github.com/angular/angular-cli) vers
 For developing we chose VSCode.
 Essential plugins:
 
--   https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
--   https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
+-   <https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials>
+-   <https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics>
 
 ## Development server
 
