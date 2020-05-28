@@ -5,7 +5,9 @@ export const ChallengeListTypes: ChallengeListType[] = [
 	{ name: 'created', display: 'Erstellt' },
 ];
 
-export function getChallengeListTypeByName(name: string): ChallengeListType | undefined {
+export function getChallengeListTypeByName(
+	name: string
+): ChallengeListType | undefined {
 	return ChallengeListTypes.find((c) => c.name === name);
 }
 

@@ -45,15 +45,15 @@ export abstract class HTTPApiService extends ApiService {
 		if (category) {
 			return this.getChallengesFromUrl(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_stream?category=${
-				category.name
+					category.name
 				}&pageIndex=${page}&pageSize=${size}`
 			);
 		}
 		return this.getChallengesFromUrl(
 			`${
-			this.apiUrl
+				this.apiUrl
 			}/myUser/${this.store.getUserId()}/challenge_stream?pageIndex=${page}&pageSize=${size}`
 		);
 	}
@@ -74,7 +74,7 @@ export abstract class HTTPApiService extends ApiService {
 		return this.http
 			.post<ChallengeResponse>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges`,
 				challenge
 			)
@@ -86,7 +86,7 @@ export abstract class HTTPApiService extends ApiService {
 		return this.http
 			.delete<ChallengeResponse>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/created_challenges/${challengeId}`
 			)
 			.toPromise()
@@ -112,9 +112,9 @@ export abstract class HTTPApiService extends ApiService {
 		return this.http
 			.post<void>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/challenge_status/${
-				challenge.id
+					challenge.id
 				}?state=${state}`,
 				{}
 			)
@@ -152,9 +152,9 @@ export abstract class HTTPApiService extends ApiService {
 		return this.http
 			.post<ChallengeDto>(
 				`${
-				this.apiUrl
+					this.apiUrl
 				}/myUser/${this.store.getUserId()}/marked_challenges/${
-				challenge.id
+					challenge.id
 				}?marked=${remember}`,
 				{}
 			)
@@ -256,7 +256,7 @@ export abstract class HTTPApiService extends ApiService {
 			.get<ChallengeResponse>(url)
 			.toPromise()
 			.then(this.mapChallenge())
-			.catch(this.getDefaultExceptionHandler());;
+			.catch(this.getDefaultExceptionHandler());
 	}
 
 	private getChallengesFromUrl(url: string): Promise<ChallengeDto[]> {

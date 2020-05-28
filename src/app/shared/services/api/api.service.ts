@@ -98,21 +98,27 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getChallengeList(challengeListType: ChallengeListType, page: number, size: number): Promise<ChallengeDto[]> {
+	public getChallengeList(
+		challengeListType: ChallengeListType,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		switch (challengeListType.name) {
-			case "active":
+			case 'active':
 				return this.getActiveChallenges();
 				break;
-			case "marked":
+			case 'marked':
 				return this.getRememberedChallenges();
 				break;
-			case "done":
+			case 'done':
 				return this.getRememberedChallenges();
 				break;
-			case "created":
+			case 'created':
 				return this.getRememberedChallenges();
 				break;
 		}
-		throw new Error('ChallengeListType ' + challengeListType.name + ' not implemented.');
+		throw new Error(
+			'ChallengeListType ' + challengeListType.name + ' not implemented.'
+		);
 	}
 }

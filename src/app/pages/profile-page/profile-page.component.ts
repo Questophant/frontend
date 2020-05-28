@@ -31,7 +31,7 @@ export class ProfilePageComponent implements OnInit {
 		this.points$ = api.getPointsOfUser();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
