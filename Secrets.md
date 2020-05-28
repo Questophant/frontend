@@ -1,4 +1,5 @@
 # Secret Descriptions
+
 ## LIGHTHOUSE_ACTION_ACCESS_TOKEN
 
 Access Token for the Lighthouse action. Used to post results as comment to PR.

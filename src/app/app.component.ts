@@ -13,7 +13,11 @@ export class AppComponent {
 	reloadNeeded: boolean = false;
 	nextUpdateCheckDay = new Date().getDate();
 
-	constructor(private connectionService: ConnectionService, swUpdate: SwUpdate, router: Router) {
+	constructor(
+		private connectionService: ConnectionService,
+		swUpdate: SwUpdate,
+		router: Router
+	) {
 		this.connectionService.monitor().subscribe((currentState) => {
 			this.offline = !currentState;
 		});
@@ -24,7 +28,7 @@ export class AppComponent {
 				this.reloadNeeded = true;
 			});
 		});
-		router.events.subscribe(e => {
+		router.events.subscribe((e) => {
 			if (e instanceof NavigationEnd && swUpdate.isEnabled) {
 				const day = new Date().getDate();
 				if (day != this.nextUpdateCheckDay) {
