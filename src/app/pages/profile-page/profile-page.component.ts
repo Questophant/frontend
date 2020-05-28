@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { PointsDto } from '../../shared/dtos/points.dto';
 import { UserDto } from '../../shared/dtos/user.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
-import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { UrlResolverService } from '../../shared/services/url/url-resolver.service';
 
 @Component({
@@ -21,9 +21,6 @@ export class ProfilePageComponent implements OnInit {
 	showRules = false;
 	showImprint = false;
 
-	showDoneChallenges = true;
-	showCreatedChallenges = false;
-
 	constructor(
 		private api: ApiService,
 		private router: Router,
@@ -32,10 +29,9 @@ export class ProfilePageComponent implements OnInit {
 	) {
 		this.user$ = api.getMyUser(store.getUserId());
 		this.points$ = api.getPointsOfUser();
-		this.displayDoneChallenges();
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
@@ -47,18 +43,6 @@ export class ProfilePageComponent implements OnInit {
 
 	toggleImprint(): void {
 		this.showImprint = !this.showImprint;
-	}
-
-	displayDoneChallenges(): void {
-		this.showDoneChallenges = true;
-		this.showCreatedChallenges = false;
-		this.challenges$ = this.api.getDoneChallenges();
-	}
-
-	displayCreatedChallenges(): void {
-		this.showDoneChallenges = false;
-		this.showCreatedChallenges = true;
-		this.challenges$ = this.api.getCreatedChallenges();
 	}
 
 	getProfilePicture(user: UserDto): string {
