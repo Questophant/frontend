@@ -66,13 +66,13 @@
 </div>
 
 <app-data-privacy-overlay
-	(onClose)="
+	(closeEvent)="
 		toggleDataPrivacy(); registrationForm.get('dataPrivacy').setValue(true)
 	"
 	*ngIf="showDataPrivacy"
 ></app-data-privacy-overlay>
 
 <app-rules-overlay
-	(onClose)="toggleRules(); registrationForm.get('rules').setValue(true)"
+	(closeEvent)="toggleRules(); registrationForm.get('rules').setValue(true)"
 	*ngIf="showRules"
 ></app-rules-overlay>
