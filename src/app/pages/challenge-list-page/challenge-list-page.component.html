@@ -4,18 +4,12 @@
 
 <div class="tabs">
 	<span
-		(click)="showActiveChallenges()"
-		[class.active]="showActive"
+		*ngFor="let c of challengeListTypes"
+		(click)="showChallenges(c.name)"
+		[class.active]="c.name == challengeListType.name"
 		class="tab"
 	>
-		Laufend
-	</span>
-	<span
-		(click)="showMarkedChallenges()"
-		[class.active]="showMarked"
-		class="tab"
-	>
-		Gemerkt
+		{{ c.display }}
 	</span>
 </div>
 
