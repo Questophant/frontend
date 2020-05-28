@@ -18,17 +18,17 @@
 </div>
 
 <app-data-privacy-overlay
-	(onClose)="toggleDataPrivacy()"
+	(closeEvent)="toggleDataPrivacy()"
 	*ngIf="showDataPrivacy"
 ></app-data-privacy-overlay>
 
 <app-rules-overlay
-	(onClose)="toggleRules()"
+	(closeEvent)="toggleRules()"
 	*ngIf="showRules"
 ></app-rules-overlay>
 
 <app-imprint-overlay
-	(onClose)="toggleImprint()"
+	(closeEvent)="toggleImprint()"
 	*ngIf="showImprint"
 ></app-imprint-overlay>
 

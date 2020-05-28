@@ -6,11 +6,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 	styleUrls: ['./data-privacy-overlay.component.scss'],
 })
 export class DataPrivacyOverlayComponent {
-	@Output() public onClose: EventEmitter<void> = new EventEmitter();
+	@Output() public closeEvent: EventEmitter<void> = new EventEmitter();
 
 	constructor() {}
 
-	close() {
-		this.onClose.emit();
+	close(): void {
+		this.closeEvent.emit();
 	}
 }

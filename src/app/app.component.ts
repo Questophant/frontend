@@ -10,7 +10,7 @@ import { ConnectionService } from 'ng-connection-service';
 })
 export class AppComponent {
 	offline = !navigator.onLine;
-	reloadNeeded: boolean = false;
+	reloadNeeded = false;
 	nextUpdateCheckDay = new Date().getDate();
 
 	constructor(
@@ -31,7 +31,7 @@ export class AppComponent {
 		router.events.subscribe((e) => {
 			if (e instanceof NavigationEnd && swUpdate.isEnabled) {
 				const day = new Date().getDate();
-				if (day != this.nextUpdateCheckDay) {
+				if (day !== this.nextUpdateCheckDay) {
 					this.nextUpdateCheckDay = day;
 					swUpdate.checkForUpdate();
 				}
