@@ -26,7 +26,7 @@
 	},
 	"lint-staged": {
 		"*": [
-			"prettier --write"
+			"prettier --write ."
 		]
 	},
 	"private": true,
