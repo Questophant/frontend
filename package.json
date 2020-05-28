@@ -19,11 +19,13 @@
 		"e2e": "npm run pree2e && ng e2e --webdriver-update false",
 		"e2e:ci": "npm run pree2e && ng e2e --webdriver-update false",
 		"precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-		"prettier": "prettier --write . && git add -u"
+		"prettier": "prettier --write .",
+		"add-staged-files": "git add -u"
 	},
 	"pre-commit": [
 		"precommit-msg",
-		"prettier"
+		"prettier",
+		"add-staged-files"
 	],
 	"private": true,
 	"dependencies": {
