@@ -1,0 +1,33 @@
+@import '../../../../colors';
+
+.dialog-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.dialog-body {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		text-align: center;
+		border-radius: 8px;
+		color: $general-font-color;
+		background-color: $general-background-color;
+		width: 92vw;
+		padding: 4vw;
+
+		::ng-deep h1 {
+			color: $general-blue;
+			margin-bottom: 10px;
+			font-size: 19px;
+			font-weight: 500;
+		}
+	}
+}

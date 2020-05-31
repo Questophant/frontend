@@ -16,6 +16,7 @@ import { StoreService } from './services/store/store.service';
 import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
 import { UrlResolverService } from './services/url/url-resolver.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
 	imports: [CommonModule, HttpClientModule, RouterModule],
@@ -27,6 +28,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 		ChallengeListComponent,
 		DurationPipe,
 		SpinnerComponent,
+		DialogComponent,
 	],
 	providers: [
 		{
@@ -51,6 +53,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 		ChallengeListComponent,
 		DurationPipe,
 		SpinnerComponent,
+		DialogComponent,
 	],
 })
 export class SharedModule {}
