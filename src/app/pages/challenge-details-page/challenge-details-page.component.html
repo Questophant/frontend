@@ -1,6 +1,6 @@
 <ng-container *ngIf="challenge | async as challenge">
 	<ng-container *ngIf="createdByUser | async as createdByUser">
-		<div class="picture">
+		<div class="challenge-picture">
 			<img
 				src="/assets/images/categories/{{
 					challenge.category.name
@@ -9,33 +9,18 @@
 			<a (click)="navigateBack()" class="back-home">&lt;</a>
 		</div>
 
-		<div *ngIf="!success && !failure" class="middle">
-			<div class="profile">
-				<img
-					class="profile-picture"
-					src="{{ getProfilePicture(createdByUser) }}"
-				/>
-
-				<div class="profile-details">
-					von
-					<div class="username">
-						{{ createdByUser.userName }}
-					</div>
-					<div
-						class="category challenge-label category-{{
-							challenge.category.name
-						}}-background"
-					>
-						{{ challenge.category.display }}
-					</div>
-					<div class="points">{{ challenge.pointsWin }} Punkte</div>
-					<div class="duration">
-						{{ challenge.durationSeconds | duration }}
-					</div>
-				</div>
-			</div>
+		<div *ngIf="!success && !failure" class="challenge-details">
 			<div class="challenge">
 				<div class="challenge-name">{{ challenge.title }}</div>
+
+				<div
+					class="category challenge-label category-{{
+						challenge.category.name
+					}}-background"
+				>
+					{{ challenge.category.display }}
+				</div>
+
 				<textarea class="challenge-description" readonly>{{
 					challenge.description
 				}}</textarea>
@@ -80,6 +65,24 @@
 						Aufgeben
 					</div>
 				</ng-container>
+			</div>
+			<div class="stats">
+				<div class="points">{{ challenge.pointsWin }} Punkte</div>
+				<div class="duration">
+					{{ challenge.durationSeconds | duration }}
+				</div>
+			</div>
+			<div class="profile">
+				<img
+					class="profile-picture"
+					src="{{ getProfilePicture(createdByUser) }}"
+				/>
+				<div class="profile-details">
+					<span>Erstellt von</span>
+					<div class="username">
+						{{ createdByUser.userName }}
+					</div>
+				</div>
 			</div>
 		</div>
 
