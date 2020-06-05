@@ -9,6 +9,7 @@ import { StoreService } from '../../shared/services/store/store.service';
 import { UserDto } from '../../shared/dtos/user.dto';
 import { UrlResolverService } from '../../shared/services/url/url-resolver.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { AchievementService } from '../../shared/services/achievement/achievement.service';
 
 @Component({
 	selector: 'app-challenge-details-page',
@@ -30,11 +31,13 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
 	createdByUser: Promise<UserDto>;
 	showActions: boolean;
+	showAchievementDialog: boolean = false;
 	remembered: boolean;
 	running: boolean;
 	success = false;
 	failure = false;
 	animations = true;
+
 
 	constructor(
 		private route: ActivatedRoute,
@@ -43,7 +46,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private store: StoreService,
 		private location: Location,
 		private urlResolverService: UrlResolverService,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+		private achievementService: AchievementService,
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
@@ -98,7 +102,8 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challengeSuccess(challenge: ChallengeDto): void {
 		this.api
 			.changeChallengeState(challenge, ChallengeState.SUCCESS)
-			.then((_) => {
+			.then(async (_) => {
+				this.showAchievementDialog = await this.achievementService.checkNewAchievement();
 				this.success = true;
 			});
 	}
@@ -148,5 +153,9 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		return this.sanitizer.bypassSecurityTrustUrl(
 			`https://www.facebook.com/sharer/sharer.php?u=${location.href}`
 		);
+	}
+
+	closeDialog(): void {
+		this.showAchievementDialog = false;
 	}
 }
