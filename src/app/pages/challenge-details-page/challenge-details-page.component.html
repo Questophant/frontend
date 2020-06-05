@@ -27,6 +27,14 @@
 				<textarea class="challenge-materials" readonly>{{
 					challenge.material || 'Keine Materialien benötigt'
 				}}</textarea>
+
+				<div class="stats">
+					<div class="points">{{ challenge.pointsWin }} Punkte</div>
+					<div class="duration">
+						{{ challenge.durationSeconds | duration }}
+					</div>
+				</div>
+
 				<ng-container *ngIf="showActions">
 					<div
 						(click)="acceptChallenge(challenge)"
@@ -66,12 +74,7 @@
 					</div>
 				</ng-container>
 			</div>
-			<div class="stats">
-				<div class="points">{{ challenge.pointsWin }} Punkte</div>
-				<div class="duration">
-					{{ challenge.durationSeconds | duration }}
-				</div>
-			</div>
+
 			<div class="profile">
 				<img
 					class="profile-picture"
