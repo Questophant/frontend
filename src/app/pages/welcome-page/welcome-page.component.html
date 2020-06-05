@@ -10,7 +10,12 @@
 		<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 			<label class="name-field">
 				Wähle einen Namen
-				<input formControlName="name" name="name" type="text" />
+				<input
+					formControlName="name"
+					name="name"
+					type="text"
+					(input)="nameIsAlreadyInUse = false"
+				/>
 			</label>
 
 			<div class="checkboxes">
