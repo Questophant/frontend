@@ -6,11 +6,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 	styleUrls: ['./imprint-overlay.component.scss'],
 })
 export class ImprintOverlayComponent {
-	@Output() public onClose: EventEmitter<void> = new EventEmitter();
+	@Output() public closeEvent: EventEmitter<void> = new EventEmitter();
 
 	constructor() {}
 
-	close() {
-		this.onClose.emit();
+	close(): void {
+		this.closeEvent.emit();
 	}
 }

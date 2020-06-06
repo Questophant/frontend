@@ -12,6 +12,7 @@ export class DurationPipe implements PipeTransform {
 				Sekunde: 1,
 			};
 			let counter;
+			// tslint:disable-next-line:forin
 			for (const i in intervals) {
 				counter = Math.floor(seconds / intervals[i]);
 				if (counter > 0) {

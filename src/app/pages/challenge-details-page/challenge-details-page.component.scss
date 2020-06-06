@@ -1,6 +1,6 @@
 @import '../../../colors';
 
-.picture {
+.challenge-picture {
 	position: relative;
 	max-height: 30vh;
 	width: 100vw;
@@ -30,86 +30,51 @@
 .color-one {
 	background-color: #788fb9 !important;
 }
+
 .color-two {
 	background-color: #a3b9e0 !important;
 }
 
-.middle {
+.challenge-details {
 	position: relative;
-	display: inline-block;
+	display: block;
 	margin: 4vw 4vw 70px;
 
-	.profile {
-		float: left;
-		position: relative;
-		width: 30vw;
-		padding-right: 4vw;
-
-		.profile-picture {
-			display: block;
-			margin: auto;
-			height: 22vw;
-			width: 22vw;
-			border-radius: 100%;
-		}
-
-		.profile-details {
-			text-align: center;
-
-			.username {
-				font-weight: 600;
-				overflow-wrap: break-word;
-				margin-bottom: 7px;
-			}
-
-			.category {
-				border-radius: 40px;
-				padding: 5px;
-				color: #fff;
-				font-size: 12px;
-			}
-
-			.points {
-				margin-top: 5px;
-			}
-
-			.duration {
-				margin-top: 5px;
-			}
-		}
-	}
-
 	.challenge {
-		margin-left: 4vw;
-		float: right;
 		position: relative;
-		width: 56vw;
+		width: 100%;
 
 		.challenge-name {
 			font-size: 1.5rem;
 			color: $general-blue;
 		}
 
-		.challenge-description {
-			color: $general-font-color;
-			border: none;
+		.category {
+			border-radius: 40px;
+			padding: 5px 8px;
+			margin: 5px 0;
+			color: #fff;
+			font-size: 14px;
+			display: inline-block;
+		}
+
+		.challenge-description,
+		.challenge-materials {
 			width: 100%;
-			height: 20vh;
-			background-color: $general-background-color;
 			margin-top: 1vh;
 			padding: 5px;
+			border: none;
+			color: $general-font-color;
+			background-color: $general-background-color;
 			font-family: 'Lato', sans-serif;
 		}
 
+		.challenge-description {
+			height: 20vh;
+		}
+
 		.challenge-materials {
-			color: $general-font-color;
-			border: none;
-			width: 100%;
-			margin-top: 1vh;
 			height: 10vh;
-			background-color: $general-background-color;
-			padding: 5px;
-			font-family: 'Lato', sans-serif;
 		}
 
 		.challenge-action {
@@ -123,6 +88,46 @@
 			margin: 10px 0;
 			text-align: center;
 			cursor: pointer;
+		}
+	}
+
+	.stats {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top: 5px;
+		padding: 0 10px;
+	}
+
+	.profile {
+		position: relative;
+		width: 100%;
+		margin-top: 2vh;
+		padding: 0 10px;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+
+		.profile-picture {
+			display: block;
+			width: 22vw;
+			border-radius: 100%;
+			justify-self: left;
+		}
+
+		.profile-details {
+			display: block;
+			justify-self: center;
+			width: 100%;
+			text-align: center;
+
+			.username {
+				font-weight: 600;
+				overflow-wrap: break-word;
+			}
 		}
 	}
 }
@@ -182,29 +187,29 @@
 	}
 }
 
-.othersolutions {
-	margin-left: 4vw;
-	margin-right: 4vw;
-
-	.solutionpicleft {
-		float: left;
-		border: none;
-		background-color: blue;
-		width: 44vw;
-		height: 44vh;
-		margin-bottom: calc(
-			10vh + 4vw
-		); //10vh refering to sticky task bar, so change if taskbar other height
-	}
-
-	.solutionpicright {
-		float: right;
-		border: none;
-		background-color: blue;
-		width: 44vw;
-		height: 44vh;
-		margin-bottom: calc(
-			10vh + 4vw
-		); //10vh refering to sticky task bar, so change if taskbar other height
-	}
-}
+//.othersolutions {
+//	margin-left: 4vw;
+//	margin-right: 4vw;
+//
+//	.solutionpicleft {
+//		float: left;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//
+//	.solutionpicright {
+//		float: right;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//}

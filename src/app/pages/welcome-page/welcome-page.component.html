@@ -10,7 +10,12 @@
 		<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 			<label class="name-field">
 				Wähle einen Namen
-				<input formControlName="name" name="name" type="text" />
+				<input
+					formControlName="name"
+					name="name"
+					type="text"
+					(input)="nameIsAlreadyInUse = false"
+				/>
 			</label>
 
 			<div class="checkboxes">
@@ -66,13 +71,13 @@
 </div>
 
 <app-data-privacy-overlay
-	(onClose)="
+	(closeEvent)="
 		toggleDataPrivacy(); registrationForm.get('dataPrivacy').setValue(true)
 	"
 	*ngIf="showDataPrivacy"
 ></app-data-privacy-overlay>
 
 <app-rules-overlay
-	(onClose)="toggleRules(); registrationForm.get('rules').setValue(true)"
+	(closeEvent)="toggleRules(); registrationForm.get('rules').setValue(true)"
 	*ngIf="showRules"
 ></app-rules-overlay>

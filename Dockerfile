@@ -1,5 +1,5 @@
 # Build app
-FROM johnpapa/angular-cli as build
+FROM johnpapa/angular-cli:latest as build
 WORKDIR /app
 COPY package.json /app
 RUN npm install
