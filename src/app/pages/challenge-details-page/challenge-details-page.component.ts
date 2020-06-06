@@ -31,13 +31,12 @@ export class ChallengeDetailsPageComponent implements OnInit {
 	challenge: Promise<ChallengeDto>;
 	createdByUser: Promise<UserDto>;
 	showActions: boolean;
-	showAchievementDialog: boolean = false;
+	showAchievementDialog = false;
 	remembered: boolean;
 	running: boolean;
 	success = false;
 	failure = false;
 	animations = true;
-
 
 	constructor(
 		private route: ActivatedRoute,
@@ -47,7 +46,7 @@ export class ChallengeDetailsPageComponent implements OnInit {
 		private location: Location,
 		private urlResolverService: UrlResolverService,
 		private sanitizer: DomSanitizer,
-		private achievementService: AchievementService,
+		private achievementService: AchievementService
 	) {
 		this.showActions =
 			this.route.snapshot.queryParamMap.get('actions') !== 'false';
