@@ -1,7 +1,7 @@
 <h1>Errungenschaften</h1>
 
 <ng-container *ngIf="achievements$ | async as achievements">
-	<div *ngFor="let c of categories">
+	<div *ngFor="let c of sortCategoriesByAchievementCount(categories, achievements.achievementsByCategory)">
 		<span class="category category-{{ categoryName(c).name }}-background">
 			{{ categoryName(c).display }}
 		</span>

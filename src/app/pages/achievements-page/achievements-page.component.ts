@@ -31,4 +31,14 @@ export class AchievementsPageComponent implements OnInit {
 	getAchievementImageUrl(a: Achievement): string {
 		return this.api.getApiUrl() + a.imageUrl + '.120x120.png';
 	}
+
+	sortCategoriesByAchievementCount(categories: string[], achievementsByCategory: { [p: string]: Achievement[] }): string[] {
+		return categories.sort((a, b) => {
+			return this.getAchievementCount(achievementsByCategory[b]) - (this.getAchievementCount(achievementsByCategory[a]));
+		});
+	}
+
+	private getAchievementCount(achievements: Achievement[]): number {
+		return achievements.filter(a => a.achieved).length;
+	}
 }
