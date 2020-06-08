@@ -5,7 +5,7 @@ import {
 	ChallengeListType,
 	ChallengeListTypes,
 	getChallengeListTypeByName,
-} from 'src/app/shared/dtos/challenge-list-type';
+} from '../../shared/dtos/challenge-list-type';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 

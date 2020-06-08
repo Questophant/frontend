@@ -154,4 +154,13 @@
 	</ng-container>
 </ng-container>
 
+<ng-container *ngIf="showAchievementDialog">
+	<div class="achievement-dialog-overlay">
+		<div class="achievement-dialog">
+			<h1>Klasse. Du hast ein neues Achievement erhalten.</h1>
+			<button (click)="closeDialog()">Okay</button>
+		</div>
+	</div>
+</ng-container>
+
 <app-navbar></app-navbar>
