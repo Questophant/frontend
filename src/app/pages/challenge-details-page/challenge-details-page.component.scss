@@ -130,6 +130,46 @@
 			}
 		}
 	}
+
+	.stats {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top: 5px;
+		padding: 0 10px;
+	}
+
+	.profile {
+		position: relative;
+		width: 100%;
+		margin-top: 2vh;
+		padding: 0 10px;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+
+		.profile-picture {
+			display: block;
+			width: 22vw;
+			border-radius: 100%;
+			justify-self: left;
+		}
+
+		.profile-details {
+			display: block;
+			justify-self: center;
+			width: 100%;
+			text-align: center;
+
+			.username {
+				font-weight: 600;
+				overflow-wrap: break-word;
+			}
+		}
+	}
 }
 
 .action-message {
@@ -233,6 +273,32 @@
 	}
 }
 
+//.othersolutions {
+//	margin-left: 4vw;
+//	margin-right: 4vw;
+//
+//	.solutionpicleft {
+//		float: left;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//
+//	.solutionpicright {
+//		float: right;
+//		border: none;
+//		background-color: blue;
+//		width: 44vw;
+//		height: 44vh;
+//		margin-bottom: calc(
+//			10vh + 4vw
+//		); //10vh refering to sticky task bar, so change if taskbar other height
+//	}
+//}
 //.othersolutions {
 //	margin-left: 4vw;
 //	margin-right: 4vw;
