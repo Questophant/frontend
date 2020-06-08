@@ -1,7 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ChallengeListType, ChallengeListTypes, getChallengeListTypeByName } from '../../shared/dtos/challenge-list-type';
+import {
+	ChallengeListType,
+	ChallengeListTypes,
+	getChallengeListTypeByName,
+} from '../../shared/dtos/challenge-list-type';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 

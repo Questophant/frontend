@@ -32,13 +32,19 @@ export class AchievementsPageComponent implements OnInit {
 		return this.api.getApiUrl() + a.imageUrl + '.120x120.png';
 	}
 
-	sortCategoriesByAchievementCount(categories: string[], achievementsByCategory: { [p: string]: Achievement[] }): string[] {
+	sortCategoriesByAchievementCount(
+		categories: string[],
+		achievementsByCategory: { [p: string]: Achievement[] }
+	): string[] {
 		return categories.sort((a, b) => {
-			return this.getAchievementCount(achievementsByCategory[b]) - (this.getAchievementCount(achievementsByCategory[a]));
+			return (
+				this.getAchievementCount(achievementsByCategory[b]) -
+				this.getAchievementCount(achievementsByCategory[a])
+			);
 		});
 	}
 
 	private getAchievementCount(achievements: Achievement[]): number {
-		return achievements.filter(a => a.achieved).length;
+		return achievements.filter((a) => a.achieved).length;
 	}
 }
