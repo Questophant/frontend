@@ -31,7 +31,7 @@ export class ProfilePageComponent implements OnInit {
 		this.points$ = api.getPointsOfUser();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleRules(): void {
 		this.showRules = !this.showRules;
@@ -46,10 +46,13 @@ export class ProfilePageComponent implements OnInit {
 	}
 
 	getProfilePicture(user: UserDto): string {
-		return this.urlResolverService.getProfilePicture(user, '.' +
-			window.document.body.clientWidth +
-			'x' +
-			window.document.body.clientHeight);
+		return this.urlResolverService.getProfilePicture(
+			user,
+			'.' +
+				window.document.body.clientWidth +
+				'x' +
+				window.document.body.clientHeight
+		);
 	}
 
 	openProfilePictureEditor(): void {
