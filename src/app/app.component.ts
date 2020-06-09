@@ -10,28 +10,31 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 	offline = !navigator.onLine;
+	needReload = false;
 
 	constructor(
 		private connectionService: ConnectionService,
 		swUpdate: SwUpdate,
-		router: Router,
+		router: Router
 	) {
-		this.connectionService.monitor()
-			.subscribe((currentState) => {
-				this.offline = !currentState;
-			});
+		this.connectionService.monitor().subscribe((currentState) => {
+			this.offline = !currentState;
+		});
 
 		// apply updates without reloading the webpage
-		swUpdate.available
-			.subscribe((e) => {
-				console.log('New version available');
-				swUpdate.activateUpdate()
-					.then(() => {
-						console.log('New version installed. Refreshing ...');
-						document.location.reload();
-					});
+		swUpdate.available.subscribe((e) => {
+			console.log('New version available');
+			swUpdate.activateUpdate().then(() => {
+				console.log('New version installed.');
+				this.needReload = true;
 			});
+		});
 
-		router.events.subscribe(swUpdate.checkForUpdate);
+		router.events.subscribe(() => {
+			if (this.needReload) {
+				this.needReload = false;
+				document.location.reload();
+			}
+		});
 	}
 }
