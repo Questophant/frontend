@@ -13,9 +13,9 @@ export class AppComponent {
 	needReload = false;
 
 	constructor(
-		private connectionService: ConnectionService,
-		swUpdate: SwUpdate,
-		router: Router
+		private readonly connectionService: ConnectionService,
+		private readonly swUpdate: SwUpdate,
+		private readonly router: Router,
 	) {
 		this.connectionService.monitor().subscribe((currentState) => {
 			this.offline = !currentState;
