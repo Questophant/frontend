@@ -15,7 +15,7 @@ export class AppComponent {
 	constructor(
 		private readonly connectionService: ConnectionService,
 		private readonly swUpdate: SwUpdate,
-		private readonly router: Router,
+		private readonly router: Router
 	) {
 		this.connectionService.monitor().subscribe((currentState) => {
 			this.offline = !currentState;
@@ -29,6 +29,10 @@ export class AppComponent {
 				this.needReload = true;
 			});
 		});
+
+		setInterval(() => {
+			swUpdate.checkForUpdate();
+		}, 1000*60*60); // 1 Hour
 
 		router.events.subscribe(() => {
 			if (this.needReload) {
