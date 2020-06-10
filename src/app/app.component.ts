@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { ConnectionService } from 'ng-connection-service';
 import { Router } from '@angular/router';
+import { fromEvent, Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -16,9 +16,9 @@ export class AppComponent {
 		swUpdate: SwUpdate,
 		router: Router,
 	) {
-		this.connectionService.monitor()
-			.subscribe((currentState) => {
-				this.offline = !currentState;
+		this.connectionService.watch()
+			.subscribe((online) => {
+				this.offline = !online;
 			});
 
 		// apply updates without reloading the webpage
@@ -33,5 +33,21 @@ export class AppComponent {
 			});
 
 		router.events.subscribe(swUpdate.checkForUpdate);
+	}
+}
+
+@Injectable({
+	providedIn: 'root',
+})
+export class ConnectionService {
+
+	/**
+	 * Returns true if online, false when offline.
+	 */
+	watch(): Observable<boolean> {
+		return new Observable<boolean>((observer) => {
+			fromEvent(window, 'online').subscribe(() => observer.next(true));
+			fromEvent(window, 'offline').subscribe(() => observer.next(false));
+		});
 	}
 }
