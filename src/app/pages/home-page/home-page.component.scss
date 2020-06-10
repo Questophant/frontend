@@ -27,9 +27,9 @@ $category-bar-height: 36px;
 		flex-direction: row;
 		align-items: center;
 
-		.branding {
-			font-size: 18px;
-			color: #fff;
+		.logo {
+			display: block;
+			height: 80%;
 		}
 
 		.my-challenges {
