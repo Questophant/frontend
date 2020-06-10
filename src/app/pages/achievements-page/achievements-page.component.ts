@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AchievementDto } from '../../shared/dtos/achievement.dto';
+import { Achievement, AchievementDto } from '../../shared/dtos/achievement.dto';
 import { Category, getCategoryByName } from '../../shared/dtos/category';
 import { ApiService } from '../../shared/services/api/api.service';
 import { StoreService } from '../../shared/services/store/store.service';
@@ -17,7 +17,7 @@ export class AchievementsPageComponent implements OnInit {
 		this.achievements$ = this.api
 			.getAchievementsForUser(this.store.getPublicUserId())
 			.then((value) => {
-				this.categories = Object.keys(value.achievmentsByCategory);
+				this.categories = Object.keys(value.achievementsByCategory);
 				return value;
 			});
 	}
@@ -26,5 +26,25 @@ export class AchievementsPageComponent implements OnInit {
 
 	categoryName(key: string): Category {
 		return getCategoryByName(key);
+	}
+
+	getAchievementImageUrl(a: Achievement): string {
+		return this.api.getApiUrl() + a.imageUrl + '.120x120.png';
+	}
+
+	sortCategoriesByAchievementCount(
+		categories: string[],
+		achievementsByCategory: { [p: string]: Achievement[] }
+	): string[] {
+		return categories.sort((a, b) => {
+			return (
+				this.getAchievementCount(achievementsByCategory[b]) -
+				this.getAchievementCount(achievementsByCategory[a])
+			);
+		});
+	}
+
+	private getAchievementCount(achievements: Achievement[]): number {
+		return achievements.filter((a) => a.achieved).length;
 	}
 }

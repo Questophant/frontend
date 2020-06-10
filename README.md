@@ -1,4 +1,5 @@
 ![Check build](https://github.com/Questophant/frontend/workflows/Check%20build/badge.svg?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a96268df117640b891f75b308eebc1eb)](https://app.codacy.com/gh/Questophant/frontend?utm_source=github.com&utm_medium=referral&utm_content=Questophant/frontend&utm_campaign=Badge_Grade_Dashboard)
 
 # Questophant Frontend
 
@@ -17,8 +18,8 @@ It was generated with [Angular CLI](https://github.com/angular/angular-cli) vers
 For developing we chose VSCode.
 Essential plugins:
 
--   https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
--   https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics
+-   <https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials>
+-   <https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics>
 
 ## Development server
 

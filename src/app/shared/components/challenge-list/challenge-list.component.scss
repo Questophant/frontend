@@ -8,7 +8,7 @@
 
 		.challenge-element {
 			width: 100%;
-			height: 20vw;
+			height: 22vw;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-evenly;
@@ -35,15 +35,17 @@
 			.challenge-description {
 				height: 100%;
 				width: 50%;
-				//margin-left: 10px;
 
 				display: flex;
-				//flex-wrap: nowrap;
 				flex-direction: column;
 
 				.challenge-title {
 					width: 100%;
+					height: 100%;
 					font-weight: 700;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				.challenge-username {
@@ -58,8 +60,8 @@
 					span {
 						display: inline-block;
 						color: #fff;
-						font-size: 13px;
-						padding: 3px 5px;
+						font-size: 11px;
+						padding: 5px 10px;
 						border-radius: 20px;
 						text-align: center;
 					}
@@ -75,4 +77,9 @@
 	font-size: 1.3em;
 	text-align: center !important;
 	padding: 20px;
+}
+
+app-spinner {
+	width: 60vw !important;
+	margin: 0 auto;
 }

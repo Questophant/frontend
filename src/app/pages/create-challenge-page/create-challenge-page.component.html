@@ -53,20 +53,23 @@
 				*ngIf="submitted && createChallengeForm.invalid"
 				class="errors"
 			>
-				<span *ngIf="challengeName.errors !== null">
+				<span *ngIf="challengeName.invalid">
+					{{ getErrorForName() }}
 					Gib deiner Herausforderung einen Titel.
 				</span>
-				<span *ngIf="challengeCategory.errors !== null">
+				<span *ngIf="challengeCategory.invalid">
 					Ordne deine Herausforderung einer Kategorie zu.
 				</span>
-				<span *ngIf="challengeDuration.errors !== null">
+				<span *ngIf="challengeDuration.invalid">
 					Bitte gib eine ungefähre Dauer in Minuten an.
 				</span>
-				<span *ngIf="challengeDescription.errors !== null">
+				<span *ngIf="challengeDescription.invalid">
+					{{ getErrorForDescription() }}
 					Bitte beschreibe deine Herausforderung.
 				</span>
-				<span *ngIf="challengeMaterial.errors !== null">
-					Bitte gib weniger benötigte Materialien an.
+				<span *ngIf="challengeMaterial.invalid">
+					Das ist doch etwas zu viel, was für die Herausforderung
+					benötigt wird.
 				</span>
 			</div>
 

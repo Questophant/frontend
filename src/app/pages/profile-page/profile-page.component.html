@@ -18,30 +18,30 @@
 </div>
 
 <app-data-privacy-overlay
-	(onClose)="toggleDataPrivacy()"
+	(closeEvent)="toggleDataPrivacy()"
 	*ngIf="showDataPrivacy"
 ></app-data-privacy-overlay>
 
 <app-rules-overlay
-	(onClose)="toggleRules()"
+	(closeEvent)="toggleRules()"
 	*ngIf="showRules"
 ></app-rules-overlay>
 
 <app-imprint-overlay
-	(onClose)="toggleImprint()"
+	(closeEvent)="toggleImprint()"
 	*ngIf="showImprint"
 ></app-imprint-overlay>
 
 <!-- actual ProfilePage -->
 <ng-container *ngIf="user$ | async as user">
-	<div id="profilePictureContainer" (click)="openProfilePictureEditor()">
+	<div (click)="openProfilePictureEditor()" class="profile-picture-container">
 		<img class="profile-picture" src="{{ getProfilePicture(user) }}" />
-		<div class="edit">editieren</div>
+		Bild ändern
 	</div>
 
 	<div class="username-block">
 		<div class="username">{{ user.userName }}</div>
-		<!--	<div class="edit-icon">Edit</div>-->
+		<!--		<div class="edit-icon">Edit</div>-->
 	</div>
 
 	<!--<div class="privacy-selector">-->
@@ -66,30 +66,6 @@
 		<!--		<span class="label">Freunde</span>-->
 		<!--	</div>-->
 	</div>
-
-	<div class="challenges">Deine Herausforderungen</div>
-
-	<div class="tabs">
-		<span
-			(click)="displayDoneChallenges()"
-			[class.active]="showDoneChallenges"
-			class="tab"
-		>
-			Absolviert
-		</span>
-		<span
-			(click)="displayCreatedChallenges()"
-			[class.active]="showCreatedChallenges"
-			class="tab"
-		>
-			Erstellt
-		</span>
-	</div>
-
-	<app-challenge-list
-		[challenges]="challenges$"
-		[showActions]="false"
-	></app-challenge-list>
 </ng-container>
 
 <app-navbar></app-navbar>

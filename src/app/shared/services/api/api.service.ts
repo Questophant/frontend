@@ -1,9 +1,10 @@
 import { AchievementDto } from '../../dtos/achievement.dto';
 import { Category } from '../../dtos/category';
+import { ChallengeListType } from '../../dtos/challenge-list-type';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto } from '../../dtos/challenge.dto';
-import { PointsDto } from '../../dtos/points.dto';
 import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
+import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 
 export abstract class ApiService {
@@ -85,8 +86,8 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDefaultExceptionHandler() {
-		// NO OP
+	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
+		throw new Error('Method not implemented.');
 	}
 
 	public setUserImage(imageBase64: string): Promise<UserDto> {
@@ -95,5 +96,29 @@ export abstract class ApiService {
 
 	public getApiUrl(): string {
 		throw new Error('Method not implemented.');
+	}
+
+	public getChallengeList(
+		challengeListType: ChallengeListType,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
+		switch (challengeListType.name) {
+			case 'active':
+				return this.getActiveChallenges();
+				break;
+			case 'marked':
+				return this.getRememberedChallenges();
+				break;
+			case 'done':
+				return this.getRememberedChallenges();
+				break;
+			case 'created':
+				return this.getRememberedChallenges();
+				break;
+		}
+		throw new Error(
+			'ChallengeListType ' + challengeListType.name + ' not implemented.'
+		);
 	}
 }
