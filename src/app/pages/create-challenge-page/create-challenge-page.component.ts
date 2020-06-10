@@ -72,7 +72,7 @@ export class CreateChallengePageComponent implements OnInit {
 
 	getErrorForDescription(): string {
 		if (this.challengeDescription.hasError('required')) {
-			return 'Gib deiner Herausforderung eine Beschreibung.';
+			return 'Bitte beschreibe deine Herausforderung.';
 		}
 		if (this.challengeDescription.hasError('minlength')) {
 			return 'Beschreibe deine Herausforderung genauer.';
@@ -84,13 +84,13 @@ export class CreateChallengePageComponent implements OnInit {
 
 	getErrorForName(): string {
 		if (this.challengeDescription.hasError('required')) {
-			return 'Gib deiner Herausforderung einen Namen.';
+			return 'Gib deiner Herausforderung einen Titel.';
 		}
 		if (this.challengeDescription.hasError('minlength')) {
-			return 'Der Name ist etwas kurz.';
+			return 'Der Titel ist etwas kurz.';
 		}
 		if (this.challengeDescription.hasError('maxlength')) {
-			return 'Der Name ist etwas lang.';
+			return 'Der Titel ist etwas lang.';
 		}
 	}
 }
