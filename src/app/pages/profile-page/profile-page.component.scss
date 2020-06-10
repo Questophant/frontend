@@ -4,12 +4,16 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	right: 0;
 
 	padding: 15px;
 
 	img {
+		display: inline-block;
 		height: 25px;
 		cursor: pointer;
+		outline: none;
+		border: none;
 		margin-right: 15px;
 
 		&:last-child {
@@ -24,18 +28,31 @@ div {
 	margin-right: auto;
 }
 
-#profilePictureContainer {
+.profile-picture-container {
+	display: block;
+	width: 30vw;
+	margin: 58px auto 0;
+	position: relative;
+	text-align: center;
+	color: $general-blue;
+
 	.profile-picture {
 		display: block;
-		margin: 7.5% auto 0;
-		height: 120px;
+		width: 100%;
 		border-radius: 100%;
 	}
-	.edit {
-		width: 120px;
-		padding-top: 8px;
-		text-align: center;
-		color: $general-blue;
+
+	.edit-badge {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		margin: 0;
+
+		display: block;
+		background: red;
+		width: 20px;
+		height: 20px;
+		border-radius: 100%;
 	}
 }
 

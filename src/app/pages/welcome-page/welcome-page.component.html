@@ -10,7 +10,12 @@
 		<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 			<label class="name-field">
 				Wähle einen Namen
-				<input formControlName="name" name="name" type="text" />
+				<input
+					formControlName="name"
+					name="name"
+					type="text"
+					(input)="nameIsAlreadyInUse = false"
+				/>
 			</label>
 
 			<div class="checkboxes">
@@ -42,12 +47,14 @@
 				"
 				class="errors"
 			>
-				<span *ngIf="registrationForm.get('name').errors !== null"
-					>Wir brauchen einen Namen.</span
-				>
+				<span *ngIf="nameFormControl.invalid">{{
+					getErrorMessageForName()
+				}}</span>
+
 				<span *ngIf="nameIsAlreadyInUse"
 					>Der Nutzername ist leider schon vergeben.</span
 				>
+
 				<span
 					*ngIf="
 						registrationForm.get('dataPrivacy').errors !== null ||
@@ -64,13 +71,13 @@
 </div>
 
 <app-data-privacy-overlay
-	(onClose)="
+	(closeEvent)="
 		toggleDataPrivacy(); registrationForm.get('dataPrivacy').setValue(true)
 	"
 	*ngIf="showDataPrivacy"
 ></app-data-privacy-overlay>
 
 <app-rules-overlay
-	(onClose)="toggleRules(); registrationForm.get('rules').setValue(true)"
+	(closeEvent)="toggleRules(); registrationForm.get('rules').setValue(true)"
 	*ngIf="showRules"
 ></app-rules-overlay>

@@ -25,12 +25,12 @@ export class NavbarComponent implements OnInit {
 	ngOnInit(): void {}
 
 	getProfilePicture(user: UserDto): string {
-		let element = document.getElementsByClassName(
-			'navbarProfilePicture'
-		)[0];
 		return this.urlResolverService.getProfilePicture(
 			user,
-			'.' + element.clientWidth + 'x' + element.clientHeight
+			'.' +
+				window.document.body.clientWidth +
+				'x' +
+				window.document.body.clientHeight
 		);
 	}
 }

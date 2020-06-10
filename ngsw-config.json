@@ -1,26 +1,6 @@
 {
 	"$schema": "./node_modules/@angular/service-worker/config/schema.json",
 	"index": "/index.html",
-	"dataGroups": [
-		{
-			"name": "swg",
-			"urls": ["/swagger"],
-			"cacheConfig": {
-				"maxSize": 0,
-				"maxAge": "0u",
-				"strategy": "freshness"
-			}
-		},
-		{
-			"name": "img",
-			"urls": ["/api/v1/img/**"],
-			"cacheConfig": {
-				"maxSize": 50,
-				"maxAge": "1d",
-				"strategy": "performance"
-			}
-		}
-	],
 	"assetGroups": [
 		{
 			"name": "app",
@@ -38,12 +18,32 @@
 		{
 			"name": "assets",
 			"installMode": "lazy",
-			"updateMode": "lazy",
+			"updateMode": "prefetch",
 			"resources": {
 				"files": [
 					"/assets/**",
 					"/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
 				]
+			}
+		}
+	],
+	"dataGroups": [
+		{
+			"name": "swg",
+			"urls": ["/swagger"],
+			"cacheConfig": {
+				"maxSize": 0,
+				"maxAge": "0u",
+				"strategy": "freshness"
+			}
+		},
+		{
+			"name": "img",
+			"urls": ["/api/v1/img/**"],
+			"cacheConfig": {
+				"maxSize": 50,
+				"maxAge": "1d",
+				"strategy": "performance"
 			}
 		}
 	]

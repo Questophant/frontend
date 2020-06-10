@@ -3,17 +3,17 @@ import { AchievementDto } from '../../dtos/achievement.dto';
 import { Category, getCategoryByName } from '../../dtos/category';
 import { ChallengeState } from '../../dtos/challenge-state.enum';
 import { ChallengeDto } from '../../dtos/challenge.dto';
+import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 import { PointsDto } from '../../dtos/points.dto';
 import { UserDto } from '../../dtos/user.dto';
 import { StoreService } from '../store/store.service';
 import { ApiService } from './api.service';
-import { CreateChallengeDto } from '../../dtos/create-challenge.dto';
 
 @Injectable()
 /**
  * This API Service simulates a backend.
  */
-export class SimApiService implements ApiService {
+export class SimApiService extends ApiService {
 	private readonly dailyChallenge: ChallengeDto = {
 		id: 0,
 		title: 'asdasdasd',
@@ -128,7 +128,7 @@ export class SimApiService implements ApiService {
 	];
 
 	private achievements: AchievementDto = {
-		achievmentsByCategory: {
+		achievementsByCategory: {
 			household: [
 				{
 					name: 'Heimscheisser',
@@ -382,7 +382,9 @@ export class SimApiService implements ApiService {
 		imageUrl: '',
 	};
 
-	constructor(private store: StoreService) {}
+	constructor(private store: StoreService) {
+		super();
+	}
 
 	async createNewUser(user: UserDto): Promise<UserDto> {
 		if (user.userName === 'existingUserName') {
@@ -532,8 +534,8 @@ export class SimApiService implements ApiService {
 		return this.achievements;
 	}
 
-	public getDefaultExceptionHandler() {
-		// NO OP
+	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
+		return console.log;
 	}
 
 	public setUserImage(imageBase64: string): Promise<UserDto> {

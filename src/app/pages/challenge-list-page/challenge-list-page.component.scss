@@ -3,7 +3,7 @@
 .header {
 	font-size: 1.5em;
 	margin: 2vh 4vw;
-	color: #788fb9;
+	color: $general-blue;
 }
 
 .tabs {
@@ -34,6 +34,7 @@
 		&.active {
 			background-color: $general-blue;
 			color: #fff;
+			//
 		}
 	}
 }

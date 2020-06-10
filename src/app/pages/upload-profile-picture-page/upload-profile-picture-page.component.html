@@ -1,21 +1,23 @@
 <div class="sticky-header">
 	<div class="app-bar">
 		<div id="backButton" (click)="navigateBack()">&lt; Zurück</div>
+
 		<ng-container *ngIf="!fileLoaded">
-			<div id="uploadButton">
+			<div class="uploadBtn">
 				<input
 					class="fileInput"
 					type="file"
 					(change)="fileChangeEvent($event)"
 					accept="image/*"
-				/>Auswählen
+				/>
+				Auswählen
 			</div>
 		</ng-container>
 		<ng-container *ngIf="fileLoaded">
-			<div id="uploadButton" (click)="upload()">
+			<div (click)="upload()" class="uploadBtn">
 				Hochladen
-			</div></ng-container
-		>
+			</div>
+		</ng-container>
 	</div>
 </div>
 
@@ -32,6 +34,7 @@
 				<img
 					class="profile-picture"
 					src="{{ getProfilePicture(user) }}"
+					alt="Profile picture"
 				/>
 			</div>
 		</ng-container>
