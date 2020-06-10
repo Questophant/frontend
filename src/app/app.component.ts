@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { fromEvent, Observable } from 'rxjs';
 
 @Component({
@@ -32,11 +32,13 @@ export class AppComponent {
 		});
 
 		setInterval(() => {
-			swUpdate.checkForUpdate();
+			if (swUpdate.isEnabled) {
+				swUpdate.checkForUpdate();
+			}
 		}, 1000*60*60); // 1 Hour
 
-		router.events.subscribe(() => {
-			if (this.needReload) {
+		router.events.subscribe((e) => {
+			if (e instanceof NavigationEnd && this.needReload) {
 				this.needReload = false;
 				document.location.reload();
 			}
