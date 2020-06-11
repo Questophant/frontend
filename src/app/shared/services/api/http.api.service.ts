@@ -64,30 +64,27 @@ export abstract class HTTPApiService extends ApiService {
 		);
 	}
 
-	getActiveChallenges(
-		page: number,
-		size: number
-	): Promise<ChallengeDto[]> {
+	getActiveChallenges(page: number, size: number): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${this.store.getUserId()}/ongoing_challenges?pageIndex=${page}&pageSize=${size}`
+			`${
+				this.apiUrl
+			}/myUser/${this.store.getUserId()}/ongoing_challenges?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
-	getCreatedChallenges(
-		page: number,
-		size: number
-	): Promise<ChallengeDto[]> {
+	getCreatedChallenges(page: number, size: number): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${this.store.getUserId()}/created_challenges?pageIndex=${page}&pageSize=${size}`
+			`${
+				this.apiUrl
+			}/myUser/${this.store.getUserId()}/created_challenges?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
-	getDoneChallenges(
-		page: number,
-		size: number
-	): Promise<ChallengeDto[]> {
+	getDoneChallenges(page: number, size: number): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${this.store.getUserId()}/done_challenges?pageIndex=${page}&pageSize=${size}`
+			`${
+				this.apiUrl
+			}/myUser/${this.store.getUserId()}/done_challenges?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
@@ -96,7 +93,9 @@ export abstract class HTTPApiService extends ApiService {
 		size: number
 	): Promise<ChallengeDto[]> {
 		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${this.store.getUserId()}/marked_challenges?pageIndex=${page}&pageSize=${size}`
+			`${
+				this.apiUrl
+			}/myUser/${this.store.getUserId()}/marked_challenges?pageIndex=${page}&pageSize=${size}`
 		);
 	}
 
