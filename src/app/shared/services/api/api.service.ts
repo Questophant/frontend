@@ -106,16 +106,12 @@ export abstract class ApiService {
 		switch (challengeListType.name) {
 			case 'active':
 				return this.getActiveChallenges();
-				break;
 			case 'marked':
 				return this.getRememberedChallenges();
-				break;
 			case 'done':
 				return this.getDoneChallenges();
-				break;
 			case 'created':
 				return this.getCreatedChallenges();
-				break;
 		}
 		throw new Error(
 			'ChallengeListType ' + challengeListType.name + ' not implemented.'
