@@ -111,10 +111,10 @@ export abstract class ApiService {
 				return this.getRememberedChallenges();
 				break;
 			case 'done':
-				return this.getRememberedChallenges();
+				return this.getDoneChallenges();
 				break;
 			case 'created':
-				return this.getRememberedChallenges();
+				return this.getCreatedChallenges();
 				break;
 		}
 		throw new Error(
