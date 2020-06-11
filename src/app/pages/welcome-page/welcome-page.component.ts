@@ -34,7 +34,7 @@ export class WelcomePageComponent implements OnInit {
 		public auth: AuthService,
 		private router: Router,
 		private api: ApiService,
-		private route: ActivatedRoute,
+		private route: ActivatedRoute
 	) {
 		this.auth
 			.checkUserRegistered()
@@ -53,8 +53,7 @@ export class WelcomePageComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 
 	saveName(): void {
 		this.submitted = true;
@@ -66,11 +65,13 @@ export class WelcomePageComponent implements OnInit {
 				(value) => {
 					this.router
 						.navigate([this.redirectRoute])
-						.catch((reason) => alert('Es gab einen Fehler bei der Weiterleitung'));
+						.catch((reason) =>
+							alert('Es gab einen Fehler bei der Weiterleitung')
+						);
 				},
 				(reason) => {
 					this.nameIsAlreadyInUse = true;
-				},
+				}
 			);
 		}
 	}
@@ -84,7 +85,6 @@ export class WelcomePageComponent implements OnInit {
 	}
 
 	getErrorMessageForName(): string {
-		console.log(this.nameFormControl.errors);
 		if (this.nameFormControl.hasError('required')) {
 			return 'Wir brauchen einen Namen von dir.';
 		}
