@@ -64,12 +64,6 @@ export abstract class HTTPApiService extends ApiService {
 			.toPromise();
 	}
 
-	getAllChallengesOfUser(): Promise<ChallengeDto[]> {
-		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${this.store.getUserId()}/challenges`
-		);
-	}
-
 	createNewChallenge(challenge: CreateChallengeDto): Promise<ChallengeDto> {
 		return this.http
 			.post<ChallengeResponse>(
@@ -91,12 +85,6 @@ export abstract class HTTPApiService extends ApiService {
 			)
 			.toPromise()
 			.then(this.mapChallenge());
-	}
-
-	getRandomChallenge(category: Category): Promise<ChallengeDto> {
-		return this.getChallengeFromUrl(
-			`${this.apiUrl}/random_challenge?category=${category}`
-		);
 	}
 
 	getChallengeById(id: number): Promise<ChallengeDto> {
@@ -159,12 +147,6 @@ export abstract class HTTPApiService extends ApiService {
 				{}
 			)
 			.toPromise();
-	}
-
-	getChallengesForUser(userId: string): Promise<ChallengeDto[]> {
-		return this.getChallengesFromUrl(
-			`${this.apiUrl}/myUser/${userId}/done_challenges`
-		);
 	}
 
 	getMyUser(userId: string): Promise<UserDto> {
