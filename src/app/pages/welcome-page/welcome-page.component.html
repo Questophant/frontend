@@ -9,7 +9,7 @@
 
 		<form (ngSubmit)="saveName()" [formGroup]="registrationForm">
 			<label class="name-field">
-				Wähle einen Namen
+				Wie möchtest du heißen?
 				<input
 					formControlName="name"
 					name="name"
@@ -60,7 +60,7 @@
 						registrationForm.get('dataPrivacy').errors !== null ||
 						registrationForm.get('rules').errors !== null
 					"
-					>Es lohnt sich die Datenschutzerklärung und die
+					>Es lohnt sich, die Datenschutzerklärung und die
 					Verhaltensregeln zu akzeptieren. Versprochen!
 				</span>
 			</div>
