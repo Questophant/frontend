@@ -31,32 +31,44 @@ export abstract class ApiService {
 	): Promise<ChallengeDto[]> {
 		switch (challengeListType.name) {
 			case 'active':
-				return this.getActiveChallenges();
+				return this.getActiveChallenges(page, size);
 			case 'marked':
-				return this.getRememberedChallenges();
+				return this.getRememberedChallenges(page, size);
 			case 'done':
-				return this.getDoneChallenges();
+				return this.getDoneChallenges(page, size);
 			case 'created':
-				return this.getCreatedChallenges();
+				return this.getCreatedChallenges(page, size);
 		}
 		throw new Error(
 			'ChallengeListType ' + challengeListType.name + ' not implemented.'
 		);
 	}
 
-	public getCreatedChallenges(): Promise<ChallengeDto[]> {
+	public getCreatedChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDoneChallenges(): Promise<ChallengeDto[]> {
+	public getDoneChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getRememberedChallenges(): Promise<ChallengeDto[]> {
+	public getRememberedChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getActiveChallenges(): Promise<ChallengeDto[]> {
+	public getActiveChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 

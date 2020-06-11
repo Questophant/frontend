@@ -65,9 +65,10 @@ export class WelcomePageComponent implements OnInit {
 				(value) => {
 					this.router
 						.navigate([this.redirectRoute])
-						.catch((reason) =>
-							alert('Es gab einen Fehler bei der Weiterleitung')
-						);
+						.catch((reason) => {
+							console.log(reason);
+							alert('Es gab einen Fehler bei der Weiterleitung');
+						});
 				},
 				(reason) => {
 					this.nameIsAlreadyInUse = true;

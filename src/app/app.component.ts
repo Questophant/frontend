@@ -17,10 +17,9 @@ export class AppComponent {
 		private readonly swUpdate: SwUpdate,
 		private readonly router: Router
 	) {
-		this.connectionService.watch()
-			.subscribe((online) => {
-				this.offline = !online;
-			});
+		this.connectionService.watch().subscribe((online) => {
+			this.offline = !online;
+		});
 
 		// apply updates without reloading the webpage
 		swUpdate.available.subscribe((e) => {
@@ -35,7 +34,7 @@ export class AppComponent {
 			if (swUpdate.isEnabled) {
 				swUpdate.checkForUpdate();
 			}
-		}, 1000*60*60); // 1 Hour
+		}, 1000 * 60 * 60); // 1 Hour
 
 		router.events.subscribe((e) => {
 			if (e instanceof NavigationEnd && this.needReload) {
@@ -50,7 +49,6 @@ export class AppComponent {
 	providedIn: 'root',
 })
 export class ConnectionService {
-
 	/**
 	 * Returns true if online, false when offline.
 	 */

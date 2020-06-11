@@ -30,7 +30,7 @@ export class ChallengeListPageComponent implements OnInit, OnDestroy {
 			this.challenges$ = this.api.getChallengeList(
 				this.challengeListType,
 				0,
-				Number.MAX_VALUE
+				100
 			);
 		});
 	}
