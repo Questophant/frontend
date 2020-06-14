@@ -85,7 +85,6 @@ export class WelcomePageComponent implements OnInit {
 	}
 
 	getErrorMessageForName(): string {
-		console.log(this.nameFormControl.errors);
 		if (this.nameFormControl.hasError('required')) {
 			return 'Bitte gib einen Namen an.';
 		}

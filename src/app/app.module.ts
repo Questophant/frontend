@@ -43,9 +43,7 @@ import { SharedModule } from './shared/shared.module';
 		}),
 		ImageCropperModule,
 	],
-	providers: [
-		ConnectionService,
-	],
+	providers: [ConnectionService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -12,12 +12,6 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public createNewChallenge(
-		challenge: CreateChallengeDto
-	): Promise<ChallengeDto> {
-		throw new Error('Method not implemented.');
-	}
-
 	public getChallengeById(id: number): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
@@ -30,13 +24,63 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public deleteChallenge(
-		challengeId: number
-	): Promise<ChallengeDto | string> {
+	public getChallengeList(
+		challengeListType: ChallengeListType,
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
+		switch (challengeListType.name) {
+			case 'active':
+				return this.getActiveChallenges(page, size);
+			case 'marked':
+				return this.getRememberedChallenges(page, size);
+			case 'done':
+				return this.getDoneChallenges(page, size);
+			case 'created':
+				return this.getCreatedChallenges(page, size);
+		}
+		throw new Error(
+			'ChallengeListType ' + challengeListType.name + ' not implemented.'
+		);
+	}
+
+	public getCreatedChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
 		throw new Error('Method not implemented.');
 	}
 
-	createNewUser(user: UserDto): Promise<UserDto> {
+	public getDoneChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getRememberedChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	public getActiveChallenges(
+		page: number,
+		size: number
+	): Promise<ChallengeDto[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	public createNewChallenge(
+		challenge: CreateChallengeDto
+	): Promise<ChallengeDto> {
+		throw new Error('Method not implemented.');
+	}
+
+	public deleteChallenge(
+		challengeId: number
+	): Promise<ChallengeDto | string> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -47,23 +91,18 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getCreatedChallenges(): Promise<ChallengeDto[]> {
+	public rememberChallenge(
+		challenge: ChallengeDto,
+		remember: boolean
+	): Promise<ChallengeDto> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDoneChallenges(): Promise<ChallengeDto[]> {
+	createNewUser(user: UserDto): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 
-	public getRememberedChallenges(): Promise<ChallengeDto[]> {
-		throw new Error('Method not implemented.');
-	}
-
-	public getActiveChallenges(): Promise<ChallengeDto[]> {
-		throw new Error('Method not implemented.');
-	}
-
-	getMyUser(userId: string): Promise<UserDto> {
+	public getMyUser(userId: string): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -71,10 +110,7 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public rememberChallenge(
-		challenge: ChallengeDto,
-		remember: boolean
-	): Promise<ChallengeDto> {
+	public setUserImage(imageBase64: string): Promise<UserDto> {
 		throw new Error('Method not implemented.');
 	}
 
@@ -86,39 +122,11 @@ export abstract class ApiService {
 		throw new Error('Method not implemented.');
 	}
 
-	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
-		throw new Error('Method not implemented.');
-	}
-
-	public setUserImage(imageBase64: string): Promise<UserDto> {
-		throw new Error('Method not implemented.');
-	}
-
 	public getApiUrl(): string {
 		throw new Error('Method not implemented.');
 	}
 
-	public getChallengeList(
-		challengeListType: ChallengeListType,
-		page: number,
-		size: number
-	): Promise<ChallengeDto[]> {
-		switch (challengeListType.name) {
-			case 'active':
-				return this.getActiveChallenges();
-				break;
-			case 'marked':
-				return this.getRememberedChallenges();
-				break;
-			case 'done':
-				return this.getRememberedChallenges();
-				break;
-			case 'created':
-				return this.getRememberedChallenges();
-				break;
-		}
-		throw new Error(
-			'ChallengeListType ' + challengeListType.name + ' not implemented.'
-		);
+	public getDefaultExceptionHandler(): (httpErrorResponse: any) => any {
+		throw new Error('Method not implemented.');
 	}
 }
