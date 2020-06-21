@@ -6,7 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, ConnectionService } from './app.component';
 import { AchievementsPageComponent } from './pages/achievements-page/achievements-page.component';
 import { ChallengeDetailsPageComponent } from './pages/challenge-details-page/challenge-details-page.component';
 import { ChallengeListPageComponent } from './pages/challenge-list-page/challenge-list-page.component';
@@ -43,7 +43,7 @@ import { SharedModule } from './shared/shared.module';
 		}),
 		ImageCropperModule,
 	],
-	providers: [],
+	providers: [ConnectionService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

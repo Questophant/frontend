@@ -85,15 +85,14 @@ export class WelcomePageComponent implements OnInit {
 	}
 
 	getErrorMessageForName(): string {
-		console.log(this.nameFormControl.errors);
 		if (this.nameFormControl.hasError('required')) {
-			return 'Wir brauchen einen Namen von dir.';
+			return 'Bitte gib einen Namen an.';
 		}
 		if (this.nameFormControl.hasError('minlength')) {
-			return 'Dein Name ist zu kurz';
+			return 'Bitte gib einen längeren Namen an.';
 		}
 		if (this.nameFormControl.hasError('maxlength')) {
-			return 'Dein Name ist zu lang';
+			return 'Bitte gib einen kürzeren Namen an.';
 		}
 		if (this.nameFormControl.hasError('pattern')) {
 			return 'Dein Name enthält ungültige Zeichen';

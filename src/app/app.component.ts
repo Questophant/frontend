@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component, Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { ConnectionService } from 'ng-connection-service';
+import { NavigationEnd, Router } from '@angular/router';
+import { fromEvent, Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-root',
@@ -10,35 +10,52 @@ import { ConnectionService } from 'ng-connection-service';
 })
 export class AppComponent {
 	offline = !navigator.onLine;
-	reloadNeeded = false;
-	nextUpdateCheckDay = new Date().getDate();
+	needReload = false;
 
 	constructor(
-		private connectionService: ConnectionService,
-		swUpdate: SwUpdate,
-		router: Router
+		private readonly connectionService: ConnectionService,
+		private readonly swUpdate: SwUpdate,
+		private readonly router: Router
 	) {
-		this.connectionService.monitor().subscribe((currentState) => {
-			this.offline = !currentState;
+		this.connectionService.watch().subscribe((online) => {
+			this.offline = !online;
 		});
 
 		// apply updates without reloading the webpage
-		swUpdate.available.subscribe(() => {
+		swUpdate.available.subscribe((e) => {
+			console.log('New version available');
 			swUpdate.activateUpdate().then(() => {
-				this.reloadNeeded = true;
+				console.log('New version installed.');
+				this.needReload = true;
 			});
 		});
-		router.events.subscribe((e) => {
-			if (e instanceof NavigationEnd && swUpdate.isEnabled) {
-				const day = new Date().getDate();
-				if (day !== this.nextUpdateCheckDay) {
-					this.nextUpdateCheckDay = day;
-					swUpdate.checkForUpdate();
-				}
-				if (this.reloadNeeded) {
-					window.location.reload();
-				}
+
+		setInterval(() => {
+			if (swUpdate.isEnabled) {
+				swUpdate.checkForUpdate();
 			}
+		}, 1000 * 60 * 60); // 1 Hour
+
+		router.events.subscribe((e) => {
+			if (e instanceof NavigationEnd && this.needReload) {
+				this.needReload = false;
+				document.location.reload();
+			}
+		});
+	}
+}
+
+@Injectable({
+	providedIn: 'root',
+})
+export class ConnectionService {
+	/**
+	 * Returns true if online, false when offline.
+	 */
+	watch(): Observable<boolean> {
+		return new Observable<boolean>((observer) => {
+			fromEvent(window, 'online').subscribe(() => observer.next(true));
+			fromEvent(window, 'offline').subscribe(() => observer.next(false));
 		});
 	}
 }

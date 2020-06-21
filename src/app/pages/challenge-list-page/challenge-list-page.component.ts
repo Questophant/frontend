@@ -1,11 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {
-	ChallengeListType,
-	ChallengeListTypes,
-	getChallengeListTypeByName,
-} from '../../shared/dtos/challenge-list-type';
+import { ChallengeListType, ChallengeListTypes, getChallengeListTypeByName } from '../../shared/dtos/challenge-list-type';
 import { ChallengeDto } from '../../shared/dtos/challenge.dto';
 import { ApiService } from '../../shared/services/api/api.service';
 
@@ -27,22 +23,20 @@ export class ChallengeListPageComponent implements OnInit, OnDestroy {
 		private api: ApiService
 	) {}
 
-	ngOnDestroy(): void {
-		this.subscription.unsubscribe();
-	}
-
 	ngOnInit(): void {
 		this.subscription = this.route.queryParamMap.subscribe((params) => {
-			const tab = params.get('tab');
-			this.challengeListType =
-				getChallengeListTypeByName(tab) ||
-				getChallengeListTypeByName('active');
+			const tab = params.get('tab') || 'active';
+			this.challengeListType = getChallengeListTypeByName(tab);
 			this.challenges$ = this.api.getChallengeList(
 				this.challengeListType,
 				0,
-				Number.MAX_VALUE
+				100
 			);
 		});
+	}
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe();
 	}
 
 	showChallenges(name: string): void {

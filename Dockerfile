@@ -1,11 +1,13 @@
+# https://github.com/jnt0r/angular-server-image
 # Build app
-FROM johnpapa/angular-cli:latest as build
+FROM node:12.18.0-alpine as build
 WORKDIR /app
-COPY package.json /app
-RUN npm install
+COPY package.json package-lock.json /app/
+RUN npm ci
 COPY . /app
-RUN ng build --prod
+RUN npm run build:prod
+RUN mv /app/dist/* /app/built
 
 # Serve app
-FROM nginx:1.17.1-alpine
-COPY --from=build /app/dist/QuestophantFrontend /usr/share/nginx/html
+FROM nginx:1.19.0-alpine
+COPY --from=build /app/built /usr/share/nginx/html
